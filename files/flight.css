@@ -19,6 +19,10 @@
     max-width: 100%;
 }
 
+.air-result-block .result-list .result-item .card .info-block:third-child{
+    margin-bottom: 100px;
+}
+
 .air-result-block .result-list .result-item .card .info-block .companies-list {
     margin-bottom: 16px;
 }
@@ -280,7 +284,7 @@
     line-height: 14px;
     letter-spacing: 0em;
     color: #fff;
-
+    margin-bottom: 16px;
 }
 
 .air-result-block .result-list .result-item .card .right-block-result-item-info .result-item-yellow-status {
@@ -297,7 +301,7 @@
     line-height: 14px;
     letter-spacing: 0em;
     color: #19191E;
-
+    margin-bottom: 16px;
 }
 
 .air-result-block .result-list .result-item .card .right-block-result-item-info .baggage {
@@ -322,6 +326,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 16px;
 }
 
 .air-result-block .result-list .result-item .card .right-block-result-item-info .price-title {
@@ -355,7 +360,7 @@
 .air-result-block .result-list .result-item .card .right-block-result-item-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     border-left: 1px solid #E4E6EE;
     padding-left: 24px;
     width: 145px;
