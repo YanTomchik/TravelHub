@@ -1,0 +1,4050 @@
+<!DOCTYPE html>
+<!-- saved from url=(0387)https://travelhub.by/basket?tourId=100000029&cityId=448&hotelId=5347&date=24.03.2024&duration=7&adults=2&serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly -->
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://travelhub.by/favicon-travelhub.ico"
+      type="image/x-icon"
+    />
+    <title>Корзина</title>
+    <meta property="og:title" content="Корзина" />
+    <link rel="stylesheet" href="files/css" />
+    <!-- Google Tag Manager -->
+    <script src="files/943376383977574" async=""></script>
+    <script async="" src="files/fbevents.js"></script>
+    <script type="text/javascript" async="" src="files/slskl0cp"></script>
+    <script async="" src="files/tag.js"></script>
+    <script type="text/javascript" async="" src="files/js"></script>
+    <script async="" src="files/gtm.js"></script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-N6NH3NKZ");
+    </script>
+    <!-- End Google Tag Manager -->
+    <link href="files/font-awesome.min.css" rel="stylesheet" async="async" />
+    <link href="files/animate.min.css" rel="stylesheet" />
+    <link href="files/whirl.min.css" rel="stylesheet" />
+    <link href="files/slick.css" rel="stylesheet" />
+    <link href="files/fullcalendar.bundle.css" rel="stylesheet" />
+    <link href="files/wizard-1.css" rel="stylesheet" />
+    <link href="files/plugins.bundle.css" rel="stylesheet" />
+    <link href="files/prismjs.bundle.css" rel="stylesheet" />
+    <link href="files/style.bundle.css" rel="stylesheet" />
+    <link href="files/select2-addl.min.css" rel="stylesheet" />
+    <link href="files/select2.min.css" rel="stylesheet" />
+    <link href="files/custom.css" rel="stylesheet" />
+    <link href="files/main.css" rel="stylesheet" />
+    <link href="files/landing.min.css" rel="stylesheet" />
+    <link href="files/header.min.css" rel="stylesheet" />
+    <link href="files/saved_resource" rel="stylesheet" />
+    <link href="files/select2(1).min.css" rel="stylesheet" />
+    <link href="files/select2-addl(1).min.css" rel="stylesheet" />
+    <link href="files/select2-krajee-bs3.min.css" rel="stylesheet" />
+    <link href="files/kv-widgets.min.css" rel="stylesheet" />
+    <link href="files/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="files/datepicker-kv.min.css" rel="stylesheet" />
+    <link href="files/multiple-input.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script>
+      var formatClient = function (client) {
+        if (client.loading) {
+          return client.text;
+        }
+
+        var markup =
+          "<div class='row'>" +
+          "<div class='col-sm-12'>" +
+          client.text +
+          (client.name ? " (" + client.name + ")" : "") +
+          (client.agency ? " &ndash; <b>" + client.agency + "</b>" : "") +
+          "</div></div>";
+        return "<div style='overflow:hidden;'>" + markup + "</div>";
+      };
+      var formatClientSelection = function (client) {
+        return client.text || "Поиск клиента";
+      };
+      var clientModalWidgetTranslation = [];
+      clientModalWidgetTranslation["errorKid"] =
+        "Ошибка назначения клиента, вам нужно выбрать ребенка, до 18 лет";
+      clientModalWidgetTranslation["errorAdult"] =
+        "Ошибка назначения клиента, вам нужно выбрать взрослого";
+      clientModalWidgetTranslation["clientChanged"] =
+        "Внимание! Вы меняете данные существующего клиента. Данные в уже созданных заявках останутся без изменений. Если вы хотите обновить данные в заявке, вам необходимо заново выбрать клиента в заявке.";
+      clientModalWidgetTranslation["docIsNeeded"] =
+        "Нужно добавить и заполнить документ, так как в заказе есть авиабилеты";
+      clientModalWidgetTranslation["formErrorLoading"] =
+        "Ошибка при загрузке формы";
+      window.s2options_3267a624 = {
+        themeCss: ".select2-container--krajee-bs3",
+        sizeCss: "",
+        doReset: true,
+        doToggle: false,
+        doOrder: false,
+      };
+      window.select2_2e380661 = {
+        allowClear: true,
+        ajax: {
+          url: "\/clients\/search",
+          dataType: "json",
+          delay: 500,
+          data: function (params) {
+            return { q: params.term, page: params.page };
+          },
+          processResults: function (data, params) {
+            params.page = params.page || 1;
+            return {
+              results: data.items.map(function (item) {
+                return {
+                  id: item.id,
+                  text: item.nameLat,
+                  name: item.name,
+                  agency: item.agency,
+                };
+              }),
+              pagination: {
+                more: params.page * 10 < data.total_count,
+              },
+            };
+          },
+          cache: true,
+        },
+        escapeMarkup: function (markup) {
+          return markup;
+        },
+        templateResult: formatClient,
+        templateSelection: formatClientSelection,
+        loadingText: "Загрузка...",
+        theme: "krajee-bs3",
+        width: "100%",
+        placeholder: "Поиск по имени",
+        language: "ru",
+      };
+
+      window.select2_59ef71b0 = {
+        allowClear: false,
+        theme: "krajee-bs3",
+        width: "100%",
+        placeholder: "Выберите гражданство",
+        language: "ru",
+      };
+
+      window.select2_7c8f2e63 = {
+        allowClear: false,
+        minimumResultsForSearch: -1,
+        theme: "krajee-bs3",
+        width: "100%",
+        placeholder: "Выберите пол",
+        language: "ru",
+      };
+
+      window.kvDatepicker_4e75aa98 = {
+        format: "dd.mm.yyyy",
+        todayHighlight: true,
+        autoclose: true,
+        language: "ru",
+      };
+
+      var inputmask_b9e0a12c = {
+        greedy: false,
+        clearIncomplete: false,
+        placeholder: "",
+        definitions: {
+          9: { validator: "[0-9]", cardinality: 1, definitionSymbol: "*" },
+        },
+        mask: "+9{1,12}",
+      };
+      var translationsHub = {
+        tour: "\u0422\u0443\u0440",
+        dates: "\u0414\u0430\u0442\u044b",
+        nights: "\u041d\u043e\u0447\u0435\u0439",
+        hotel: "\u041e\u0442\u0435\u043b\u044c",
+        roomAndMeal:
+          "\u041d\u043e\u043c\u0435\u0440 \u0438 \u043f\u0438\u0442\u0430\u043d\u0438\u0435",
+        fly: "\u0410\u0432\u0438\u0430",
+        discount: "\u0421\u043a\u0438\u0434\u043a\u0430",
+        prices: "\u0426\u0435\u043d\u044b",
+        linkCopied:
+          "\u0421\u0441\u044b\u043b\u043a\u0430 \u0441\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0430",
+        linkCopy:
+          "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443",
+        moreDetails: "\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435",
+        collapse: "\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c",
+        nightsAbbr: "\u043d.",
+        hideExtendedSearch:
+          "\u0421\u043a\u0440\u044b\u0442\u044c \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a",
+        extendedSearch:
+          "\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a",
+      };
+      var translationsHub = {
+        notSet: "\u041d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e",
+        expireAt:
+          "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u0435\u043d \u0434\u043e",
+      };
+    </script>
+    <script
+      charset="UTF-8"
+      src="files/4417ba824f6d72aa4d4dd81805d55dcb_1.js"
+      async=""
+    ></script>
+    <script type="text/javascript">
+      window.addEventListener("load", function () {
+        oSpP.push("email", "ytmwork@mail.ru");
+        oSpP.push("Телефон", "375299365087");
+      });
+    </script>
+    <!-- TrustBox script -->
+    <script
+      type="text/javascript"
+      src="files/tp.widget.bootstrap.min.js"
+      async=""
+    ></script>
+    <!-- End TrustBox script -->
+    <meta name="yandex-verification" content="9f24b687a157ccd7" />
+    <style type="text/css">
+      .apexcharts-canvas {
+        position: relative;
+        user-select: none;
+        /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+      }
+
+      /* scrollbar is not visible by default for legend, hence forcing the visibility */
+      .apexcharts-canvas ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 6px;
+      }
+
+      .apexcharts-canvas ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+      }
+
+      .apexcharts-inner {
+        position: relative;
+      }
+
+      .apexcharts-text tspan {
+        font-family: inherit;
+      }
+
+      .legend-mouseover-inactive {
+        transition: 0.15s ease all;
+        opacity: 0.2;
+      }
+
+      .apexcharts-series-collapsed {
+        opacity: 0;
+      }
+
+      .apexcharts-tooltip {
+        border-radius: 5px;
+        box-shadow: 2px 2px 6px -4px #999;
+        cursor: default;
+        font-size: 14px;
+        left: 62px;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        z-index: 12;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-tooltip.apexcharts-active {
+        opacity: 1;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-tooltip.apexcharts-theme-light {
+        border: 1px solid #e3e3e3;
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .apexcharts-tooltip.apexcharts-theme-dark {
+        color: #fff;
+        background: rgba(30, 30, 30, 0.8);
+      }
+
+      .apexcharts-tooltip * {
+        font-family: inherit;
+      }
+
+      .apexcharts-tooltip-title {
+        padding: 6px;
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+        background: #eceff1;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+        background: rgba(0, 0, 0, 0.7);
+        border-bottom: 1px solid #333;
+      }
+
+      .apexcharts-tooltip-text-value,
+      .apexcharts-tooltip-text-z-value {
+        display: inline-block;
+        font-weight: 600;
+        margin-left: 5px;
+      }
+
+      .apexcharts-tooltip-text-z-label:empty,
+      .apexcharts-tooltip-text-z-value:empty {
+        display: none;
+      }
+
+      .apexcharts-tooltip-text-value,
+      .apexcharts-tooltip-text-z-value {
+        font-weight: 600;
+      }
+
+      .apexcharts-tooltip-marker {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        top: 0px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
+      .apexcharts-tooltip-series-group {
+        padding: 0 10px;
+        display: none;
+        text-align: left;
+        justify-content: left;
+        align-items: center;
+      }
+
+      .apexcharts-tooltip-series-group.apexcharts-active
+        .apexcharts-tooltip-marker {
+        opacity: 1;
+      }
+
+      .apexcharts-tooltip-series-group.apexcharts-active,
+      .apexcharts-tooltip-series-group:last-child {
+        padding-bottom: 4px;
+      }
+
+      .apexcharts-tooltip-series-group-hidden {
+        opacity: 0;
+        height: 0;
+        line-height: 0;
+        padding: 0 !important;
+      }
+
+      .apexcharts-tooltip-y-group {
+        padding: 6px 0 5px;
+      }
+
+      .apexcharts-tooltip-candlestick {
+        padding: 4px 8px;
+      }
+
+      .apexcharts-tooltip-candlestick > div {
+        margin: 4px 0;
+      }
+
+      .apexcharts-tooltip-candlestick span.value {
+        font-weight: bold;
+      }
+
+      .apexcharts-tooltip-rangebar {
+        padding: 5px 8px;
+      }
+
+      .apexcharts-tooltip-rangebar .category {
+        font-weight: 600;
+        color: #777;
+      }
+
+      .apexcharts-tooltip-rangebar .series-name {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .apexcharts-xaxistooltip {
+        opacity: 0;
+        padding: 9px 10px;
+        pointer-events: none;
+        color: #373d3f;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+        background: #eceff1;
+        border: 1px solid #90a4ae;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-xaxistooltip.apexcharts-theme-dark {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        color: #fff;
+      }
+
+      .apexcharts-xaxistooltip:after,
+      .apexcharts-xaxistooltip:before {
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .apexcharts-xaxistooltip:after {
+        border-color: rgba(236, 239, 241, 0);
+        border-width: 6px;
+        margin-left: -6px;
+      }
+
+      .apexcharts-xaxistooltip:before {
+        border-color: rgba(144, 164, 174, 0);
+        border-width: 7px;
+        margin-left: -7px;
+      }
+
+      .apexcharts-xaxistooltip-bottom:after,
+      .apexcharts-xaxistooltip-bottom:before {
+        bottom: 100%;
+      }
+
+      .apexcharts-xaxistooltip-top:after,
+      .apexcharts-xaxistooltip-top:before {
+        top: 100%;
+      }
+
+      .apexcharts-xaxistooltip-bottom:after {
+        border-bottom-color: #eceff1;
+      }
+
+      .apexcharts-xaxistooltip-bottom:before {
+        border-bottom-color: #90a4ae;
+      }
+
+      .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+        border-bottom-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+        border-bottom-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-xaxistooltip-top:after {
+        border-top-color: #eceff1;
+      }
+
+      .apexcharts-xaxistooltip-top:before {
+        border-top-color: #90a4ae;
+      }
+
+      .apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+        border-top-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+        border-top-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-xaxistooltip.apexcharts-active {
+        opacity: 1;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-yaxistooltip {
+        opacity: 0;
+        padding: 4px 10px;
+        pointer-events: none;
+        color: #373d3f;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+        background: #eceff1;
+        border: 1px solid #90a4ae;
+      }
+
+      .apexcharts-yaxistooltip.apexcharts-theme-dark {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        color: #fff;
+      }
+
+      .apexcharts-yaxistooltip:after,
+      .apexcharts-yaxistooltip:before {
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .apexcharts-yaxistooltip:after {
+        border-color: rgba(236, 239, 241, 0);
+        border-width: 6px;
+        margin-top: -6px;
+      }
+
+      .apexcharts-yaxistooltip:before {
+        border-color: rgba(144, 164, 174, 0);
+        border-width: 7px;
+        margin-top: -7px;
+      }
+
+      .apexcharts-yaxistooltip-left:after,
+      .apexcharts-yaxistooltip-left:before {
+        left: 100%;
+      }
+
+      .apexcharts-yaxistooltip-right:after,
+      .apexcharts-yaxistooltip-right:before {
+        right: 100%;
+      }
+
+      .apexcharts-yaxistooltip-left:after {
+        border-left-color: #eceff1;
+      }
+
+      .apexcharts-yaxistooltip-left:before {
+        border-left-color: #90a4ae;
+      }
+
+      .apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+        border-left-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+        border-left-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-yaxistooltip-right:after {
+        border-right-color: #eceff1;
+      }
+
+      .apexcharts-yaxistooltip-right:before {
+        border-right-color: #90a4ae;
+      }
+
+      .apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+        border-right-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+        border-right-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .apexcharts-yaxistooltip.apexcharts-active {
+        opacity: 1;
+      }
+
+      .apexcharts-yaxistooltip-hidden {
+        display: none;
+      }
+
+      .apexcharts-xcrosshairs,
+      .apexcharts-ycrosshairs {
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-xcrosshairs.apexcharts-active,
+      .apexcharts-ycrosshairs.apexcharts-active {
+        opacity: 1;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-ycrosshairs-hidden {
+        opacity: 0;
+      }
+
+      .apexcharts-selection-rect {
+        cursor: move;
+      }
+
+      .svg_select_boundingRect,
+      .svg_select_points_rot {
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .apexcharts-selection-rect + g .svg_select_boundingRect,
+      .apexcharts-selection-rect + g .svg_select_points_rot {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .apexcharts-selection-rect + g .svg_select_points_l,
+      .apexcharts-selection-rect + g .svg_select_points_r {
+        cursor: ew-resize;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .svg_select_points {
+        fill: #efefef;
+        stroke: #333;
+        rx: 2;
+      }
+
+      .apexcharts-canvas.apexcharts-zoomable .hovering-zoom {
+        cursor: crosshair;
+      }
+
+      .apexcharts-canvas.apexcharts-zoomable .hovering-pan {
+        cursor: move;
+      }
+
+      .apexcharts-zoom-icon,
+      .apexcharts-zoomin-icon,
+      .apexcharts-zoomout-icon,
+      .apexcharts-reset-icon,
+      .apexcharts-pan-icon,
+      .apexcharts-selection-icon,
+      .apexcharts-menu-icon,
+      .apexcharts-toolbar-custom-icon {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        line-height: 24px;
+        color: #6e8192;
+        text-align: center;
+      }
+
+      .apexcharts-zoom-icon svg,
+      .apexcharts-zoomin-icon svg,
+      .apexcharts-zoomout-icon svg,
+      .apexcharts-reset-icon svg,
+      .apexcharts-menu-icon svg {
+        fill: #6e8192;
+      }
+
+      .apexcharts-selection-icon svg {
+        fill: #444;
+        transform: scale(0.76);
+      }
+
+      .apexcharts-theme-dark .apexcharts-zoom-icon svg,
+      .apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+      .apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+      .apexcharts-theme-dark .apexcharts-reset-icon svg,
+      .apexcharts-theme-dark .apexcharts-pan-icon svg,
+      .apexcharts-theme-dark .apexcharts-selection-icon svg,
+      .apexcharts-theme-dark .apexcharts-menu-icon svg,
+      .apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+        fill: #f3f4f5;
+      }
+
+      .apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+      .apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+      .apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+        fill: #008ffb;
+      }
+
+      .apexcharts-theme-light
+        .apexcharts-selection-icon:not(.apexcharts-selected):hover
+        svg,
+      .apexcharts-theme-light
+        .apexcharts-zoom-icon:not(.apexcharts-selected):hover
+        svg,
+      .apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+      .apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+      .apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+      .apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+        fill: #333;
+      }
+
+      .apexcharts-selection-icon,
+      .apexcharts-menu-icon {
+        position: relative;
+      }
+
+      .apexcharts-reset-icon {
+        margin-left: 5px;
+      }
+
+      .apexcharts-zoom-icon,
+      .apexcharts-reset-icon,
+      .apexcharts-menu-icon {
+        transform: scale(0.85);
+      }
+
+      .apexcharts-zoomin-icon,
+      .apexcharts-zoomout-icon {
+        transform: scale(0.7);
+      }
+
+      .apexcharts-zoomout-icon {
+        margin-right: 3px;
+      }
+
+      .apexcharts-pan-icon {
+        transform: scale(0.62);
+        position: relative;
+        left: 1px;
+        top: 0px;
+      }
+
+      .apexcharts-pan-icon svg {
+        fill: #fff;
+        stroke: #6e8192;
+        stroke-width: 2;
+      }
+
+      .apexcharts-pan-icon.apexcharts-selected svg {
+        stroke: #008ffb;
+      }
+
+      .apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+        stroke: #333;
+      }
+
+      .apexcharts-toolbar {
+        position: absolute;
+        z-index: 11;
+        max-width: 176px;
+        text-align: right;
+        border-radius: 3px;
+        padding: 0px 6px 2px 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .apexcharts-menu {
+        background: #fff;
+        position: absolute;
+        top: 100%;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 3px;
+        right: 10px;
+        opacity: 0;
+        min-width: 110px;
+        transition: 0.15s ease all;
+        pointer-events: none;
+      }
+
+      .apexcharts-menu.apexcharts-menu-open {
+        opacity: 1;
+        pointer-events: all;
+        transition: 0.15s ease all;
+      }
+
+      .apexcharts-menu-item {
+        padding: 6px 7px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .apexcharts-theme-light .apexcharts-menu-item:hover {
+        background: #eee;
+      }
+
+      .apexcharts-theme-dark .apexcharts-menu {
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+      }
+
+      @media screen and (min-width: 768px) {
+        .apexcharts-canvas:hover .apexcharts-toolbar {
+          opacity: 1;
+        }
+      }
+
+      .apexcharts-datalabel.apexcharts-element-hidden {
+        opacity: 0;
+      }
+
+      .apexcharts-pie-label,
+      .apexcharts-datalabels,
+      .apexcharts-datalabel,
+      .apexcharts-datalabel-label,
+      .apexcharts-datalabel-value {
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .apexcharts-pie-label-delay {
+        opacity: 0;
+        animation-name: opaque;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+      }
+
+      .apexcharts-canvas .apexcharts-element-hidden {
+        opacity: 0;
+      }
+
+      .apexcharts-hide .apexcharts-series-points {
+        opacity: 0;
+      }
+
+      .apexcharts-gridline,
+      .apexcharts-annotation-rect,
+      .apexcharts-tooltip .apexcharts-marker,
+      .apexcharts-area-series .apexcharts-area,
+      .apexcharts-line,
+      .apexcharts-zoom-rect,
+      .apexcharts-toolbar svg,
+      .apexcharts-area-series
+        .apexcharts-series-markers
+        .apexcharts-marker.no-pointer-events,
+      .apexcharts-line-series
+        .apexcharts-series-markers
+        .apexcharts-marker.no-pointer-events,
+      .apexcharts-radar-series path,
+      .apexcharts-radar-series polygon {
+        pointer-events: none;
+      }
+
+      /* markers */
+
+      .apexcharts-marker {
+        transition: 0.15s ease all;
+      }
+
+      @keyframes opaque {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Resize generated styles */
+
+      @keyframes resizeanim {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .resize-triggers {
+        animation: 1ms resizeanim;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .resize-triggers,
+      .resize-triggers > div,
+      .contract-trigger:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .resize-triggers > div {
+        background: #eee;
+        overflow: auto;
+      }
+
+      .contract-trigger:before {
+        width: 200%;
+        height: 200%;
+      }
+    </style>
+    <style type="text/css">
+      span.im-caret {
+        -webkit-animation: 1s blink step-end infinite;
+        animation: 1s blink step-end infinite;
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-right-color: black;
+        }
+        50% {
+          border-right-color: transparent;
+        }
+      }
+
+      @-webkit-keyframes blink {
+        from,
+        to {
+          border-right-color: black;
+        }
+        50% {
+          border-right-color: transparent;
+        }
+      }
+
+      span.im-static {
+        color: grey;
+      }
+
+      div.im-colormask {
+        display: inline-block;
+        border-style: inset;
+        border-width: 2px;
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+
+      div.im-colormask > input {
+        position: absolute;
+        display: inline-block;
+        background-color: transparent;
+        color: transparent;
+        -webkit-appearance: caret;
+        -moz-appearance: caret;
+        appearance: caret;
+        border-style: none;
+        left: 0; /*calculated*/
+      }
+
+      div.im-colormask > input:focus {
+        outline: none;
+      }
+
+      div.im-colormask > input::-moz-selection {
+        background: none;
+      }
+
+      div.im-colormask > input::selection {
+        background: none;
+      }
+      div.im-colormask > input::-moz-selection {
+        background: none;
+      }
+
+      div.im-colormask > div {
+        color: black;
+        display: inline-block;
+        width: 100px; /*calculated*/
+      }
+    </style>
+    <link
+      href="files/pixel.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,print"
+    />
+  </head>
+  <body
+    class="header-fixed subheader-enabled subheader-fixed is-agent"
+    data-theme="travelhub"
+  >
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N6NH3NKZ"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="d-flex flex-column flex-root">
+      <div class="d-flex flex-row flex-column-fluid page">
+        <div
+          class="d-flex flex-column flex-row-fluid wrapper main-block-with-left-menu"
+          id="kt_wrapper"
+        >
+          <header id="kt_header" class="header header-fixed header-has-auth">
+            <div class="header-top">
+              <div class="header-left-block">
+                <a href="files/saved_resource" class="logo-link">
+                  <img
+                    class="logo"
+                    src="files/logotext-travelhub.svg"
+                    alt="logo"
+                  />
+                </a>
+              </div>
+              <div class="header-right-block">
+                <div class="header-currency-rates">
+                  <a
+                    class="d-flex justify-content-center"
+                    href="https://travelhub.by/user/currency-rates"
+                  >
+                    <div class="currency-item mr-5">
+                      <img
+                        src="files/usd.svg"
+                        alt=""
+                        class="currency-item-icon mr-2"
+                      />
+                      <span class="currency-item-rate">3.3</span>
+                    </div>
+                    <div class="currency-item">
+                      <img
+                        src="files/eur.svg"
+                        alt=""
+                        class="currency-item-icon mr-2"
+                      />
+                      <span class="currency-item-rate">3.61</span>
+                    </div>
+                  </a>
+                </div>
+                <div class="header-account-links">
+                  <a href="https://travelhub.by/agency">Агентствам</a>
+                  <a href="https://travelhub.by/b2b">Корпоративным клиентам</a>
+                </div>
+                <div class="header-language">
+                  <span></span>
+                  <div class="header-language-dropdown">
+                    <div class="header-language-dropdown-tab">
+                      <div class="language-tab active" data-tab="currency">
+                        Валюта
+                      </div>
+                      <div class="language-tab" data-tab="language">Язык</div>
+                    </div>
+                    <div class="header-language-dropdown-tabContent">
+                      <div class="language-content" data-tab="currency-content">
+                        <a
+                          class="active"
+                          href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89%2C3804_1_6073_551_0_0_0_89%2C3805_6_1540_178_0_0_0_0%2C3806_1032_6069_214_0_0_0_0%2C3807_2_41447_770_0_0_0_9%2C3808_3_91676_5347_39_325_4_982%2C3809_1032_1539_184_0_0_0_0%2C3810_2_41447_387_0_0_0_24%2C3811_1_6073_658_0_0_0_89%2C3812_1_6073_659_0_0_0_89&amp;currency=BYN"
+                        >
+                          <img src="files/byn.svg" alt="" /> Бел руб.
+                        </a>
+                        <a
+                          class=""
+                          href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89%2C3804_1_6073_551_0_0_0_89%2C3805_6_1540_178_0_0_0_0%2C3806_1032_6069_214_0_0_0_0%2C3807_2_41447_770_0_0_0_9%2C3808_3_91676_5347_39_325_4_982%2C3809_1032_1539_184_0_0_0_0%2C3810_2_41447_387_0_0_0_24%2C3811_1_6073_658_0_0_0_89%2C3812_1_6073_659_0_0_0_89&amp;currency=USD"
+                          ><img src="files/usd.svg" alt="" /> Доллар</a
+                        >
+                        <a
+                          class=""
+                          href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89%2C3804_1_6073_551_0_0_0_89%2C3805_6_1540_178_0_0_0_0%2C3806_1032_6069_214_0_0_0_0%2C3807_2_41447_770_0_0_0_9%2C3808_3_91676_5347_39_325_4_982%2C3809_1032_1539_184_0_0_0_0%2C3810_2_41447_387_0_0_0_24%2C3811_1_6073_658_0_0_0_89%2C3812_1_6073_659_0_0_0_89&amp;currency=EUR"
+                          ><img src="files/eur.svg" alt="" /> Евро</a
+                        >
+                      </div>
+                      <div
+                        class="language-content"
+                        data-tab="language-content"
+                        style="display: none"
+                      >
+                        <a
+                          class="active"
+                          href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89%2C3804_1_6073_551_0_0_0_89%2C3805_6_1540_178_0_0_0_0%2C3806_1032_6069_214_0_0_0_0%2C3807_2_41447_770_0_0_0_9%2C3808_3_91676_5347_39_325_4_982%2C3809_1032_1539_184_0_0_0_0%2C3810_2_41447_387_0_0_0_24%2C3811_1_6073_658_0_0_0_89%2C3812_1_6073_659_0_0_0_89&amp;language=ru"
+                          ><span>RU</span> Русский
+                        </a>
+                        <a
+                          class=""
+                          href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89%2C3804_1_6073_551_0_0_0_89%2C3805_6_1540_178_0_0_0_0%2C3806_1032_6069_214_0_0_0_0%2C3807_2_41447_770_0_0_0_9%2C3808_3_91676_5347_39_325_4_982%2C3809_1032_1539_184_0_0_0_0%2C3810_2_41447_387_0_0_0_24%2C3811_1_6073_658_0_0_0_89%2C3812_1_6073_659_0_0_0_89&amp;language=en"
+                          ><span>EN</span> English
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="header-toggle-nav-desktop">
+                  <span></span>
+                </div>
+                <div class="header-toggle-nav-mobile">
+                  <span></span>
+                </div>
+                <div
+                  id="kt_header_mobile_user_menu_toggle"
+                  class="header-account-mobile"
+                  style=""
+                >
+                  Я
+                </div>
+              </div>
+            </div>
+
+            <div class="header-bottom">
+              <div class="header-bottom-content">
+                <div class="header-bottom-mobile">
+                  Меню
+                  <div class="header-bottom-mobile-close"></div>
+                </div>
+                <div class="header-mobile-currency-rates">
+                  <a
+                    class="d-flex"
+                    href="https://travelhub.by/user/currency-rates"
+                  >
+                    <div class="currency-item mr-5">
+                      <img
+                        src="files/usd.svg"
+                        alt=""
+                        class="currency-item-icon mr-2"
+                      />
+                      <span class="currency-item-rate">3.3</span>
+                    </div>
+                    <div class="currency-item">
+                      <img
+                        src="files/eur.svg"
+                        alt=""
+                        class="currency-item-icon mr-2"
+                      />
+                      <span class="currency-item-rate">3.61</span>
+                    </div>
+                  </a>
+                </div>
+                <div class="header-bottom-left">
+                  <ul>
+                    <li>
+                      <a class="" href="files/saved_resource"> Поиск </a>
+                    </li>
+                    <li>
+                      <a class="" href="https://travelhub.by/orders">
+                        Заявки
+                      </a>
+                    </li>
+                    <li>
+                      <a class="" href="https://travelhub.by/clients">
+                        Туристы
+                      </a>
+                    </li>
+                    <li>
+                      <a class="" href="https://travelhub.by/marketplace">
+                        Маркетплейс
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!---->
+                <div class="header-dropdown-desktop">
+                  <div class="header-dropdown-desktop-nav">
+                    <ul class="header-dropdown-desktop-item">
+                      <li>
+                        <span class="dropdown-toggle-mobile">Live</span>
+                        <ul class="header-sub-menu-mobile">
+                          <li>
+                            <a href="https://travelhub.by/webinars"
+                              >Расписание будущих вебинаров</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://travelhub.by/webinars#last-webinars"
+                              >Записи вебинаров</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <ul class="header-dropdown-desktop-item">
+                      <li>
+                        <span class="dropdown-toggle-mobile">О компании</span>
+                        <ul class="header-sub-menu-mobile">
+                          <li>
+                            <a href="https://travelhub.by/news">Новости</a>
+                          </li>
+                          <li>
+                            <a href="https://travelhub.by/contacts">Контакты</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <div class="header-dropdown-desktop-socials">
+                      <div class="h3-header">Мы в соцсетях</div>
+                      <div class="d-flex align-items-center gap-16">
+                        <a target="_blank" href="https://t.me/travelhub_by"
+                          ><img src="files/telegram.svg" alt=""
+                        /></a>
+                        <a
+                          target="_blank"
+                          href="viber://chat?number=+375(29)108-93-93"
+                          ><img src="files/viber.svg" alt=""
+                        /></a>
+                        <a
+                          target="_blank"
+                          href="https://www.instagram.com/travelhub.by/"
+                          ><img src="files/inst.svg" alt=""
+                        /></a>
+                        <a target="_blank" href="mailto:book@travelhub.by"
+                          ><img src="files/mail.svg" alt=""
+                        /></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="header-dropdown-desktop-new">
+                    <div class="h3-header">Новинка</div>
+                    <p>Информационное и рекламное сотрудничество</p>
+                    <a
+                      href="https://travelhub.by/news/informatsionnoe-i-reklamnoe-sotrudnichestvo"
+                      >Подробнее-&gt;</a
+                    >
+                  </div>
+                </div>
+                <!---->
+                <div class="header-bottom-right">
+                  <div class="header-desktop-user">
+                    <div class="header-account-links-mobile">
+                      <a href="https://travelhub.by/agency">Агентствам</a>
+                      <a href="https://travelhub.by/b2b"
+                        >Корпоративным клиентам</a
+                      >
+                    </div>
+                    <div class="header-basket">
+                      <a
+                        href="https://travelhub.by/basket"
+                        class="header-basket-link"
+                      >
+                        <img src="files/cart.svg" alt="" />
+                      </a>
+                    </div>
+                    <div
+                      id="kt_header_user_menu_toggle"
+                      class="header-desktop-account-info"
+                    >
+                      <div class="header-desktop-account-info-icon"></div>
+                      <div>Привет, <span>Ян</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-socials-mobile">
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/travelhub.by/"
+                  >Telegram</a
+                >
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/travelhub.by/"
+                  >Instagram</a
+                >
+                <a target="_blank" href="viber://chat?number=+375(29)108-93-93"
+                  >Viber</a
+                >
+                <a target="_blank" href="mailto:book@travelhub.by">Mail</a>
+              </div>
+            </div>
+
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+              data-kt-menu="true"
+            >
+              <div class="header-account-modal-mobile">
+                Аккаунт
+                <div class="header-account-modal-mobile-close"></div>
+              </div>
+              <div class="menu-item px-3">
+                <div class="menu-content d-flex align-items-center px-3">
+                  <!--begin::Avatar-->
+                  <div class="symbol symbol-50px mr-5">
+                    <img alt="Logo" src="files/1230.jpg" />
+                  </div>
+                  <!--end::Avatar-->
+                  <!--begin::Username-->
+                  <div class="d-flex flex-column">
+                    <div class="account-name">Ян</div>
+                    <a
+                      href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#"
+                      class="account-mail fw-bold text-muted text-hover-primary fs-7"
+                      >ytmwork@mail.ru</a
+                    >
+                  </div>
+                  <!--end::Username-->
+                </div>
+              </div>
+              <!--end::Menu item-->
+              <!--begin::Menu separator-->
+              <div class="separator my-2 modile-none"></div>
+              <!--end::Menu separator-->
+              <!--begin::Menu item-->
+              <div class="menu-item px-5">
+                <a
+                  href="https://travelhub.by/user/update"
+                  class="menu-link px-5"
+                  >Мой профиль</a
+                >
+              </div>
+              <div class="separator my-2"></div>
+              <div class="menu-item px-5">
+                <a
+                  href="javascript:"
+                  onclick="Intercom(&#39;showSpace&#39;, &#39;help&#39;);"
+                  class="accont-sub-link menu-link px-5"
+                  >Поддержка</a
+                >
+              </div>
+              <div class="separator my-2 modile-none"></div>
+              <div class="menu-item px-5">
+                <a
+                  class="account-outlog menu-link px-5"
+                  href="https://travelhub.by/site/logout"
+                  data-method="post"
+                  >Выйти</a
+                >
+              </div>
+            </div>
+          </header>
+
+          <main class="height-auto">
+            <div class="filter-title">
+              <h2 class="title">Корзина бронирования</h2>
+              <div class="filter-title-right-block">
+                <button class="copy-link-btn">Скопировать ссылку</button>
+
+                <div class="toggle-switcher-wrapper">
+                  <p class="description-toggle">Турист</p>
+                  <label class="switch-toggle">
+                    <input type="checkbox" />
+                    <span class="slider-switcher-wrapper round"></span>
+                  </label>
+                  <p class="description-toggle">Агент</p>
+                </div>
+              </div>
+            </div>
+
+            <form
+              id="kt_form_update_tourist"
+              action="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89"
+              method="post"
+            >
+              <div class="row">
+                <div class="col-xl-9 mb-3 col-xl-9-separate-blocks">
+                  <div class="card card-custom mb-5 card-custom-main-header" id="card-header">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <h3 class="card-label font-weight-bolder">
+                          Минск - Тбилиси
+                        </h3>
+                        <div class="card-title-description">
+                          14.02.2024-15.02.2024
+                        </div>
+                      </div>
+                      <button class="delete-icon-wrapper">
+                        <img
+                          src="./images/trash-icon.svg"
+                          alt=""
+                          class="delete-icon"
+                        />
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <div class="contructor-tabs-wrapper">
+                        <ul class="nav" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5 active"
+                              id="var-1-tab-link"
+                              data-toggle="tab"
+                              href="#tours-tab"
+                              >+ авиa</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              href="excursions.html"
+                              >+ отель</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              id="var-2-tab-link"
+                              data-toggle="tab"
+                              href="#holels-tab"
+                              >+ трансферы</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              id="var-2-tab-link"
+                              data-toggle="tab"
+                              href="#holels-tab"
+                              >+ отель от DMC</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  -->
+                  <div class="card card-custom mb-5 separate-block card-custom-header" id="card-hotel">
+                    <div class="card-header">
+                      <div class="card-header-info">
+                        <button class="card-header-open-button">
+                          <img
+                            src="./images/chevron-open-header.svg"
+                            alt="arrow-icon"
+                          />
+                        </button>
+                        <div class="card-title">
+                          <h3 class="card-label font-weight-bolder">Авиа</h3>
+                          <div class="card-title-icon-wrapper">
+                            <img
+                              src="./images/airplane.svg"
+                              alt="airplane-icon"
+                              class="icon-item"
+                            />
+                          </div>
+                        </div>
+                        <div class="status-list">
+                          <div class="result-item-green-status">Гарантия</div>
+                          <div class="result-item-yellow-status">
+                            Под запрос
+                          </div>
+                        </div>
+                      </div>
+
+                      <button class="delete-icon-wrapper">
+                        <img
+                          src="./images/trash-icon.svg"
+                          alt=""
+                          class="delete-icon"
+                        />
+                      </button>
+                    </div>
+                    <div class="card-body card-body-hide-open opened">
+                        <div class="flight-path-info">
+                            <h3 class="flight-path">
+                                Москва - Дубай - Мале - Дубай - Москва
+                              </h3>
+                            <p>1 взрослый, 0 детей, 0 младенцев.</p>
+                        </div>
+                      
+                      <div class="fly-info-description">
+                        <div class="baggage-title">Багаж</div>
+                        <ul class="baggage-list-wrapper">
+                          <li>CARRY7KG 15LB UPTO45LI 115LCM</li>
+                          <li>CHECKED BAGGAGE</li>
+                        </ul>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-xl-12">
+                          <div
+                            class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
+                          >
+                            <table
+                              class="table table-bordered basket-table-fly"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <b>18.04.2024</b>
+                                  </td>
+                                  <td>
+                                    <div class="font-weight-bolder">
+                                      16:50 - 23:10
+                                    </div>
+                                    <div>В пути 5ч 20мин</div>
+                                  </td>
+                                  <td>
+                                    <div
+                                      class="d-flex justify-content-between align-items-center"
+                                    >
+                                      <div class="fly-info">
+                                        <div class="fly-info-title">
+                                          Москва Домодедово (DME) – Дубай
+                                          Международный аэропорт (DXB)
+                                        </div>
+                                        <div>1 пересадка</div>
+                                        <div>EK 134</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="d-flex align-items-center">
+                                      Эконом
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <b>19.04.2024</b>
+                                  </td>
+                                  <td>
+                                    <div class="font-weight-bolder">
+                                      01:10 - 06:35
+                                    </div>
+                                    <div>В пути 4ч 25мин</div>
+                                  </td>
+                                  <td>
+                                    <div
+                                      class="d-flex justify-content-between align-items-center"
+                                    >
+                                      <div class="fly-info">
+                                        <div class="fly-info-title">
+                                          Дубай Международный аэропорт (DXB) –
+                                          Мале (MLE)
+                                        </div>
+                                        <div>1 пересадка</div>
+                                        <div>EK 2454</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="d-flex align-items-center">
+                                      Эконом
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <b>30.04.2024</b>
+                                  </td>
+                                  <td>
+                                    <div class="font-weight-bolder">
+                                      11:15 - 14:15
+                                    </div>
+                                    <div>В пути 4ч 0мин</div>
+                                  </td>
+                                  <td>
+                                    <div
+                                      class="d-flex justify-content-between align-items-center"
+                                    >
+                                      <div class="fly-info">
+                                        <div class="fly-info-title">
+                                          Мале (MLE) – Дубай Международный
+                                          аэропорт (DXB)
+                                        </div>
+                                        <div>1 пересадка</div>
+                                        <div>EK 659</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="d-flex align-items-center">
+                                      Эконом
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <b>30.04.2024</b>
+                                  </td>
+                                  <td>
+                                    <div class="font-weight-bolder">
+                                      16:15 - 20:40
+                                    </div>
+                                    <div>В пути 5ч 25мин</div>
+                                  </td>
+                                  <td>
+                                    <div
+                                      class="d-flex justify-content-between align-items-center"
+                                    >
+                                      <div class="fly-info">
+                                        <div class="fly-info-title">
+                                          Дубай Международный аэропорт (DXB) –
+                                          Москва Домодедово (DME)
+                                        </div>
+                                        <div>1 пересадка</div>
+                                        <div>EK 131</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="d-flex align-items-center">
+                                      Эконом
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-xl-12">
+                          <div
+                            class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
+                          >
+                            <table
+                              class="table table-bordered basket-allocation"
+                            >
+                              <thead>
+                                <tr>
+                                  <td>Тариф</td>
+                                  <td>Цена</td>
+                                  <td>Информация</td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><b>ECOSAVER</b></td>
+                                  <td>
+                                    <div class="form-group">
+                                      <label class="checkbox mb-0">
+                                        <input
+                                          type="radio"
+                                          id="rate0"
+                                          class="flight-rate-change"
+                                          data-id="3512"
+                                          value="0"
+                                          checked="checked"
+                                        />
+                                        <span></span>
+                                        <label for="rate0">выбрано</label>
+                                      </label>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="#"
+                                      class="cart-fly-rate-info"
+                                      data-id="1-0"
+                                    >
+                                      Подробнее
+                                    </a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><b>ECOFLEX</b></td>
+                                  <td>
+                                    <div class="form-group">
+                                      <label class="checkbox mb-0">
+                                        <input
+                                          type="radio"
+                                          id="rate1"
+                                          class="flight-rate-change"
+                                          data-id="3512"
+                                          value="1"
+                                        />
+                                        <span></span>
+                                        <label for="rate1">+556.74 BYN</label>
+                                      </label>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="#"
+                                      class="cart-fly-rate-info"
+                                      data-id="1-1"
+                                    >
+                                      Подробнее
+                                    </a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><b>ECOFLXPLUS</b></td>
+                                  <td>
+                                    <div class="form-group">
+                                      <label class="checkbox mb-0">
+                                        <input
+                                          type="radio"
+                                          id="rate2"
+                                          class="flight-rate-change"
+                                          data-id="3512"
+                                          value="2"
+                                        />
+                                        <span></span>
+                                        <label for="rate2">+7011.51 BYN</label>
+                                      </label>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="#"
+                                      class="cart-fly-rate-info"
+                                      data-id="1-2"
+                                    >
+                                      Подробнее
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
+                    <div class="card-header">
+                      <div class="card-header-info">
+                        <button class="card-header-open-button">
+                          <img
+                            src="./images/chevron-open-header.svg"
+                            alt="arrow-icon"
+                          />
+                        </button>
+                        <div class="card-title">
+                          <h3 class="card-label font-weight-bolder">Туристы</h3>
+                          <div class="card-title-icon-wrapper">
+                            <img
+                              src="./images/airplane.svg"
+                              alt="airplane-icon"
+                              class="icon-item"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <button class="delete-icon-wrapper">
+                        <img
+                          src="./images/trash-icon.svg"
+                          alt=""
+                          class="delete-icon"
+                        />
+                      </button>
+                    </div>
+                    <div class="card-body card-body-hide-open opened">
+                        <div class="tourist-list-wrapper">
+                            <div class="tourist-row-wrapper">
+                                <div class="tourist-row-header">
+                                    <div class="tourist-row-description">
+                                        <button class="row-header-open-button">
+                                            <img src="./images/chevron-open-header.svg" alt="arrow-icon">
+                                          </button>
+                                        <div class="row-description">
+                                            1. Взрослый (заказчик)
+                                        </div>
+                                    </div>
+                                    <div class="action-btns-wrapper">
+                                        <button class="action-btn">
+                                            <img src="./images/edit-icon.svg" alt="">
+                                        </button>
+                                        <button class="action-btn">
+                                            <img src="./images/trash-icon.svg" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="tourist-row-info">
+                                    <table style="display: table" data-client-type="adult">
+                                        <tbody>
+                                          <tr>
+                                            <td>Ф.И.О.</td>
+                                            <td data-client-name="">Иванов Иван Иванович</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Имя (лат.)</td>
+                                            <td data-client-firstnameen="">IVAN</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Фамилия (лат.)</td>
+                                            <td data-client-lastnameen="">IVANOV</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Пол</td>
+                                            <td data-client-sex="">M</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Дата рождения</td>
+                                            <td data-client-birthday=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Телефон</td>
+                                            <td data-client-phone=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Национальность</td>
+                                            <td data-client-nationality=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Документ</td>
+                                            <td data-client-doc=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="has-error"></div>
+                                      <div class="form-group field-client-services">
+                                        <label class="control-label" for="client-services">Услуги</label>
+                                        <input type="text" id="client-services" class="form-control" name="client-services" value="Roosevelt Inn and Suites Saratoga Springs 3*">
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="tourist-row-wrapper">
+                                <div class="tourist-row-header">
+                                    <div class="tourist-row-description">
+                                        <div class="row-description">
+                                            2. Взрослый
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
+                                </div>
+                                <div class="tourist-row-info">
+                                    <table style="display: none" data-client-type="adult">
+                                        <tbody>
+                                          <tr>
+                                            <td>Ф.И.О.</td>
+                                            <td data-client-name="">Иванов Иван Иванович</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Имя (лат.)</td>
+                                            <td data-client-firstnameen="">IVAN</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Фамилия (лат.)</td>
+                                            <td data-client-lastnameen="">IVANOV</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Пол</td>
+                                            <td data-client-sex="">M</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Дата рождения</td>
+                                            <td data-client-birthday=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Телефон</td>
+                                            <td data-client-phone=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Национальность</td>
+                                            <td data-client-nationality=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Документ</td>
+                                            <td data-client-doc=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                              <div
+                                                class="form-group field-basketform-clients-1-id"
+                                              >
+                                                <input
+                                                  type="hidden"
+                                                  id="basketform-clients-1-id"
+                                                  class="form-control"
+                                                  name="BasketForm[clients][1][id]"
+                                                  data-client-id=""
+                                                />
+            
+                                                <div class="help-block"></div>
+                                              </div>
+                                              <div
+                                                class="form-group field-basketform-clients-1-docid"
+                                              >
+                                                <input
+                                                  type="hidden"
+                                                  id="basketform-clients-1-docid"
+                                                  class="form-control"
+                                                  name="BasketForm[clients][1][docId]"
+                                                  data-client-doc-id=""
+                                                />
+            
+                                                <div class="help-block"></div>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="has-error"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card card-custom mb-5 separate-block" id="card-comment">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <h3 class="card-label font-weight-bolder">
+                          Комментарии
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-xl-12">
+                          <div class="form-group">
+                            <div class="form-group field-basketform-comment">
+                              <textarea
+                                id="basketform-comment"
+                                class="form-control"
+                                name="BasketForm[comment]"
+                                rows="3"
+                                placeholder="Комментарии"
+                              ></textarea>
+
+                              <div class="help-block"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-custom mb-5 separate-block" id="card-header">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <h3 class="card-label font-weight-bolder">
+                          Новое направление
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="contructor-tabs-wrapper">
+                        <ul class="nav" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5 active"
+                              id="var-1-tab-link"
+                              data-toggle="tab"
+                              href="#tours-tab"
+                              >+ авиa</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              id="var-2-tab-link"
+                              data-toggle="tab"
+                              href="#holels-tab"
+                              >+ трансферы</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              id="var-2-tab-link"
+                              data-toggle="tab"
+                              href="#holels-tab"
+                              >+ проживание</a
+                            >
+                          </li>
+
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              href="excursions.html"
+                              >+ экскурсия</a
+                            >
+                          </li>
+
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              href="excursions.html"
+                              >+ страховка</a
+                            >
+                          </li>
+
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              href="excursions.html"
+                              >+ билеты</a
+                            >
+                          </li>
+
+                          <li class="nav-item">
+                            <a
+                              class="btn btn-add-option nav-link mr-5"
+                              href="excursions.html"
+                              >+ еще</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3">
+                  <div class="card card-custom">
+                    <div class="card-header">
+                      <div class="card-title basket-header-wrapper">
+                        <div class="card-label font-weight-bolder">Корзина</div>
+                        <button class="reboot-price-wrapper">
+                            <div class="reboot-icon-wrapper">
+                                <img src="./images/reboot-icon.svg" alt="">
+                            </div>
+                            <div class="reboot-description">
+                                Обновить цены
+                            </div>
+                        </button>
+                        
+                      </div>
+                    </div>
+                    <div class="card-body p-0 pb-7">
+                        <div class="card-body separator-header">
+                            Тбилиси (из Минска) / с 08.08.2023 по 15.08.2023
+                        </div>
+                      <div class="basket-items mb-7">
+                        <div class="basket-item px-5 py-3">
+                            <div class="basket-item-icons-wrapper">
+                                <div class="basket-item-icon">
+                                    <div>
+                                      <i class="fa fa-plane icon-md"></i>
+                                    </div>
+                                    <!--div>1 д.</div-->
+                                  </div>
+                            </div>
+                          
+                          <div class="basket-item-title">
+                            <div class="basket-item-header-info">
+                                <div class="basket-item-header-title">
+                                    Минск - Тбилиси
+                                </div>
+                                <div class="basket-item-header-price">
+                                    230$
+                                </div>
+                            </div>
+                            <div class="basket-item-description-info">
+                                <div class="basket-item-description">
+                                    FZ1716,MSQ-DXB,00:55 - 08:25/Y
+                                </div>
+                                <div class="basket-item-subdescription">
+                                    Экономический класс x1
+                                </div>
+                            </div>
+                            <div class="basket-item-links-wrapper">
+                                <a
+                              href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                              class="purple"
+                              >подробнее</a
+                            >
+                            <a
+                              href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                              class="purple"
+                              >изменить</a
+                            >
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="basket-item px-5 py-3 basket-item-red">
+                            <div class="basket-item-icons-wrapper">
+                                <div class="basket-item-icon">
+                                    <img src="./images/warning-circle-icon.svg" alt="">
+                                </div>
+                                <div class="basket-item-icon">
+                                    <div>
+                                      <i class="fa fa-plane icon-md"></i>
+                                    </div>
+                                    <!--div>1 д.</div-->
+                                  </div>
+                            </div>
+                            
+                            <div class="basket-item-title">
+                              <div class="basket-item-header-info">
+                                  <div class="basket-item-header-title">
+                                      Минск - Тбилиси
+                                  </div>
+                                  <div class="basket-item-header-price">
+                                      -$
+                                  </div>
+                              </div>
+                            <div class="basket-item-description-info">
+                                <div class="basket-item-description">
+                                    FZ1716,MSQ-DXB,00:55 - 08:25/Y
+                                </div>
+                                <div class="basket-item-subdescription">
+                                    Экономический класс x1
+                                </div>
+                            </div>
+                              
+                              <div class="basket-item-links-wrapper">
+                                  <a
+                                href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                                class="purple"
+                                >подробнее</a
+                              >
+                              <a
+                                href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                                class="purple"
+                                >изменить</a
+                              >
+                              </div>
+                              <div class="checkbox-comission-submit">
+                                <label class="checkbox-comission style-c">
+                                    <input type="checkbox"/>
+                                    <div class="checkbox__checkmark"></div>
+                                    <div class="checkbox__body">Комиссионная услуга</div>
+                                  </label>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="basket-item px-5 py-3">
+                            <div class="basket-item-icons-wrapper">
+                                <div class="basket-item-icon">
+                                    <div>
+                                        <i class="fa fa-bed icon-md"></i>
+                                    </div>
+                                    <!--div>1 д.</div-->
+                                  </div>
+                            </div>
+                          
+                          <div class="basket-item-title">
+                            <div class="basket-item-header-info">
+                                <div class="basket-item-header-title">
+                                    Проживание
+                                </div>
+                                <div class="basket-item-header-price">
+                                    3,956$
+                                </div>
+                            </div>
+                            <div class="basket-item-description-info">
+                                <div class="basket-item-description">
+                                    Hyatt Place Saratoga Malta 3*
+                                </div>
+                                <div class="basket-item-subdescription">
+                                    с 01.03.2024 по 10.03.2024
+                                </div>
+                            </div>
+                            <div class="basket-item-price-list">
+                                <div class="basket-item-price-item red">
+                                    <div class="basket-item-description">
+                                        При оплате на месте:
+                                    </div>
+                                    <div class="basket-item-price">
+                                        236$
+                                    </div>
+                                </div>
+                                <div class="basket-item-price-item">
+                                    <div class="basket-item-description">
+                                        Стоимость:
+                                    </div>
+                                    <div class="basket-item-price">
+                                        236$
+                                    </div>
+                                </div>
+                                <div class="basket-item-price-item">
+                                    <div class="basket-item-description">
+                                        Налоги и сборы:
+                                    </div>
+                                    <div class="basket-item-price">
+                                        236$
+                                    </div>
+                                </div>
+                                <div class="basket-item-price-item">
+                                    <div class="basket-item-description">
+                                        Сервисный сбор:
+                                    </div>
+                                    <div class="basket-item-price">
+                                        236$
+                                    </div>
+                                </div>
+                                <div class="basket-item-price-item">
+                                    <div class="basket-item-description">
+                                        Комиссия:
+                                    </div>
+                                    <div class="basket-item-price">
+                                        236$
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="basket-item-links-wrapper">
+                                <a
+                              href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                              class="purple"
+                              >Показать меньше</a
+                            >
+                            <a
+                              href="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89#card-fly"
+                              class="purple"
+                              >изменить</a
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="basket-summary px-7 py-3">
+                        <div class="basket-summary-list">
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Стоимость тура:
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Налоги:
+                                    <button class="extra-info-tax">
+                                        <img src="./images/extra-info-tax.svg" alt="">
+                                    </button>
+                                    
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Сборы отеля:
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Kоммисия:
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Промокод:
+                                    <input type="search" name="" id="" value="GF5d-gfT56" class="promocode-input">
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                            <div class="basket-summary-item">
+                                <div class="basket-summary-description">
+                                    Скидка:
+                                    <input type="text" name="" id="" value="10%" class="sale-input" >
+                                </div>
+                                <div class="basket-summary-price">
+                                    235$
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="basket-summary result px-7">
+                        <div class="basket-summary-item">
+                            <div class="basket-summary-description">
+                                ИТОГО к оплате:
+                            </div>
+                            <div class="basket-summary-price">
+                                3654$
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="basket-submit">
+                        <button
+                          type="submit"
+                          class="btn btn-primary py-5"
+                          style="width: 100%"
+                        >
+                          Забронировать
+                        </button>
+                      </div>
+
+                      <div class="basket-info p-7">
+                        <div
+                          class="form-group mb-0 field-basketform-acknowledgement"
+                        >
+                          
+                            Нажимая забронировать, я принимаю:
+
+                          <div class="help-block"></div>
+                        </div>
+                        <a href="https://travelhub.by/privacy" target="_blank"
+                          >Политика конфиденциальности</a
+                        >
+                        <a href="https://travelhub.by/agency" target="_blank"
+                          >Договор поручения</a
+                        >
+                        <p>
+                          и даю согласие свое и других указанных в путевке лиц
+                          на обработку персональных данных, а также их передачу
+                          третьим лицам, обеспечивающим указанные услуги.
+                        </p>
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div
+              class="modal fade"
+              id="touristChangeModal"
+              data-backdrop="static"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="staticBackdrop"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Выберите туриста</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row" style="margin-bottom: 20px">
+                      <div class="col-xl-12">
+                        <select
+                          id="kt_datatable_select_client"
+                          class="form-control form-control-solid form-control-lg select2-hidden-accessible"
+                          name="name"
+                          data-s2-options="s2options_3267a624"
+                          data-krajee-select2="select2_2e380661"
+                          style="width: 100%; height: 1px; visibility: hidden"
+                          data-select2-id="kt_datatable_select_client"
+                          tabindex="-1"
+                          aria-hidden="true"
+                        >
+                          <option value="" data-select2-id="2">
+                            Поиск по имени
+                          </option></select
+                        ><span
+                          class="select2 select2-container select2-container--krajee-bs3"
+                          dir="ltr"
+                          data-select2-id="1"
+                          style="width: 100%"
+                          ><span class="selection"
+                            ><span
+                              class="select2-selection select2-selection--single"
+                              role="combobox"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                              tabindex="0"
+                              aria-disabled="false"
+                              aria-labelledby="select2-kt_datatable_select_client-container"
+                              ><span
+                                class="select2-selection__rendered"
+                                id="select2-kt_datatable_select_client-container"
+                                role="textbox"
+                                aria-readonly="true"
+                                ><span class="select2-selection__placeholder"
+                                  >Поиск по имени</span
+                                ></span
+                              ><span
+                                class="select2-selection__arrow"
+                                role="presentation"
+                                ><b role="presentation"></b></span></span></span
+                          ><span
+                            class="dropdown-wrapper"
+                            aria-hidden="true"
+                          ></span
+                        ></span>
+                      </div>
+                    </div>
+
+                    <form
+                      id="kt_form_edit_client"
+                      action="https://travelhub.by/basket?tourId=100000029&amp;cityId=448&amp;hotelId=5347&amp;date=24.03.2024&amp;duration=7&amp;adults=2&amp;serviceSchema=3803_1_6073_655_0_0_0_89,3804_1_6073_551_0_0_0_89,3805_6_1540_178_0_0_0_0,3806_1032_6069_214_0_0_0_0,3807_2_41447_770_0_0_0_9,3808_3_91676_5347_39_325_4_982,3809_1032_1539_184_0_0_0_0,3810_2_41447_387_0_0_0_24,3811_1_6073_658_0_0_0_89,3812_1_6073_659_0_0_0_89"
+                      method="post"
+                      data-select=""
+                    >
+                      <div class="row">
+                        <div class="col-xl-12">
+                          <div class="row">
+                            <div class="col-sm-6 col-xl-4">
+                              <div class="form-group field-client-nationality">
+                                <label
+                                  class="control-label"
+                                  for="client-nationality"
+                                  >Гражданство</label
+                                >
+                                <select
+                                  id="client-nationality"
+                                  class="form-control form-control-solid form-control-lg form-required select2-hidden-accessible"
+                                  name="Client[nationality]"
+                                  data-s2-options="s2options_3267a624"
+                                  data-krajee-select2="select2_59ef71b0"
+                                  style="
+                                    width: 100%;
+                                    height: 1px;
+                                    visibility: hidden;
+                                  "
+                                  data-select2-id="client-nationality"
+                                  tabindex="-1"
+                                  aria-hidden="true"
+                                >
+                                  <option value="" data-select2-id="4">
+                                    Выберите гражданство
+                                  </option>
+                                  <option value="6255">Австралия</option>
+                                  <option value="90">Австрия</option>
+                                  <option value="6256">Азербайджан</option>
+                                  <option value="6301">
+                                    Аландские острова
+                                  </option>
+                                  <option value="6257">Албания</option>
+                                  <option value="6258">Алжир</option>
+                                  <option value="1065">
+                                    Американское Самоа
+                                  </option>
+                                  <option value="963">Ангилья</option>
+                                  <option value="962">Ангола</option>
+                                  <option value="376">Андорра</option>
+                                  <option value="964">Антигуа и Барбуда</option>
+                                  <option value="6260">Аргентина</option>
+                                  <option value="6230">Армения</option>
+                                  <option value="961">Аруба</option>
+                                  <option value="6296">Афганистан</option>
+                                  <option value="6261">Багамы</option>
+                                  <option value="6262">Бангладеш</option>
+                                  <option value="6248">Барбадос</option>
+                                  <option value="6244">Бахрейн</option>
+                                  <option value="375">Беларусь</option>
+                                  <option value="965">Белиз</option>
+                                  <option value="3">Бельгия</option>
+                                  <option value="966">Бенин</option>
+                                  <option value="967">Бермуды</option>
+                                  <option value="359">Болгария</option>
+                                  <option value="968">Боливия</option>
+                                  <option value="1092">
+                                    Бонайре, Синт-Эстатиус и Саба
+                                  </option>
+                                  <option value="1073">
+                                    Босния и Герцеговина
+                                  </option>
+                                  <option value="969">Ботсвана</option>
+                                  <option value="6241">Бразилия</option>
+                                  <option value="1075">
+                                    Британская территория в Индийском океане
+                                  </option>
+                                  <option value="970">
+                                    Британские Виргинские острова
+                                  </option>
+                                  <option value="971">Бруней</option>
+                                  <option value="972">Буркина-Фасо</option>
+                                  <option value="973">Бурунди</option>
+                                  <option value="1066">Бутан</option>
+                                  <option value="1060">Вануату</option>
+                                  <option value="6263">Ватикан</option>
+                                  <option value="222">Великобритания</option>
+                                  <option value="6232">Венгрия</option>
+                                  <option value="6264">Венесуэла</option>
+                                  <option value="1057">
+                                    Виргинские Острова (США)
+                                  </option>
+                                  <option value="1095">
+                                    Внешние малые острова (США)
+                                  </option>
+                                  <option value="6294">Восточный Тимор</option>
+                                  <option value="6265">Вьетнам</option>
+                                  <option value="988">Габон</option>
+                                  <option value="999">Гаити</option>
+                                  <option value="998">Гайана</option>
+                                  <option value="989">Гамбия</option>
+                                  <option value="990">Гана</option>
+                                  <option value="993">Гваделупа</option>
+                                  <option value="995">Гватемала</option>
+                                  <option value="996">Гвинея</option>
+                                  <option value="997">Гвинея-Бисау</option>
+                                  <option value="40">Германия</option>
+                                  <option value="6289">Гернси</option>
+                                  <option value="991">Гибралтар</option>
+                                  <option value="1000">Гондурас</option>
+                                  <option value="852">Гонконг</option>
+                                  <option value="992">Гренада</option>
+                                  <option value="6266">Гренландия</option>
+                                  <option value="29">Греция</option>
+                                  <option value="6238">Грузия</option>
+                                  <option value="994">Гуам</option>
+                                  <option value="6224">Дания</option>
+                                  <option value="1062">
+                                    Демократическая Республика Конго
+                                  </option>
+                                  <option value="980">Джибути</option>
+                                  <option value="981">
+                                    Доминиканская Республика
+                                  </option>
+                                  <option value="9">Египет</option>
+                                  <option value="1063">Замбия</option>
+                                  <option value="1064">Зимбабве</option>
+                                  <option value="729">Израиль</option>
+                                  <option value="26">Индия</option>
+                                  <option value="6221">Индонезия</option>
+                                  <option value="6245">Иордания</option>
+                                  <option value="6295">Ирак</option>
+                                  <option value="6288">Иран</option>
+                                  <option value="6267">Ирландия</option>
+                                  <option value="6268">Исландия</option>
+                                  <option value="84">Испания</option>
+                                  <option value="80">Италия</option>
+                                  <option value="6287">Йемен</option>
+                                  <option value="6269">Кабо‐Верде</option>
+                                  <option value="3272">Казахстан</option>
+                                  <option value="6270">Каймановы о‐ва</option>
+                                  <option value="6271">Камбоджа</option>
+                                  <option value="974">Камерун</option>
+                                  <option value="6272">Канада</option>
+                                  <option value="6227">Катар</option>
+                                  <option value="262">Кения</option>
+                                  <option value="10">Кипр</option>
+                                  <option value="1068">Киргизия</option>
+                                  <option value="1002">Кирибати</option>
+                                  <option value="6250">Китай</option>
+                                  <option value="6298">КНДР</option>
+                                  <option value="1077">
+                                    Кокосовые острова
+                                  </option>
+                                  <option value="6273">Колумбия</option>
+                                  <option value="977">Коморы</option>
+                                  <option value="6302">Косово</option>
+                                  <option value="6274">Коста‐Рика</option>
+                                  <option value="1001">Кот-д'Ивуар</option>
+                                  <option value="6254">Куба</option>
+                                  <option value="1003">Кувейт</option>
+                                  <option value="1093">Кюрасао</option>
+                                  <option value="1004">Лаос</option>
+                                  <option value="6235">Латвия</option>
+                                  <option value="1006">Лесото</option>
+                                  <option value="1007">Либерию</option>
+                                  <option value="1005">Ливан</option>
+                                  <option value="1008">Ливия</option>
+                                  <option value="6233">Литва</option>
+                                  <option value="6275">Лихтенштейн</option>
+                                  <option value="6276">Люксембург</option>
+                                  <option value="6237">Маврикий</option>
+                                  <option value="1015">Мавритания</option>
+                                  <option value="6251">Мадагаскар</option>
+                                  <option value="1016">Майотта</option>
+                                  <option value="1009">Макао</option>
+                                  <option value="1011">Малави</option>
+                                  <option value="603">Малайзия</option>
+                                  <option value="1012">Мали</option>
+                                  <option value="960">Мальдивы</option>
+                                  <option value="535">Мальта</option>
+                                  <option value="1">Марокко</option>
+                                  <option value="1014">Мартиник</option>
+                                  <option value="1069">
+                                    Маршалловы Острова
+                                  </option>
+                                  <option value="77">Мексика</option>
+                                  <option value="1019">Мозамбик</option>
+                                  <option value="6277">Молдова</option>
+                                  <option value="6278">Монако</option>
+                                  <option value="6279">Монголия</option>
+                                  <option value="1018">Монтсеррат</option>
+                                  <option value="6280">Мьянма</option>
+                                  <option value="1020">Намибия</option>
+                                  <option value="1021">Науру</option>
+                                  <option value="1022">Непал</option>
+                                  <option value="1028">Нигер</option>
+                                  <option value="1029">Нигерия</option>
+                                  <option value="6253">Нидерланды</option>
+                                  <option value="1027">Никарагуа</option>
+                                  <option value="1070">Ниуэ</option>
+                                  <option value="1026">Новая Зеландия</option>
+                                  <option value="1024">Новая Каледония</option>
+                                  <option value="6222">Норвегия</option>
+                                  <option value="6299">о-в Мэн</option>
+                                  <option value="2">
+                                    Объединенные Арабские Эмираты
+                                  </option>
+                                  <option value="6246">Оман</option>
+                                  <option value="1074">Остров Буве</option>
+                                  <option value="6300">Остров Джерси</option>
+                                  <option value="979">Остров Кука</option>
+                                  <option value="1030">Остров Норфолк</option>
+                                  <option value="1082">Остров Питкэрн</option>
+                                  <option value="1076">Остров Рождества</option>
+                                  <option value="1085">
+                                    Остров Святой Елены
+                                  </option>
+                                  <option value="1080">
+                                    Остров Херд и Макдональд
+                                  </option>
+                                  <option value="1031">Пакистан</option>
+                                  <option value="1032">Палау</option>
+                                  <option value="1089">Палестина</option>
+                                  <option value="1033">Панама</option>
+                                  <option value="1025">
+                                    Папуа — Новая Гвинея
+                                  </option>
+                                  <option value="1034">Парагвай</option>
+                                  <option value="1035">Перу</option>
+                                  <option value="6228">Польша</option>
+                                  <option value="22">Португалия</option>
+                                  <option value="1036">Пуэрто-Рико</option>
+                                  <option value="978">Республика Конго</option>
+                                  <option value="1037">Реюньон</option>
+                                  <option value="460">Россия</option>
+                                  <option value="1038">Руанда</option>
+                                  <option value="6249">Румыния</option>
+                                  <option value="983">Сальвадор</option>
+                                  <option value="1039">Самоа</option>
+                                  <option value="1084">Сан-Марино</option>
+                                  <option value="1040">
+                                    Сан-Томе и Принсипи
+                                  </option>
+                                  <option value="1041">
+                                    Саудовская Аравия
+                                  </option>
+                                  <option value="1050">Свазиленд</option>
+                                  <option value="1010">
+                                    Северная Македония
+                                  </option>
+                                  <option value="1013">
+                                    Северные Марианские острова
+                                  </option>
+                                  <option value="6236">
+                                    Сейшельские острова
+                                  </option>
+                                  <option value="1090">Сен-Бартелеми</option>
+                                  <option value="1091">Сен-Мартен</option>
+                                  <option value="1083">
+                                    Сен-Пьер и Микелон
+                                  </option>
+                                  <option value="1042">Сенегал</option>
+                                  <option value="1047">
+                                    Сент-Винсент и Гренадина
+                                  </option>
+                                  <option value="1023">
+                                    Сент-Китс и Невис
+                                  </option>
+                                  <option value="1046">Сент-Люсия</option>
+                                  <option value="1061">Сербия</option>
+                                  <option value="665">Сингапур</option>
+                                  <option value="1094">Синт-Мартен</option>
+                                  <option value="6292">Сирия</option>
+                                  <option value="6281">Словакия</option>
+                                  <option value="6282">Словения</option>
+                                  <option value="7">
+                                    Соединенные Штаты Америки
+                                  </option>
+                                  <option value="1044">
+                                    Соломоновы Острова
+                                  </option>
+                                  <option value="6293">Сомали</option>
+                                  <option value="1048">Судан</option>
+                                  <option value="1049">Суринам</option>
+                                  <option value="1043">Сьерра-Леоне</option>
+                                  <option value="1071">Таджикистан</option>
+                                  <option value="53">Таиланд</option>
+                                  <option value="1051">Тайвань</option>
+                                  <option value="6226">Танзания</option>
+                                  <option value="1055">Тёркс и Кайкос</option>
+                                  <option value="1052">Того</option>
+                                  <option value="1087">Токелау</option>
+                                  <option value="1053">Тонга</option>
+                                  <option value="1054">
+                                    Тринидад и Тобаго
+                                  </option>
+                                  <option value="1056">Тувала</option>
+                                  <option value="97">Тунис</option>
+                                  <option value="6259">
+                                    Тур на Антарктиду
+                                  </option>
+                                  <option value="1072">Туркменистан</option>
+                                  <option value="86">Турция</option>
+                                  <option value="1058">Уганда</option>
+                                  <option value="6229">Узбекистан</option>
+                                  <option value="5">Украина</option>
+                                  <option value="1088">Уоллис и Футуна</option>
+                                  <option value="1059">Уругвай</option>
+                                  <option value="1081">
+                                    Фарерские острова
+                                  </option>
+                                  <option value="1017">
+                                    Федеративные Штаты Микронезии
+                                  </option>
+                                  <option value="985">Фиджи</option>
+                                  <option value="6247">Филиппины</option>
+                                  <option value="64">Финляндия</option>
+                                  <option value="1078">
+                                    Фолклендские острова
+                                  </option>
+                                  <option value="30">Франция</option>
+                                  <option value="986">
+                                    Французская Гвиана
+                                  </option>
+                                  <option value="987">
+                                    Французская Полинезия
+                                  </option>
+                                  <option value="1079">
+                                    Французские Южные и Антарктические
+                                    Территории
+                                  </option>
+                                  <option value="38">Хорватия</option>
+                                  <option value="6291">
+                                    Центральноафриканская Республика
+                                  </option>
+                                  <option value="975">Чад</option>
+                                  <option value="6252">Черногория</option>
+                                  <option value="15">Чехия</option>
+                                  <option value="976">Чили</option>
+                                  <option value="6286">Шанхай</option>
+                                  <option value="76">Швейцария</option>
+                                  <option value="6223">Швеция</option>
+                                  <option value="1086">Шпицберген</option>
+                                  <option value="941">Шри Ланка</option>
+                                  <option value="982">Эквадор</option>
+                                  <option value="984">
+                                    Экваториальная Гвинея
+                                  </option>
+                                  <option value="1067">Эритрея</option>
+                                  <option value="372">Эстония</option>
+                                  <option value="6231">Эфиопия</option>
+                                  <option value="1045">Южная Африка</option>
+                                  <option value="6283">Южная Корея</option>
+                                  <option value="6290">Южный Судан</option>
+                                  <option value="6284">Ямайка</option>
+                                  <option value="6243">Япония</option></select
+                                ><span
+                                  class="select2 select2-container select2-container--krajee-bs3"
+                                  dir="ltr"
+                                  data-select2-id="3"
+                                  style="width: 100%"
+                                  ><span class="selection"
+                                    ><span
+                                      class="select2-selection select2-selection--single"
+                                      role="combobox"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      tabindex="0"
+                                      aria-disabled="false"
+                                      aria-labelledby="select2-client-nationality-container"
+                                      ><span
+                                        class="select2-selection__rendered"
+                                        id="select2-client-nationality-container"
+                                        role="textbox"
+                                        aria-readonly="true"
+                                        ><span
+                                          class="select2-selection__placeholder"
+                                          >Выберите гражданство</span
+                                        ></span
+                                      ><span
+                                        class="select2-selection__arrow"
+                                        role="presentation"
+                                        ><b
+                                          role="presentation"
+                                        ></b></span></span></span
+                                  ><span
+                                    class="dropdown-wrapper"
+                                    aria-hidden="true"
+                                  ></span
+                                ></span>
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-2">
+                              <div class="form-group field-client-sex">
+                                <label class="control-label" for="client-sex"
+                                  >Пол</label
+                                >
+                                <select
+                                  id="client-sex"
+                                  class="form-control form-control-solid form-control-lg select2-hidden-accessible"
+                                  name="Client[sex]"
+                                  data-s2-options="s2options_3267a624"
+                                  data-krajee-select2="select2_7c8f2e63"
+                                  style="
+                                    width: 100%;
+                                    height: 1px;
+                                    visibility: hidden;
+                                  "
+                                  data-select2-id="client-sex"
+                                  tabindex="-1"
+                                  aria-hidden="true"
+                                >
+                                  <option value="" data-select2-id="6">
+                                    Выберите пол
+                                  </option>
+                                  <option value="male">М</option>
+                                  <option value="female">Ж</option></select
+                                ><span
+                                  class="select2 select2-container select2-container--krajee-bs3"
+                                  dir="ltr"
+                                  data-select2-id="5"
+                                  style="width: 100%"
+                                  ><span class="selection"
+                                    ><span
+                                      class="select2-selection select2-selection--single"
+                                      role="combobox"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      tabindex="0"
+                                      aria-disabled="false"
+                                      aria-labelledby="select2-client-sex-container"
+                                      ><span
+                                        class="select2-selection__rendered"
+                                        id="select2-client-sex-container"
+                                        role="textbox"
+                                        aria-readonly="true"
+                                        ><span
+                                          class="select2-selection__placeholder"
+                                          >Выберите пол</span
+                                        ></span
+                                      ><span
+                                        class="select2-selection__arrow"
+                                        role="presentation"
+                                        ><b
+                                          role="presentation"
+                                        ></b></span></span></span
+                                  ><span
+                                    class="dropdown-wrapper"
+                                    aria-hidden="true"
+                                  ></span
+                                ></span>
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-2">
+                              <div
+                                class="form-group field-client-birthday required"
+                              >
+                                <label
+                                  class="control-label"
+                                  for="client-birthday"
+                                  >Дата рождения *</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-birthday"
+                                  class="datepicker-inputmask form-control krajee-datepicker"
+                                  name="Client[birthDay]"
+                                  autocomplete="off"
+                                  aria-required="true"
+                                  data-datepicker-source="client-birthday"
+                                  data-datepicker-type="1"
+                                  data-krajee-kvdatepicker="kvDatepicker_4e75aa98"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-4">
+                              <div class="form-group field-client-phone">
+                                <label class="control-label" for="client-phone"
+                                  >Телефон *</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-phone"
+                                  class="phone-input form-control"
+                                  name="Client[phone]"
+                                  placeholder="+"
+                                  data-prev=""
+                                  autocomplete="tel"
+                                  data-plugin-inputmask="inputmask_b9e0a12c"
+                                  im-insert="true"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-6 col-xl-4">
+                              <div class="form-group field-client-lastname">
+                                <label
+                                  class="control-label"
+                                  for="client-lastname"
+                                  >Фамилия</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-lastname"
+                                  class="form-control"
+                                  name="Client[lastName]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-4">
+                              <div class="form-group field-client-firstname">
+                                <label
+                                  class="control-label"
+                                  for="client-firstname"
+                                  >Имя</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-firstname"
+                                  class="form-control"
+                                  name="Client[firstName]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-4">
+                              <div
+                                class="form-group field-client-patronymicname"
+                              >
+                                <label
+                                  class="control-label"
+                                  for="client-patronymicname"
+                                  >Отчество</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-patronymicname"
+                                  class="form-control"
+                                  name="Client[patronymicName]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-6 col-xl-4">
+                              <div
+                                class="form-group field-client-lastnameen required"
+                              >
+                                <label
+                                  class="control-label"
+                                  for="client-lastnameen"
+                                  >Фамилия лат. *</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-lastnameen"
+                                  class="form-control"
+                                  name="Client[lastNameEn]"
+                                  aria-required="true"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-4">
+                              <div
+                                class="form-group field-client-firstnameen required"
+                              >
+                                <label
+                                  class="control-label"
+                                  for="client-firstnameen"
+                                  >Имя лат. *</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-firstnameen"
+                                  class="form-control"
+                                  name="Client[firstNameEn]"
+                                  aria-required="true"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-4">
+                              <div class="form-group field-client-tin">
+                                <label class="control-label" for="client-tin"
+                                  >ИНН</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-tin"
+                                  class="form-control"
+                                  name="Client[tin]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-6 col-xl-4">
+                              <div class="form-group field-client-email">
+                                <label class="control-label" for="client-email"
+                                  >Email</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-email"
+                                  class="form-control"
+                                  name="Client[email]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-8">
+                              <div class="form-group field-client-address">
+                                <label
+                                  class="control-label"
+                                  for="client-address"
+                                  >Адрес</label
+                                >
+                                <input
+                                  type="text"
+                                  id="client-address"
+                                  class="form-control"
+                                  name="Client[address]"
+                                />
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                            <div class="col-xl-12">
+                              <h6><b>Документы</b></h6>
+                              <div class="form-group field-client-docs">
+                                <input type="hidden" name="Client[docs]" />
+                                <div id="client-docs" class="multiple-input">
+                                  <table
+                                    class="multiple-input-list list-renderer table form-horizontal"
+                                  >
+                                    <tbody></tbody>
+                                    <tfoot>
+                                      <tr>
+                                        <td>&nbsp;</td>
+                                        <td class="list-cell__button">
+                                          <div
+                                            class="multiple-input-list__btn js-input-plus btn btn-default"
+                                          >
+                                            <i class="fa fa-plus"></i>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tfoot>
+                                  </table>
+                                </div>
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group field-client-id">
+                            <input
+                              type="hidden"
+                              id="client-id"
+                              class="form-control"
+                              name="Client[id]"
+                            />
+
+                            <div class="help-block"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="common-help-block help-block"></div>
+                      <div class="doc-help-block help-block"></div>
+                      <div class="edited-hint-block help-block"></div>
+                      <div
+                        class="d-flex justify-content-center mb-5 modal-button-footer"
+                      >
+                        <button
+                          type="button"
+                          id="clientmanager_choose_button"
+                          class="btn btn-primary"
+                          disabled=""
+                        >
+                          Выбрать</button
+                        ><button
+                          type="submit"
+                          class="btn btn-primary"
+                          name="clientmanager_submit_button"
+                        >
+                          Сохранить и выбрать
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary mr-3"
+                          data-dismiss="modal"
+                        >
+                          Отмена
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <style>
+              #touristChangeModal .js-input-remove {
+                max-height: 40px;
+                margin-top: 29px;
+                max-width: 40px;
+                margin-left: -24px;
+                display: flex;
+                justify-content: center;
+              }
+
+              #touristChangeModal .js-input-plus i {
+                padding-right: 0;
+              }
+
+              #touristChangeModal .js-input-remove i {
+                padding-right: 0;
+              }
+
+              #touristChangeModal tbody .list-cell__button {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+
+              #touristChangeModal tr.multiple-input-list__item {
+                position: relative;
+              }
+
+              #touristChangeModal tr.multiple-input-list__item td {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 10px 0;
+              }
+
+              #touristChangeModal tr.multiple-input-list__item .form-group {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 22%;
+                flex: 0 0 22%;
+                max-width: 22%;
+              }
+
+              #touristChangeModal
+                tr.multiple-input-list__item
+                .form-group:first-child {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 34%;
+                flex: 0 0 34%;
+                max-width: 34%;
+              }
+
+              #touristChangeModal
+                tr.multiple-input-list__item
+                .form-group.list-cell__issuedBy {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 80%;
+                flex: 0 0 80%;
+                max-width: 80%;
+              }
+
+              #touristChangeModal
+                tr.multiple-input-list__item
+                .list-cell__choosenDoc {
+                padding-top: 25px;
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 20%;
+                flex: 0 0 20%;
+                max-width: 20%;
+              }
+
+              #touristChangeModal .modal-dialog {
+                max-width: 1000px !important;
+              }
+
+              #touristChangeModal .common-help-block,
+              #touristChangeModal .doc-help-block {
+                color: red;
+                border-radius: 10px;
+                margin: 0 auto;
+                display: table;
+                margin-bottom: 10px;
+                font-size: 15px;
+              }
+
+              #touristChangeModal .form-control {
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+              }
+
+              #touristChangeModal .modal-button-footer {
+                gap: 15px;
+              }
+
+              #touristChangeModal .edited-hint-block {
+                text-align: center;
+                color: green;
+                font-size: 15px;
+                margin-bottom: 30px;
+              }
+
+              @media screen and (max-width: 1200px) {
+                #touristChangeModal .modal-dialog {
+                  min-width: 90%;
+                  max-width: 90% !important;
+                }
+              }
+
+              @media screen and (max-width: 1024px) {
+                #touristChangeModal tr.multiple-input-list__item .form-group,
+                #touristChangeModal
+                  tr.multiple-input-list__item
+                  .form-group:first-child {
+                  -ms-flex: 0 0 50%;
+                  flex: 0 0 50%;
+                  max-width: 50%;
+                }
+              }
+
+              @media screen and (max-width: 476px) {
+                #touristChangeModal .multiple-input-list .col-sm-12 {
+                  padding: 0;
+                }
+
+                #touristChangeModal .modal-body {
+                  padding: 1.5rem 1.75rem;
+                }
+
+                #touristChangeModal .js-input-remove {
+                  margin-left: 0;
+                }
+
+                #touristChangeModal tr.multiple-input-list__item .form-group,
+                #touristChangeModal
+                  tr.multiple-input-list__item
+                  .form-group:first-child {
+                  -ms-flex: 0 0 100%;
+                  flex: 0 0 100%;
+                  max-width: 100%;
+                }
+
+                #touristChangeModal .modal-dialog {
+                  min-width: 98%;
+                  max-width: 98% !important;
+                }
+              }
+            </style>
+          </main>
+
+          <footer>
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="footer-contacts">
+                    <div class="footer-contact--item">
+                      <span>Клиентская поддержка</span>
+                      <a href="tel:+375 (29) 108-93-93">+375 (29) 108-93-93</a>
+                    </div>
+                    <div class="footer-contact--item">
+                      <span>Наша онлайн поддержка</span>
+                      <a href="mailto:book@travelhub.by">book@travelhub.by</a>
+                    </div>
+                    <div class="footer-contact--item">
+                      <span>Авиа отдел</span>
+                      <a href="tel:+375 (29) 383-34-34">+375 (29) 383-34-34</a>
+                    </div>
+                    <div class="footer-contact--item">
+                      <div class="footer-adress">
+                        <p>
+                          Пн-Пт с 9:00 до 18:00 <br />220113, Беларусь, г.
+                          Минск, ул. Я. Коласа, 73-3, офис 8
+                        </p>
+                      </div>
+                    </div>
+                    <div class="footer-contact--item">
+                      <div class="footer-contact--socials">
+                        <a target="_blank" href="https://t.me/travelhub_by"
+                          ><img src="files/telegram.svg" alt=""
+                        /></a>
+                        <a
+                          target="_blank"
+                          href="viber://chat?number=+375(29)108-93-93"
+                          ><img src="files/viber.svg" alt=""
+                        /></a>
+                        <a
+                          target="_blank"
+                          href="https://www.instagram.com/travelhub.by/"
+                          ><img src="files/inst.svg" alt=""
+                        /></a>
+                        <a target="_blank" href="mailto:book@travelhub.by"
+                          ><img src="files/mail.svg" alt=""
+                        /></a>
+                      </div>
+                    </div>
+                    <div class="footer-contact--item">
+                      <div class="footer-info">
+                        <p>© 2024 ООО "Туроператор Тревел Хэб"</p>
+                        <p>УНП 193636904.</p>
+                        <p>
+                          Зарегистрирован Минским горисполкомом 21 июля 2022
+                          года
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <div class="footer-nav">
+                    <div class="row gap-md-24">
+                      <div class="col-xl-4 col-md-6">
+                        <h3>Турпродукт</h3>
+                        <a href="files/saved_resource">Поиск туров</a>
+                        <a href="https://travelhub.by/excursions"
+                          >Экскурсионные туры</a
+                        >
+                        <a href="https://travelhub.by/flights"
+                          >Поиск авиабилетов</a
+                        >
+                        <a href="https://travelhub.by/hotels"
+                          >Бронирование отелей</a
+                        >
+                        <a href="https://travelhub.by/b2b"
+                          >Деловой туризм (B2B)</a
+                        >
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                        <h3>Агентствам</h3>
+                        <a href="https://travelhub.by/agency">Подключение</a>
+                        <a href="https://travelhub.by/webinars"
+                          >Вебинары и Live</a
+                        >
+
+                        <a
+                          href="javascript:"
+                          onclick="Intercom(&#39;showSpace&#39;, &#39;help&#39;);"
+                          >Часто задаваемые вопросы</a
+                        >
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                        <h3>Компания</h3>
+                        <a href="https://travelhub.by/about">О нас</a>
+                        <a href="https://travelhub.by/news">Новости</a>
+                        <a href="https://piligrimos.com/" target="_blank"
+                          >Тревел-википедия Piligrimos</a
+                        >
+                        <a href="https://travelhub.by/contacts">Контакты</a>
+                        <div class="footer-apps">
+                          <a
+                            href="https://play.google.com/store/apps/details?id=com.travelhub"
+                            ><img src="files/googlePlay.svg" alt=""
+                          /></a>
+                          <a
+                            href="https://apps.apple.com/by/app/travelhub-%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B7%D0%B4%D0%B5%D1%81%D1%8C/id6471902299"
+                            ><img src="files/appleStore.svg" alt=""
+                          /></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <div class="footer-copy">
+            <div class="container">
+              <div class="footer-copy-row">
+                <div class="footer-copy-col">
+                  <div class="copy">© 2024 Все права защищены</div>
+                </div>
+                <div class="footer-copy-col none-md">
+                  <div class="footer-pays">
+                    <img src="files/master-card-security.svg" alt="" />
+                    <img src="files/visa-verified.svg" alt="" />
+                    <img src="files/halva.png" alt="" style="height: 10px" />
+                    <img src="files/visa.svg" alt="" />
+                    <img
+                      src="files/mastercard.png"
+                      alt=""
+                      style="height: 20px"
+                    />
+                    <img src="files/stripe.svg" alt="" />
+                    <img src="files/amex.jpg" alt="" style="height: 15px" />
+                    <img
+                      src="files/Google_Pay_Logo.png"
+                      alt=""
+                      style="height: 15px"
+                    />
+                    <img src="files/ApplePay.svg" alt="" />
+                    <img src="files/bePaid.svg" alt="" />
+                  </div>
+                </div>
+                <div class="footer-copy-col">
+                  <a href="https://travelhub.by/privacy"
+                    >Политика конфиденциальности</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop">
+      <span class="svg-icon svg-icon-white svg-icon-2x">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+        >
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+            <rect
+              fill="#000000"
+              opacity="0.3"
+              x="11"
+              y="10"
+              width="2"
+              height="10"
+              rx="1"
+            ></rect>
+            <path
+              d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+              fill="#000000"
+              fill-rule="nonzero"
+            ></path>
+          </g></svg
+        ><!--end::Svg Icon-->
+      </span>
+    </div>
+    <!--end::Scrolltop-->
+
+    <a
+      href="javascript:;"
+      class="btn btn-clean btn-hover-light-primary btn-sm btn-icon project-instructions-init"
+      data-toggle="modal"
+      data-target="#projectInstructionModal"
+      style="display: none"
+    >
+      <i class="flaticon-questions-circular-button"></i>
+    </a>
+    <script>
+      var HOST_URL = "https://travelhub.by/";
+    </script>
+    <script>
+      var MAIN_LANGUAGE = "ru";
+    </script>
+    <script>
+      var KTAppSettings = {
+        breakpoints: {
+          sm: 576,
+          md: 768,
+          lg: 992,
+          xl: 1200,
+          xxl: 1200,
+        },
+        colors: {
+          theme: {
+            base: {
+              white: "#ffffff",
+              primary: "#6993FF",
+              secondary: "#E5EAEE",
+              success: "#1BC5BD",
+              info: "#8950FC",
+              warning: "#FFA800",
+              danger: "#F64E60",
+              light: "#F3F6F9",
+              dark: "#212121",
+            },
+            light: {
+              white: "#ffffff",
+              primary: "#E1E9FF",
+              secondary: "#ECF0F3",
+              success: "#C9F7F5",
+              info: "#EEE5FF",
+              warning: "#FFF4DE",
+              danger: "#FFE2E5",
+              light: "#F3F6F9",
+              dark: "#D6D6E0",
+            },
+            inverse: {
+              white: "#ffffff",
+              primary: "#ffffff",
+              secondary: "#212121",
+              success: "#ffffff",
+              info: "#ffffff",
+              warning: "#ffffff",
+              danger: "#ffffff",
+              light: "#464E5F",
+              dark: "#ffffff",
+            },
+          },
+          gray: {
+            "gray-100": "#F3F6F9",
+            "gray-200": "#ECF0F3",
+            "gray-300": "#E5EAEE",
+            "gray-400": "#D6D6E0",
+            "gray-500": "#B5B5C3",
+            "gray-600": "#80808F",
+            "gray-700": "#464E5F",
+            "gray-800": "#1B283F",
+            "gray-900": "#212121",
+          },
+        },
+        "font-family": "Poppins",
+      };
+    </script>
+    <!--end::Global Config-->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(89565151, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer",
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/89565151"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Pixel Code for https://upstickapp.com/ -->
+    <script defer="" src="files/sr7iy6qfsiz3iwbmucdbeiikg85opllv"></script>
+    <!-- END Pixel Code -->
+
+    <script src="files/jquery.js"></script>
+    <script src="files/yii.js"></script>
+    <script src="files/common.js"></script>
+    <script src="files/plugins.bundle.js"></script>
+    <script src="files/prismjs.bundle.js"></script>
+    <script src="files/scripts.bundle-min.js"></script>
+    <script src="files/fullcalendar.bundle.js"></script>
+    <script src="files/slick.js"></script>
+    <script src="files/widgets.js"></script>
+    <script src="files/custom.js"></script>
+    <script src="files/moment.min.js"></script>
+    <script src="files/jquery.fancybox.min.js"></script>
+    <script src="files/header.js"></script>
+    <script src="files/landing.js"></script>
+    <script src="files/tour-search-table.js"></script>
+    <script src="files/basket.js"></script>
+    <script src="files/yii.validation.js"></script>
+    <script src="files/yii.activeForm.js"></script>
+    <script src="files/jquery.maskedinput.min.js"></script>
+    <script src="files/phoneInputMask.js"></script>
+    <script src="files/moment(1).min.js"></script>
+    <script src="files/ClientWidget.js"></script>
+    <script src="files/select2.full.min.js"></script>
+    <script src="files/ru.js"></script>
+    <script src="files/select2-krajee.min.js"></script>
+    <script src="files/kv-widgets.min.js"></script>
+    <script src="files/bootstrap-datepicker.min.js"></script>
+    <script src="files/datepicker-kv.min.js"></script>
+    <script src="files/bootstrap-datepicker.ru.min.js"></script>
+    <script src="files/jquery.inputmask.bundle.js"></script>
+    <script src="files/jquery.multipleInput.min.js"></script>
+    <script>
+      jQuery(function ($) {
+        jQuery("#kt_form_update_tourist").yiiActiveForm(
+          [
+            {
+              id: "basketform-comment",
+              name: "comment",
+              container: ".field-basketform-comment",
+              input: "#basketform-comment",
+              validate: function (attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                  message: "Значение «Comment» должно быть строкой.",
+                  skipOnEmpty: 1,
+                });
+              },
+            },
+          ],
+          []
+        );
+        jQuery && jQuery.pjax && (jQuery.pjax.defaults.maxCacheLength = 0);
+        if (jQuery("#kt_datatable_select_client").data("select2")) {
+          jQuery("#kt_datatable_select_client").select2("destroy");
+        }
+        jQuery
+          .when(jQuery("#kt_datatable_select_client").select2(select2_2e380661))
+          .done(
+            initS2Loading("kt_datatable_select_client", "s2options_3267a624")
+          );
+
+        if (jQuery("#client-nationality").data("select2")) {
+          jQuery("#client-nationality").select2("destroy");
+        }
+        jQuery
+          .when(jQuery("#client-nationality").select2(select2_59ef71b0))
+          .done(initS2Loading("client-nationality", "s2options_3267a624"));
+
+        if (jQuery("#client-sex").data("select2")) {
+          jQuery("#client-sex").select2("destroy");
+        }
+        jQuery
+          .when(jQuery("#client-sex").select2(select2_7c8f2e63))
+          .done(initS2Loading("client-sex", "s2options_3267a624"));
+
+        jQuery.fn.kvDatepicker.dates = {};
+        if (jQuery("#client-birthday").data("kvDatepicker")) {
+          jQuery("#client-birthday").kvDatepicker("destroy");
+        }
+        jQuery("#client-birthday").kvDatepicker(kvDatepicker_4e75aa98);
+        jQuery("#client-birthday").on("show", function (e) {
+          $(".datepicker-inputmask").mask("99.99.9999");
+        });
+
+        jQuery("#client-phone").inputmask(inputmask_b9e0a12c);
+        jQuery("#client-docs").multipleInput({
+          id: "client-docs",
+          inputId: "client-docs",
+          template:
+            '<tr class="multiple-input-list__item" data-index="{multiple_index_client-docs}"><td><div class="field-client-docs-{multiple_index_client-docs}-kind list-cell__kind form-group"><label class="col-sm-12 control-label" for="client-docs-{multiple_index_client-docs}-kind">Тип документа *</label><div class="col-sm-12"><div class="kv-plugin-loading loading-client-docs-{multiple_index_client-docs}-kind">&nbsp;</div><select id="client-docs-{multiple_index_client-docs}-kind" class="form-control" name="Client[docs][{multiple_index_client-docs}][kind]" data-s2-options="s2options_3267a624" data-krajee-select2="select2_3ce04b4f" style="width: 100%; height: 1px; visibility: hidden;">\n<option value="">Выберите тип документа</option>\n<option value="PASSPORT_PSP">Заграничный паспорт</option>\n<option value="PASSPORT">Паспорт</option>\n<option value="IDENTITY">Удостоверение личности (ID)</option>\n<option value="PASSPORT_SR">Свидетельство о рождении</option>\n</select></div></div>\n<div class="field-client-docs-{multiple_index_client-docs}-number list-cell__number form-group"><label class="col-sm-12 control-label" for="client-docs-{multiple_index_client-docs}-number">Серия и номер *</label><div class="col-sm-12"><input type="text" id="client-docs-{multiple_index_client-docs}-number" class="form-control" name="Client[docs][{multiple_index_client-docs}][number]"></div></div>\n<input type="hidden" id="client-docs-{multiple_index_client-docs}-id" class="document-id" name="Client[docs][{multiple_index_client-docs}][id]">\n<div class="field-client-docs-{multiple_index_client-docs}-issuedat list-cell__issuedAt form-group"><label class="col-sm-12 control-label" for="client-docs-{multiple_index_client-docs}-issuedat">Выдан</label><div class="col-sm-12"><div id="client-docs-{multiple_index_client-docs}-issuedat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-{multiple_index_client-docs}-issuedat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][{multiple_index_client-docs}][issuedAt]" autocomplete="off" data-datepicker-source="client-docs-{multiple_index_client-docs}-issuedat-kvdate" data-datepicker-type="2" data-krajee-kvDatepicker="kvDatepicker_4e75aa98"></div></div></div>\n<div class="field-client-docs-{multiple_index_client-docs}-expireat list-cell__expireAt form-group"><label class="col-sm-12 control-label" for="client-docs-{multiple_index_client-docs}-expireat">Действителен, до *</label><div class="col-sm-12"><div id="client-docs-{multiple_index_client-docs}-expireat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-{multiple_index_client-docs}-expireat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][{multiple_index_client-docs}][expireAt]" autocomplete="off" data-datepicker-source="client-docs-{multiple_index_client-docs}-expireat-kvdate" data-datepicker-type="2" data-krajee-kvDatepicker="kvDatepicker_4e75aa98"></div></div></div>\n<div class="field-client-docs-{multiple_index_client-docs}-issuedby list-cell__issuedBy form-group"><label class="col-sm-12 control-label" for="client-docs-{multiple_index_client-docs}-issuedby">Выдан, кем</label><div class="col-sm-12"><input type="text" id="client-docs-{multiple_index_client-docs}-issuedby" class="form-control" name="Client[docs][{multiple_index_client-docs}][issuedBy]"></div></div>\n<div class="field-client-docs-{multiple_index_client-docs}-choosendoc list-cell__choosenDoc form-group"><div class="col-sm-12"><div class="radio-list"><input type="hidden" name="Client[docs][{multiple_index_client-docs}][choosenDoc]" value=""><div id="client-docs-{multiple_index_client-docs}-choosendoc" class="document-choose-radio"><div class="radio"><label><input type="radio" name="Client[docs][{multiple_index_client-docs}][choosenDoc]" value="use" data-id="client-docs-{multiple_index_client-docs}-choosendoc"> Использовать</label></div></div></div></div></div></td>\n<td class="list-cell__button"><div class="multiple-input-list__btn js-input-remove btn btn-danger"><i class="fa fa-times"></i></div></td></tr>',
+          jsInit: [],
+          jsTemplates: {
+            "0c5af506fe70530cf1d045aa416a59a2":
+              'window.select2_3ce04b4f = {"allowClear":false,"minimumResultsForSearch":-1,"ajax":{"url":"\\/clients\\/document-types","dataType":"json","method":"POST","delay":500,"data":function(params) { return {q:params.term, nationality: $("#client-nationality").val(), page: params.page}; },"cache":true},"theme":"krajee-bs3","width":"100%","placeholder":"Выберите тип документа","language":"ru"};\n',
+            "7e0e763af7a01913f0a64a0756b45cc0":
+              "if (jQuery('#client-docs-{multiple_index_client-docs}-kind').data('select2')) { jQuery('#client-docs-{multiple_index_client-docs}-kind').select2('destroy'); }\njQuery.when(jQuery('#client-docs-{multiple_index_client-docs}-kind').select2(select2_3ce04b4f)).done(initS2Loading('client-docs-{multiple_index_client-docs}-kind','s2options_3267a624'));\n",
+            "4b95f13494e5dc0315d4d9c131693572":
+              "if (jQuery('#client-docs-{multiple_index_client-docs}-issuedat').data('kvDatepicker')) { jQuery('#client-docs-{multiple_index_client-docs}-issuedat').kvDatepicker('destroy'); }\njQuery('#client-docs-{multiple_index_client-docs}-issuedat-kvdate').kvDatepicker(kvDatepicker_4e75aa98);\n",
+            "3a91455099d65d9c3b8d9a75fc0f979f":
+              "initDPRemove('client-docs-{multiple_index_client-docs}-issuedat');",
+            "7e40deac2510993f88d9e76472f96c82":
+              "initDPAddon('client-docs-{multiple_index_client-docs}-issuedat');",
+            "59acd02369381384efa82db153e335d9":
+              "if (jQuery('#client-docs-{multiple_index_client-docs}-expireat').data('kvDatepicker')) { jQuery('#client-docs-{multiple_index_client-docs}-expireat').kvDatepicker('destroy'); }\njQuery('#client-docs-{multiple_index_client-docs}-expireat-kvdate').kvDatepicker(kvDatepicker_4e75aa98);\n",
+            "35c0f15886a4a3f830d3c35599629495":
+              "initDPRemove('client-docs-{multiple_index_client-docs}-expireat');",
+            b9034ab7f67a5019c3d3d9c6aadceee3:
+              "initDPAddon('client-docs-{multiple_index_client-docs}-expireat');",
+          },
+          max: 10,
+          min: 0,
+          attributes: {
+            "client-docs-kind": [],
+            "client-docs-number": [],
+            "client-docs-id": [],
+            "client-docs-issuedat": [],
+            "client-docs-expireat": [],
+            "client-docs-issuedby": [],
+            "client-docs-choosendoc": [],
+          },
+          indexPlaceholder: "multiple_index_client-docs",
+          prepend: false,
+        });
+        jQuery("#kt_form_edit_client").yiiActiveForm([], []);
+      });
+    </script>
+    <!-- end:toastr messages-->
+    <script>
+      window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "slskl0cp",
+        email: "ytmwork@mail.ru", // the email for your user
+        user_id: 1230, // a UUID for your user
+        user_hash:
+          "9bbbe0bead4b05c85b8b477283003d3b9d5f034743f960c3b76a9cfcb1e4d199", // an Identity Verification user hash for your user
+      };
+    </script>
+
+    <script>
+      // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/slskl0cp'
+      (function () {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === "function") {
+          ic("reattach_activator");
+          ic("update", w.intercomSettings);
+        } else {
+          var d = document;
+          var i = function () {
+            i.c(arguments);
+          };
+          i.q = [];
+          i.c = function (args) {
+            i.q.push(args);
+          };
+          w.Intercom = i;
+          var l = function () {
+            var s = d.createElement("script");
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://widget.intercom.io/widget/slskl0cp";
+            var x = d.getElementsByTagName("script")[0];
+            x.parentNode.insertBefore(s, x);
+          };
+          if (document.readyState === "complete") {
+            l();
+          } else if (w.attachEvent) {
+            w.attachEvent("onload", l);
+          } else {
+            w.addEventListener("load", l, false);
+          }
+        }
+      })();
+    </script>
+
+    <svg
+      id="SvgjsSvg1001"
+      width="2"
+      height="0"
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:svgjs="http://svgjs.com/svgjs"
+      style="
+        overflow: hidden;
+        top: -100%;
+        left: -100%;
+        position: absolute;
+        opacity: 0;
+      "
+    >
+      <defs id="SvgjsDefs1002"></defs>
+      <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
+      <path id="SvgjsPath1004" d="M0 0 "></path></svg
+    ><iframe
+      id="intercom-frame"
+      style="
+        position: absolute !important;
+        opacity: 0 !important;
+        width: 1px !important;
+        height: 1px !important;
+        top: 0 !important;
+        left: 0 !important;
+        border: none !important;
+        display: block !important;
+        z-index: -1 !important;
+        pointer-events: none;
+      "
+      aria-hidden="true"
+      tabindex="-1"
+      title="Intercom"
+      src="files/saved_resource.html"
+    ></iframe>
+    <div class="intercom-lightweight-app">
+      <div
+        class="intercom-lightweight-app-launcher intercom-launcher"
+        role="button"
+        tabindex="0"
+        aria-label="Open Intercom Messenger"
+        aria-live="polite"
+      >
+        <div
+          class="intercom-lightweight-app-launcher-icon intercom-lightweight-app-launcher-icon-open"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 32">
+            <path
+              d="M28 32s-4.714-1.855-8.527-3.34H3.437C1.54 28.66 0 27.026 0 25.013V3.644C0 1.633 1.54 0 3.437 0h21.125c1.898 0 3.437 1.632 3.437 3.645v18.404H28V32zm-4.139-11.982a.88.88 0 00-1.292-.105c-.03.026-3.015 2.681-8.57 2.681-5.486 0-8.517-2.636-8.571-2.684a.88.88 0 00-1.29.107 1.01 1.01 0 00-.219.708.992.992 0 00.318.664c.142.128 3.537 3.15 9.762 3.15 6.226 0 9.621-3.022 9.763-3.15a.992.992 0 00.317-.664 1.01 1.01 0 00-.218-.707z"
+            ></path>
+          </svg>
+        </div>
+        <div
+          class="intercom-lightweight-app-launcher-icon intercom-lightweight-app-launcher-icon-minimize"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18.601 8.39897C18.269 8.06702 17.7309 8.06702 17.3989 8.39897L12 13.7979L6.60099 8.39897C6.26904 8.06702 5.73086 8.06702 5.39891 8.39897C5.06696 8.73091 5.06696 9.2691 5.39891 9.60105L11.3989 15.601C11.7309 15.933 12.269 15.933 12.601 15.601L18.601 9.60105C18.9329 9.2691 18.9329 8.73091 18.601 8.39897Z"
+              fill="white"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <style id="intercom-lightweight-app-style" type="text/css">
+        @keyframes intercom-lightweight-app-launcher {
+          from {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes intercom-lightweight-app-gradient {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes intercom-lightweight-app-messenger {
+          0% {
+            opacity: 0;
+            transform: scale(0);
+          }
+          40% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        .intercom-lightweight-app {
+          position: fixed;
+          z-index: 2147483001;
+          width: 0;
+          height: 0;
+          font-family: intercom-font, "Helvetica Neue", "Apple Color Emoji",
+            Helvetica, Arial, sans-serif;
+        }
+
+        .intercom-lightweight-app-gradient {
+          position: fixed;
+          z-index: 2147483002;
+          width: 500px;
+          height: 500px;
+          bottom: 0;
+          right: 0;
+          pointer-events: none;
+          background: radial-gradient(
+            ellipse at bottom right,
+            rgba(29, 39, 54, 0.16) 0%,
+            rgba(29, 39, 54, 0) 72%
+          );
+          animation: intercom-lightweight-app-gradient 200ms ease-out;
+        }
+
+        .intercom-lightweight-app-launcher {
+          position: fixed;
+          z-index: 2147483003;
+          padding: 0 !important;
+          margin: 0 !important;
+          border: none;
+          bottom: 20px;
+          right: 20px;
+          max-width: 48px;
+          width: 48px;
+          max-height: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: #3968bf;
+          cursor: pointer;
+          box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06),
+            0 2px 32px 0 rgba(0, 0, 0, 0.16);
+          transition: transform 167ms cubic-bezier(0.33, 0, 0, 1);
+          box-sizing: content-box;
+        }
+
+        .intercom-lightweight-app-launcher:hover {
+          transition: transform 250ms cubic-bezier(0.33, 0, 0, 1);
+          transform: scale(1.1);
+        }
+
+        .intercom-lightweight-app-launcher:active {
+          transform: scale(0.85);
+          transition: transform 134ms cubic-bezier(0.45, 0, 0.2, 1);
+        }
+
+        .intercom-lightweight-app-launcher:focus {
+          outline: none;
+        }
+
+        .intercom-lightweight-app-launcher-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 48px;
+          height: 48px;
+          transition: transform 100ms linear, opacity 80ms linear;
+        }
+
+        .intercom-lightweight-app-launcher-icon-open {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+
+        .intercom-lightweight-app-launcher-icon-open svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .intercom-lightweight-app-launcher-icon-open svg path {
+          fill: rgb(255, 255, 255);
+        }
+
+        .intercom-lightweight-app-launcher-icon-self-serve {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+
+        .intercom-lightweight-app-launcher-icon-self-serve svg {
+          height: 44px;
+        }
+
+        .intercom-lightweight-app-launcher-icon-self-serve svg path {
+          fill: rgb(255, 255, 255);
+        }
+
+        .intercom-lightweight-app-launcher-custom-icon-open {
+          max-height: 24px;
+          max-width: 24px;
+
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+
+        .intercom-lightweight-app-launcher-icon-minimize {
+          opacity: 0;
+          transform: rotate(-60deg) scale(0);
+        }
+
+        .intercom-lightweight-app-launcher-icon-minimize svg path {
+          fill: rgb(255, 255, 255);
+        }
+
+        .intercom-lightweight-app-messenger {
+          position: fixed;
+          z-index: 2147483003;
+          overflow: hidden;
+          background-color: white;
+          animation: intercom-lightweight-app-messenger 250ms
+            cubic-bezier(0, 1, 1, 1);
+          transform-origin: bottom right;
+
+          width: 400px;
+          height: calc(100% - 104px);
+          max-height: 704px;
+          min-height: 250px;
+          right: 20px;
+          bottom: 84px;
+          box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+
+          border-radius: 16px;
+        }
+
+        .intercom-lightweight-app-messenger-header {
+          height: 64px;
+          border-bottom: none;
+          background: #3968bf;
+        }
+
+        .intercom-lightweight-app-messenger-footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 80px;
+          background: #fff;
+          font-size: 14px;
+          line-height: 21px;
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        @media print {
+          .intercom-lightweight-app {
+            display: none;
+          }
+        }
+      </style>
+    </div>
+    <script type="text/javascript" id="">
+      (function (b, e, f, g, c, a, d) {
+        b[c] =
+          b[c] ||
+          function () {
+            (b[c].a = b[c].a || []).push(arguments);
+          };
+        b[c].l = 1 * new Date();
+        for (a = 0; a < document.scripts.length; a++)
+          if (document.scripts[a].src === g) return;
+        a = e.createElement(f);
+        d = e.getElementsByTagName(f)[0];
+        a.async = 1;
+        a.src = g;
+        d.parentNode.insertBefore(a, d);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+      ym(89565151, "init", {
+        clickmap: !0,
+        trackLinks: !0,
+        accurateTrackBounce: !0,
+        webvisor: !0,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/89565151"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+
+    <script type="text/javascript" id="">
+      !(function (b, e, f, g, a, c, d) {
+        b.fbq ||
+          ((a = b.fbq =
+            function () {
+              a.callMethod
+                ? a.callMethod.apply(a, arguments)
+                : a.queue.push(arguments);
+            }),
+          b._fbq || (b._fbq = a),
+          (a.push = a),
+          (a.loaded = !0),
+          (a.version = "2.0"),
+          (a.queue = []),
+          (c = e.createElement(f)),
+          (c.async = !0),
+          (c.src = g),
+          (d = e.getElementsByTagName(f)[0]),
+          d.parentNode.insertBefore(c, d));
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "943376383977574");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=943376383977574&amp;ev=PageView&amp;noscript=1"
+    /></noscript>
+  </body>
+</html>
