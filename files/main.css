@@ -7584,3 +7584,49 @@ font-size: 32px;
     line-height: 21px;
     letter-spacing: 0.01em;
   }
+ 
+.custom-radio-payment-description-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.custom-radio-payment-description{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+}
+
+.custom-radio-payment-subdescription{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+}
+
+.payment-select .custom-control-label{
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-select-add-new-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: right;
+}
+
+.payment-select-add-new{
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-select-add-new-info{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-select-add-new::before{
+    display: none;
+}
