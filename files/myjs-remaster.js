@@ -62,5 +62,25 @@ rowOpenBtns.forEach((item)=>{
     });
 })
 
+const deleteBtnsHeader = document.querySelectorAll('.delete-icon-wrapper');
+
+deleteBtnsHeader.forEach((item)=>{
+    item.addEventListener("click", function() {
+        let modalBoxToDelete = document.getElementById('deleteHeaderBlock');
+        modalBoxToDelete.classList.toggle('show')
+    });
+})
+
+
+const closeModalDeleteWrapper = document.querySelectorAll('.modal.fade .close');
+
+closeModalDeleteWrapper.forEach((item)=>{
+    item.addEventListener("click", function() {
+        let modalBoxToDelete = document.getElementById('deleteHeaderBlock');
+        modalBoxToDelete.classList.toggle('show')
+    });
+})
+
+
 
 

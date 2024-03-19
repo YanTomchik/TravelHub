@@ -1213,14 +1213,17 @@
                         >Корпоративным клиентам</a
                       >
                     </div>
-                    <div class="header-basket">
-                      <a
-                        href="https://travelhub.by/basket"
-                        class="header-basket-link"
-                      >
-                        <img src="files/cart.svg" alt="" />
-                      </a>
-                    </div>
+                    <a href="https://travelhub.by/basket" class="header-basket-link">
+                      <div class="header-basket-wrapper">
+                          <div class="header-basket-description">
+                              Корзина-конструктор
+                          </div>
+                          <div class="header-basket">
+                              <img src="files/cart.svg" alt="" />
+                          </div>
+                      </div>
+                  </a>
+                    
                     <div
                       id="kt_header_user_menu_toggle"
                       class="header-desktop-account-info"
@@ -3240,6 +3243,28 @@
                 </div>
               </div>
             </form>
+              <div class="modal fade" id="deleteHeaderBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-subscribe" role="document">
+              <div class="modal-content" style="width: 390px;">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"></span>
+                  </button>
+                  <div class="inner-header inner-header-center" style="text-align: left;">
+                      <!-- <div class="sub-title">Будь в курсе</div> -->
+                      <h2><span>Удалить направление Минск - Тбилиси?</span></h2>
+                      <p>Все введенные авиабилеты, экскурсии и тд будут также удалены.</p>
+                  </div>
+                  <div class="modal-body">
+                    <div class="modal-body-btns-wrapper">
+                      <a href="#" class="btn btn-transparent-delete close">Отмена</a>
+                          <a href="#" class="btn btn-red-delete">Удалить</a>
+                    </div>
+                          
+                  </div>
+              </div>
+          </div>
+      </div>
             <div
               class="modal fade"
               id="touristChangeModal"

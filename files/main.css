@@ -5248,10 +5248,10 @@ div[role="radiogroup"] label input {
     border-bottom-right-radius: 0.85rem;
 }
 
-.header-basket-link {
+/* .header-basket-link {
     width: 24px;
     height: 24px;
-}
+} */
 
 .basket-empty-container {
     display: flex;
@@ -7779,3 +7779,86 @@ font-size: 32px;
     width: 102%;
     position: relative;
 }  */
+
+.header-basket-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding:5px 12px;
+    background-color: #F4F6F9;
+    border-radius: 12px;
+}
+
+.header-basket-description{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+}
+
+.header-basket-link{
+    color: #19191E;
+}
+
+.header-basket-link .header-basket-wrapper .header-basket-description:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.header-basket-link .header-basket-wrapper:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.header-basket-link .header-basket:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.modal.fade.show{
+    display: block;
+}
+
+.modal-dialog.modal-dialog-subscribe{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-transparent-delete{
+    border: 1px solid #3968BF;
+    background-color: transparent;
+    color: #3968BF;
+
+}
+
+.btn-red-delete{
+    background-color: #BF3939;
+    color: #fff;
+
+}
+
+.btn-transparent-delete:hover{
+    background-color: #3968BF;
+    color: #fff;
+}
+
+.btn-red-delete:hover{
+    background-color: #BF393999;
+    color: #fff;
+}
+
+.modal-body-btns-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body-btns-wrapper > *{
+    width: 46%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
