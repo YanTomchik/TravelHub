@@ -1313,8 +1313,8 @@
             <div class="filter-title">
               <h2 class="title">Корзина бронирования</h2>
               <div class="filter-title-right-block">
-                <button class="copy-link-btn">Скопировать ссылку</button>
-
+                <!-- <button class="copy-link-btn" id="copy-link-btn" >Скопировать ссылку</button> -->
+                <a href="#" class="copy-link-btn" id="copy-link-btn">Скопировать ссылку</a>
                 <div class="toggle-switcher-wrapper">
                   <p class="description-toggle">Турист</p>
                   <label class="switch-toggle">
@@ -1348,7 +1348,7 @@
                       <div class="left-divider"></div>
                       <!--  -->
                       <div class="card card-custom mb-5 card-custom-main-header" id="card-header">
-                        <div class="card-header">
+                        <div class="card-header card-header-hide-open">
                           <div class="card-title">
                             <h3 class="card-label font-weight-bolder">
                               Минск - Тбилиси
@@ -1356,14 +1356,15 @@
                             <div class="card-title-description">
                               14.02.2024-15.02.2024
                             </div>
+                            
                           </div>
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body">
                           <div class="contructor-tabs-wrapper">
@@ -1408,14 +1409,14 @@
                       </div>
                       <div class="card card-custom mb-5 separate-block card-custom-header" id="card-hotel">
                         <div class="divider"></div>
-                        <div class="card-header card-header-hide-open">
+                        <div class="card-header card-header-hide-open opened">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Авиа</h3>
                               <div class="card-title-icon-wrapper">
@@ -1432,13 +1433,13 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body card-body-hide-open">
                             <div class="flight-path-info">
@@ -1698,12 +1699,12 @@
                         <div class="divider"></div>
                         <div class="card-header card-header-hide-open">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Туристы</h3>
                               <div class="card-title-icon-wrapper">
@@ -1716,33 +1717,33 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body card-body-hide-open">
                             <div class="tourist-list-wrapper">
                                 <div class="tourist-row-wrapper">
                                     <div class="tourist-row-header">
                                         <div class="tourist-row-description">
-                                            <button class="row-header-open-button">
+                                            <div class="row-header-open-button">
                                                 <img src="./images/chevron-open-header.svg" alt="arrow-icon">
-                                              </button>
+                                              </div>
                                             <div class="row-description">
                                                 1. Взрослый (заказчик)
                                             </div>
                                         </div>
                                         <div class="action-btns-wrapper">
-                                            <button class="action-btn">
+                                            <div class="action-btn">
                                                 <img src="./images/edit-icon.svg" alt="">
-                                            </button>
-                                            <button class="action-btn">
+                                            </div>
+                                            <div class="action-btn">
                                                 <img src="./images/trash-icon.svg" alt="">
-                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tourist-row-info">
@@ -1792,85 +1793,18 @@
                                     </div>
                                 </div>
                                 <div class="tourist-row-wrapper">
-                                    <div class="tourist-row-header">
-                                        <div class="tourist-row-description">
-                                            <div class="row-description">
-                                                2. Взрослый
+                                  <div class="tourist-row-header">
+                                      <div class="tourist-row-description">
+                                          <div class="row-header-open-button">
+                                              <img src="./images/chevron-open-header.svg" alt="arrow-icon">
                                             </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
-                                    </div>
-                                    <div class="tourist-row-info">
-                                        <table style="display: none" data-client-type="adult">
-                                            <tbody>
-                                              <tr>
-                                                <td>Ф.И.О.</td>
-                                                <td data-client-name="">Иванов Иван Иванович</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Имя (лат.)</td>
-                                                <td data-client-firstnameen="">IVAN</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Фамилия (лат.)</td>
-                                                <td data-client-lastnameen="">IVANOV</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Пол</td>
-                                                <td data-client-sex="">M</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Дата рождения</td>
-                                                <td data-client-birthday=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Телефон</td>
-                                                <td data-client-phone=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Национальность</td>
-                                                <td data-client-nationality=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Документ</td>
-                                                <td data-client-doc=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-id"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-id"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][id]"
-                                                      data-client-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-docid"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-docid"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][docId]"
-                                                      data-client-doc-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <div class="has-error"></div>
-                                    </div>
-                                </div>
-                                
+                                          <div class="row-description">
+                                              2. Взрослый
+                                          </div>
+                                      </div>
+                                      <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                       </div>
@@ -1878,12 +1812,12 @@
                         <div class="divider"></div>
                         <div class="card-header card-header-hide-open">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Способ оплаты</h3>
                               <div class="card-title-icon-wrapper">
@@ -1896,13 +1830,13 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                           
                           <!-- <div class="card-header-error">
                             Введите способ оплаты
@@ -1928,13 +1862,13 @@
                               14.02.2024-15.02.2024
                             </div>
                           </div>
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body">
                           <div class="contructor-tabs-wrapper">
@@ -1979,14 +1913,14 @@
                       </div>
                       <div class="card card-custom mb-5 separate-block card-custom-header" id="card-hotel">
                         <div class="divider"></div>
-                        <div class="card-header">
+                        <div class="card-header card-header-hide-open opened">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Авиа</h3>
                               <div class="card-title-icon-wrapper">
@@ -2003,13 +1937,517 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
+                        </div>
+                        <div class="card-body card-body-hide-open">
+                            <div class="flight-path-info">
+                                <h3 class="flight-path">
+                                    Москва - Дубай - Мале - Дубай - Москва
+                                  </h3>
+                                <p>1 взрослый, 0 детей, 0 младенцев.</p>
+                            </div>
+                          
+                          <div class="fly-info-description">
+                            <div class="baggage-title">Багаж</div>
+                            <ul class="baggage-list-wrapper">
+                              <li>CARRY7KG 15LB UPTO45LI 115LCM</li>
+                              <li>CHECKED BAGGAGE</li>
+                            </ul>
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-xl-12">
+                              <div
+                                class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
+                              >
+                                <table
+                                  class="table table-bordered basket-table-fly"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <b>18.04.2024</b>
+                                      </td>
+                                      <td>
+                                        <div class="font-weight-bolder">
+                                          16:50 - 23:10
+                                        </div>
+                                        <div>В пути 5ч 20мин</div>
+                                      </td>
+                                      <td>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center"
+                                        >
+                                          <div class="fly-info">
+                                            <div class="fly-info-title">
+                                              Москва Домодедово (DME) – Дубай
+                                              Международный аэропорт (DXB)
+                                            </div>
+                                            <div>1 пересадка</div>
+                                            <div>EK 134</div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="d-flex align-items-center">
+                                          Эконом
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <b>19.04.2024</b>
+                                      </td>
+                                      <td>
+                                        <div class="font-weight-bolder">
+                                          01:10 - 06:35
+                                        </div>
+                                        <div>В пути 4ч 25мин</div>
+                                      </td>
+                                      <td>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center"
+                                        >
+                                          <div class="fly-info">
+                                            <div class="fly-info-title">
+                                              Дубай Международный аэропорт (DXB) –
+                                              Мале (MLE)
+                                            </div>
+                                            <div>1 пересадка</div>
+                                            <div>EK 2454</div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="d-flex align-items-center">
+                                          Эконом
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <b>30.04.2024</b>
+                                      </td>
+                                      <td>
+                                        <div class="font-weight-bolder">
+                                          11:15 - 14:15
+                                        </div>
+                                        <div>В пути 4ч 0мин</div>
+                                      </td>
+                                      <td>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center"
+                                        >
+                                          <div class="fly-info">
+                                            <div class="fly-info-title">
+                                              Мале (MLE) – Дубай Международный
+                                              аэропорт (DXB)
+                                            </div>
+                                            <div>1 пересадка</div>
+                                            <div>EK 659</div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="d-flex align-items-center">
+                                          Эконом
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <b>30.04.2024</b>
+                                      </td>
+                                      <td>
+                                        <div class="font-weight-bolder">
+                                          16:15 - 20:40
+                                        </div>
+                                        <div>В пути 5ч 25мин</div>
+                                      </td>
+                                      <td>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center"
+                                        >
+                                          <div class="fly-info">
+                                            <div class="fly-info-title">
+                                              Дубай Международный аэропорт (DXB) –
+                                              Москва Домодедово (DME)
+                                            </div>
+                                            <div>1 пересадка</div>
+                                            <div>EK 131</div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="d-flex align-items-center">
+                                          Эконом
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-xl-12">
+                              <div
+                                class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
+                              >
+                                <table
+                                  class="table table-bordered basket-allocation"
+                                >
+                                  <thead>
+                                    <tr>
+                                      <td>Тариф</td>
+                                      <td>Цена</td>
+                                      <td>Информация</td>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td><b>ECOSAVER</b></td>
+                                      <td>
+                                        <div class="form-group">
+                                          <label class="checkbox mb-0">
+                                            <input
+                                              type="radio"
+                                              id="rate0"
+                                              class="flight-rate-change"
+                                              data-id="3512"
+                                              value="0"
+                                              checked="checked"
+                                            />
+                                            <span></span>
+                                            <label for="rate0">выбрано</label>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <a
+                                          href="#"
+                                          class="cart-fly-rate-info"
+                                          data-id="1-0"
+                                        >
+                                          Подробнее
+                                        </a>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td><b>ECOFLEX</b></td>
+                                      <td>
+                                        <div class="form-group">
+                                          <label class="checkbox mb-0">
+                                            <input
+                                              type="radio"
+                                              id="rate1"
+                                              class="flight-rate-change"
+                                              data-id="3512"
+                                              value="1"
+                                            />
+                                            <span></span>
+                                            <label for="rate1">+556.74 BYN</label>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <a
+                                          href="#"
+                                          class="cart-fly-rate-info"
+                                          data-id="1-1"
+                                        >
+                                          Подробнее
+                                        </a>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td><b>ECOFLXPLUS</b></td>
+                                      <td>
+                                        <div class="form-group">
+                                          <label class="checkbox mb-0">
+                                            <input
+                                              type="radio"
+                                              id="rate2"
+                                              class="flight-rate-change"
+                                              data-id="3512"
+                                              value="2"
+                                            />
+                                            <span></span>
+                                            <label for="rate2">+7011.51 BYN</label>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <a
+                                          href="#"
+                                          class="cart-fly-rate-info"
+                                          data-id="1-2"
+                                        >
+                                          Подробнее
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
+                        <div class="divider"></div>
+                        <div class="card-header card-header-hide-open">
+                          <div class="card-header-info">
+                            <div class="card-header-open-button">
+                              <img
+                                src="./images/chevron-open-header.svg"
+                                alt="arrow-icon"
+                              />
+                            </div>
+                            <div class="card-title">
+                              <h3 class="card-label font-weight-bolder">Туристы</h3>
+                              <div class="card-title-icon-wrapper">
+                                <img
+                                  src="./images/tourists-icon.svg"
+                                  alt="airplane-icon"
+                                  class="icon-item"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="delete-icon-wrapper" >
+                            <img
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
+                            />
+                        </div>
+                        </div>
+                        <div class="card-body card-body-hide-open">
+                          <div class="tourist-list-wrapper">
+                            <div class="tourist-row-wrapper">
+                                <div class="tourist-row-header">
+                                    <div class="tourist-row-description">
+                                        <div class="row-header-open-button">
+                                            <img src="./images/chevron-open-header.svg" alt="arrow-icon">
+                                          </div>
+                                        <div class="row-description">
+                                            1. Взрослый (заказчик)
+                                        </div>
+                                    </div>
+                                    <div class="action-btns-wrapper">
+                                        <div class="action-btn">
+                                            <img src="./images/edit-icon.svg" alt="">
+                                        </div>
+                                        <div class="action-btn">
+                                            <img src="./images/trash-icon.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tourist-row-info">
+                                    <table style="display: table" data-client-type="adult">
+                                        <tbody>
+                                          <tr>
+                                            <td>Ф.И.О.</td>
+                                            <td data-client-name="">Иванов Иван Иванович</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Имя (лат.)</td>
+                                            <td data-client-firstnameen="">IVAN</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Фамилия (лат.)</td>
+                                            <td data-client-lastnameen="">IVANOV</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Пол</td>
+                                            <td data-client-sex="">M</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Дата рождения</td>
+                                            <td data-client-birthday=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Телефон</td>
+                                            <td data-client-phone=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Национальность</td>
+                                            <td data-client-nationality=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Документ</td>
+                                            <td data-client-doc=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="has-error"></div>
+                                      <div class="form-group field-client-services">
+                                        <label class="control-label" for="client-services">Услуги</label>
+                                        <input type="text" id="client-services" class="form-control" name="client-services" value="Roosevelt Inn and Suites Saratoga Springs 3*">
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="tourist-row-wrapper">
+                              <div class="tourist-row-header">
+                                  <div class="tourist-row-description">
+                                      <div class="row-header-open-button">
+                                          <img src="./images/chevron-open-header.svg" alt="arrow-icon">
+                                        </div>
+                                      <div class="row-description">
+                                          2. Взрослый
+                                      </div>
+                                  </div>
+                                  <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
+                              </div>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
+                        <div class="divider"></div>
+                        <div class="card-header card-header-hide-open">
+                          <div class="card-header-info">
+                            <div class="card-header-open-button">
+                              <img
+                                src="./images/chevron-open-header.svg"
+                                alt="arrow-icon"
+                              />
+                            </div>
+                            <div class="card-title">
+                              <h3 class="card-label font-weight-bolder">Способ оплаты</h3>
+                              <div class="card-title-icon-wrapper">
+                                <img
+                                  src="./images/payment.svg"
+                                  alt="airplane-icon"
+                                  class="icon-item"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="delete-icon-wrapper" >
+                            <img
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
+                            />
+                        </div>
+                          
+                          <!-- <div class="card-header-error">
+                            Введите способ оплаты
+                          </div> -->
+                        </div>
+                        <div class="card-body card-body-hide-open">
+
+                        </div>
+                      </div>
+                      <!--  -->
+                      
+                    </div>
+                    <div class="col-xl-9-separate-blocks">
+                      <div class="left-divider"></div>
+                      <!--  -->
+                      <div class="card card-custom mb-5 card-custom-main-header" id="card-header">
+                        <div class="card-header">
+                          <div class="card-title">
+                            <h3 class="card-label font-weight-bolder">
+                              Минск - Тбилиси
+                            </h3>
+                            <div class="card-title-description">
+                              14.02.2024-15.02.2024
+                            </div>
+                          </div>
+                          <div class="delete-icon-wrapper" >
+                            <img
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
+                            />
+                        </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="contructor-tabs-wrapper">
+                            <ul class="nav" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                <a
+                                  class="btn btn-add-option nav-link mr-5 active"
+                                  id="var-1-tab-link"
+                                  data-toggle="tab"
+                                  href="#tours-tab"
+                                  >+ авиa</a
+                                >
+                              </li>
+                              <li class="nav-item">
+                                <a
+                                  class="btn btn-add-option nav-link mr-5"
+                                  href="excursions.html"
+                                  >+ отель</a
+                                >
+                              </li>
+                              <li class="nav-item">
+                                <a
+                                  class="btn btn-add-option nav-link mr-5"
+                                  id="var-2-tab-link"
+                                  data-toggle="tab"
+                                  href="#holels-tab"
+                                  >+ трансферы</a
+                                >
+                              </li>
+                              <li class="nav-item">
+                                <a
+                                  class="btn btn-add-option nav-link mr-5"
+                                  id="var-2-tab-link"
+                                  data-toggle="tab"
+                                  href="#holels-tab"
+                                  >+ отель от DMC</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card card-custom mb-5 separate-block card-custom-header" id="card-hotel">
+                        <div class="divider"></div>
+                        <div class="card-header card-header-hide-open">
+                          <div class="card-header-info">
+                            <div class="card-header-open-button">
+                              <img
+                                src="./images/chevron-open-header.svg"
+                                alt="arrow-icon"
+                              />
+                            </div>
+                            <div class="card-title">
+                              <h3 class="card-label font-weight-bolder">Авиа</h3>
+                              <div class="card-title-icon-wrapper">
+                                <img
+                                  src="./images/airplane.svg"
+                                  alt="airplane-icon"
+                                  class="icon-item"
+                                />
+                              </div>
+                            </div>
+                            <div class="status-list">
+                              <div class="result-item-green-status">Гарантия</div>
+                              <div class="result-item-yellow-status">Под запрос</div>
+                            </div>
+                          </div>
+
+                          <div class="delete-icon-wrapper" >
+                            <img
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
+                            />
+                        </div>
                         </div>
                         <div class="card-body card-body-hide-open opened">
                             <div class="flight-path-info">
@@ -2267,14 +2705,14 @@
                       </div>
                       <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
                         <div class="divider"></div>
-                        <div class="card-header">
+                        <div class="card-header card-header-hide-open">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Туристы</h3>
                               <div class="card-title-icon-wrapper">
@@ -2287,174 +2725,107 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body card-body-hide-open">
-                            <div class="tourist-list-wrapper">
-                                <div class="tourist-row-wrapper">
-                                    <div class="tourist-row-header">
-                                        <div class="tourist-row-description">
-                                            <button class="row-header-open-button">
-                                                <img src="./images/chevron-open-header.svg" alt="arrow-icon">
-                                              </button>
-                                            <div class="row-description">
-                                                1. Взрослый (заказчик)
-                                            </div>
-                                        </div>
-                                        <div class="action-btns-wrapper">
-                                            <button class="action-btn">
-                                                <img src="./images/edit-icon.svg" alt="">
-                                            </button>
-                                            <button class="action-btn">
-                                                <img src="./images/trash-icon.svg" alt="">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tourist-row-info">
-                                        <table style="display: table" data-client-type="adult">
-                                            <tbody>
-                                              <tr>
-                                                <td>Ф.И.О.</td>
-                                                <td data-client-name="">Иванов Иван Иванович</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Имя (лат.)</td>
-                                                <td data-client-firstnameen="">IVAN</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Фамилия (лат.)</td>
-                                                <td data-client-lastnameen="">IVANOV</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Пол</td>
-                                                <td data-client-sex="">M</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Дата рождения</td>
-                                                <td data-client-birthday=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Телефон</td>
-                                                <td data-client-phone=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Национальность</td>
-                                                <td data-client-nationality=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Документ</td>
-                                                <td data-client-doc=""></td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <div class="has-error"></div>
-                                          <div class="form-group field-client-services">
-                                            <label class="control-label" for="client-services">Услуги</label>
-                                            <input type="text" id="client-services" class="form-control" name="client-services" value="Roosevelt Inn and Suites Saratoga Springs 3*">
-            
-                                            <div class="help-block"></div>
+                          <div class="tourist-list-wrapper">
+                            <div class="tourist-row-wrapper">
+                                <div class="tourist-row-header">
+                                    <div class="tourist-row-description">
+                                        <div class="row-header-open-button">
+                                            <img src="./images/chevron-open-header.svg" alt="arrow-icon">
                                           </div>
-                                    </div>
-                                </div>
-                                <div class="tourist-row-wrapper">
-                                    <div class="tourist-row-header">
-                                        <div class="tourist-row-description">
-                                            <div class="row-description">
-                                                2. Взрослый
-                                            </div>
+                                        <div class="row-description">
+                                            1. Взрослый (заказчик)
                                         </div>
-                                        <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
                                     </div>
-                                    <div class="tourist-row-info">
-                                        <table style="display: none" data-client-type="adult">
-                                            <tbody>
-                                              <tr>
-                                                <td>Ф.И.О.</td>
-                                                <td data-client-name="">Иванов Иван Иванович</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Имя (лат.)</td>
-                                                <td data-client-firstnameen="">IVAN</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Фамилия (лат.)</td>
-                                                <td data-client-lastnameen="">IVANOV</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Пол</td>
-                                                <td data-client-sex="">M</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Дата рождения</td>
-                                                <td data-client-birthday=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Телефон</td>
-                                                <td data-client-phone=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Национальность</td>
-                                                <td data-client-nationality=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Документ</td>
-                                                <td data-client-doc=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-id"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-id"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][id]"
-                                                      data-client-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-docid"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-docid"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][docId]"
-                                                      data-client-doc-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <div class="has-error"></div>
+                                    <div class="action-btns-wrapper">
+                                        <div class="action-btn">
+                                            <img src="./images/edit-icon.svg" alt="">
+                                        </div>
+                                        <div class="action-btn">
+                                            <img src="./images/trash-icon.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
-                                
+                                <div class="tourist-row-info">
+                                    <table style="display: table" data-client-type="adult">
+                                        <tbody>
+                                          <tr>
+                                            <td>Ф.И.О.</td>
+                                            <td data-client-name="">Иванов Иван Иванович</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Имя (лат.)</td>
+                                            <td data-client-firstnameen="">IVAN</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Фамилия (лат.)</td>
+                                            <td data-client-lastnameen="">IVANOV</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Пол</td>
+                                            <td data-client-sex="">M</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Дата рождения</td>
+                                            <td data-client-birthday=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Телефон</td>
+                                            <td data-client-phone=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Национальность</td>
+                                            <td data-client-nationality=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Документ</td>
+                                            <td data-client-doc=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="has-error"></div>
+                                      <div class="form-group field-client-services">
+                                        <label class="control-label" for="client-services">Услуги</label>
+                                        <input type="text" id="client-services" class="form-control" name="client-services" value="Roosevelt Inn and Suites Saratoga Springs 3*">
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                </div>
                             </div>
+                            <div class="tourist-row-wrapper">
+                              <div class="tourist-row-header">
+                                  <div class="tourist-row-description">
+                                      <div class="row-header-open-button">
+                                          <img src="./images/chevron-open-header.svg" alt="arrow-icon">
+                                        </div>
+                                      <div class="row-description">
+                                          2. Взрослый
+                                      </div>
+                                  </div>
+                                  <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
+                              </div>
+                          </div>
+                        </div>
                         </div>
                       </div>
                       <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
                         <div class="divider"></div>
-                        <div class="card-header">
+                        <div class="card-header card-header-hide-open">
                           <div class="card-header-info">
-                            <button class="card-header-open-button">
+                            <div class="card-header-open-button">
                               <img
                                 src="./images/chevron-open-header.svg"
                                 alt="arrow-icon"
                               />
-                            </button>
+                            </div>
                             <div class="card-title">
                               <h3 class="card-label font-weight-bolder">Способ оплаты</h3>
                               <div class="card-title-icon-wrapper">
@@ -2467,13 +2838,13 @@
                             </div>
                           </div>
 
-                          <button class="delete-icon-wrapper">
+                          <div class="delete-icon-wrapper" >
                             <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
+                            src="./images/trash-icon.svg"
+                            alt=""
+                            class="delete-icon"
                             />
-                          </button>
+                        </div>
                           
                           <!-- <div class="card-header-error">
                             Введите способ оплаты
@@ -2483,577 +2854,81 @@
 
                         </div>
                       </div>
-                      <!--  -->
-                      
-                    </div>
-                    <div class="col-xl-9-separate-blocks">
-                      <div class="left-divider"></div>
-                      <!--  -->
                       <div class="card card-custom mb-5 card-custom-main-header" id="card-header">
+                        <!-- <div class="divider"></div> -->
                         <div class="card-header">
-                          <div class="card-title">
+                        <div class="card-title">
                             <h3 class="card-label font-weight-bolder">
-                              Минск - Тбилиси
+                            Новое направление
                             </h3>
-                            <div class="card-title-description">
-                              14.02.2024-15.02.2024
-                            </div>
-                          </div>
-                          <button class="delete-icon-wrapper">
-                            <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
-                            />
-                          </button>
+                        </div>
                         </div>
                         <div class="card-body">
-                          <div class="contructor-tabs-wrapper">
+                        <div class="contructor-tabs-wrapper">
                             <ul class="nav" id="myTab" role="tablist">
-                              <li class="nav-item">
+                            <li class="nav-item">
                                 <a
-                                  class="btn btn-add-option nav-link mr-5 active"
-                                  id="var-1-tab-link"
-                                  data-toggle="tab"
-                                  href="#tours-tab"
-                                  >+ авиa</a
+                                class="btn btn-add-option nav-link mr-5 active"
+                                id="var-1-tab-link"
+                                data-toggle="tab"
+                                href="#tours-tab"
+                                >+ авиa</a
                                 >
-                              </li>
-                              <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                                 <a
-                                  class="btn btn-add-option nav-link mr-5"
-                                  href="excursions.html"
-                                  >+ отель</a
+                                class="btn btn-add-option nav-link mr-5"
+                                id="var-2-tab-link"
+                                data-toggle="tab"
+                                href="#holels-tab"
+                                >+ трансферы</a
                                 >
-                              </li>
-                              <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                                 <a
-                                  class="btn btn-add-option nav-link mr-5"
-                                  id="var-2-tab-link"
-                                  data-toggle="tab"
-                                  href="#holels-tab"
-                                  >+ трансферы</a
+                                class="btn btn-add-option nav-link mr-5"
+                                id="var-2-tab-link"
+                                data-toggle="tab"
+                                href="#holels-tab"
+                                >+ проживание</a
                                 >
-                              </li>
-                              <li class="nav-item">
+                            </li>
+
+                            <li class="nav-item">
                                 <a
-                                  class="btn btn-add-option nav-link mr-5"
-                                  id="var-2-tab-link"
-                                  data-toggle="tab"
-                                  href="#holels-tab"
-                                  >+ отель от DMC</a
+                                class="btn btn-add-option nav-link mr-5"
+                                href="excursions.html"
+                                >+ экскурсия</a
                                 >
-                              </li>
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                class="btn btn-add-option nav-link mr-5"
+                                href="excursions.html"
+                                >+ страховка</a
+                                >
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                class="btn btn-add-option nav-link mr-5"
+                                href="excursions.html"
+                                >+ билеты</a
+                                >
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                class="btn btn-add-option nav-link mr-5"
+                                href="excursions.html"
+                                >+ еще</a
+                                >
+                            </li>
                             </ul>
-                          </div>
                         </div>
-                      </div>
-                      <div class="card card-custom mb-5 separate-block card-custom-header" id="card-hotel">
-                        <div class="divider"></div>
-                        <div class="card-header">
-                          <div class="card-header-info">
-                            <button class="card-header-open-button">
-                              <img
-                                src="./images/chevron-open-header.svg"
-                                alt="arrow-icon"
-                              />
-                            </button>
-                            <div class="card-title">
-                              <h3 class="card-label font-weight-bolder">Авиа</h3>
-                              <div class="card-title-icon-wrapper">
-                                <img
-                                  src="./images/airplane.svg"
-                                  alt="airplane-icon"
-                                  class="icon-item"
-                                />
-                              </div>
-                            </div>
-                            <div class="status-list">
-                              <div class="result-item-green-status">Гарантия</div>
-                              <div class="result-item-yellow-status">Под запрос</div>
-                            </div>
-                          </div>
-
-                          <button class="delete-icon-wrapper">
-                            <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
-                            />
-                          </button>
                         </div>
-                        <div class="card-body card-body-hide-open opened">
-                            <div class="flight-path-info">
-                                <h3 class="flight-path">
-                                    Москва - Дубай - Мале - Дубай - Москва
-                                  </h3>
-                                <p>1 взрослый, 0 детей, 0 младенцев.</p>
-                            </div>
-                          
-                          <div class="fly-info-description">
-                            <div class="baggage-title">Багаж</div>
-                            <ul class="baggage-list-wrapper">
-                              <li>CARRY7KG 15LB UPTO45LI 115LCM</li>
-                              <li>CHECKED BAGGAGE</li>
-                            </ul>
-                          </div>
-                          <div class="row mt-3">
-                            <div class="col-xl-12">
-                              <div
-                                class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
-                              >
-                                <table
-                                  class="table table-bordered basket-table-fly"
-                                >
-                                  <tbody>
-                                    <tr>
-                                      <td>
-                                        <b>18.04.2024</b>
-                                      </td>
-                                      <td>
-                                        <div class="font-weight-bolder">
-                                          16:50 - 23:10
-                                        </div>
-                                        <div>В пути 5ч 20мин</div>
-                                      </td>
-                                      <td>
-                                        <div
-                                          class="d-flex justify-content-between align-items-center"
-                                        >
-                                          <div class="fly-info">
-                                            <div class="fly-info-title">
-                                              Москва Домодедово (DME) – Дубай
-                                              Международный аэропорт (DXB)
-                                            </div>
-                                            <div>1 пересадка</div>
-                                            <div>EK 134</div>
-                                          </div>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <div class="d-flex align-items-center">
-                                          Эконом
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <b>19.04.2024</b>
-                                      </td>
-                                      <td>
-                                        <div class="font-weight-bolder">
-                                          01:10 - 06:35
-                                        </div>
-                                        <div>В пути 4ч 25мин</div>
-                                      </td>
-                                      <td>
-                                        <div
-                                          class="d-flex justify-content-between align-items-center"
-                                        >
-                                          <div class="fly-info">
-                                            <div class="fly-info-title">
-                                              Дубай Международный аэропорт (DXB) –
-                                              Мале (MLE)
-                                            </div>
-                                            <div>1 пересадка</div>
-                                            <div>EK 2454</div>
-                                          </div>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <div class="d-flex align-items-center">
-                                          Эконом
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <b>30.04.2024</b>
-                                      </td>
-                                      <td>
-                                        <div class="font-weight-bolder">
-                                          11:15 - 14:15
-                                        </div>
-                                        <div>В пути 4ч 0мин</div>
-                                      </td>
-                                      <td>
-                                        <div
-                                          class="d-flex justify-content-between align-items-center"
-                                        >
-                                          <div class="fly-info">
-                                            <div class="fly-info-title">
-                                              Мале (MLE) – Дубай Международный
-                                              аэропорт (DXB)
-                                            </div>
-                                            <div>1 пересадка</div>
-                                            <div>EK 659</div>
-                                          </div>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <div class="d-flex align-items-center">
-                                          Эконом
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <b>30.04.2024</b>
-                                      </td>
-                                      <td>
-                                        <div class="font-weight-bolder">
-                                          16:15 - 20:40
-                                        </div>
-                                        <div>В пути 5ч 25мин</div>
-                                      </td>
-                                      <td>
-                                        <div
-                                          class="d-flex justify-content-between align-items-center"
-                                        >
-                                          <div class="fly-info">
-                                            <div class="fly-info-title">
-                                              Дубай Международный аэропорт (DXB) –
-                                              Москва Домодедово (DME)
-                                            </div>
-                                            <div>1 пересадка</div>
-                                            <div>EK 131</div>
-                                          </div>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <div class="d-flex align-items-center">
-                                          Эконом
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-3">
-                            <div class="col-xl-12">
-                              <div
-                                class="datatable datatable-bordered table-responsive datatable-head-custom datatable-default datatable-primary datatable-loaded"
-                              >
-                                <table
-                                  class="table table-bordered basket-allocation"
-                                >
-                                  <thead>
-                                    <tr>
-                                      <td>Тариф</td>
-                                      <td>Цена</td>
-                                      <td>Информация</td>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td><b>ECOSAVER</b></td>
-                                      <td>
-                                        <div class="form-group">
-                                          <label class="checkbox mb-0">
-                                            <input
-                                              type="radio"
-                                              id="rate0"
-                                              class="flight-rate-change"
-                                              data-id="3512"
-                                              value="0"
-                                              checked="checked"
-                                            />
-                                            <span></span>
-                                            <label for="rate0">выбрано</label>
-                                          </label>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <a
-                                          href="#"
-                                          class="cart-fly-rate-info"
-                                          data-id="1-0"
-                                        >
-                                          Подробнее
-                                        </a>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><b>ECOFLEX</b></td>
-                                      <td>
-                                        <div class="form-group">
-                                          <label class="checkbox mb-0">
-                                            <input
-                                              type="radio"
-                                              id="rate1"
-                                              class="flight-rate-change"
-                                              data-id="3512"
-                                              value="1"
-                                            />
-                                            <span></span>
-                                            <label for="rate1">+556.74 BYN</label>
-                                          </label>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <a
-                                          href="#"
-                                          class="cart-fly-rate-info"
-                                          data-id="1-1"
-                                        >
-                                          Подробнее
-                                        </a>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><b>ECOFLXPLUS</b></td>
-                                      <td>
-                                        <div class="form-group">
-                                          <label class="checkbox mb-0">
-                                            <input
-                                              type="radio"
-                                              id="rate2"
-                                              class="flight-rate-change"
-                                              data-id="3512"
-                                              value="2"
-                                            />
-                                            <span></span>
-                                            <label for="rate2">+7011.51 BYN</label>
-                                          </label>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <a
-                                          href="#"
-                                          class="cart-fly-rate-info"
-                                          data-id="1-2"
-                                        >
-                                          Подробнее
-                                        </a>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
-                        <div class="divider"></div>
-                        <div class="card-header">
-                          <div class="card-header-info">
-                            <button class="card-header-open-button">
-                              <img
-                                src="./images/chevron-open-header.svg"
-                                alt="arrow-icon"
-                              />
-                            </button>
-                            <div class="card-title">
-                              <h3 class="card-label font-weight-bolder">Туристы</h3>
-                              <div class="card-title-icon-wrapper">
-                                <img
-                                  src="./images/tourists-icon.svg"
-                                  alt="airplane-icon"
-                                  class="icon-item"
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                          <button class="delete-icon-wrapper">
-                            <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
-                            />
-                          </button>
-                        </div>
-                        <div class="card-body card-body-hide-open">
-                            <div class="tourist-list-wrapper">
-                                <div class="tourist-row-wrapper">
-                                    <div class="tourist-row-header">
-                                        <div class="tourist-row-description">
-                                            <button class="row-header-open-button">
-                                                <img src="./images/chevron-open-header.svg" alt="arrow-icon">
-                                              </button>
-                                            <div class="row-description">
-                                                1. Взрослый (заказчик)
-                                            </div>
-                                        </div>
-                                        <div class="action-btns-wrapper">
-                                            <button class="action-btn">
-                                                <img src="./images/edit-icon.svg" alt="">
-                                            </button>
-                                            <button class="action-btn">
-                                                <img src="./images/trash-icon.svg" alt="">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tourist-row-info">
-                                        <table style="display: table" data-client-type="adult">
-                                            <tbody>
-                                              <tr>
-                                                <td>Ф.И.О.</td>
-                                                <td data-client-name="">Иванов Иван Иванович</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Имя (лат.)</td>
-                                                <td data-client-firstnameen="">IVAN</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Фамилия (лат.)</td>
-                                                <td data-client-lastnameen="">IVANOV</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Пол</td>
-                                                <td data-client-sex="">M</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Дата рождения</td>
-                                                <td data-client-birthday=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Телефон</td>
-                                                <td data-client-phone=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Национальность</td>
-                                                <td data-client-nationality=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Документ</td>
-                                                <td data-client-doc=""></td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <div class="has-error"></div>
-                                          <div class="form-group field-client-services">
-                                            <label class="control-label" for="client-services">Услуги</label>
-                                            <input type="text" id="client-services" class="form-control" name="client-services" value="Roosevelt Inn and Suites Saratoga Springs 3*">
-            
-                                            <div class="help-block"></div>
-                                          </div>
-                                    </div>
-                                </div>
-                                <div class="tourist-row-wrapper">
-                                    <div class="tourist-row-header">
-                                        <div class="tourist-row-description">
-                                            <div class="row-description">
-                                                2. Взрослый
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary basket-client-choose-button">Добавить</button>
-                                    </div>
-                                    <div class="tourist-row-info">
-                                        <table style="display: none" data-client-type="adult">
-                                            <tbody>
-                                              <tr>
-                                                <td>Ф.И.О.</td>
-                                                <td data-client-name="">Иванов Иван Иванович</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Имя (лат.)</td>
-                                                <td data-client-firstnameen="">IVAN</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Фамилия (лат.)</td>
-                                                <td data-client-lastnameen="">IVANOV</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Пол</td>
-                                                <td data-client-sex="">M</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Дата рождения</td>
-                                                <td data-client-birthday=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Телефон</td>
-                                                <td data-client-phone=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Национальность</td>
-                                                <td data-client-nationality=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Документ</td>
-                                                <td data-client-doc=""></td>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-id"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-id"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][id]"
-                                                      data-client-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                  <div
-                                                    class="form-group field-basketform-clients-1-docid"
-                                                  >
-                                                    <input
-                                                      type="hidden"
-                                                      id="basketform-clients-1-docid"
-                                                      class="form-control"
-                                                      name="BasketForm[clients][1][docId]"
-                                                      data-client-doc-id=""
-                                                    />
-                
-                                                    <div class="help-block"></div>
-                                                  </div>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <div class="has-error"></div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                      </div>
-                      <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
-                        <div class="divider"></div>
-                        <div class="card-header">
-                          <div class="card-header-info">
-                            <button class="card-header-open-button">
-                              <img
-                                src="./images/chevron-open-header.svg"
-                                alt="arrow-icon"
-                              />
-                            </button>
-                            <div class="card-title">
-                              <h3 class="card-label font-weight-bolder">Способ оплаты</h3>
-                              <div class="card-title-icon-wrapper">
-                                <img
-                                  src="./images/payment.svg"
-                                  alt="airplane-icon"
-                                  class="icon-item"
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                          <button class="delete-icon-wrapper">
-                            <img
-                              src="./images/trash-icon.svg"
-                              alt=""
-                              class="delete-icon"
-                            />
-                          </button>
-                          
-                          <!-- <div class="card-header-error">
-                            Введите способ оплаты
-                          </div> -->
-                        </div>
-                        <div class="card-body card-body-hide-open">
-
-                        </div>
-                      </div>
+                    </div>
                       <!--  -->
                       
                     </div>

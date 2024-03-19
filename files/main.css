@@ -7108,6 +7108,10 @@ font-size: 32px;
     margin-left: -1px;
 }
 
+/* .card-header.opened{
+    border-bottom: 1px solid #EBEDF3;
+} */
+
 .card.card-custom.card-custom-main-header > .card-header{
     align-items: center;
 }
@@ -7129,7 +7133,7 @@ font-size: 32px;
 .card.card-custom.card-custom-header .card-header-info .card-header-open-button{
     background: none;
     border: none;
-
+    cursor: pointer;
 }
 
 .card-custom-main-header .card-header .card-title-description{
@@ -7149,6 +7153,7 @@ font-size: 32px;
     justify-content: center;
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .delete-icon-wrapper img{
@@ -7266,6 +7271,10 @@ font-size: 32px;
     display: block;
 }
 
+.card-header.opened .card-header-open-button{
+    transform: rotate(180deg);
+}
+
 .tourist-list-wrapper .tourist-row-header{
     display: flex;
     align-items: center;
@@ -7303,6 +7312,14 @@ font-size: 32px;
     height: 32px;
 }
 
+.tourist-row-info{
+    display: none;
+}
+
+.tourist-row-info.opened{
+    display: block;
+}
+
 .tourist-row-info tbody tr td:first-child{
     font-size: 14px;
     font-weight: 400;
@@ -7329,14 +7346,19 @@ font-size: 32px;
 .action-btn{
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 
 .row-header-open-button{
     background: none;
     border: none;
+    cursor: pointer;
 }
 
+.row-header-open-button img.active{
+    transform: rotate(180deg);
+}
 
 .field-client-services{
     padding-top: 16px;
