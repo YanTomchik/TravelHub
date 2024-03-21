@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel HUB | Landing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link rel="stylesheet" href="./files/style.bundle.css">
+    <link rel="stylesheet" href="./files/main.css">
+    <link rel="stylesheet" href="./files/custom.css">
+    <link rel="stylesheet" href="./files/animate.min.css">
+    <link rel="stylesheet" href="./files/font-awesome.min.css">
+    <link rel="stylesheet" href="./files/fullcalendar.bundle.css">
+    <link rel="stylesheet" href="./files/plugins.bundle.css">
+    <link rel="stylesheet" href="./files/prismjs.bundle.css">
+    <link rel="stylesheet" href="./files/whirl.min.css">
+    <link rel="stylesheet" href="./files/wizard-1.css">
+    <link rel="stylesheet" href="./files/tour.css">
+    <link rel="stylesheet" href="./files/daterangepicker.min.css">
+    <link rel="stylesheet" href="./files/daterangepicker-kv.min.css">
+    <link rel="stylesheet" href="./files/esimhub.min.css">
+    <link rel="stylesheet" href="./files/transfer.min.css">
+    <link rel="stylesheet" href="./files/select2-addl.min.css">
+    <link rel="stylesheet" href="./files/select2-krajee-bs3.min.css">
+    <link rel="stylesheet" href="./files/select2.min.css">
+    <script src="./js/moment.min.js"></script>
+    <link rel="stylesheet" href="./files/landing.min.css">
+    <link rel="stylesheet" href="./files/slick.css">
+    <link rel="stylesheet" href="./files/header.min.css">
+    <link rel="stylesheet" href="./files/style-constructor.css">
+</head>
+
+<body class="header-fixed subheader-enabled subheader-fixed is-agent">
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-row flex-column-fluid page">
+            <div class="d-flex flex-column flex-row-fluid wrapper main-block-with-left-menu">
+                <!--Если пользователь авторизирован, то для хедера должен добавиться класс header-has-auth-->
+                <header id="kt_header" class="header header-fixed header-has-auth">
+                    <div class="header-top">
+                        <div class="header-left-block">
+                            <a href="/" class="logo-link">
+                                <img class="logo" src="images/logotext-travelhub.svg" alt="logo">
+                            </a>
+                        </div>
+                        <div class="header-right-block">
+                            <a href="tel:+375 (29) 106-93-93" class="header-phone">+375 (29) 106-93-93</a>
+                            <div class="header-currency-rates">
+                                <a class="d-flex justify-content-center" href="/user/currency-rates">
+                                    <div class="currency-item mr-5">
+                                        <img src="images/usd.svg" alt="" class="currency-item-icon mr-2">
+                                        <span class="currency-item-rate">3.07</span>
+                                    </div>
+                                    <div class="currency-item">
+                                        <img src="images/eur.svg" alt="" class="currency-item-icon mr-2">
+                                        <span class="currency-item-rate">3.42</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="header-account-links">
+                                <a href="for-agency.html">Агенствам</a>
+                                <a href="mice.html">B2B</a>
+                            </div>
+                            <div class="header-language">
+                                <span></span>
+                                <div class="header-language-dropdown">
+                                    <div class="header-language-dropdown-tab">
+                                        <div class="language-tab active" data-tab="currency">Валюта</div>
+                                        <div class="language-tab" data-tab="language">Язык</div>
+                                    </div>
+                                    <div class="header-language-dropdown-tabContent">
+                                        <div class="language-content" data-tab="currency-content">
+                                            <a class="active" href="#"><img src="images/usd.svg" alt=""> Доллар</a>
+                                            <a href="#"><img src="images/eur.svg" alt=""> Евро</a>
+                                        </div>
+                                        <div class="language-content" data-tab="language-content" style="display:none;">
+                                            <a class="active" href="#"><span>EN</span> English</a>
+                                            <a href="#"><span>RU</span> Русский</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-toggle-nav-desctop">
+                                <span></span>
+                            </div>
+                            <div class="header-toggle-nav-mobile">
+                                <span></span>
+                            </div>
+                            <div id="kt_header_user_menu_toggle" class="header-account-mobile">Д</div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+                        <div class="header-account-modal-mobile">
+                            Аккаунт
+                            <div class="header-account-modal-mobile-close"></div>
+                        </div>
+                        <div class="menu-item px-3">
+                            <div class="menu-content d-flex align-items-center px-3">
+                                <!--begin::Avatar-->
+                                    <div class="symbol symbol-50px mr-5">
+                                        <img alt="Logo" src="upload/avatars/570.jpg">
+                                    </div>
+                                <!--end::Avatar-->
+                                <!--begin::Username-->
+                                <div class="d-flex flex-column">
+                                    <div class="account-name">Albert Flores</div>
+                                    <a href="#" class="account-mail fw-bold text-muted text-hover-primary fs-7">d.bortnik2013@yandex.ru</a>
+                                </div>
+                                <!--end::Username-->
+                            </div>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu separator-->
+                        <div class="separator my-2 modile-none"></div>
+                        <!--end::Menu separator-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-5">
+                            <a href="/user/update" class="menu-link px-5">Мой профиль</a>
+                        </div>
+                        <div class="menu-item px-5">
+                            <a href="/faq#contact-form" class="menu-link px-5">Предложить идею</a>
+                        </div>
+                        <div class="separator my-2"></div>
+                        <div class="menu-item px-5"> <a href="/faq" class="accont-sub-link menu-link px-5">FAQ</a> </div>
+                        <div class="separator my-2 modile-none"></div>
+                        <div class="menu-item px-5"><a class="account-outlog menu-link px-5" href="/site/logout" data-method="post">Выйти</a></div>
+                    </div>
+                </header>
+
+                <!--main-->
+                <main class="height-auto">
+                   <section class="main_container">
+                    <div class="title">
+
+                    </div>
+                    <div class="row mb-12 mt-4">
+                        <div class="col-xl-12">
+                            <div class="empty-basket-title">
+                                <h2 class="title">Корзина бронирования</h2>
+                            </div>
+                            <div class="card card-custom card-tranfer-search">
+                                <div class="card-body constructor-tours empty-basket">
+                                    <div class="basket-empty-container">
+                                        <img src="./images/basket-empty.svg" alt="">
+                                        <p>Ваша корзина пуста</p>
+                                    </div>
+                                        <div class="card-body-video-block">
+                                            <video controls poster="./images/preload-poster.jpg" muted="muted" autoplay="autoplay">
+                                                <source src="#" type="video/webm">
+                                                <source src="#" type="video/ogg">
+                                                <source src="#" type="video/mp4">
+                                                <source src="#" type="video/3gp">
+                                            </video>
+                                        </div>
+                                    <div class="card-body-right-section">
+                                        <div class="card-body-info-block">
+                                            <div class="info-block-title">
+                                                Конструктор туров
+                                            </div>
+                                            <p class="info-block-subtitle">Используйте все возможности для формирование вашего тура или путешествия. Вы можете добавить авиабилеты, отели, трансферы и даже отели из поиска туров от DMC и локальных партнеров (требуется выбрать в поиске туров "без перелета")
+                                                <br>
+                                                <br>
+                                                Имейте ввиду, что вы также можете сформировать здесь сложны маршрут с разными направлениями и подлетом разных туристов в одну точку
+                                                <br>
+                                                <br>
+                                                Начните и просто попробуйте сформировать поездку под себя или своего туриста. Далее вам останется только выбрать своих туристов и нажать забронировать
+                                                <br>
+                                                <br>
+                                                Дополнительно вы будете видеть ссылку на то что вы собрали, которая будет обновляться до тех пор пока вы не забронируете, потому что цены и услуги динамические
+                                            </p>
+                                        </div>
+                                        <div class="constructor-main-wrapper active">
+                                            <div class="contructor-tabs-wrapper">
+                                                <ul class="nav" id="myTab" role="tablist" >
+                                                    <li class="nav-item">
+                                                        <a class="btn btn-add-option nav-link mr-5 active " id="var-1-tab-link" data-toggle="tab" href="#tours-tab">+ авия</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="btn btn-add-option nav-link mr-5" href="excursions.html">+ отель</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="btn btn-add-option nav-link mr-5" id="var-2-tab-link" data-toggle="tab" href="#holels-tab">+ трансферы</a>
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   </section>
+                </main>
+                <!--/main-->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/custom.js"></script>
+    <script src="./js/fullcalendar.bundle.js"></script>
+    <script src="./js/inputmask.phone.extensions.min.js"></script>
+    <script src="./js/jquery.inputmask.bundle.js"></script>
+    <script src="./js/phone-codes_phone.min.js"></script>
+    <script src="./js/plugins.bundle.js"></script>
+    <script src="./js/prismjs.bundle.js"></script>
+    <script src="./js/scripts.bundle-min.js"></script>
+    <script src="./js/widgets.js"></script>
+    <script src="./js/yii.activeForm.js"></script>
+    <script src="./js/yii.js"></script>
+    <script src="./js/yii.validation.js"></script>
+    <script src="./js/find-tours-script.js"></script>
+    <script src="./js/bootstrap-datetimepicker.min.js"></script>
+    <script src="./js/daterangepicker.min.js"></script>
+    <script src="./js/select2-krajee.min.js"></script>
+    <script src="./js/transfer.js"></script>
+    <script src="./js/slick.js"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/landing.js"></script>
+
+       <script>
+        jQuery(function ($) {
+        $('input[name="daterangeEnd"]').daterangepicker({
+            "singleDatePicker": true,
+            minDate: moment().startOf('day'),
+            "startDate": "08/08/2023",
+            "endDate": "08/14/2023",
+            locale: {
+                format: 'DD.MM.YYYY',
+                separator: ' - ',
+                applyLabel: 'Применить',
+                cancelLabel: 'Отмена',
+                fromLabel: 'С',
+                toLabel: 'По',
+                customRangeLabel: 'Произвольный диапазон',
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                monthNames: [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ],
+                firstDay: 1,
+            },
+        });
+
+        $('input[name="daterangeStart"]').daterangepicker({
+            "singleDatePicker": true,
+            minDate: moment().startOf('day'),
+            "startDate": "08/08/2023",
+            "endDate": "08/14/2023",
+            locale: {
+                format: 'DD.MM.YYYY',
+                separator: ' - ',
+                applyLabel: 'Применить',
+                cancelLabel: 'Отмена',
+                fromLabel: 'С',
+                toLabel: 'По',
+                customRangeLabel: 'Произвольный диапазон',
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                monthNames: [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ],
+                firstDay: 1,
+            },
+        });
+        });
+
+        window.select2_1e85c16a = {"allowClear":false,"theme":"krajee-bs3","width":"100%","language":"ru"};
+
+        if (jQuery('#kt_datatable_search_type').data('select2')) { jQuery('#kt_datatable_search_type').select2('destroy'); }
+        jQuery.when(jQuery('#kt_datatable_search_type').select2(select2_1e85c16a)).done(initS2Loading('kt_datatable_search_type','s2options_3267a624'));
+    </script>
+
+</body>
+
+</html>

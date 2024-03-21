@@ -1,4 +1,5 @@
 // Функция которая отрисовывает разделители дерева слева в зависимости от высоты блоков
+
 function checkDividersForBlocks(){
     const heightBlocksForDivider = document.querySelectorAll('.col-xl-9-separate-blocks');
     count = 0;
@@ -19,7 +20,7 @@ function checkDividersForBlocks(){
         leftGreenDivider.style.height = `${leftGreeDividerHeight}px`;
         
         if(index !=0){
-            let heightForLeftDivider = arr[index-1].offsetHeight +22;
+            let heightForLeftDivider = arr[index-1].offsetHeight +25;
             count += heightForLeftDivider;
             leftDivider.style.top = `${count}px`
             
@@ -32,7 +33,7 @@ function checkDividersForBlocks(){
 checkDividersForBlocks()
 
 
-
+// Скрипт копирования при нажатии на кнопку
 const copyLinkBtn = document.querySelectorAll('.copy-link-btn');
 
 copyLinkBtn.forEach((item)=>{
@@ -47,7 +48,7 @@ copyLinkBtn.forEach((item)=>{
     });
 })
 
-
+// Скрипт открытия на стрелку хэдера
 const cardOpenBtns = document.querySelectorAll('.card-header-open-button');
 
 cardOpenBtns.forEach((item)=>{
@@ -59,7 +60,7 @@ cardOpenBtns.forEach((item)=>{
     });
 })
 
-
+// Скрипт открытия на стрелку внутри хэдера
 const rowOpenBtns = document.querySelectorAll('.row-header-open-button');
 
 rowOpenBtns.forEach((item)=>{
@@ -72,6 +73,7 @@ rowOpenBtns.forEach((item)=>{
     });
 })
 
+// Скрипт открытия модального окна удаления
 const deleteBtnsHeader = document.querySelectorAll('.delete-icon-wrapper');
 
 deleteBtnsHeader.forEach((item)=>{
@@ -81,7 +83,7 @@ deleteBtnsHeader.forEach((item)=>{
     });
 })
 
-
+// Скрипт закрытия модального окна удаления
 const closeModalDeleteWrapper = document.querySelectorAll('.modal.fade .close');
 
 closeModalDeleteWrapper.forEach((item)=>{
@@ -93,4 +95,28 @@ closeModalDeleteWrapper.forEach((item)=>{
 
 
 
+// скрипт для проверки тоглера агент турист и отображение комиссии
+const checkboxAgentTourist = document.querySelector('.checkboxAgentTourist');
+const comissionBlockPrice = document.querySelector('.basket-item-price-item.comission');
+const comissionBlockSummary = document.querySelector('.basket-summary-item.comission');
 
+checkboxAgentTourist.addEventListener("click", function() {
+        if (checkboxAgentTourist.checked) {
+            // alert('Checkbox is checked');
+            comissionBlockPrice.style.display = 'none'
+            comissionBlockSummary.style.display = 'none'
+          } else {
+            
+            comissionBlockPrice.style.display = 'flex'
+            comissionBlockSummary.style.display = 'none'
+          }
+});
+
+
+const modalBlockTourist = document.getElementById('touristChangeModal');
+
+const closeModalTouristBtn = document.querySelector('.closeModalTourist');
+
+closeModalTouristBtn.addEventListener("click", function() {
+    modalBlockTourist.style.display = 'none'
+})

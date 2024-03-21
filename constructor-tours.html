@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel HUB | Landing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link rel="stylesheet" href="css/style.bundle.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.bundle.css">
+    <link rel="stylesheet" href="css/plugins.bundle.css">
+    <link rel="stylesheet" href="css/prismjs.bundle.css">
+    <link rel="stylesheet" href="css/whirl.min.css">
+    <link rel="stylesheet" href="css/wizard-1.css">
+    <link rel="stylesheet" href="css/tour.css">
+    <link rel="stylesheet" href="css/daterangepicker.min.css">
+    <link rel="stylesheet" href="css/daterangepicker-kv.min.css">
+    <link rel="stylesheet" href="css/esimhub.min.css">
+    <link rel="stylesheet" href="css/transfer.min.css">
+    <link rel="stylesheet" href="css/select2-addl.min.css">
+    <link rel="stylesheet" href="css/select2-krajee-bs3.min.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <script src="./js/moment.min.js"></script>
+    <link rel="stylesheet" href="css/landing.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/header.min.css">
+    <link rel="stylesheet" href="css/style-constructor.css">
+</head>
+
+<body class="header-fixed subheader-enabled subheader-fixed is-agent">
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-row flex-column-fluid page">
+            <div class="d-flex flex-column flex-row-fluid wrapper main-block-with-left-menu">
+                <!--Если пользователь авторизирован, то для хедера должен добавиться класс header-has-auth-->
+                <header id="kt_header" class="header header-fixed header-has-auth">
+                    <div class="header-top">
+                        <div class="header-left-block">
+                            <a href="/" class="logo-link">
+                                <img class="logo" src="images/logotext-travelhub.svg" alt="logo">
+                            </a>
+                        </div>
+                        <div class="header-right-block">
+                            <a href="tel:+375 (29) 106-93-93" class="header-phone">+375 (29) 106-93-93</a>
+                            <div class="header-currency-rates">
+                                <a class="d-flex justify-content-center" href="/user/currency-rates">
+                                    <div class="currency-item mr-5">
+                                        <img src="images/usd.svg" alt="" class="currency-item-icon mr-2">
+                                        <span class="currency-item-rate">3.07</span>
+                                    </div>
+                                    <div class="currency-item">
+                                        <img src="images/eur.svg" alt="" class="currency-item-icon mr-2">
+                                        <span class="currency-item-rate">3.42</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="header-account-links">
+                                <a href="for-agency.html">Агенствам</a>
+                                <a href="mice.html">B2B</a>
+                            </div>
+                            <div class="header-language">
+                                <span></span>
+                                <div class="header-language-dropdown">
+                                    <div class="header-language-dropdown-tab">
+                                        <div class="language-tab active" data-tab="currency">Валюта</div>
+                                        <div class="language-tab" data-tab="language">Язык</div>
+                                    </div>
+                                    <div class="header-language-dropdown-tabContent">
+                                        <div class="language-content" data-tab="currency-content">
+                                            <a class="active" href="#"><img src="images/usd.svg" alt=""> Доллар</a>
+                                            <a href="#"><img src="images/eur.svg" alt=""> Евро</a>
+                                        </div>
+                                        <div class="language-content" data-tab="language-content" style="display:none;">
+                                            <a class="active" href="#"><span>EN</span> English</a>
+                                            <a href="#"><span>RU</span> Русский</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-toggle-nav-desctop">
+                                <span></span>
+                            </div>
+                            <div class="header-toggle-nav-mobile">
+                                <span></span>
+                            </div>
+                            <div id="kt_header_user_menu_toggle" class="header-account-mobile">Д</div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+                        <div class="header-account-modal-mobile">
+                            Аккаунт
+                            <div class="header-account-modal-mobile-close"></div>
+                        </div>
+                        <div class="menu-item px-3">
+                            <div class="menu-content d-flex align-items-center px-3">
+                                <!--begin::Avatar-->
+                                    <div class="symbol symbol-50px mr-5">
+                                        <img alt="Logo" src="upload/avatars/570.jpg">
+                                    </div>
+                                <!--end::Avatar-->
+                                <!--begin::Username-->
+                                <div class="d-flex flex-column">
+                                    <div class="account-name">Albert Flores</div>
+                                    <a href="#" class="account-mail fw-bold text-muted text-hover-primary fs-7">d.bortnik2013@yandex.ru</a>
+                                </div>
+                                <!--end::Username-->
+                            </div>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu separator-->
+                        <div class="separator my-2 modile-none"></div>
+                        <!--end::Menu separator-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-5">
+                            <a href="/user/update" class="menu-link px-5">Мой профиль</a>
+                        </div>
+                        <div class="menu-item px-5">
+                            <a href="/faq#contact-form" class="menu-link px-5">Предложить идею</a>
+                        </div>
+                        <div class="separator my-2"></div>
+                        <div class="menu-item px-5"> <a href="/faq" class="accont-sub-link menu-link px-5">FAQ</a> </div>
+                        <div class="separator my-2 modile-none"></div>
+                        <div class="menu-item px-5"><a class="account-outlog menu-link px-5" href="/site/logout" data-method="post">Выйти</a></div>
+                    </div>
+                </header>
+
+                <!--main-->
+                <main class="height-auto">
+                   <div class="landing-container">
+                        <div class="langing-top">
+                            <h1>Откройте для <b>себя место своей мечты</b>
+                                в <span class="blue">TravelHub</span>
+                            </h1>
+                            <ul class="nav" id="myTab" role="tablist" style="justify-content: center;">
+                                <li class="nav-item">
+                                    <a class="btn btn-primary-alternative nav-link mr-5 " id="var-1-tab-link" data-toggle="tab" href="#tours-tab">Туры</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary-alternative nav-link mr-5" href="excursions.html">Экскурсии</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary-alternative nav-link mr-5" id="var-2-tab-link" data-toggle="tab" href="#holels-tab">Отели</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary-alternative nav-link mr-5" id="var-2-tab-link" data-toggle="tab" href="#avia-tab">Конструктор туров</a>
+                                </li>
+                            </ul>
+                            <div class="row mb-12 mt-4">
+                                <div class="col-xl-12">
+                                    <div class="card card-custom card-tranfer-search">
+                                        <div class="card-body constructor-tours">
+                                            <div class="card-body-left-section">
+                                                <div class="card-body-video-block">
+                                                    <video controls poster="./images/preload-poster.jpg" muted="muted" autoplay="autoplay">
+                                                        <source src="#" type="video/webm">
+                                                        <source src="#" type="video/ogg">
+                                                        <source src="#" type="video/mp4">
+                                                        <source src="#" type="video/3gp">
+                                                    </video>
+                                                </div>
+                                            </div>
+                                            <div class="card-body-right-section">
+                                                <div class="card-body-info-block">
+                                                    <div class="info-block-title">
+                                                        Конструктор туров
+                                                    </div>
+                                                    <p class="info-block-subtitle">Используйте все возможности для формирование вашего тура или путешествия. Вы можете добавить авиабилеты, отели, трансферы и даже отели из поиска туров от DMC и локальных партнеров (требуется выбрать в поиске туров "без перелета")
+                                                        <br>
+                                                        <br>
+                                                        Имейте ввиду, что вы также можете сформировать здесь сложны маршрут с разными направлениями и подлетом разных туристов в одну точку
+                                                        <br>
+                                                        <br>
+                                                        Начните и просто попробуйте сформировать поездку под себя или своего туриста. Далее вам останется только выбрать своих туристов и нажать забронировать
+                                                        <br>
+                                                        <br>
+                                                        Дополнительно вы будете видеть ссылку на то что вы собрали, которая будет обновляться до тех пор пока вы не забронируете, потому что цены и услуги динамические
+                                                    </p>
+                                                </div>
+                                                <div class="constructor-main-wrapper active">
+                                                    <div class="contructor-tabs-wrapper">
+                                                        <ul class="nav" id="myTab" role="tablist" >
+                                                            <li class="nav-item">
+                                                                <a class="btn btn-add-option nav-link mr-5 active " id="var-1-tab-link" data-toggle="tab" href="#tours-tab">+ авия</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="btn btn-add-option nav-link mr-5" href="excursions.html">+ отель</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="btn btn-add-option nav-link mr-5" id="var-2-tab-link" data-toggle="tab" href="#holels-tab">+ трансферы</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                    </div>
+                                                    <div class="constructor-info-wrapper">
+                                                        <div class="title-wrapper">
+                                                            <div class="title">
+                                                                Авиа
+                                                            </div>
+                                                            <div class="title-wrapper--item-icon">
+                                                                <img src="./images/airplane-icon.svg" alt="airplane-icon">
+                                                            </div>
+                                                        </div>
+                                                        <form action="">
+                                                        <div class="inputs-wrapper">
+                                                            
+                                                                <div class="form-group field-kt_datatable_search_code">
+                                                                    <label class="control-label" for="kt_datatable_search_code">Откуда:</label>
+                                                                    <input type="text" id="kt_datatable_search_code" class="form-control" name="Order[code]" autocomplete="off" placeholder="Москва">
+                                                                    
+                                                                    <div class="help-block"></div>
+                                                                </div>
+                                                                <div class="form-group field-kt_datatable_search_code">
+                                                                    <label class="control-label" for="kt_datatable_search_code">Куда:</label>
+                                                                    <input type="text" id="kt_datatable_search_code" class="form-control" name="Order[code]" autocomplete="off" placeholder="Шарм-эль-Шейх">
+                                                                    
+                                                                    <div class="help-block"></div>
+                                                                </div>
+    
+                                                                <div class="form-group field-transferform-fixperiod">
+                                                                    <label class="control-label" for="transferform-fixperiod">Когда</label>
+                                                                    <div id="transferform-fixperiod-container" class="kv-drp-container">
+                                                                        <div class="kv-drp-dropdown">
+                                                                            <span class="left-ind"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                                            <input type="text" readonly="" name="daterangeStart" class="form-control range-value" value="14.08.2023">
+                                                                            <span class="right-ind-date"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group field-transferform-fixperiod">
+                                                                    <label class="control-label" for="transferform-fixperiod">Обратно</label>
+                                                                    <div id="transferform-fixperiod-container" class="kv-drp-container">
+                                                                        <div class="kv-drp-dropdown">
+                                                                            <span class="left-ind"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                                            <input type="text" readonly="" name="daterangeStart" class="form-control range-value" value="14.08.2023">
+                                                                            <span class="right-ind-date"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group tourists-select-widget">
+                                                                    <label class="control-label" for="tourists-select-widget">Кол-во туристов и класс:</label>
+                                                                    <div class="tourists-count-select">
+                                                                        <div id="tourists-select">
+                                                                            <span id="adults">1</span>
+                                                                            &nbsp;
+                                                                            <span id="adults-text">пассажир</span>&nbsp; - &nbsp;
+                                                                            <span id="cabin-class-text" style="color: #3D7B50">эконом</span>
+                                                                            &nbsp;
+                                                                            <img class="arrow" src="/images/hotels/select-arrow.svg" alt="arrow-icon">
+                                                                        </div>
+                    
+                                                                        <div id="tourists-count-select-modal" class="tourists-count-select-modal" style="visibility: hidden;">
+                                                                            <div class="people-count-block">
+                                                                                <p class="title">Кол-во взрослых</p>
+                                                                                <div class="count-block">
+                                                                                    <button id="adult-minus-button" class="count-button minus">-</button>
+                                                                                    <p id="adult-counter" class="people-counter">1</p>
+                                                                                    <button id="adult-plus-button" class="count-button plus">+</button>
+                                                                                </div>
+                                                                            </div>
+                    
+                                                                            <div class="people-count-block mt-5">
+                                                                                <p class="title">Кол-во детей</p>
+                                                                                <div class="count-block">
+                                                                                    <button id="children-minus-button" class="count-button minus">-</button>
+                                                                                    <p id="children-counter" class="people-counter">0</p>
+                                                                                    <button id="children-plus-button" class="count-button plus">+</button>
+                                                                                </div>
+                                                                            </div>
+                    
+                                                                            <div class="people-count-block mt-5">
+                                                                                <p class="title">Кол-во младенцев</p>
+                                                                                <div class="count-block">
+                                                                                    <button id="infant-minus-button" class="count-button minus">-</button>
+                                                                                    <p id="infant-counter" class="people-counter">0</p>
+                                                                                    <button id="infant-plus-button" class="count-button plus">+</button>
+                                                                                </div>
+                                                                            </div>
+                    
+                                                                            <div class="row mt-5">
+                                                                                <div class="col-xl-12">
+                                                                                    <div class="form-group field-cabin-class">
+                                                                                        <label class="control-label" for="cabin-class">Укажите класс</label>
+                                                                                        <select id="cabin-class" class="form-control form-control-solid form-control-lg select2-hidden-accessible" name="FlightSearchForm[cabinClass]" data-s2-options="s2options_3267a624" data-krajee-select2="select2_db887997" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="cabin-class" tabindex="-1" aria-hidden="true">
+                                                                                        <option value="economy" selected="" data-select2-id="8">Эконом</option>
+                                                                                        <option value="business">Бизнес</option>
+                                                                                        </select>
+                                                                                        <span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="7" style="width: 100%;">
+                                                                                            <span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-cabin-class-container">
+                                                                                                <span class="select2-selection__rendered" id="select2-cabin-class-container" role="textbox" aria-readonly="true" title="Эконом">Эконом</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                                                        
+                                                                                        <div class="help-block"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="help-block" id="adults-error"></div>
+                                                                </div>
+                                                        </div>
+                                                        <button class="btn btn-primary search-btn">Поиск</button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="landing-top-route">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-6">
+                                    <div class="sub-title">ТОП направления</div>
+                                    <div class="title">Позвольте себе <br><b>исследовать мир</b> <br>по-новому</div>
+                                    <p>Если вы не нашли чего-то, то обязательно сделайте свой  <a href="/contacts">запрос нам</a></p>
+                                </div>
+                                <div class="col-xl-9 col-lg-6">
+                                    <div class="slider-countries slider">
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/1.png" alt=""></div>
+                                                <div class="country-item--name">Франция</div>
+                                                <p>Париж, Марсель ...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/2.png" alt=""></div>
+                                                <div class="country-item--name">Тайланд</div>
+                                                <p>Бангкок, Паттайя...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/3.png" alt=""></div>
+                                                <div class="country-item--name">Марокко</div>
+                                                <p>Марракеш, Касабланка...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/4.png" alt=""></div>
+                                                <div class="country-item--name">Австралия</div>
+                                                <p>Сидней, Мельбурн...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/5.png" alt=""></div>
+                                                <div class="country-item--name">Бразилия</div>
+                                                <p>Рио-де-Жанейро, Сальвадор</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/1.png" alt=""></div>
+                                                <div class="country-item--name">Франция</div>
+                                                <p>Париж, Марсель ...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/2.png" alt=""></div>
+                                                <div class="country-item--name">Тайланд</div>
+                                                <p>Бангкок, Паттайя...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/3.png" alt=""></div>
+                                                <div class="country-item--name">Марокко</div>
+                                                <p>Марракеш, Касабланка...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/4.png" alt=""></div>
+                                                <div class="country-item--name">Австралия</div>
+                                                <p>Сидней, Мельбурн...</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="country-no-auth.html" class="country-item">
+                                                <div class="country-item--img"><img src="images/landing/countries/5.png" alt=""></div>
+                                                <div class="country-item--name">Бразилия</div>
+                                                <p>Рио-де-Жанейро, Сальвадор</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="langing-about landing-section">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-6 order-csm-2">
+                                    <div class="row gap-24">
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <a href="/account" class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/home.png" alt=""></div>
+                                                    <h3>Гостиницы</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <a href="/flights" class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/avia.png" alt=""></div>
+                                                    <h3>Авиабилеты</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <a href="/account" class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/beach.png" alt=""></div>
+                                                    <h3>Пакетные туры</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <div class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/guard.png" alt=""></div>
+                                                    <h3>Страхование</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <div class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/visa.png" alt=""></div>
+                                                    <h3>Визовая поддержка</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-6">
+                                            <div class="langing-about--item">
+                                                <div class="langing-about--item-content">
+                                                    <div class="langing-about--item-icon"><img src="images/landing/about/bus.png" alt=""></div>
+                                                    <h3>Трансферы</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 mb-lg-4 order-csm-1">
+                                    <div class="sub-title">О компании</div>
+                                    <div class="title">Самые качественные услуги <b>только Вас</b></div>
+                                    <p>Наши программы продуманны до мелочей, мы предлагаем только лично проверенные отели, лучших гидов, самые интересные маршруты и инстограмные локации. Вам остается только наслаждаться Вашим отпуском. <br><br>
+                                    Для нас важно, чтоб ваш отдых остался не только в памяти телефона, а в вашем сердце!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="landing-mobile-apps">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-6">
+                                    <div class="sub-title">ТОП направления</div>
+                                    <div class="title">Отправиться в путешествее<br><b>стало еще легче!</b></div>
+                                    <p>Скачайте бесплататную версию нашего мобильного приложения</p>
+                                </div>
+                                <div class="col-xl-7 col-lg-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="#" class="mobile-app"><img src="images/landing/app-googlePlay.svg" alt=""></a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="mobile-app"><img src="images/landing/app-appleStore.svg" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="langing-subscribe">
+                            <div class="langing-subscribe-row">
+                                <div class="langing-subscribe-text">
+                                    <h3>Подпишитесь и узнавайте первыми!</h3>
+                                    <p>Высылаем только важное, новое и интересное</p>
+                                </div>
+                                <div class="langing-subscribe-form">
+                                    <form action="#">
+                                        <input type="text" name="email" required placeholder="Ваш email">
+                                        <button type="submit">Подписаться</button>
+                                    </form>
+                                    <!--<div class="langing-subscribe-form-thx">Спасибо за подписку!</div>-->
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </main>
+                <!--/main-->
+
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
+                                <div class="footer-contacts">
+                                    <div class="footer-contact--item">
+                                        <span>Клиентская поддержка</span>
+                                        <a href="tel:+375 (29) 106-93-93">+375 (29) 106-93-93</a>
+                                    </div>
+                                    <div class="footer-contact--item">
+                                        <span>Наша онлайн поддержка</span>
+                                        <a href="mailto:book@travelhub.by">book@travelhub.by</a>
+                                    </div>
+                                    <div class="footer-contact--item">
+                                        <div class="footer-adress">
+                                            <p>ПН-ПТ с 9:00 до 18:00<br>
+                                            220113 г. Минск, ул. Я. Коласа, 73-3, офис 8</p>
+                                        </div>
+                                    </div>
+                                    <div class="footer-contact--item">
+                                        <div class="footer-contact--socials">
+                                            <a target="_blank" href="https://travelhub.by"><img src="images/landing/telegram-icon.svg" alt=""></a>
+                                            <a target="_blank" href="https://travelhub.by/+375%20(29)%20106-93-93"><img src="images/landing/viber-icon.svg" alt=""></a>
+                                            <a target="_blank" href="https://www.instagram.com/travelhub.by/"><img src="images/landing/inst-icon.svg" alt=""></a>
+                                            <a target="_blank" href="mailto:book@travelhub.by"><img src="images/landing/mail-icon.svg" alt=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="footer-contact--item">
+                                        <div class="footer-info">
+                                            <p>© 2023 ООО "Туроператор Тревел Хэб"</p>
+                                            <p>УНП 193636904.</p>
+                                            <p>Зарегистрирован Минским горисполкомом 21 июля 2022 года</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="footer-nav">
+                                    <div class="row gap-md-24">
+                                        <div class="col-xl-4 col-md-6">
+                                            <h3>Турпродукт</h3>
+                                            <a href="#">Поиск туров</a>
+                                            <a href="#">Экскурсионные туры</a>
+                                            <a href="#">Поиск авиабилетов</a>
+                                            <a href="#">Бронирование отелей</a>
+                                            <a href="#">Деловой туризм (B2B)</a>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <h3>Агенствам</h3>
+                                            <a href="#">Личный кабинет</a>
+                                            <a href="#">Вебинары и Live</a>
+                                            <a href="#">Подключение</a>
+                                            <a href="#">Условия</a>
+                                            <a href="#">Оплата</a>
+                                            <a href="#">Документы</a>
+                                            <a href="#">Часто задаваемые вопросы</a>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <h3>Компания</h3>
+                                            <a href="#">О нас</a>
+                                            <a href="#">Новости</a>
+                                            <a href="#">Тревел-википедия Piligrimos</a>
+                                            <a href="#">Контакты</a>
+                                            <div class="footer-apps">
+                                                <a href="#"><img src="images/landing/googlePlay.svg" alt=""></a>
+                                                <a href="#"><img src="images/landing/appleStore.svg" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <div class="footer-copy">
+                    <div class="container">
+                        <div class="footer-copy-row">
+                            <div class="footer-copy-col">
+                                <div class="copy">© 2023 Все права защищены</div>
+                            </div>
+                            <div class="footer-copy-col none-md">
+                                <div class="footer-pays">
+                                    <img src="images/footer/pays/master-card-security.svg" alt="">
+                                    <img src="images/footer/pays/visa-verified.svg" alt="">
+                                    <img src="images/footer/pays/halva.svg" alt="">
+                                    <img src="images/footer/pays/visa.svg" alt="">
+                                    <img src="images/footer/pays/master-card.png" alt="">
+                                    <img src="images/footer/pays/stripe.svg" alt="">
+                                    <img src="images/footer/pays/alfa-bank.svg" alt="">
+                                    <img src="images/footer/pays/belcart.svg" alt="">
+                                    <img src="images/footer/pays/ApplePay.svg" alt="">
+                                    <img src="images/footer/pays/bePaid.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="footer-copy-col">
+                                <a href="#">Политика конфиденциальности</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/custom.js"></script>
+    <script src="./js/fullcalendar.bundle.js"></script>
+    <script src="./js/inputmask.phone.extensions.min.js"></script>
+    <script src="./js/jquery.inputmask.bundle.js"></script>
+    <script src="./js/phone-codes_phone.min.js"></script>
+    <script src="./js/plugins.bundle.js"></script>
+    <script src="./js/prismjs.bundle.js"></script>
+    <script src="./js/scripts.bundle-min.js"></script>
+    <script src="./js/widgets.js"></script>
+    <script src="./js/yii.activeForm.js"></script>
+    <script src="./js/yii.js"></script>
+    <script src="./js/yii.validation.js"></script>
+    <script src="./js/find-tours-script.js"></script>
+    <script src="./js/bootstrap-datetimepicker.min.js"></script>
+    <script src="./js/daterangepicker.min.js"></script>
+    <script src="./js/select2-krajee.min.js"></script>
+    <script src="./js/transfer.js"></script>
+    <script src="./js/slick.js"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/landing.js"></script>
+
+       <script>
+        jQuery(function ($) {
+        $('input[name="daterangeEnd"]').daterangepicker({
+            "singleDatePicker": true,
+            minDate: moment().startOf('day'),
+            "startDate": "08/08/2023",
+            "endDate": "08/14/2023",
+            locale: {
+                format: 'DD.MM.YYYY',
+                separator: ' - ',
+                applyLabel: 'Применить',
+                cancelLabel: 'Отмена',
+                fromLabel: 'С',
+                toLabel: 'По',
+                customRangeLabel: 'Произвольный диапазон',
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                monthNames: [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ],
+                firstDay: 1,
+            },
+        });
+
+        $('input[name="daterangeStart"]').daterangepicker({
+            "singleDatePicker": true,
+            minDate: moment().startOf('day'),
+            "startDate": "08/08/2023",
+            "endDate": "08/14/2023",
+            locale: {
+                format: 'DD.MM.YYYY',
+                separator: ' - ',
+                applyLabel: 'Применить',
+                cancelLabel: 'Отмена',
+                fromLabel: 'С',
+                toLabel: 'По',
+                customRangeLabel: 'Произвольный диапазон',
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                monthNames: [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ],
+                firstDay: 1,
+            },
+        });
+        });
+
+        window.select2_1e85c16a = {"allowClear":false,"theme":"krajee-bs3","width":"100%","language":"ru"};
+
+        if (jQuery('#kt_datatable_search_type').data('select2')) { jQuery('#kt_datatable_search_type').select2('destroy'); }
+        jQuery.when(jQuery('#kt_datatable_search_type').select2(select2_1e85c16a)).done(initS2Loading('kt_datatable_search_type','s2options_3267a624'));
+    </script>
+
+</body>
+
+</html>

@@ -1320,7 +1320,7 @@
                 <div class="toggle-switcher-wrapper">
                   <p class="description-toggle">Турист</p>
                   <label class="switch-toggle">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="checkboxAgentTourist" checked/>
                     <span class="slider-switcher-wrapper round"></span>
                   </label>
                   <p class="description-toggle">Агент</p>
@@ -1344,7 +1344,7 @@
                         <div class="left-divider"></div>
                     <div class="card card-custom mb-5 card-custom-main-header" id="card-header">
                         <div class="card-header">
-                        <div class="card-title">
+                        <div class="card-title separate">
                             <h3 class="card-label font-weight-bolder">
                             Минск - Тбилиси
                             </h3>
@@ -1366,7 +1366,7 @@
                             <ul class="nav" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5 active"
+                                    class="btn btn-add-option nav-link"
                                     id="var-1-tab-link"
                                     data-toggle="tab"
                                     href="#tours-tab"
@@ -1375,7 +1375,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link"
                                     id="var-2-tab-link"
                                     data-toggle="tab"
                                     href="#holels-tab"
@@ -1384,7 +1384,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link"
                                     id="var-2-tab-link"
                                     data-toggle="tab"
                                     href="#holels-tab"
@@ -1394,7 +1394,7 @@
     
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link"
                                     href="excursions.html"
                                     >+ экскурсия</a
                                     >
@@ -1402,7 +1402,7 @@
     
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link "
                                     href="excursions.html"
                                     >+ страховка</a
                                     >
@@ -1410,7 +1410,7 @@
     
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link"
                                     href="excursions.html"
                                     >+ билеты</a
                                     >
@@ -1418,7 +1418,7 @@
     
                                 <li class="nav-item">
                                     <a
-                                    class="btn btn-add-option nav-link mr-5"
+                                    class="btn btn-add-option nav-link "
                                     href="excursions.html"
                                     >+ еще</a
                                     >
@@ -2938,6 +2938,20 @@
                     </div>
                 </div>
                 <div class="col-xl-3 right-block-basket">
+                    <div class="basket-header-mobile-wrapper">
+                        <div class="basket-header-mobile">
+                          Стоимость:
+                        </div>
+                        <div class="toggle-switcher-wrapper">
+                          <p class="description-toggle">Турист</p>
+                          <label class="switch-toggle">
+                            <input type="checkbox" id="checkboxAgentTourist" />
+                            <span class="slider-switcher-wrapper round"></span>
+                          </label>
+                          <p class="description-toggle">Агент</p>
+                        </div>
+                        
+                      </div>
                   <div class="card card-custom">
                     <div class="card-header">
                       <div class="card-title basket-header-wrapper">
@@ -3112,7 +3126,7 @@
                                         236$
                                     </div>
                                 </div>
-                                <div class="basket-item-price-item">
+                                <div class="basket-item-price-item comission">
                                     <div class="basket-item-description">
                                         Комиссия:
                                     </div>
