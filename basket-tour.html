@@ -1364,41 +1364,66 @@
                         <div class="card-body">
                         <div class="contructor-tabs-wrapper">
                             <ul class="nav" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a
-                                class="btn btn-add-option nav-link mr-5 active"
-                                id="var-1-tab-link"
-                                data-toggle="tab"
-                                href="#tours-tab"
-                                >+ авиa</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                class="btn btn-add-option nav-link mr-5"
-                                href="excursions.html"
-                                >+ отель</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                class="btn btn-add-option nav-link mr-5"
-                                id="var-2-tab-link"
-                                data-toggle="tab"
-                                href="#holels-tab"
-                                >+ трансферы</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                class="btn btn-add-option nav-link mr-5"
-                                id="var-2-tab-link"
-                                data-toggle="tab"
-                                href="#holels-tab"
-                                >+ отель от DMC</a
-                                >
-                            </li>
-                            </ul>
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5 active"
+                                    id="var-1-tab-link"
+                                    data-toggle="tab"
+                                    href="#tours-tab"
+                                    >+ авиa</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    id="var-2-tab-link"
+                                    data-toggle="tab"
+                                    href="#holels-tab"
+                                    >+ трансферы</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    id="var-2-tab-link"
+                                    data-toggle="tab"
+                                    href="#holels-tab"
+                                    >+ проживание</a
+                                    >
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    href="excursions.html"
+                                    >+ экскурсия</a
+                                    >
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    href="excursions.html"
+                                    >+ страховка</a
+                                    >
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    href="excursions.html"
+                                    >+ билеты</a
+                                    >
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a
+                                    class="btn btn-add-option nav-link mr-5"
+                                    href="excursions.html"
+                                    >+ еще</a
+                                    >
+                                </li>
+                                </ul>
                         </div>
                         </div>
                     </div>
@@ -2732,14 +2757,14 @@
                                     type="radio"
                                     class="custom-control-input"
                                     checked=""
-                                    id="paymentStore1"
+                                    id="payment1"
                                     name="ServiceBasketForm[paymentMethod]"
                                     value="new-1"
                                     required=""
                                     />
                                     <label
                                     class="custom-control-label"
-                                    for="paymentStore1"
+                                    for="payment1"
                                     >
                                     <div class="custom-radio-payment-description-wrapper">
                                         <div class="custom-radio-payment-description">
@@ -2763,14 +2788,14 @@
                                     type="radio"
                                     class="custom-control-input"
                                     checked=""
-                                    id="paymentStore1"
+                                    id="payment2"
                                     name="ServiceBasketForm[paymentMethod]"
                                     value="new-1"
                                     required=""
                                     />
                                     <label
                                     class="custom-control-label"
-                                    for="paymentStore1"
+                                    for="payment2"
                                     >
                                     <div class="custom-radio-payment-description-wrapper">
                                         <div class="custom-radio-payment-description">
@@ -2793,14 +2818,14 @@
                                     type="radio"
                                     class="custom-control-input"
                                     checked=""
-                                    id="paymentStore1"
+                                    id="payment3"
                                     name="ServiceBasketForm[paymentMethod]"
                                     value="new-1"
                                     required=""
                                     />
                                     <label
                                     class="custom-control-label"
-                                    for="paymentStore1"
+                                    for="payment3"
                                     >
                                     <div class="custom-radio-payment-description-wrapper">
                                         <div class="custom-radio-payment-description">
@@ -2823,14 +2848,14 @@
                                     type="radio"
                                     class="custom-control-input"
                                     checked=""
-                                    id="paymentStore1"
+                                    id="payment4"
                                     name="ServiceBasketForm[paymentMethod]"
                                     value="new-1"
                                     required=""
                                     />
                                     <label
                                     class="custom-control-label"
-                                    for="paymentStore1"
+                                    for="payment4"
                                     >
                                     <div class="custom-radio-payment-description-wrapper">
                                         <div class="custom-radio-payment-description">
@@ -2896,6 +2921,9 @@
                                     </div>
                                     <div class="custom-radio-payment-icon">
                                         <img src="./images/stripe-icon.svg" alt="">
+                                    </div>
+                                    <div class="custom-radio-payment-icon">
+                                        <img src="./images/bepaid-icon.svg" alt="">
                                     </div>
                                     <div class="custom-radio-payment-icon">
                                         <img src="./images/pci-icon.svg" alt="">
@@ -3317,674 +3345,728 @@
                       data-select=""
                     >
                       <div class="row">
-                        <div class="col-xl-12">
-                          <div class="row">
-                            <div class="col-sm-6 col-xl-4">
-                              <div class="form-group field-client-nationality">
-                                <label
-                                  class="control-label"
-                                  for="client-nationality"
-                                  >Гражданство</label
-                                >
-                                <select
-                                  id="client-nationality"
-                                  class="form-control form-control-solid form-control-lg form-required select2-hidden-accessible"
-                                  name="Client[nationality]"
-                                  data-s2-options="s2options_3267a624"
-                                  data-krajee-select2="select2_59ef71b0"
-                                  style="
-                                    width: 100%;
-                                    height: 1px;
-                                    visibility: hidden;
-                                  "
-                                  data-select2-id="client-nationality"
-                                  tabindex="-1"
-                                  aria-hidden="true"
-                                >
-                                  <option value="" data-select2-id="4">
-                                    Выберите гражданство
-                                  </option>
-                                  <option value="6255">Австралия</option>
-                                  <option value="90">Австрия</option>
-                                  <option value="6256">Азербайджан</option>
-                                  <option value="6301">
-                                    Аландские острова
-                                  </option>
-                                  <option value="6257">Албания</option>
-                                  <option value="6258">Алжир</option>
-                                  <option value="1065">
-                                    Американское Самоа
-                                  </option>
-                                  <option value="963">Ангилья</option>
-                                  <option value="962">Ангола</option>
-                                  <option value="376">Андорра</option>
-                                  <option value="964">Антигуа и Барбуда</option>
-                                  <option value="6260">Аргентина</option>
-                                  <option value="6230">Армения</option>
-                                  <option value="961">Аруба</option>
-                                  <option value="6296">Афганистан</option>
-                                  <option value="6261">Багамы</option>
-                                  <option value="6262">Бангладеш</option>
-                                  <option value="6248">Барбадос</option>
-                                  <option value="6244">Бахрейн</option>
-                                  <option value="375">Беларусь</option>
-                                  <option value="965">Белиз</option>
-                                  <option value="3">Бельгия</option>
-                                  <option value="966">Бенин</option>
-                                  <option value="967">Бермуды</option>
-                                  <option value="359">Болгария</option>
-                                  <option value="968">Боливия</option>
-                                  <option value="1092">
-                                    Бонайре, Синт-Эстатиус и Саба
-                                  </option>
-                                  <option value="1073">
-                                    Босния и Герцеговина
-                                  </option>
-                                  <option value="969">Ботсвана</option>
-                                  <option value="6241">Бразилия</option>
-                                  <option value="1075">
-                                    Британская территория в Индийском океане
-                                  </option>
-                                  <option value="970">
-                                    Британские Виргинские острова
-                                  </option>
-                                  <option value="971">Бруней</option>
-                                  <option value="972">Буркина-Фасо</option>
-                                  <option value="973">Бурунди</option>
-                                  <option value="1066">Бутан</option>
-                                  <option value="1060">Вануату</option>
-                                  <option value="6263">Ватикан</option>
-                                  <option value="222">Великобритания</option>
-                                  <option value="6232">Венгрия</option>
-                                  <option value="6264">Венесуэла</option>
-                                  <option value="1057">
-                                    Виргинские Острова (США)
-                                  </option>
-                                  <option value="1095">
-                                    Внешние малые острова (США)
-                                  </option>
-                                  <option value="6294">Восточный Тимор</option>
-                                  <option value="6265">Вьетнам</option>
-                                  <option value="988">Габон</option>
-                                  <option value="999">Гаити</option>
-                                  <option value="998">Гайана</option>
-                                  <option value="989">Гамбия</option>
-                                  <option value="990">Гана</option>
-                                  <option value="993">Гваделупа</option>
-                                  <option value="995">Гватемала</option>
-                                  <option value="996">Гвинея</option>
-                                  <option value="997">Гвинея-Бисау</option>
-                                  <option value="40">Германия</option>
-                                  <option value="6289">Гернси</option>
-                                  <option value="991">Гибралтар</option>
-                                  <option value="1000">Гондурас</option>
-                                  <option value="852">Гонконг</option>
-                                  <option value="992">Гренада</option>
-                                  <option value="6266">Гренландия</option>
-                                  <option value="29">Греция</option>
-                                  <option value="6238">Грузия</option>
-                                  <option value="994">Гуам</option>
-                                  <option value="6224">Дания</option>
-                                  <option value="1062">
-                                    Демократическая Республика Конго
-                                  </option>
-                                  <option value="980">Джибути</option>
-                                  <option value="981">
-                                    Доминиканская Республика
-                                  </option>
-                                  <option value="9">Египет</option>
-                                  <option value="1063">Замбия</option>
-                                  <option value="1064">Зимбабве</option>
-                                  <option value="729">Израиль</option>
-                                  <option value="26">Индия</option>
-                                  <option value="6221">Индонезия</option>
-                                  <option value="6245">Иордания</option>
-                                  <option value="6295">Ирак</option>
-                                  <option value="6288">Иран</option>
-                                  <option value="6267">Ирландия</option>
-                                  <option value="6268">Исландия</option>
-                                  <option value="84">Испания</option>
-                                  <option value="80">Италия</option>
-                                  <option value="6287">Йемен</option>
-                                  <option value="6269">Кабо‐Верде</option>
-                                  <option value="3272">Казахстан</option>
-                                  <option value="6270">Каймановы о‐ва</option>
-                                  <option value="6271">Камбоджа</option>
-                                  <option value="974">Камерун</option>
-                                  <option value="6272">Канада</option>
-                                  <option value="6227">Катар</option>
-                                  <option value="262">Кения</option>
-                                  <option value="10">Кипр</option>
-                                  <option value="1068">Киргизия</option>
-                                  <option value="1002">Кирибати</option>
-                                  <option value="6250">Китай</option>
-                                  <option value="6298">КНДР</option>
-                                  <option value="1077">
-                                    Кокосовые острова
-                                  </option>
-                                  <option value="6273">Колумбия</option>
-                                  <option value="977">Коморы</option>
-                                  <option value="6302">Косово</option>
-                                  <option value="6274">Коста‐Рика</option>
-                                  <option value="1001">Кот-д'Ивуар</option>
-                                  <option value="6254">Куба</option>
-                                  <option value="1003">Кувейт</option>
-                                  <option value="1093">Кюрасао</option>
-                                  <option value="1004">Лаос</option>
-                                  <option value="6235">Латвия</option>
-                                  <option value="1006">Лесото</option>
-                                  <option value="1007">Либерию</option>
-                                  <option value="1005">Ливан</option>
-                                  <option value="1008">Ливия</option>
-                                  <option value="6233">Литва</option>
-                                  <option value="6275">Лихтенштейн</option>
-                                  <option value="6276">Люксембург</option>
-                                  <option value="6237">Маврикий</option>
-                                  <option value="1015">Мавритания</option>
-                                  <option value="6251">Мадагаскар</option>
-                                  <option value="1016">Майотта</option>
-                                  <option value="1009">Макао</option>
-                                  <option value="1011">Малави</option>
-                                  <option value="603">Малайзия</option>
-                                  <option value="1012">Мали</option>
-                                  <option value="960">Мальдивы</option>
-                                  <option value="535">Мальта</option>
-                                  <option value="1">Марокко</option>
-                                  <option value="1014">Мартиник</option>
-                                  <option value="1069">
-                                    Маршалловы Острова
-                                  </option>
-                                  <option value="77">Мексика</option>
-                                  <option value="1019">Мозамбик</option>
-                                  <option value="6277">Молдова</option>
-                                  <option value="6278">Монако</option>
-                                  <option value="6279">Монголия</option>
-                                  <option value="1018">Монтсеррат</option>
-                                  <option value="6280">Мьянма</option>
-                                  <option value="1020">Намибия</option>
-                                  <option value="1021">Науру</option>
-                                  <option value="1022">Непал</option>
-                                  <option value="1028">Нигер</option>
-                                  <option value="1029">Нигерия</option>
-                                  <option value="6253">Нидерланды</option>
-                                  <option value="1027">Никарагуа</option>
-                                  <option value="1070">Ниуэ</option>
-                                  <option value="1026">Новая Зеландия</option>
-                                  <option value="1024">Новая Каледония</option>
-                                  <option value="6222">Норвегия</option>
-                                  <option value="6299">о-в Мэн</option>
-                                  <option value="2">
-                                    Объединенные Арабские Эмираты
-                                  </option>
-                                  <option value="6246">Оман</option>
-                                  <option value="1074">Остров Буве</option>
-                                  <option value="6300">Остров Джерси</option>
-                                  <option value="979">Остров Кука</option>
-                                  <option value="1030">Остров Норфолк</option>
-                                  <option value="1082">Остров Питкэрн</option>
-                                  <option value="1076">Остров Рождества</option>
-                                  <option value="1085">
-                                    Остров Святой Елены
-                                  </option>
-                                  <option value="1080">
-                                    Остров Херд и Макдональд
-                                  </option>
-                                  <option value="1031">Пакистан</option>
-                                  <option value="1032">Палау</option>
-                                  <option value="1089">Палестина</option>
-                                  <option value="1033">Панама</option>
-                                  <option value="1025">
-                                    Папуа — Новая Гвинея
-                                  </option>
-                                  <option value="1034">Парагвай</option>
-                                  <option value="1035">Перу</option>
-                                  <option value="6228">Польша</option>
-                                  <option value="22">Португалия</option>
-                                  <option value="1036">Пуэрто-Рико</option>
-                                  <option value="978">Республика Конго</option>
-                                  <option value="1037">Реюньон</option>
-                                  <option value="460">Россия</option>
-                                  <option value="1038">Руанда</option>
-                                  <option value="6249">Румыния</option>
-                                  <option value="983">Сальвадор</option>
-                                  <option value="1039">Самоа</option>
-                                  <option value="1084">Сан-Марино</option>
-                                  <option value="1040">
-                                    Сан-Томе и Принсипи
-                                  </option>
-                                  <option value="1041">
-                                    Саудовская Аравия
-                                  </option>
-                                  <option value="1050">Свазиленд</option>
-                                  <option value="1010">
-                                    Северная Македония
-                                  </option>
-                                  <option value="1013">
-                                    Северные Марианские острова
-                                  </option>
-                                  <option value="6236">
-                                    Сейшельские острова
-                                  </option>
-                                  <option value="1090">Сен-Бартелеми</option>
-                                  <option value="1091">Сен-Мартен</option>
-                                  <option value="1083">
-                                    Сен-Пьер и Микелон
-                                  </option>
-                                  <option value="1042">Сенегал</option>
-                                  <option value="1047">
-                                    Сент-Винсент и Гренадина
-                                  </option>
-                                  <option value="1023">
-                                    Сент-Китс и Невис
-                                  </option>
-                                  <option value="1046">Сент-Люсия</option>
-                                  <option value="1061">Сербия</option>
-                                  <option value="665">Сингапур</option>
-                                  <option value="1094">Синт-Мартен</option>
-                                  <option value="6292">Сирия</option>
-                                  <option value="6281">Словакия</option>
-                                  <option value="6282">Словения</option>
-                                  <option value="7">
-                                    Соединенные Штаты Америки
-                                  </option>
-                                  <option value="1044">
-                                    Соломоновы Острова
-                                  </option>
-                                  <option value="6293">Сомали</option>
-                                  <option value="1048">Судан</option>
-                                  <option value="1049">Суринам</option>
-                                  <option value="1043">Сьерра-Леоне</option>
-                                  <option value="1071">Таджикистан</option>
-                                  <option value="53">Таиланд</option>
-                                  <option value="1051">Тайвань</option>
-                                  <option value="6226">Танзания</option>
-                                  <option value="1055">Тёркс и Кайкос</option>
-                                  <option value="1052">Того</option>
-                                  <option value="1087">Токелау</option>
-                                  <option value="1053">Тонга</option>
-                                  <option value="1054">
-                                    Тринидад и Тобаго
-                                  </option>
-                                  <option value="1056">Тувала</option>
-                                  <option value="97">Тунис</option>
-                                  <option value="6259">
-                                    Тур на Антарктиду
-                                  </option>
-                                  <option value="1072">Туркменистан</option>
-                                  <option value="86">Турция</option>
-                                  <option value="1058">Уганда</option>
-                                  <option value="6229">Узбекистан</option>
-                                  <option value="5">Украина</option>
-                                  <option value="1088">Уоллис и Футуна</option>
-                                  <option value="1059">Уругвай</option>
-                                  <option value="1081">
-                                    Фарерские острова
-                                  </option>
-                                  <option value="1017">
-                                    Федеративные Штаты Микронезии
-                                  </option>
-                                  <option value="985">Фиджи</option>
-                                  <option value="6247">Филиппины</option>
-                                  <option value="64">Финляндия</option>
-                                  <option value="1078">
-                                    Фолклендские острова
-                                  </option>
-                                  <option value="30">Франция</option>
-                                  <option value="986">
-                                    Французская Гвиана
-                                  </option>
-                                  <option value="987">
-                                    Французская Полинезия
-                                  </option>
-                                  <option value="1079">
-                                    Французские Южные и Антарктические
-                                    Территории
-                                  </option>
-                                  <option value="38">Хорватия</option>
-                                  <option value="6291">
-                                    Центральноафриканская Республика
-                                  </option>
-                                  <option value="975">Чад</option>
-                                  <option value="6252">Черногория</option>
-                                  <option value="15">Чехия</option>
-                                  <option value="976">Чили</option>
-                                  <option value="6286">Шанхай</option>
-                                  <option value="76">Швейцария</option>
-                                  <option value="6223">Швеция</option>
-                                  <option value="1086">Шпицберген</option>
-                                  <option value="941">Шри Ланка</option>
-                                  <option value="982">Эквадор</option>
-                                  <option value="984">
-                                    Экваториальная Гвинея
-                                  </option>
-                                  <option value="1067">Эритрея</option>
-                                  <option value="372">Эстония</option>
-                                  <option value="6231">Эфиопия</option>
-                                  <option value="1045">Южная Африка</option>
-                                  <option value="6283">Южная Корея</option>
-                                  <option value="6290">Южный Судан</option>
-                                  <option value="6284">Ямайка</option>
-                                  <option value="6243">Япония</option></select
-                                ><span
-                                  class="select2 select2-container select2-container--krajee-bs3"
-                                  dir="ltr"
-                                  data-select2-id="3"
-                                  style="width: 100%"
-                                  ><span class="selection"
-                                    ><span
-                                      class="select2-selection select2-selection--single"
-                                      role="combobox"
-                                      aria-haspopup="true"
-                                      aria-expanded="false"
-                                      tabindex="0"
-                                      aria-disabled="false"
-                                      aria-labelledby="select2-client-nationality-container"
-                                      ><span
-                                        class="select2-selection__rendered"
-                                        id="select2-client-nationality-container"
-                                        role="textbox"
-                                        aria-readonly="true"
+                        <div class="col-xl-12 form-edit-client-wrapper">
+                            <div class="row-border-bottom row-personal-data">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div class="form-group field-client-nationality">
+                                        <label
+                                          class="control-label"
+                                          for="client-nationality"
+                                          >Гражданство</label
+                                        >
+                                        <select
+                                          id="client-nationality"
+                                          class="form-control form-control-solid form-control-lg form-required select2-hidden-accessible"
+                                          name="Client[nationality]"
+                                          data-s2-options="s2options_3267a624"
+                                          data-krajee-select2="select2_59ef71b0"
+                                          style="
+                                            width: 100%;
+                                            height: 1px;
+                                            visibility: hidden;
+                                          "
+                                          data-select2-id="client-nationality"
+                                          tabindex="-1"
+                                          aria-hidden="true"
+                                        >
+                                          <option value="" data-select2-id="4">
+                                            Выберите гражданство
+                                          </option>
+                                          <option value="6255">Австралия</option>
+                                          <option value="90">Австрия</option>
+                                          <option value="6256">Азербайджан</option>
+                                          <option value="6301">
+                                            Аландские острова
+                                          </option>
+                                          <option value="6257">Албания</option>
+                                          <option value="6258">Алжир</option>
+                                          <option value="1065">
+                                            Американское Самоа
+                                          </option>
+                                          <option value="963">Ангилья</option>
+                                          <option value="962">Ангола</option>
+                                          <option value="376">Андорра</option>
+                                          <option value="964">Антигуа и Барбуда</option>
+                                          <option value="6260">Аргентина</option>
+                                          <option value="6230">Армения</option>
+                                          <option value="961">Аруба</option>
+                                          <option value="6296">Афганистан</option>
+                                          <option value="6261">Багамы</option>
+                                          <option value="6262">Бангладеш</option>
+                                          <option value="6248">Барбадос</option>
+                                          <option value="6244">Бахрейн</option>
+                                          <option value="375">Беларусь</option>
+                                          <option value="965">Белиз</option>
+                                          <option value="3">Бельгия</option>
+                                          <option value="966">Бенин</option>
+                                          <option value="967">Бермуды</option>
+                                          <option value="359">Болгария</option>
+                                          <option value="968">Боливия</option>
+                                          <option value="1092">
+                                            Бонайре, Синт-Эстатиус и Саба
+                                          </option>
+                                          <option value="1073">
+                                            Босния и Герцеговина
+                                          </option>
+                                          <option value="969">Ботсвана</option>
+                                          <option value="6241">Бразилия</option>
+                                          <option value="1075">
+                                            Британская территория в Индийском океане
+                                          </option>
+                                          <option value="970">
+                                            Британские Виргинские острова
+                                          </option>
+                                          <option value="971">Бруней</option>
+                                          <option value="972">Буркина-Фасо</option>
+                                          <option value="973">Бурунди</option>
+                                          <option value="1066">Бутан</option>
+                                          <option value="1060">Вануату</option>
+                                          <option value="6263">Ватикан</option>
+                                          <option value="222">Великобритания</option>
+                                          <option value="6232">Венгрия</option>
+                                          <option value="6264">Венесуэла</option>
+                                          <option value="1057">
+                                            Виргинские Острова (США)
+                                          </option>
+                                          <option value="1095">
+                                            Внешние малые острова (США)
+                                          </option>
+                                          <option value="6294">Восточный Тимор</option>
+                                          <option value="6265">Вьетнам</option>
+                                          <option value="988">Габон</option>
+                                          <option value="999">Гаити</option>
+                                          <option value="998">Гайана</option>
+                                          <option value="989">Гамбия</option>
+                                          <option value="990">Гана</option>
+                                          <option value="993">Гваделупа</option>
+                                          <option value="995">Гватемала</option>
+                                          <option value="996">Гвинея</option>
+                                          <option value="997">Гвинея-Бисау</option>
+                                          <option value="40">Германия</option>
+                                          <option value="6289">Гернси</option>
+                                          <option value="991">Гибралтар</option>
+                                          <option value="1000">Гондурас</option>
+                                          <option value="852">Гонконг</option>
+                                          <option value="992">Гренада</option>
+                                          <option value="6266">Гренландия</option>
+                                          <option value="29">Греция</option>
+                                          <option value="6238">Грузия</option>
+                                          <option value="994">Гуам</option>
+                                          <option value="6224">Дания</option>
+                                          <option value="1062">
+                                            Демократическая Республика Конго
+                                          </option>
+                                          <option value="980">Джибути</option>
+                                          <option value="981">
+                                            Доминиканская Республика
+                                          </option>
+                                          <option value="9">Египет</option>
+                                          <option value="1063">Замбия</option>
+                                          <option value="1064">Зимбабве</option>
+                                          <option value="729">Израиль</option>
+                                          <option value="26">Индия</option>
+                                          <option value="6221">Индонезия</option>
+                                          <option value="6245">Иордания</option>
+                                          <option value="6295">Ирак</option>
+                                          <option value="6288">Иран</option>
+                                          <option value="6267">Ирландия</option>
+                                          <option value="6268">Исландия</option>
+                                          <option value="84">Испания</option>
+                                          <option value="80">Италия</option>
+                                          <option value="6287">Йемен</option>
+                                          <option value="6269">Кабо‐Верде</option>
+                                          <option value="3272">Казахстан</option>
+                                          <option value="6270">Каймановы о‐ва</option>
+                                          <option value="6271">Камбоджа</option>
+                                          <option value="974">Камерун</option>
+                                          <option value="6272">Канада</option>
+                                          <option value="6227">Катар</option>
+                                          <option value="262">Кения</option>
+                                          <option value="10">Кипр</option>
+                                          <option value="1068">Киргизия</option>
+                                          <option value="1002">Кирибати</option>
+                                          <option value="6250">Китай</option>
+                                          <option value="6298">КНДР</option>
+                                          <option value="1077">
+                                            Кокосовые острова
+                                          </option>
+                                          <option value="6273">Колумбия</option>
+                                          <option value="977">Коморы</option>
+                                          <option value="6302">Косово</option>
+                                          <option value="6274">Коста‐Рика</option>
+                                          <option value="1001">Кот-д'Ивуар</option>
+                                          <option value="6254">Куба</option>
+                                          <option value="1003">Кувейт</option>
+                                          <option value="1093">Кюрасао</option>
+                                          <option value="1004">Лаос</option>
+                                          <option value="6235">Латвия</option>
+                                          <option value="1006">Лесото</option>
+                                          <option value="1007">Либерию</option>
+                                          <option value="1005">Ливан</option>
+                                          <option value="1008">Ливия</option>
+                                          <option value="6233">Литва</option>
+                                          <option value="6275">Лихтенштейн</option>
+                                          <option value="6276">Люксембург</option>
+                                          <option value="6237">Маврикий</option>
+                                          <option value="1015">Мавритания</option>
+                                          <option value="6251">Мадагаскар</option>
+                                          <option value="1016">Майотта</option>
+                                          <option value="1009">Макао</option>
+                                          <option value="1011">Малави</option>
+                                          <option value="603">Малайзия</option>
+                                          <option value="1012">Мали</option>
+                                          <option value="960">Мальдивы</option>
+                                          <option value="535">Мальта</option>
+                                          <option value="1">Марокко</option>
+                                          <option value="1014">Мартиник</option>
+                                          <option value="1069">
+                                            Маршалловы Острова
+                                          </option>
+                                          <option value="77">Мексика</option>
+                                          <option value="1019">Мозамбик</option>
+                                          <option value="6277">Молдова</option>
+                                          <option value="6278">Монако</option>
+                                          <option value="6279">Монголия</option>
+                                          <option value="1018">Монтсеррат</option>
+                                          <option value="6280">Мьянма</option>
+                                          <option value="1020">Намибия</option>
+                                          <option value="1021">Науру</option>
+                                          <option value="1022">Непал</option>
+                                          <option value="1028">Нигер</option>
+                                          <option value="1029">Нигерия</option>
+                                          <option value="6253">Нидерланды</option>
+                                          <option value="1027">Никарагуа</option>
+                                          <option value="1070">Ниуэ</option>
+                                          <option value="1026">Новая Зеландия</option>
+                                          <option value="1024">Новая Каледония</option>
+                                          <option value="6222">Норвегия</option>
+                                          <option value="6299">о-в Мэн</option>
+                                          <option value="2">
+                                            Объединенные Арабские Эмираты
+                                          </option>
+                                          <option value="6246">Оман</option>
+                                          <option value="1074">Остров Буве</option>
+                                          <option value="6300">Остров Джерси</option>
+                                          <option value="979">Остров Кука</option>
+                                          <option value="1030">Остров Норфолк</option>
+                                          <option value="1082">Остров Питкэрн</option>
+                                          <option value="1076">Остров Рождества</option>
+                                          <option value="1085">
+                                            Остров Святой Елены
+                                          </option>
+                                          <option value="1080">
+                                            Остров Херд и Макдональд
+                                          </option>
+                                          <option value="1031">Пакистан</option>
+                                          <option value="1032">Палау</option>
+                                          <option value="1089">Палестина</option>
+                                          <option value="1033">Панама</option>
+                                          <option value="1025">
+                                            Папуа — Новая Гвинея
+                                          </option>
+                                          <option value="1034">Парагвай</option>
+                                          <option value="1035">Перу</option>
+                                          <option value="6228">Польша</option>
+                                          <option value="22">Португалия</option>
+                                          <option value="1036">Пуэрто-Рико</option>
+                                          <option value="978">Республика Конго</option>
+                                          <option value="1037">Реюньон</option>
+                                          <option value="460">Россия</option>
+                                          <option value="1038">Руанда</option>
+                                          <option value="6249">Румыния</option>
+                                          <option value="983">Сальвадор</option>
+                                          <option value="1039">Самоа</option>
+                                          <option value="1084">Сан-Марино</option>
+                                          <option value="1040">
+                                            Сан-Томе и Принсипи
+                                          </option>
+                                          <option value="1041">
+                                            Саудовская Аравия
+                                          </option>
+                                          <option value="1050">Свазиленд</option>
+                                          <option value="1010">
+                                            Северная Македония
+                                          </option>
+                                          <option value="1013">
+                                            Северные Марианские острова
+                                          </option>
+                                          <option value="6236">
+                                            Сейшельские острова
+                                          </option>
+                                          <option value="1090">Сен-Бартелеми</option>
+                                          <option value="1091">Сен-Мартен</option>
+                                          <option value="1083">
+                                            Сен-Пьер и Микелон
+                                          </option>
+                                          <option value="1042">Сенегал</option>
+                                          <option value="1047">
+                                            Сент-Винсент и Гренадина
+                                          </option>
+                                          <option value="1023">
+                                            Сент-Китс и Невис
+                                          </option>
+                                          <option value="1046">Сент-Люсия</option>
+                                          <option value="1061">Сербия</option>
+                                          <option value="665">Сингапур</option>
+                                          <option value="1094">Синт-Мартен</option>
+                                          <option value="6292">Сирия</option>
+                                          <option value="6281">Словакия</option>
+                                          <option value="6282">Словения</option>
+                                          <option value="7">
+                                            Соединенные Штаты Америки
+                                          </option>
+                                          <option value="1044">
+                                            Соломоновы Острова
+                                          </option>
+                                          <option value="6293">Сомали</option>
+                                          <option value="1048">Судан</option>
+                                          <option value="1049">Суринам</option>
+                                          <option value="1043">Сьерра-Леоне</option>
+                                          <option value="1071">Таджикистан</option>
+                                          <option value="53">Таиланд</option>
+                                          <option value="1051">Тайвань</option>
+                                          <option value="6226">Танзания</option>
+                                          <option value="1055">Тёркс и Кайкос</option>
+                                          <option value="1052">Того</option>
+                                          <option value="1087">Токелау</option>
+                                          <option value="1053">Тонга</option>
+                                          <option value="1054">
+                                            Тринидад и Тобаго
+                                          </option>
+                                          <option value="1056">Тувала</option>
+                                          <option value="97">Тунис</option>
+                                          <option value="6259">
+                                            Тур на Антарктиду
+                                          </option>
+                                          <option value="1072">Туркменистан</option>
+                                          <option value="86">Турция</option>
+                                          <option value="1058">Уганда</option>
+                                          <option value="6229">Узбекистан</option>
+                                          <option value="5">Украина</option>
+                                          <option value="1088">Уоллис и Футуна</option>
+                                          <option value="1059">Уругвай</option>
+                                          <option value="1081">
+                                            Фарерские острова
+                                          </option>
+                                          <option value="1017">
+                                            Федеративные Штаты Микронезии
+                                          </option>
+                                          <option value="985">Фиджи</option>
+                                          <option value="6247">Филиппины</option>
+                                          <option value="64">Финляндия</option>
+                                          <option value="1078">
+                                            Фолклендские острова
+                                          </option>
+                                          <option value="30">Франция</option>
+                                          <option value="986">
+                                            Французская Гвиана
+                                          </option>
+                                          <option value="987">
+                                            Французская Полинезия
+                                          </option>
+                                          <option value="1079">
+                                            Французские Южные и Антарктические
+                                            Территории
+                                          </option>
+                                          <option value="38">Хорватия</option>
+                                          <option value="6291">
+                                            Центральноафриканская Республика
+                                          </option>
+                                          <option value="975">Чад</option>
+                                          <option value="6252">Черногория</option>
+                                          <option value="15">Чехия</option>
+                                          <option value="976">Чили</option>
+                                          <option value="6286">Шанхай</option>
+                                          <option value="76">Швейцария</option>
+                                          <option value="6223">Швеция</option>
+                                          <option value="1086">Шпицберген</option>
+                                          <option value="941">Шри Ланка</option>
+                                          <option value="982">Эквадор</option>
+                                          <option value="984">
+                                            Экваториальная Гвинея
+                                          </option>
+                                          <option value="1067">Эритрея</option>
+                                          <option value="372">Эстония</option>
+                                          <option value="6231">Эфиопия</option>
+                                          <option value="1045">Южная Африка</option>
+                                          <option value="6283">Южная Корея</option>
+                                          <option value="6290">Южный Судан</option>
+                                          <option value="6284">Ямайка</option>
+                                          <option value="6243">Япония</option></select
                                         ><span
-                                          class="select2-selection__placeholder"
-                                          >Выберите гражданство</span
-                                        ></span
-                                      ><span
-                                        class="select2-selection__arrow"
-                                        role="presentation"
-                                        ><b
-                                          role="presentation"
-                                        ></b></span></span></span
-                                  ><span
-                                    class="dropdown-wrapper"
-                                    aria-hidden="true"
-                                  ></span
-                                ></span>
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-2">
-                              <div class="form-group field-client-sex">
-                                <label class="control-label" for="client-sex"
-                                  >Пол</label
-                                >
-                                <select
-                                  id="client-sex"
-                                  class="form-control form-control-solid form-control-lg select2-hidden-accessible"
-                                  name="Client[sex]"
-                                  data-s2-options="s2options_3267a624"
-                                  data-krajee-select2="select2_7c8f2e63"
-                                  style="
-                                    width: 100%;
-                                    height: 1px;
-                                    visibility: hidden;
-                                  "
-                                  data-select2-id="client-sex"
-                                  tabindex="-1"
-                                  aria-hidden="true"
-                                >
-                                  <option value="" data-select2-id="6">
-                                    Выберите пол
-                                  </option>
-                                  <option value="male">М</option>
-                                  <option value="female">Ж</option></select
-                                ><span
-                                  class="select2 select2-container select2-container--krajee-bs3"
-                                  dir="ltr"
-                                  data-select2-id="5"
-                                  style="width: 100%"
-                                  ><span class="selection"
-                                    ><span
-                                      class="select2-selection select2-selection--single"
-                                      role="combobox"
-                                      aria-haspopup="true"
-                                      aria-expanded="false"
-                                      tabindex="0"
-                                      aria-disabled="false"
-                                      aria-labelledby="select2-client-sex-container"
-                                      ><span
-                                        class="select2-selection__rendered"
-                                        id="select2-client-sex-container"
-                                        role="textbox"
-                                        aria-readonly="true"
+                                          class="select2 select2-container select2-container--krajee-bs3"
+                                          dir="ltr"
+                                          data-select2-id="3"
+                                          style="width: 100%"
+                                          ><span class="selection"
+                                            ><span
+                                              class="select2-selection select2-selection--single"
+                                              role="combobox"
+                                              aria-haspopup="true"
+                                              aria-expanded="false"
+                                              tabindex="0"
+                                              aria-disabled="false"
+                                              aria-labelledby="select2-client-nationality-container"
+                                              ><span
+                                                class="select2-selection__rendered"
+                                                id="select2-client-nationality-container"
+                                                role="textbox"
+                                                aria-readonly="true"
+                                                ><span
+                                                  class="select2-selection__placeholder"
+                                                  >Выберите гражданство</span
+                                                ></span
+                                              ><span
+                                                class="select2-selection__arrow"
+                                                role="presentation"
+                                                ><b
+                                                  role="presentation"
+                                                ></b></span></span></span
+                                          ><span
+                                            class="dropdown-wrapper"
+                                            aria-hidden="true"
+                                          ></span
+                                        ></span>
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-2">
+                                      <div class="form-group field-client-sex">
+                                        <label class="control-label" for="client-sex"
+                                          >Пол</label
+                                        >
+                                        <select
+                                          id="client-sex"
+                                          class="form-control form-control-solid form-control-lg select2-hidden-accessible"
+                                          name="Client[sex]"
+                                          data-s2-options="s2options_3267a624"
+                                          data-krajee-select2="select2_7c8f2e63"
+                                          style="
+                                            width: 100%;
+                                            height: 1px;
+                                            visibility: hidden;
+                                          "
+                                          data-select2-id="client-sex"
+                                          tabindex="-1"
+                                          aria-hidden="true"
+                                        >
+                                          <option value="" data-select2-id="6">
+                                            Выберите пол
+                                          </option>
+                                          <option value="male">М</option>
+                                          <option value="female">Ж</option></select
                                         ><span
-                                          class="select2-selection__placeholder"
-                                          >Выберите пол</span
-                                        ></span
-                                      ><span
-                                        class="select2-selection__arrow"
-                                        role="presentation"
-                                        ><b
-                                          role="presentation"
-                                        ></b></span></span></span
-                                  ><span
-                                    class="dropdown-wrapper"
-                                    aria-hidden="true"
-                                  ></span
-                                ></span>
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-2">
-                              <div
-                                class="form-group field-client-birthday required"
-                              >
-                                <label
-                                  class="control-label"
-                                  for="client-birthday"
-                                  >Дата рождения *</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-birthday"
-                                  class="datepicker-inputmask form-control krajee-datepicker"
-                                  name="Client[birthDay]"
-                                  autocomplete="off"
-                                  aria-required="true"
-                                  data-datepicker-source="client-birthday"
-                                  data-datepicker-type="1"
-                                  data-krajee-kvdatepicker="kvDatepicker_4e75aa98"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4">
-                              <div class="form-group field-client-phone">
-                                <label class="control-label" for="client-phone"
-                                  >Телефон *</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-phone"
-                                  class="phone-input form-control"
-                                  name="Client[phone]"
-                                  placeholder="+"
-                                  data-prev=""
-                                  autocomplete="tel"
-                                  data-plugin-inputmask="inputmask_b9e0a12c"
-                                  im-insert="true"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-sm-6 col-xl-4">
-                              <div class="form-group field-client-lastname">
-                                <label
-                                  class="control-label"
-                                  for="client-lastname"
-                                  >Фамилия</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-lastname"
-                                  class="form-control"
-                                  name="Client[lastName]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4">
-                              <div class="form-group field-client-firstname">
-                                <label
-                                  class="control-label"
-                                  for="client-firstname"
-                                  >Имя</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-firstname"
-                                  class="form-control"
-                                  name="Client[firstName]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-xl-4">
-                              <div
-                                class="form-group field-client-patronymicname"
-                              >
-                                <label
-                                  class="control-label"
-                                  for="client-patronymicname"
-                                  >Отчество</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-patronymicname"
-                                  class="form-control"
-                                  name="Client[patronymicName]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-sm-6 col-xl-4">
-                              <div
-                                class="form-group field-client-lastnameen required"
-                              >
-                                <label
-                                  class="control-label"
-                                  for="client-lastnameen"
-                                  >Фамилия лат. *</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-lastnameen"
-                                  class="form-control"
-                                  name="Client[lastNameEn]"
-                                  aria-required="true"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4">
-                              <div
-                                class="form-group field-client-firstnameen required"
-                              >
-                                <label
-                                  class="control-label"
-                                  for="client-firstnameen"
-                                  >Имя лат. *</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-firstnameen"
-                                  class="form-control"
-                                  name="Client[firstNameEn]"
-                                  aria-required="true"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-xl-4">
-                              <div class="form-group field-client-tin">
-                                <label class="control-label" for="client-tin"
-                                  >ИНН</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-tin"
-                                  class="form-control"
-                                  name="Client[tin]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-sm-6 col-xl-4">
-                              <div class="form-group field-client-email">
-                                <label class="control-label" for="client-email"
-                                  >Email</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-email"
-                                  class="form-control"
-                                  name="Client[email]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-8">
-                              <div class="form-group field-client-address">
-                                <label
-                                  class="control-label"
-                                  for="client-address"
-                                  >Адрес</label
-                                >
-                                <input
-                                  type="text"
-                                  id="client-address"
-                                  class="form-control"
-                                  name="Client[address]"
-                                />
-
-                                <div class="help-block"></div>
-                              </div>
-                            </div>
-                            <div class="col-xl-12">
-                              <h6><b>Документы</b></h6>
-                              <div class="form-group field-client-docs">
-                                <input type="hidden" name="Client[docs]" />
-                                <div id="client-docs" class="multiple-input">
-                                  <table
-                                    class="multiple-input-list list-renderer table form-horizontal"
-                                  >
-                                    <tbody></tbody>
-                                    <tfoot>
-                                      <tr>
-                                        <td>&nbsp;</td>
-                                        <td class="list-cell__button">
-                                          <div
-                                            class="multiple-input-list__btn js-input-plus btn btn-default"
-                                          >
-                                            <i class="fa fa-plus"></i>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tfoot>
-                                  </table>
+                                          class="select2 select2-container select2-container--krajee-bs3"
+                                          dir="ltr"
+                                          data-select2-id="5"
+                                          style="width: 100%"
+                                          ><span class="selection"
+                                            ><span
+                                              class="select2-selection select2-selection--single"
+                                              role="combobox"
+                                              aria-haspopup="true"
+                                              aria-expanded="false"
+                                              tabindex="0"
+                                              aria-disabled="false"
+                                              aria-labelledby="select2-client-sex-container"
+                                              ><span
+                                                class="select2-selection__rendered"
+                                                id="select2-client-sex-container"
+                                                role="textbox"
+                                                aria-readonly="true"
+                                                ><span
+                                                  class="select2-selection__placeholder"
+                                                  >Выберите пол</span
+                                                ></span
+                                              ><span
+                                                class="select2-selection__arrow"
+                                                role="presentation"
+                                                ><b
+                                                  role="presentation"
+                                                ></b></span></span></span
+                                          ><span
+                                            class="dropdown-wrapper"
+                                            aria-hidden="true"
+                                          ></span
+                                        ></span>
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-2">
+                                      <div class="form-group field-client-birthday required" >
+                                        <label
+                                          class="control-label"
+                                          for="client-birthday"
+                                          >Дата рождения *</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-birthday"
+                                          class="datepicker-inputmask form-control krajee-datepicker"
+                                          name="Client[birthDay]"
+                                          autocomplete="off"
+                                          aria-required="true"
+                                          data-datepicker-source="client-birthday"
+                                          data-datepicker-type="1"
+                                          data-krajee-kvdatepicker="kvDatepicker_4e75aa98"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div class="form-group field-client-phone">
+                                        <label class="control-label" for="client-phone"
+                                          >Телефон *</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-phone"
+                                          class="phone-input form-control"
+                                          name="Client[phone]"
+                                          placeholder="+"
+                                          data-prev=""
+                                          autocomplete="tel"
+                                          data-plugin-inputmask="inputmask_b9e0a12c"
+                                          im-insert="true"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div class="form-group field-client-lastname">
+                                        <label
+                                          class="control-label"
+                                          for="client-lastname"
+                                          >Фамилия</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-lastname"
+                                          class="form-control"
+                                          name="Client[lastName]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div class="form-group field-client-firstname">
+                                        <label
+                                          class="control-label"
+                                          for="client-firstname"
+                                          >Имя</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-firstname"
+                                          class="form-control"
+                                          name="Client[firstName]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-12 col-xl-4">
+                                      <div
+                                        class="form-group field-client-patronymicname"
+                                      >
+                                        <label
+                                          class="control-label"
+                                          for="client-patronymicname"
+                                          >Отчество</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-patronymicname"
+                                          class="form-control"
+                                          name="Client[patronymicName]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div
+                                        class="form-group field-client-lastnameen required"
+                                      >
+                                        <label
+                                          class="control-label"
+                                          for="client-lastnameen"
+                                          >Фамилия лат. *</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-lastnameen"
+                                          class="form-control"
+                                          name="Client[lastNameEn]"
+                                          aria-required="true"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div
+                                        class="form-group field-client-firstnameen required"
+                                      >
+                                        <label
+                                          class="control-label"
+                                          for="client-firstnameen"
+                                          >Имя лат. *</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-firstnameen"
+                                          class="form-control"
+                                          name="Client[firstNameEn]"
+                                          aria-required="true"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-12 col-xl-4">
+                                      <div class="form-group field-client-tin">
+                                        <label class="control-label" for="client-tin"
+                                          >ИНН</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-tin"
+                                          class="form-control"
+                                          name="Client[tin]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
                                 </div>
 
-                                <div class="help-block"></div>
-                              </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xl-4">
+                                      <div class="form-group field-client-email">
+                                        <label class="control-label" for="client-email"
+                                          >Email</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-email"
+                                          class="form-control"
+                                          name="Client[email]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xl-8">
+                                      <div class="form-group field-client-address">
+                                        <label
+                                          class="control-label"
+                                          for="client-address"
+                                          >Адрес</label
+                                        >
+                                        <input
+                                          type="text"
+                                          id="client-address"
+                                          class="form-control"
+                                          name="Client[address]"
+                                        />
+        
+                                        <div class="help-block"></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="row row-documents-list row-border-bottom">
+                            <div class="col-xl-12 row-documents-item">
+                                <div class="modal-inputs-header-wrapper">
+                                  <div class="modal-inputs-header">
+                                      Документ 1
+                                  </div>
+                                  <div class="action-btn js-input-remove">
+                                      <img src="./images/trash-icon.svg" alt="">
+                                  </div>
+                                </div>
+                                <div class="form-group field-client-docs">
+                                  <input type="hidden" name="Client[docs]" />
+                                  <div id="client-docs" class="multiple-input">
+                                    <table class="multiple-input-list list-renderer table form-horizontal" >
+                                    <tbody>
+                                      <tr class="multiple-input-list__item" data-index="1" style=""><td><div class="field-client-docs-1-kind list-cell__kind form-group"><label class="col-sm-12 control-label" for="client-docs-1-kind">Тип документа *</label><div class="col-sm-12"><select id="client-docs-1-kind" class="form-control select2-hidden-accessible" name="Client[docs][1][kind]" data-s2-options="s2options_3267a624" data-krajee-select2="select2_3ce04b4f" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="client-docs-1-kind" tabindex="-1" aria-hidden="true">
+                                          <option value="" data-select2-id="8">Выберите тип документа</option>
+                                          <option value="PASSPORT_PSP" data-select2-id="9">Заграничный паспорт</option>
+                                          <option value="PASSPORT" data-select2-id="10">Паспорт</option>
+                                          <option value="IDENTITY" data-select2-id="11">Удостоверение личности (ID)</option>
+                                          <option value="PASSPORT_SR" data-select2-id="12">Свидетельство о рождении</option>
+                                          </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-client-docs-1-kind-container"><span class="select2-selection__rendered" id="select2-client-docs-1-kind-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Выберите тип документа</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div>
+                                          <div class="field-client-docs-1-number list-cell__number form-group"><label class="col-sm-12 control-label" for="client-docs-1-number">Серия и номер *</label><div class="col-sm-12"><input type="text" id="client-docs-1-number" class="form-control" name="Client[docs][1][number]"></div></div>
+                                          <input type="hidden" id="client-docs-1-id" class="document-id" name="Client[docs][1][id]">
+                                          <div class="field-client-docs-1-issuedat list-cell__issuedAt form-group"><label class="col-sm-12 control-label" for="client-docs-1-issuedat">Выдан</label><div class="col-sm-12"><div id="client-docs-1-issuedat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-1-issuedat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][1][issuedAt]" autocomplete="off" data-datepicker-source="client-docs-1-issuedat-kvdate" data-datepicker-type="2" data-krajee-kvdatepicker="kvDatepicker_4e75aa98"></div></div></div>
+                                          <div class="field-client-docs-1-expireat list-cell__expireAt form-group"><label class="col-sm-12 control-label" for="client-docs-1-expireat">Действителен, до *</label><div class="col-sm-12"><div id="client-docs-1-expireat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-1-expireat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][1][expireAt]" autocomplete="off" data-datepicker-source="client-docs-1-expireat-kvdate" data-datepicker-type="2" data-krajee-kvdatepicker="kvDatepicker_4e75aa98"></div></div></div>
+                                          <div class="field-client-docs-1-issuedby list-cell__issuedBy form-group"><label class="col-sm-12 control-label" for="client-docs-1-issuedby">Выдан, кем</label><div class="col-sm-12"><input type="text" id="client-docs-1-issuedby" class="form-control" name="Client[docs][1][issuedBy]"></div></div>
+                                          <div class="field-client-docs-1-choosendoc list-cell__choosenDoc form-group"><div class="col-sm-12"><div class="radio-list"><input type="hidden" name="Client[docs][1][choosenDoc]" value=""><div id="client-docs-1-choosendoc" class="document-choose-radio"><div class="radio"><label><input type="radio" name="Client[docs][1][choosenDoc]" value="use" data-id="client-docs-1-choosendoc"> Использовать</label></div></div></div></div></div></td>
+                                          </tr>
+                                    </tbody>
+                                    </table>
+                                    
+                                  </div>
+  
+                                  <div class="help-block"></div>
+                                </div>
+                            </div>
+                              <div class="col-xl-12 row-documents-item">
+                                  <div class="modal-inputs-header-wrapper">
+                                    <div class="modal-inputs-header">
+                                        Документ 2
+                                    </div>
+                                    <div class="action-btn js-input-remove">
+                                        <img src="./images/trash-icon.svg" alt="">
+                                    </div>
+                                  </div>
+                                  <div class="form-group field-client-docs">
+                                    <input type="hidden" name="Client[docs]" />
+                                    <div id="client-docs" class="multiple-input">
+                                      <table class="multiple-input-list list-renderer table form-horizontal" >
+                                      <tbody>
+                                        <tr class="multiple-input-list__item" data-index="1" style=""><td><div class="field-client-docs-1-kind list-cell__kind form-group"><label class="col-sm-12 control-label" for="client-docs-1-kind">Тип документа *</label><div class="col-sm-12"><select id="client-docs-1-kind" class="form-control select2-hidden-accessible" name="Client[docs][1][kind]" data-s2-options="s2options_3267a624" data-krajee-select2="select2_3ce04b4f" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="client-docs-1-kind" tabindex="-1" aria-hidden="true">
+                                            <option value="" data-select2-id="8">Выберите тип документа</option>
+                                            <option value="PASSPORT_PSP" data-select2-id="9">Заграничный паспорт</option>
+                                            <option value="PASSPORT" data-select2-id="10">Паспорт</option>
+                                            <option value="IDENTITY" data-select2-id="11">Удостоверение личности (ID)</option>
+                                            <option value="PASSPORT_SR" data-select2-id="12">Свидетельство о рождении</option>
+                                            </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-client-docs-1-kind-container"><span class="select2-selection__rendered" id="select2-client-docs-1-kind-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Выберите тип документа</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div>
+                                            <div class="field-client-docs-1-number list-cell__number form-group"><label class="col-sm-12 control-label" for="client-docs-1-number">Серия и номер *</label><div class="col-sm-12"><input type="text" id="client-docs-1-number" class="form-control" name="Client[docs][1][number]"></div></div>
+                                            <input type="hidden" id="client-docs-1-id" class="document-id" name="Client[docs][1][id]">
+                                            <div class="field-client-docs-1-issuedat list-cell__issuedAt form-group"><label class="col-sm-12 control-label" for="client-docs-1-issuedat">Выдан</label><div class="col-sm-12"><div id="client-docs-1-issuedat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-1-issuedat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][1][issuedAt]" autocomplete="off" data-datepicker-source="client-docs-1-issuedat-kvdate" data-datepicker-type="2" data-krajee-kvdatepicker="kvDatepicker_4e75aa98"></div></div></div>
+                                            <div class="field-client-docs-1-expireat list-cell__expireAt form-group"><label class="col-sm-12 control-label" for="client-docs-1-expireat">Действителен, до *</label><div class="col-sm-12"><div id="client-docs-1-expireat-kvdate" class="input-group date"><span class="input-group-addon kv-date-picker" title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span class="input-group-addon kv-date-remove" title="Очистить поле"><i class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text" id="client-docs-1-expireat" class="datepicker-inputmask form-control krajee-datepicker" name="Client[docs][1][expireAt]" autocomplete="off" data-datepicker-source="client-docs-1-expireat-kvdate" data-datepicker-type="2" data-krajee-kvdatepicker="kvDatepicker_4e75aa98"></div></div></div>
+                                            <div class="field-client-docs-1-issuedby list-cell__issuedBy form-group"><label class="col-sm-12 control-label" for="client-docs-1-issuedby">Выдан, кем</label><div class="col-sm-12"><input type="text" id="client-docs-1-issuedby" class="form-control" name="Client[docs][1][issuedBy]"></div></div>
+                                            <div class="field-client-docs-1-choosendoc list-cell__choosenDoc form-group"><div class="col-sm-12"><div class="radio-list"><input type="hidden" name="Client[docs][1][choosenDoc]" value=""><div id="client-docs-1-choosendoc" class="document-choose-radio"><div class="radio"><label><input type="radio" name="Client[docs][1][choosenDoc]" value="use" data-id="client-docs-1-choosendoc"> Использовать</label></div></div></div></div></div></td>
+                                            </tr>
+                                      </tbody>
+                                      </table>
+                                      
+                                    </div>
+    
+                                    <div class="help-block"></div>
+                                  </div>
+                            
+                          </div>
+
+                              <div
+                              class="multiple-input-list__btn js-input-plus btn btn-default"
+                            >
+                              <i class="fa fa-plus"></i>
                             </div>
                           </div>
 

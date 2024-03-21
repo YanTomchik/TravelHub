@@ -6702,6 +6702,14 @@ div[role="radiogroup"] label input {
 /* REMASTER STYLES */
 
 /* STYLE CONSTRUCTOR */
+
+.card-body.constructor-tours .card-body-video-block video{
+    width: 320px;
+    height: 180px;
+    border-radius: 12px;
+  }
+
+
 .card-body.constructor-tours{
     width: 100%;
     display: grid;
@@ -6726,9 +6734,9 @@ div[role="radiogroup"] label input {
     margin-bottom: 24px;
 }
 
-.card-body-left-section .card-body-video-block{
-    max-width: 320px;
-    max-height: 180px;
+.card-body-video-block{
+    width: 320px;
+    height: 180px;
     /* background-color: #191c30; */
     border-radius: 12px;
     /* margin-right: 40px */
@@ -6805,15 +6813,16 @@ div[role="radiogroup"] label input {
 }
 
 .constructor-info-wrapper .title{
+    font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    font-style: 16px;
-    letter-spacing: 0.25%;
+    letter-spacing: 0.0025em;
 }
 
 .constructor-info-wrapper .title-wrapper{
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .title-wrapper--item-icon{
@@ -6871,13 +6880,9 @@ div[role="radiogroup"] label input {
 }
 
 .card-body.constructor-tours.empty-basket .card-body-video-block{
-padding-left: 32px;
+margin-left: 32px;
 }
 
-.card-body.constructor-tours .card-body-video-block video{
-    max-width: 320px;
-    max-height: 180px;
-}
 
 .empty-basket-title .title{
     /* margin-bottom: 12px; */
@@ -6939,7 +6944,7 @@ padding-left: 32px;
     }
 
     .card-body.constructor-tours.empty-basket .card-body-video-block{
-        padding-left: 0px;
+        margin-left: 0px;
         /* max-width: 230px; */
     }
 
@@ -7844,8 +7849,9 @@ font-size: 32px;
 }
 
 .btn-red-delete:hover{
-    background-color: #BF393999;
-    color: #fff;
+    opacity: 0.9;
+    color: #fff!important;
+
 }
 
 .modal-body-btns-wrapper{
@@ -7854,11 +7860,123 @@ font-size: 32px;
 }
 
 .modal-body-btns-wrapper > *{
+
     width: 46%;
     height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    border-radius: 8px;
 
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+
+
+}
+
+.constructor-status-list{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.constructor-status-item{
+    background-color: #E7EDF8;
+    color: #3968BF;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.0675em;
+    padding: 8px 17px;
+}
+
+#touristChangeModal tr.multiple-input-list__item .list-cell__choosenDoc{
+    display: flex;
+    align-items: center;
+}
+
+.document-choose-radio .radio label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0px;
+}
+
+.document-choose-radio .radio label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+
+}
+
+
+
+.document-choose-radio .radio label input {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #3968BF;
+    border-radius: 50%;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .document-choose-radio .radio label input:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* margin: 20% auto; */
+    border-radius: 50%;
+  }
+  
+  .document-choose-radio .radio label input:checked:before {
+    border: 4px solid #3968BF;
+  }
+
+  .modal-inputs-header-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .modal-inputs-header-wrapper .modal-inputs-header{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+  }
+
+
+  #touristChangeModal .action-btn.js-input-remove{
+    max-height: none;
+    max-width: none;
+    margin-left: 0px;
+    margin-top: 0px;
+    display: block;
+  }
+
+
+.form-edit-client-wrapper .row-border-bottom{
+    border-bottom: 1px solid #EBEDF2;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+}
+
+.row-documents-list .row-documents-item{
+    border-bottom: 1px solid #EBEDF2;
+}
+
+.row-documents-list .row-documents-item:last-child{
+    border-bottom: none;
 }

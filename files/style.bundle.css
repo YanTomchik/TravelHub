@@ -2434,7 +2434,7 @@ pre code {
 .table td {
     padding: 0.75rem;
     vertical-align: middle;
-    border-top: 1px solid #EBEDF3;
+    /* border-bottom: 1px solid #EBEDF3; */
 }
 
 .table thead th {
@@ -2966,7 +2966,7 @@ textarea.form-control {
 }
 
 .form-group {
-    margin-bottom: 1.75rem;
+    /* margin-bottom: 1.75rem; */
 }
 
 .form-text {

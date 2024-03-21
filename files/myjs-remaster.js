@@ -5,22 +5,32 @@ function checkDividersForBlocks(){
     heightBlocksForDivider.forEach((item,index,arr)=>{
         
         let leftDivider = item.querySelector('.left-divider');
+        let leftGreenDivider = document.querySelector('.left-divider-green');
         let allBlocksForDivide = item.querySelectorAll('.card.card-custom.mb-5.separate-block');
         let lastBlockHeight = allBlocksForDivide[allBlocksForDivide.length-1].clientHeight;
         
+        //Отрисовка серого первичного разделителя
         let leftDividerHeight = (item.offsetHeight - lastBlockHeight)+25;
         leftDivider.style.height = `${leftDividerHeight}px`;
+
+        //Отрисовка зеленого разделителя
+        let leftGreeDividerHeight = arr[0].clientHeight;
+        // alert(leftGreeDividerHeight)
+        leftGreenDivider.style.height = `${leftGreeDividerHeight}px`;
         
         if(index !=0){
             let heightForLeftDivider = arr[index-1].offsetHeight +22;
             count += heightForLeftDivider;
             leftDivider.style.top = `${count}px`
             
+
+            
         }
     })
 }
 
 checkDividersForBlocks()
+
 
 
 const copyLinkBtn = document.querySelectorAll('.copy-link-btn');
