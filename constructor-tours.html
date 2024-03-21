@@ -6,30 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel HUB | Landing</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-    <link rel="stylesheet" href="css/style.bundle.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/fullcalendar.bundle.css">
-    <link rel="stylesheet" href="css/plugins.bundle.css">
-    <link rel="stylesheet" href="css/prismjs.bundle.css">
-    <link rel="stylesheet" href="css/whirl.min.css">
-    <link rel="stylesheet" href="css/wizard-1.css">
-    <link rel="stylesheet" href="css/tour.css">
-    <link rel="stylesheet" href="css/daterangepicker.min.css">
-    <link rel="stylesheet" href="css/daterangepicker-kv.min.css">
-    <link rel="stylesheet" href="css/esimhub.min.css">
-    <link rel="stylesheet" href="css/transfer.min.css">
-    <link rel="stylesheet" href="css/select2-addl.min.css">
-    <link rel="stylesheet" href="css/select2-krajee-bs3.min.css">
-    <link rel="stylesheet" href="css/select2.min.css">
-    <script src="./js/moment.min.js"></script>
-    <link rel="stylesheet" href="css/landing.min.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/header.min.css">
-    <link rel="stylesheet" href="css/style-constructor.css">
+    <link href="files/font-awesome.min.css" rel="stylesheet" async="async" />
+    <link href="files/animate.min.css" rel="stylesheet" />
+    <link href="files/whirl.min.css" rel="stylesheet" />
+    <link href="files/slick.css" rel="stylesheet" />
+    <link href="files/fullcalendar.bundle.css" rel="stylesheet" />
+    <link href="files/wizard-1.css" rel="stylesheet" />
+    <link href="files/plugins.bundle.css" rel="stylesheet" />
+    <link href="files/prismjs.bundle.css" rel="stylesheet" />
+    <link href="files/style.bundle.css" rel="stylesheet" />
+    <link href="files/select2-addl.min.css" rel="stylesheet" />
+    <link href="files/select2.min.css" rel="stylesheet" />
+    <link href="files/custom.css" rel="stylesheet" />
+    <link href="files/main.css" rel="stylesheet" />
+    <link href="files/landing.min.css" rel="stylesheet" />
+    <link href="files/header.min.css" rel="stylesheet" />
+    <link href="files/saved_resource" rel="stylesheet" />
+    <link href="files/select2(1).min.css" rel="stylesheet" />
+    <link href="files/select2-addl(1).min.css" rel="stylesheet" />
+    <link href="files/select2-krajee-bs3.min.css" rel="stylesheet" />
+    <link href="files/kv-widgets.min.css" rel="stylesheet" />
+    <link href="files/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="files/datepicker-kv.min.css" rel="stylesheet" />
+    <link href="files/multiple-input.min.css" rel="stylesheet" />
+    <link href="files/tours/tour.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
 <body class="header-fixed subheader-enabled subheader-fixed is-agent">
@@ -203,7 +204,7 @@
                                                                 Авиа
                                                             </div>
                                                             <div class="title-wrapper--item-icon">
-                                                                <img src="./images/airplane-icon.svg" alt="airplane-icon">
+                                                                <img src="./images/airplane.svg" alt="airplane-icon">
                                                             </div>
                                                         </div>
                                                         <form action="">
@@ -244,29 +245,27 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="form-group tourists-select-widget">
-                                                                    <label class="control-label" for="tourists-select-widget">Кол-во туристов и класс:</label>
+                                                                <div class="form-group field-kt_datatable_search_city">
+                                                                    <label class="control-label" for="kt_datatable_search_city">Кол-во туристов и класс</label>
                                                                     <div class="tourists-count-select">
-                                                                        <div id="tourists-select">
-                                                                            <span id="adults">1</span>
-                                                                            &nbsp;
-                                                                            <span id="adults-text">пассажир</span>&nbsp; - &nbsp;
-                                                                            <span id="cabin-class-text" style="color: #3D7B50">эконом</span>
-                                                                            &nbsp;
-                                                                            <img class="arrow" src="/images/hotels/select-arrow.svg" alt="arrow-icon">
-                                                                        </div>
-                    
-                                                                        <div id="tourists-count-select-modal" class="tourists-count-select-modal" style="visibility: hidden;">
+                        
+                                                                        <button id="tourists-select">
+                                                                            Взрослые&nbsp;<span id="adults">2</span>,&nbsp;
+                                                                            Дети&nbsp;<span id="childrens">0</span>
+                                                                            <img class="arrow" src="./images/tours/select-arrow.svg" alt="arrow-icon">
+                                                                        </button>
+                        
+                                                                        <div id="tourists-count-select-modal" class="tourists-count-select-modal">
                                                                             <div class="people-count-block">
                                                                                 <p class="title">Кол-во взрослых</p>
                                                                                 <div class="count-block">
                                                                                     <button id="adult-minus-button" class="count-button minus">-</button>
-                                                                                    <p id="adult-counter" class="people-counter">1</p>
+                                                                                    <p id="adult-counter" class="people-counter">2</p>
                                                                                     <button id="adult-plus-button" class="count-button plus">+</button>
                                                                                 </div>
                                                                             </div>
-                    
-                                                                            <div class="people-count-block mt-5">
+                        
+                                                                            <div class="people-count-block last mb-5">
                                                                                 <p class="title">Кол-во детей</p>
                                                                                 <div class="count-block">
                                                                                     <button id="children-minus-button" class="count-button minus">-</button>
@@ -274,35 +273,12 @@
                                                                                     <button id="children-plus-button" class="count-button plus">+</button>
                                                                                 </div>
                                                                             </div>
-                    
-                                                                            <div class="people-count-block mt-5">
-                                                                                <p class="title">Кол-во младенцев</p>
-                                                                                <div class="count-block">
-                                                                                    <button id="infant-minus-button" class="count-button minus">-</button>
-                                                                                    <p id="infant-counter" class="people-counter">0</p>
-                                                                                    <button id="infant-plus-button" class="count-button plus">+</button>
-                                                                                </div>
-                                                                            </div>
-                    
-                                                                            <div class="row mt-5">
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="form-group field-cabin-class">
-                                                                                        <label class="control-label" for="cabin-class">Укажите класс</label>
-                                                                                        <select id="cabin-class" class="form-control form-control-solid form-control-lg select2-hidden-accessible" name="FlightSearchForm[cabinClass]" data-s2-options="s2options_3267a624" data-krajee-select2="select2_db887997" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="cabin-class" tabindex="-1" aria-hidden="true">
-                                                                                        <option value="economy" selected="" data-select2-id="8">Эконом</option>
-                                                                                        <option value="business">Бизнес</option>
-                                                                                        </select>
-                                                                                        <span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="7" style="width: 100%;">
-                                                                                            <span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-cabin-class-container">
-                                                                                                <span class="select2-selection__rendered" id="select2-cabin-class-container" role="textbox" aria-readonly="true" title="Эконом">Эконом</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                                                        
-                                                                                        <div class="help-block"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                            </div>
+                        
+                                                                            <p id="children-age-title" class="children-age-title" style="">Укажите возраст детей</p>
+                                                                            <div id="children-age-block" class="children-age-block">
+                                                                                                                                </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="help-block" id="adults-error"></div>
                                                                 </div>
                                                         </div>
                                                         <button class="btn btn-primary search-btn">Поиск</button>
@@ -610,28 +586,39 @@
         </div>
     </div>
 
-    <script src="./js/jquery.js"></script>
-    <script src="./js/common.js"></script>
-    <script src="./js/custom.js"></script>
-    <script src="./js/fullcalendar.bundle.js"></script>
-    <script src="./js/inputmask.phone.extensions.min.js"></script>
-    <script src="./js/jquery.inputmask.bundle.js"></script>
-    <script src="./js/phone-codes_phone.min.js"></script>
-    <script src="./js/plugins.bundle.js"></script>
-    <script src="./js/prismjs.bundle.js"></script>
-    <script src="./js/scripts.bundle-min.js"></script>
-    <script src="./js/widgets.js"></script>
-    <script src="./js/yii.activeForm.js"></script>
-    <script src="./js/yii.js"></script>
-    <script src="./js/yii.validation.js"></script>
-    <script src="./js/find-tours-script.js"></script>
-    <script src="./js/bootstrap-datetimepicker.min.js"></script>
-    <script src="./js/daterangepicker.min.js"></script>
-    <script src="./js/select2-krajee.min.js"></script>
-    <script src="./js/transfer.js"></script>
-    <script src="./js/slick.js"></script>
-    <script src="./js/header.js"></script>
-    <script src="./js/landing.js"></script>
+    <script src="./files/jquery.js"></script>
+    <script src="./files/yii.js"></script>
+    <script src="./files/common.js"></script>
+    <script src="./files/plugins.bundle.js"></script>
+    <script src="./files/prismjs.bundle.js"></script>
+    <script src="./files/scripts.bundle-min.js"></script>
+    <script src="./files/fullcalendar.bundle.js"></script>
+    <script src="./files/slick.js"></script>
+    <script src="./files/widgets.js"></script>
+    <script src="./files/custom.js"></script>
+    <script src="./files/moment.min.js"></script>
+    <script src="./files/jquery.fancybox.min.js"></script>
+    <script src="./files/header.js"></script>
+    <script src="./files/landing.js"></script>
+    <script src="./files/tour-search-table.js"></script>
+    <script src="./files/basket.js"></script>
+    <script src="./files/yii.validation.js"></script>
+    <script src="./files/yii.activeForm.js"></script>
+    <script src="./files/jquery.maskedinput.min.js"></script>
+    <script src="./files/phoneInputMask.js"></script>
+    <script src="./files/moment(1).min.js"></script>
+    <script src="./files/ClientWidget.js"></script>
+    <script src="./files/select2.full.min.js"></script>
+    <script src="./files/ru.js"></script>
+    <script src="./files/select2-krajee.min.js"></script>
+    <script src="./files/kv-widgets.min.js"></script>
+    <script src="./files/bootstrap-datepicker.min.js"></script>
+    <script src="./files/datepicker-kv.min.js"></script>
+    <script src="./files/bootstrap-datepicker.ru.min.js"></script>
+    <script src="./files/jquery.inputmask.bundle.js"></script>
+    <script src="./files/jquery.multipleInput.min.js"></script>
+    <script src="./files/plugins.bundle.js"></script>
+    <script src="./files/myjs-remaster.js"></script>
 
        <script>
         jQuery(function ($) {

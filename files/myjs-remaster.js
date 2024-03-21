@@ -96,7 +96,7 @@ closeModalDeleteWrapper.forEach((item)=>{
 
 
 // скрипт для проверки тоглера агент турист и отображение комиссии
-const checkboxAgentTourist = document.querySelector('.checkboxAgentTourist');
+const checkboxAgentTourist = document.getElementById('checkboxAgentTourist');
 const comissionBlockPrice = document.querySelector('.basket-item-price-item.comission');
 const comissionBlockSummary = document.querySelector('.basket-summary-item.comission');
 
@@ -109,6 +109,22 @@ checkboxAgentTourist.addEventListener("click", function() {
             
             comissionBlockPrice.style.display = 'flex'
             comissionBlockSummary.style.display = 'none'
+          }
+});
+
+const checkboxAgentTourist2 = document.getElementById('checkboxAgentTourist2');
+const comissionBlockPrice2 = document.querySelector('.basket-item-price-item.comission');
+const comissionBlockSummary2 = document.querySelector('.basket-summary-item.comission');
+
+checkboxAgentTourist2.addEventListener("click", function() {
+        if (checkboxAgentTourist.checked) {
+            // alert('Checkbox is checked');
+            comissionBlockPrice2.style.display = 'none'
+            comissionBlockSummary2.style.display = 'none'
+          } else {
+            
+            comissionBlockPrice2.style.display = 'flex'
+            comissionBlockSummary2.style.display = 'none'
           }
 });
 

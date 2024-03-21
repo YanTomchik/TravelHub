@@ -6880,8 +6880,8 @@ div[role="radiogroup"] label input {
     
 }
 
-.card-body.constructor-tours.empty-basket .card-body-video-block{
-margin-left: 32px;
+.card-custom .card-body.constructor-tours.empty-basket .card-body-video-block{
+padding-left: 0px;
 }
 
 
@@ -6898,6 +6898,8 @@ margin-left: 32px;
 .empty-basket-title{
     margin: 46px 0px 24px 0px;
 }
+
+.card-body.constructor-tours.empty-basket .card-body-video-block
 
 
 @media (max-width: 990px) {
@@ -7020,6 +7022,19 @@ margin-left: 32px;
         font-size: 24px!important;
     }
 
+
+    .card-body-right-section .constructor-main-wrapper .contructor-tabs-wrapper .nav{
+        flex-wrap: nowrap;
+    }
+
+    .card-body-right-section .constructor-main-wrapper .contructor-tabs-wrapper .nav .nav-item a{
+        margin-right: 0px!important;
+    }
+
+    .langing-top .nav{
+        overflow-x: scroll;
+        overflow: hidden;
+    }
   }
 /*  */
 
