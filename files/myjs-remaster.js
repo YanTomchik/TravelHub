@@ -29,7 +29,8 @@ function checkDividersForBlocks(){
         }
     })
 }
-
+//Эту функцию надо запускать при рендере страницы, 
+//потому что она динамические отрисовывает разделители для блоков
 checkDividersForBlocks()
 
 
@@ -112,6 +113,7 @@ checkboxAgentTourist.addEventListener("click", function() {
           }
 });
 
+//
 const checkboxAgentTourist2 = document.getElementById('checkboxAgentTourist2');
 const comissionBlockPrice2 = document.querySelector('.basket-item-price-item.comission');
 const comissionBlockSummary2 = document.querySelector('.basket-summary-item.comission');
@@ -129,10 +131,23 @@ checkboxAgentTourist2.addEventListener("click", function() {
 });
 
 
-const modalBlockTourist = document.getElementById('touristChangeModal');
 
-const closeModalTouristBtn = document.querySelector('.closeModalTourist');
+document.querySelectorAll('.constructor-status-item-link').forEach(link => {
 
-closeModalTouristBtn.addEventListener("click", function() {
-    modalBlockTourist.style.display = 'none'
-})
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        let href = this.getAttribute('href');
+
+        const scrollTarget = document.getElementById(href);
+
+        const topOffset = 130; 
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - topOffset;
+
+        window.scrollBy({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    });
+});

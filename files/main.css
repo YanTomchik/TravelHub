@@ -5139,7 +5139,7 @@ div[role="radiogroup"] label input {
     display: flex;
     width: 100%;
     /* justify-content: space-between; */
-    align-items: center;
+    align-items: flex-start;
     color: #3F4254;
     border-bottom: 1px solid #e0e0e0;
     gap: 8px;
@@ -7504,8 +7504,9 @@ font-size: 32px;
     display: flex;
     align-items: center;
     gap: 4px;
-    min-width: 55px;
+    min-width: 45px;
     justify-content: flex-end;
+    padding-top: 5px;
 }
 
 .basket-item-price-item{
@@ -7580,7 +7581,8 @@ font-size: 32px;
     line-height: 21px;
     letter-spacing: 0em;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 130px;
 
 }
@@ -7638,6 +7640,16 @@ font-size: 32px;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: 12px;
+}
+
+.btn-transparent-delete.close{
+    opacity: 100%;
+}
+
+.close-modal{
+    background: none;
+    border: none;
 }
 
 .checkbox-comission-submit{
@@ -7964,6 +7976,10 @@ font-size: 32px;
     line-height: 16px;
     letter-spacing: 0.0675em;
     padding: 8px 17px;
+}
+
+.constructor-status-list a{
+    text-decoration: none;
 }
 
 #touristChangeModal tr.multiple-input-list__item .list-cell__choosenDoc{
