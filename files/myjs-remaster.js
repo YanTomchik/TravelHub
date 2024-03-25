@@ -2,32 +2,48 @@
 
 function checkDividersForBlocks(){
     const heightBlocksForDivider = document.querySelectorAll('.col-xl-9-separate-blocks');
-    count = 0;
-    heightBlocksForDivider.forEach((item,index,arr)=>{
+    const checkCountMainHeaderBlock = document.querySelectorAll('.card.card-custom.mb-5.separate-block.card-custom-header');
+    
+    countHeight = 0;
+    //Проверяем сколько главных хэдеров-направлений для того 
+    //чтобы понимать отобрать ли эти разделители вовсе
+    if(checkCountMainHeaderBlock.length != 0){
         
-        let leftDivider = item.querySelector('.left-divider');
-        let leftGreenDivider = document.querySelector('.left-divider-green');
-        let allBlocksForDivide = item.querySelectorAll('.card.card-custom.mb-5.separate-block');
-        let lastBlockHeight = allBlocksForDivide[allBlocksForDivide.length-1].clientHeight;
+        heightBlocksForDivider.forEach((item,index,arr)=>{
         
-        //Отрисовка серого первичного разделителя
-        let leftDividerHeight = (item.offsetHeight - lastBlockHeight)+25;
-        leftDivider.style.height = `${leftDividerHeight}px`;
-
-        //Отрисовка зеленого разделителя
-        let leftGreeDividerHeight = arr[0].clientHeight;
-        // alert(leftGreeDividerHeight)
-        leftGreenDivider.style.height = `${leftGreeDividerHeight}px`;
-        
-        if(index !=0){
-            let heightForLeftDivider = arr[index-1].offsetHeight +25;
-            count += heightForLeftDivider;
-            leftDivider.style.top = `${count}px`
+            let leftDivider = item.querySelector('.left-divider');
+            let leftGreenDivider = document.querySelector('.left-divider-green');
+            let leftGreenDividerWrapper = document.querySelector('.left-divider-green-wrapper');
+            let allBlocksForDivide = item.querySelectorAll('.card.card-custom.mb-5.separate-block');
+            //Берем высоту последнего блока
+            let lastBlockHeight = allBlocksForDivide[allBlocksForDivide.length-1].clientHeight;
             
+            
+            //Отрисовка серого первичного разделителя
+            let leftDividerHeight = (item.offsetHeight - lastBlockHeight)+25;
+            leftDivider.style.display = 'flex'
+            leftDivider.style.height = `${leftDividerHeight}px`;
+            
+            //проверяем количество блоков направлений, чтобы отображать зеленый разделитель
+            if(heightBlocksForDivider.length!=1){
+                
+            //Отрисовка зеленого разделителя
+            leftGreenDividerWrapper.style.display = 'flex'
+            let leftGreeDividerHeight = arr[0].clientHeight;
+            // alert(leftGreeDividerHeight)
+            leftGreenDivider.style.height = `${leftGreeDividerHeight}px`;
+            }
 
             
-        }
-    })
+            if(index !=0){
+                let heightForLeftDivider = arr[index-1].offsetHeight +25;
+                countHeight += heightForLeftDivider;
+                leftDivider.style.top = `${countHeight}px`
+            }
+        })
+        
+    }
+    
 }
 //Эту функцию надо запускать при рендере страницы, 
 //потому что она динамические отрисовывает разделители для блоков
@@ -50,7 +66,7 @@ copyLinkBtn.forEach((item)=>{
 })
 
 // Скрипт открытия на стрелку хэдера
-const cardOpenBtns = document.querySelectorAll('.card-header-open-button');
+let cardOpenBtns = document.querySelectorAll('.card-header-open-button');
 
 cardOpenBtns.forEach((item)=>{
     item.addEventListener("click", function() {
@@ -113,25 +129,8 @@ checkboxAgentTourist.addEventListener("click", function() {
           }
 });
 
-//
-const checkboxAgentTourist2 = document.getElementById('checkboxAgentTourist2');
-const comissionBlockPrice2 = document.querySelector('.basket-item-price-item.comission');
-const comissionBlockSummary2 = document.querySelector('.basket-summary-item.comission');
 
-checkboxAgentTourist2.addEventListener("click", function() {
-        if (checkboxAgentTourist.checked) {
-            // alert('Checkbox is checked');
-            comissionBlockPrice2.style.display = 'none'
-            comissionBlockSummary2.style.display = 'none'
-          } else {
-            
-            comissionBlockPrice2.style.display = 'flex'
-            comissionBlockSummary2.style.display = 'none'
-          }
-});
-
-
-
+//нажатие на верхние кнопки для скролла
 document.querySelectorAll('.constructor-status-item-link').forEach(link => {
 
     link.addEventListener('click', function(e) {

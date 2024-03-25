@@ -7798,7 +7798,7 @@ font-size: 32px;
     position: absolute;
     z-index: -1;
     top: 10px;
-
+    display: none;
 }
 
 .divider{
@@ -7811,7 +7811,7 @@ font-size: 32px;
 }
 
 .main-separate-block.constructor-green .left-divider-green-wrapper{
-    display: flex;
+    /* display: flex; */
 }
 
 .left-divider-green-wrapper{
@@ -7827,7 +7827,7 @@ font-size: 32px;
 .left-divider-green{
     width: 1px;
     border-left: 1px dashed #B5B5C2;
-    height: 1135px;
+    height: 0px;
     margin: 5px 0px;
 }
 
