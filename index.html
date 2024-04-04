@@ -1,0 +1,131 @@
+<!-- <html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+</head>
+  <body style="background-color: #f5f5f5;">
+    BODY
+    <script type="module" src="index.js AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak" async></script>
+  </body>
+  
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Maps AdvancedMarker Clustering</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map-dashoard-wrapper"></div>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap" async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/advanced-marker/dist/advanced-marker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js"></script>
+
+  <script>
+
+const formData = new FormData();
+formData.append("PropertySearchForm[location]", "2621");
+formData.append("PropertySearchForm[checkinDate]", "03.04.2024");
+formData.append("PropertySearchForm[checkoutDate]", "04.04.2024");
+formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+formData.append("PropertySearchForm[partner]", "11090");
+formData.append("PropertySearchForm[map]", "true");
+
+    function initMapX() {
+      var markers = [];
+      fetch('https://travelhub.by/hotels/search-map', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(result => {
+      console.log(result)
+
+      const center = {
+        lat: 40.84,
+        lng: -73.97,
+      };
+
+      // const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
+      //   zoom: 13,
+      //   center,
+      //   mapId: "4504f8b37365c3d0",
+      // });
+
+      // const dataHotelsObj = result.data;
+      // const currencyName = result.currency;
+      // const countHotels = result.count;
+      
+      // for (const property of dataHotelsObj){
+
+      //   const nameHotel = property.name;
+        
+      //   const position = {
+      //     lat: parseFloat(property.latitude),
+      //     lng: parseFloat(property.longitude)
+      //   }
+
+
+      //   var marker = new google.maps.Marker({
+      //     position: position,
+      //     map: map
+      //   });
+      //   markers.push(marker);
+
+
+      // }
+
+      // // Создание объекта MarkerClusterer и передача ему массива маркеров
+      // var markerCluster = new MarkerClusterer(map, markers, {
+      //   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+        
+      // });
+
+      // При клике на маркер показываем информационное окно
+      // markers.forEach(function(marker) {
+      //   marker.addListener('click', function() {
+      //     var infoWindow = new google.maps.InfoWindow({
+      //       content: 'Маркер ' + marker.getPosition().toUrlValue(6)
+      //     });
+      //     infoWindow.open(map, marker);
+      //   });
+      // });
+
+      // При изменении масштаба карты пересчитываем кластеры
+      // map.addListener('zoom_changed', function() {
+      //   markerCluster.repaint();
+      // });
+      
+    })
+    .catch(error => {
+      
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+
+      
+
+      
+
+      
+    }
+    initMapX()
+  </script>
+</body>
+</html>

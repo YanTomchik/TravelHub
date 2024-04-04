@@ -107,6 +107,10 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-N6NH3NKZ");
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/advanced-marker/dist/advanced-marker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js"></script>
     <!-- End Google Tag Manager -->
     <meta
       name="description"
@@ -1114,18 +1118,18 @@
     <div class="header-top">
         <div class="header-left-block">
             <a href="https://travelhub.by/" class="logo-link">
-                <img class="logo" src="./logotext-travelhub.svg" alt="logo">
+                <img class="logo" src="./images/logotext-travelhub.svg" alt="logo">
             </a>
         </div>
         <div class="header-right-block">
                             <div class="header-currency-rates">
                     <a class="d-flex justify-content-center" href="https://travelhub.by/user/currency-rates">
                         <div class="currency-item mr-5">
-                            <img src="./usd.svg" alt="" class="currency-item-icon mr-2">
+                            <img src="./images/usd.svg" alt="" class="currency-item-icon mr-2">
                             <span class="currency-item-rate">3.32</span>
                         </div>
                         <div class="currency-item">
-                            <img src="./eur.svg" alt="" class="currency-item-icon mr-2">
+                            <img src="./images/eur.svg" alt="" class="currency-item-icon mr-2">
                             <span class="currency-item-rate">3.58</span>
                         </div>
                     </a>
@@ -1144,9 +1148,9 @@
                     <div class="header-language-dropdown-tabContent">
                         <div class="language-content" data-tab="currency-content">
                                                             <a class="active" href="https://travelhub.by/hotels?currency=BYN">
-                                    <img src="./byn.svg" alt=""> Бел руб.                                </a>
+                                    <img src=./images/byn.svg" alt=""> Бел руб.                                </a>
                                                         <a class="" href="https://travelhub.by/hotels?currency=USD"><img src="./usd.svg" alt=""> Доллар</a>
-                            <a class="" href="https://travelhub.by/hotels?currency=EUR"><img src="./eur.svg" alt=""> Евро</a>
+                            <a class="" href="https://travelhub.by/hotels?currency=EUR"><img src="./images/eur.svg" alt=""> Евро</a>
                         </div>
                         <div class="language-content" data-tab="language-content" style="display:none;">
                                                             <a class="active" href="https://travelhub.by/hotels?language=ru"><span>RU</span> Русский                                </a>
@@ -1179,7 +1183,7 @@
                             <span class="currency-item-rate">3.32</span>
                         </div>
                         <div class="currency-item">
-                            <img src="./eur.svg" alt="" class="currency-item-icon mr-2">
+                            <img src="./images/eur.svg" alt="" class="currency-item-icon mr-2">
                             <span class="currency-item-rate">3.58</span>
                         </div>
                     </a>
@@ -1502,7 +1506,7 @@
         <div class="find-hotel-result-block">
             <div class="filters-block filters-block-mobile" style="display: block;">
                 <div class="card card-custom">
-                    <h3 class="title filters-block-button">Дополнительный фильтр                        <img class="filters-block-icon" src="./filter.svg">
+                    <h3 class="title filters-block-button">Дополнительный фильтр                        <img class="filters-block-icon" src="./files/filter.svg">
                     </h3>
                 </div>
             </div>
@@ -3083,8 +3087,8 @@
           <div class="map-dashboard-filter-main-wrapper">
 
             <div class="map-dashboard-filter-header-wrapper">
-              <div class="map-dashboard-filter-header-description">
-                11 621 отеля в этой области
+              <div class="map-dashboard-filter-header-description" id="map-dashboard-filter-header-description">
+                
               </div>
               <div class="map-dashboard-filter-header-btn" id="map-dashboard-filter-header-btn">
                 Фильтр
@@ -3727,186 +3731,10 @@
                   </div>
               </div>
             </div>
-            <div class="map-dashboard-cards-list" id="map-dashboard-cards-list">
-              <div class="map-dashboard-card-item">
-                <div class="marker-popup-header-wrapper">
-                  <div class="market-popup-header-img-wrapper">
-                  </div>
-                  <div class="marker-popup-header-info">
-                    <div class="marker-popup-header-title-wrapper">
-                      <div class="marker-popup-header-title">
-                        Mamma Mia
-                      </div>
-                      <div class="marker-popup-header-title-stars-list">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                      </div>
-                    </div>
-                    <div class="marker-popup-header-description-wrapper">
-                      <div class="marker-popup-header-description-rate">
-                        3
-                      </div>
-                      <div class="marker-popup-header-description">
-                        Рейтинг гостей
-                      </div>
-                    </div>
-                  </div>
-                  <a href="#" class="marker-popup-header-btn">
-                    <img src="./images/arrow-right-btn.svg" alt="">
-                  </a>
-                </div>
-                <div class="marker-popup-footer-info">
-                  <div class="marker-popup-footer-description-wrapper">
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (нетто цена):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (включая налоги и сборы):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                  </div>
-                  <div class="marker-popup-footer-price-wrapper">
-                    <div class="marker-popup-footer-price-alert">
-                      200$
-                    </div>
-                    <div class="marker-popup-footer-price">
-                      за ночь 200$
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="map-dashboard-card-item">
-                <div class="marker-popup-header-wrapper">
-                  <div class="market-popup-header-img-wrapper">
-                  </div>
-                  <div class="marker-popup-header-info">
-                    <div class="marker-popup-header-title-wrapper">
-                      <div class="marker-popup-header-title">
-                        ibis budget Nice Aeroport Promenade des Anglais
-                      </div>
-                      <div class="marker-popup-header-title-stars-list">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                      </div>
-                    </div>
-                    <div class="marker-popup-header-description-wrapper">
-                      <div class="marker-popup-header-description-rate">
-                        3
-                      </div>
-                      <div class="marker-popup-header-description">
-                        Рейтинг гостей
-                      </div>
-                    </div>
-                  </div>
-                  <a href="#" class="marker-popup-header-btn">
-                    <img src="./images/arrow-right-btn.svg" alt="">
-                  </a>
-                </div>
-                <div class="marker-popup-footer-info">
-                  <div class="marker-popup-footer-description-wrapper">
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (нетто цена):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (включая налоги и сборы):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                  </div>
-                  <div class="marker-popup-footer-price-wrapper">
-                    <div class="marker-popup-footer-price-alert">
-                      
-                    </div>
-                    <div class="marker-popup-footer-price">
-                      за ночь 200$
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="map-dashboard-card-item">
-                <div class="marker-popup-header-wrapper">
-                  <div class="market-popup-header-img-wrapper">
-                  </div>
-                  <div class="marker-popup-header-info">
-                    <div class="marker-popup-header-title-wrapper">
-                      <div class="marker-popup-header-title">
-                        Mamma Mia
-                      </div>
-                      <div class="marker-popup-header-title-stars-list">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                        <img src="./images/star-marker.svg" alt="star" class="marker-popup-header-title-star-item">
-                      </div>
-                    </div>
-                    <div class="marker-popup-header-description-wrapper">
-                      <div class="marker-popup-header-description-rate">
-                        3
-                      </div>
-                      <div class="marker-popup-header-description">
-                        Рейтинг гостей
-                      </div>
-                    </div>
-                    <div class="marker-popup-header-description-alert">
-                      Остался 1 номер по этой цене
-                    </div>
-                  </div>
-                  <a href="#" class="marker-popup-header-btn">
-                    <img src="./images/arrow-right-btn.svg" alt="">
-                  </a>
-                </div>
-                <div class="marker-popup-footer-info">
-                  <div class="marker-popup-footer-description-wrapper">
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (нетто цена):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (включая налоги и сборы):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        200$
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="marker-popup-footer-price-wrapper">
-                    <div class="marker-popup-footer-price-alert">
-                      200$
-                    </div>
-                    <div class="marker-popup-footer-price">
-                      за ночь 200$
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>          
-
           </div>
-
+          <div class="map-dashboard-cards-list" id="map-dashboard-cards-list">
+              
+          </div>
         </div>
         <div class="map-dashboard-close-btn" id="map-dashboard-close-btn">
           <img src="./images/cross-btn.svg" alt="">
@@ -3914,8 +3742,14 @@
         <div class="map-dashoard-wrapper" id="map-dashoard-wrapper">
           
         </div>
+        
       </div>
+      <div class="loader-map-wrapper" id="loader-map">
+        <div class="loader-map">
 
+        </div>
+      </div>
+      
     </div>
     
 
@@ -4150,7 +3984,7 @@
 
 <div style="display: none;" id="filter-modal" class="fancybox-content">
     <h3 class="title">
-        <img class="filters-block-icon filters-block-icon-small" src="./filter.svg"><b>Дополнительный фильтр</b>
+        <img class="filters-block-icon filters-block-icon-small" src="./files/filter.svg"><b>Дополнительный фильтр</b>
     </h3>
     <div class="filter-modal-content filters-block" style="display: block;"></div>
     <button type="submit" class="btn btn-primary filter-apply-btn-mobile">Применить</button>
@@ -4400,12 +4234,14 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap&libraries=marker&v=beta"
 defer
 ></script>
+
+
 <!-- NEW -->
 
 <script src="./js/jquery.js"></script>
 <script src="./js/yii.js"></script>
 <script src="./js/common(1).js"></script>
-<script src="./js/plugins.bundle.js"></script>
+<!-- <script src="./js/plugins.bundle.js"></script> -->
 <script src="./js/prismjs.bundle.js"></script>
 <script src="./js/scripts.bundle-min.js"></script>
 <script src="./js/fullcalendar.bundle.js"></script>
@@ -4414,14 +4250,14 @@ defer
 <script src="./js/custom.js"></script>
 <script src="./js/moment.min.js"></script>
 <script src="./js/jquery.fancybox.min.js"></script>
-<script src="./js/header.js"></script>
+<!-- <script src="./js/header.js"></script> -->
 <script src="./js/landing.js"></script>
 <script src="./js/jquery.fancybox(1).min.js"></script>
 <script src="./js/DataProcessor.class.js"></script>
 <script src="./js/FilterMenu.class.js"></script>
 <script src="./js/input-range-script.js"></script>
 <script src="./js/js(1)"></script>
-<script type="text/javascript" id="">(function(b,e,f,g,c,a,d){b[c]=b[c]||function(){(b[c].a=b[c].a||[]).push(arguments)};b[c].l=1*new Date;for(a=0;a<document.scripts.length;a++)if(document.scripts[a].src===g)return;a=e.createElement(f);d=e.getElementsByTagName(f)[0];a.async=1;a.src=g;d.parentNode.insertBefore(a,d)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(89565151,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});</script>
+<!-- <script type="text/javascript" id="">(function(b,e,f,g,c,a,d){b[c]=b[c]||function(){(b[c].a=b[c].a||[]).push(arguments)};b[c].l=1*new Date;for(a=0;a<document.scripts.length;a++)if(document.scripts[a].src===g)return;a=e.createElement(f);d=e.getElementsByTagName(f)[0];a.async=1;a.src=g;d.parentNode.insertBefore(a,d)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(89565151,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});</script> -->
 <noscript><div><img src="https://mc.yandex.ru/watch/89565151" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","943376383977574");fbq("track","PageView");</script>
