@@ -1,131 +1,778 @@
-<!-- <html>
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
-</head>
-  <body style="background-color: #f5f5f5;">
-    BODY
-    <script type="module" src="index.js AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak" async></script>
-  </body>
-  
-</html> -->
-
-
-
-
-
-<!DOCTYPE html>
+<!doctype html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
 <html>
-<head>
-  <title>Google Maps AdvancedMarker Clustering</title>
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="map-dashoard-wrapper"></div>
-  
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap" async defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/advanced-marker/dist/advanced-marker.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js"></script>
-
-  <script>
-
-const formData = new FormData();
-formData.append("PropertySearchForm[location]", "2621");
-formData.append("PropertySearchForm[checkinDate]", "03.04.2024");
-formData.append("PropertySearchForm[checkoutDate]", "04.04.2024");
-formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-formData.append("PropertySearchForm[partner]", "11090");
-formData.append("PropertySearchForm[map]", "true");
-
-    function initMapX() {
-      var markers = [];
-      fetch('https://travelhub.by/hotels/search-map', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+  <head>
+    <title>Marker Clustering</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="./files/map.css">
+    <!-- jsFiddle will insert css and js -->
+    <style>
+      /**
+      * @license
+      * Copyright 2019 Google LLC. All Rights Reserved.
+      * SPDX-License-Identifier: Apache-2.0
+      */
+      /* 
+      * Always set the map height explicitly to define the size of the div element
+      * that contains the map. 
+      */
+      #map {
+        height: 100%;
       }
-      return response.json();
-    })
-    .then(result => {
-      console.log(result)
 
-      const center = {
-        lat: 40.84,
-        lng: -73.97,
-      };
+      /* 
+      * Optional: Makes the sample page fill the window. 
+      */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-      // const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
-      //   zoom: 13,
-      //   center,
-      //   mapId: "4504f8b37365c3d0",
-      // });
 
-      // const dataHotelsObj = result.data;
-      // const currencyName = result.currency;
-      // const countHotels = result.count;
-      
-      // for (const property of dataHotelsObj){
+    </style>
+  </head>
+  <body>
+    <div class="map-dashboard-main-wrapper-fade active" id="map-dashboard-main-wrapper-fade">
+      <div class="map-dashboard-main-wrapper active">
+        <!-- Блок для отображения левой части с фильтрами и карточками-->
+        <div class="map-dashboard-left-section-wrapper" id="map-dashboard-left-section-wrapper">
 
-      //   const nameHotel = property.name;
+          <div class="map-dashboard-filter-main-wrapper">
+
+            <div class="map-dashboard-filter-header-wrapper">
+              <div class="map-dashboard-filter-header-description" id="map-dashboard-filter-header-description">
+                
+              </div>
+              <div class="map-dashboard-filter-header-btn" id="map-dashboard-filter-header-btn">
+                Фильтр
+              </div>
+              
+              </div>
+              <div class="map-dashboard-filter-wrapper" id="map-dashboard-filter-wrapper">
+                <div id="filters" class="filters-block filters-block-desktop" style="display: block;">
+                  
+                    <div class="card card-custom filters-block-submenus">
+                    <div class="filters-block-submenus-header-wrapper">
+                      <div class="filters-block-submenus-header-title">Фильтр</div>
+                      <div class="filters-block-submenus-header-btn" id="filters-block-submenus-header-btn">
+                        <img src="./images/cross-btn.svg" alt="close btn">
+                      </div>
+                    </div>
+                    <div class="filters-search">
+                        <div class="field-propertysearchform-location required">
+<label class="control-label" for="propertysearchform-location">Место/название объекта:</label>
+<select id="propertysearchform-location" class="form-control select2-hidden-accessible" name="PropertySearchForm[location]" aria-required="true" data-s2-options="s2options_3267a624" data-krajee-select2="select2_28db1af4" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="propertysearchform-location" tabindex="-1" aria-hidden="true">
+<option value="" data-select2-id="2">Выберите локацию</option>
+</select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-propertysearchform-location-container"><span class="select2-selection__rendered" id="select2-propertysearchform-location-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Выберите локацию</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+<div class="help-block"></div>
+</div>                                        </div>
+                      <div class="filters-submenu filters-submenu-first">
+                          <p class="title">Цена</p>
+                                                  <div class="range">
+                              <div class="range-price">
+                                  <p id="min-price">0</p>
+                                  <p id="max-price">+4000Br</p>
+                              </div>
+                              <div class="range-slider">
+                                  <span class="range-selected" style="left: 0%;right: 0%;"></span>
+                              </div>
+                              <div class="range-input">
+                                  <input type="range" name="map_minPrice" class="min" min="0" max="3999" value="0" step="10">
+                                  <input type="range" name="map_maxPrice" class="max" min="0" max="4000" value="4000" step="10">
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="filters-submenu for-search filter-blocked">
+                          <p class="title search-title">Рейтинг гостей</p>
+  
+                          <div class="filters-list">
+                                                              <div class="filter-item">
+                                      <label class="input-container radio-type">
+                                          <input type="radio" name="map_guestRating" value="1,5">
+                                          <div class="checkmark-block">
+                                              <span class="checkmark"></span>
+                                          </div>
+                                          <p class="value">Любой</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item">
+                                      <label class="input-container radio-type">
+                                          <input type="radio" name="map_guestRating" value="4.5,5">
+                                          <div class="checkmark-block">
+                                              <span class="checkmark"></span>
+                                          </div>
+                                          <p class="value">Превосходно</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item">
+                                      <label class="input-container radio-type">
+                                          <input type="radio" name="map_guestRating" value="4,4.5">
+                                          <div class="checkmark-block">
+                                              <span class="checkmark"></span>
+                                          </div>
+                                          <p class="value">Очень хорошо</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item hidden">
+                                      <label class="input-container radio-type">
+                                          <input type="radio" name="map_guestRating" value="3.5,4">
+                                          <div class="checkmark-block">
+                                              <span class="checkmark"></span>
+                                          </div>
+                                          <p class="value">Хорошо</p>
+                                      </label>
+                                  </div>
+                                                      </div>
+                      <button class="see-more-button">Показать еще</button></div>
+  
+                      <div class="filters-submenu for-search">
+                          <p class="title search-title">Количество звезд</p>
+  
+                          <div class="filters-list">
+                                                              <div class="filter-item">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="5" name="map_starRating[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">5 звезд</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="4" name="map_starRating[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">4 звезды</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="3" name="map_starRating[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">3 звезды</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item hidden">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="2" name="map_starRating[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">2 звезды</p>
+                                      </label>
+                                  </div>
+                                                              <div class="filter-item hidden">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="1" name="map_starRating[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">1 звезда</p>
+                                      </label>
+                                  </div>
+                                                      </div>
+                      <button class="see-more-button">Показать еще</button></div>
+  
+                      <div class="filters-submenu for-search">
+                          <p class="title search-title">Оплата</p>
+  
+                          <div class="filters-list">
+                                                              <div class="filter-item">
+                                      <label class="input-container checkbox-type">
+                                          <input type="checkbox" value="1" name="map_payments[]">
+                                          <div class="checkmark-block">
+                                              <img src="./icon-check-white.svg" alt="icon-check">
+                                          </div>
+                                          <p class="value">Полный возврат</p>
+                                      </label>
+                                  </div>
+                                                      </div>
+                      </div>
+  
+                      <div class="filters-submenu for-search property-category">
+                          <p class="title search-title">Тип размещения</p>
+  
+                          <div class="filters-list">
+                              <div class="filters-list">
+                                                                      <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[1,18,19,4,7,9],&quot;11090&quot;:[0,1,3,4,20,25]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Отель</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[3,10,17],&quot;11090&quot;:[16,7,9,10,11,13,14,15,17,21,22,23,29,30,31,32,33,34,39]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Апартаменты</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[6],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Турбаза</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[7],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Пансионат</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[5],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Санаторий</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[2],&quot;11090&quot;:[12,26,5]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Хостел</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[8]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Все включено</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[11],&quot;11090&quot;:[2]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Мотель</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[12,13],&quot;11090&quot;:[24]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Кемпинг</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[14],&quot;11090&quot;:[6]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Гостевой дом</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[40]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Агроусадьба</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[42]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Парк отдыха</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[18]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Лодка</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[36]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Замок</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[37]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Сафари</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[41]}" name="map_propertyCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Круиз</p>
+                                          </label>
+                                      </div>
+                                                              </div>
+                          </div>
+                      <button class="see-more-button">Показать еще</button></div>
+                                              <div class="filters-submenu for-search">
+                              <p class="title search-title">Удобства</p>
+  
+                              <div class="filters-list">
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="wifi" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Wi-Fi</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_wifi" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный Wi-Fi</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="parking" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Парковка</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="swimming_pool" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бассейн</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="dryer" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Сушилка</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="washer" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Стиральная машина</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="casino" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Казино</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="air_conditioning" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Кондиционер</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="airport_transfer" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Трансфер из аэропорта</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_airport_transfer" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный трансфер из аэропорта</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="bar" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бар</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="crib" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Детская кроватка</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="dry_cleaning_laundry" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Химчистка и прачечная</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="gym" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Тренажерный зал</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="kitchen" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Кухня</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="meeting_facility" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Конференц-залы</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="ocean_view" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Вид на океан</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="pets_allowed" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Разрешены домашние животные</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="restaurant_in_hotel" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Ресторан в отеле</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="spa_services" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Спа-услуги</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="hot_tub" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Гидромассажная ванна</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="water_park" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Аквапарк</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="electric_charging_station" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Зарядная станция для электромобилей</p>
+                                          </label>
+                                      </div>
+                                  
+                              </div>
+                          <button class="see-more-button">Показать еще</button></div>
+                                              <div class="filters-submenu for-search">
+                              <p class="title search-title">Доступность</p>
+  
+                              <div class="filters-list">
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="accessibility" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Доступность</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="disabled_accessible" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Доступно для людей с ограниченными возможностями</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="accessible_bathroom" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Доступная ванная комната</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="accessible_parking" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Доступная парковка</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="accessible_wheelchair" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Доступ для инвалидных колясок</p>
+                                          </label>
+                                      </div>
+                                  
+                              </div>
+                          <button class="see-more-button">Показать еще</button></div>
+                                              <div class="filters-submenu for-search">
+                              <p class="title search-title">Питание</p>
+  
+                              <div class="filters-list">
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_breakfast" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный завтрак</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_breakfast_1_or_2_guests" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный завтрак для 1 или 2 гостей</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_lunch" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный обед</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_dinner" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатный ужин</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item filter-blocked hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="free_all_meals" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Бесплатное питание</p>
+                                          </label>
+                                      </div>
+                                                                      <div class="filter-item hidden">
+                                          <label class="input-container checkbox-type">
+                                              <input type="checkbox" value="all_inclusive" name="map_amenityCategories[]">
+                                              <div class="checkmark-block">
+                                                  <img src="./icon-check-white.svg" alt="icon-check">
+                                              </div>
+                                              <p class="value">Все включено</p>
+                                          </label>
+                                      </div>
+                                  
+                              </div>
+                          <button class="see-more-button">Показать еще</button></div>
+                      
+                      <div class="filters-submenu for-search filter-blocked">
+                          <p class="title search-title">Дополнительно</p>
+                          <div class="filters-list">
+                              <div class="filter-item">
+                                  <label class="input-container checkbox-type">
+                                      <input type="checkbox" value="lgbtFriendly" name="map_additional[]">
+                                      <div class="checkmark-block">
+                                          <img src="./icon-check-white.svg" alt="icon-check">
+                                      </div>
+                                      <p class="value">
+                                          Приветствуем представителей сообщества LGBTQ. Здесь представлены объекты, которые обязуются обеспечить безопасность, радушие и уважение для каждого гостя.                                    </p>
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="map-dashboard-cards-list" id="map-dashboard-cards-list">
+              
+          </div>
+        </div>
+        <!-- Блок для отображения карточек внизу мобильного отображения -->
+        <div class="map-dashboard-bottom-section-wrapper" id="map-dashboard-bottom-section-wrapper">
+        </div>
+        <!-- Блок для кнопки закрытия -->
+        <div class="map-dashboard-close-btn" id="map-dashboard-close-btn">
+          <img src="./images/cross-btn.svg" alt="">
+        </div>
+        <!-- Блок куда встраивается карта -->
+        <div id="map-dashoard-wrapper"></div>
+      </div>
+      <!-- Блок для отображения лоудера карты -->
+      <div class="loader-map-wrapper" id="loader-map">
+        <div class="loader-map">
+  
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-popup-header-wrapper">
+      <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
+      </div>
+      <div class="marker-popup-header-info">
+        <div class="marker-popup-header-title-wrapper">
+          <div class="marker-popup-header-title">
+            ${property.name}
+          </div>
+          <div class="marker-popup-header-title-stars-list" id="marker-popup-header-title-stars-list">
+            ${buildRatingBlock(property.rating)}
+          </div>
+        </div>
+        <div class="marker-popup-header-description-wrapper">
+          ${ratingDescriptionBlock}
+        </div>
+        <div class="marker-popup-refundable-description">
+            ${flagrRefundable}
+        </div>
+        ${availableRoomsBlock}
+        ${quiQuoBlock}
+      </div>
+      <a href="#" class="marker-popup-header-btn">
+        <img src="./images/arrow-right-btn.svg" alt="">
+      </a>
+    </div>
+    <div class="marker-popup-footer-info">
+      <div class="marker-popup-footer-description-wrapper">
+        ${priceNetBlock}
+        <div class="marker-popup-footer-description">
+          <div class="marker-popup-footer-description-main">
+            Всего (включая налоги и сборы):
+          </div>
+          <div class="marker-popup-footer-description-price">
+            ${property.priceTotal} ${currencyName}
+          </div>
+        </div>
+    </div> 
+      </div>
+      <div class="marker-popup-footer-price-wrapper">
+        ${priceStrikeBlock}
+        <div class="marker-popup-footer-price">
+          за ночь ${property.priceNightly} ${currencyName}
+        </div>
         
-      //   const position = {
-      //     lat: parseFloat(property.latitude),
-      //     lng: parseFloat(property.longitude)
-      //   }
+      </div>
+    </div>
+    
 
-
-      //   var marker = new google.maps.Marker({
-      //     position: position,
-      //     map: map
-      //   });
-      //   markers.push(marker);
-
-
-      // }
-
-      // // Создание объекта MarkerClusterer и передача ему массива маркеров
-      // var markerCluster = new MarkerClusterer(map, markers, {
-      //   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-        
-      // });
-
-      // При клике на маркер показываем информационное окно
-      // markers.forEach(function(marker) {
-      //   marker.addListener('click', function() {
-      //     var infoWindow = new google.maps.InfoWindow({
-      //       content: 'Маркер ' + marker.getPosition().toUrlValue(6)
-      //     });
-      //     infoWindow.open(map, marker);
-      //   });
-      // });
-
-      // При изменении масштаба карты пересчитываем кластеры
-      // map.addListener('zoom_changed', function() {
-      //   markerCluster.repaint();
-      // });
-      
-    })
-    .catch(error => {
-      
-      console.error('There has been a problem with your fetch operation:', error);
-    });
-
-      
-
-      
-
-      
-    }
-    initMapX()
-  </script>
-</body>
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak", v: "weekly"});</script>
+  </body>
 </html>

@@ -107,10 +107,13 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-N6NH3NKZ");
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap" async defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/advanced-marker/dist/advanced-marker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry"></script> -->
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap" async defer></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/advanced-marker/dist/advanced-marker.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/advanced-marker-clusterer@1.0.0/dist/advanced-marker-clusterer.min.js"></script> -->
     <!-- End Google Tag Manager -->
     <meta
       name="description"
@@ -3082,7 +3085,7 @@
 
        
 
-        <div class="map-dashboard-left-section-wrapper">
+        <div class="map-dashboard-left-section-wrapper" id="map-dashboard-left-section-wrapper">
 
           <div class="map-dashboard-filter-main-wrapper">
 
@@ -3097,14 +3100,23 @@
               </div>
               <div class="map-dashboard-filter-wrapper" id="map-dashboard-filter-wrapper">
                 <div id="filters" class="filters-block filters-block-desktop" style="display: block;">
-                  <div class="card card-custom filters-block-submenus">
+                  
+                    <div class="card card-custom filters-block-submenus">
                     <div class="filters-block-submenus-header-wrapper">
                       <div class="filters-block-submenus-header-title">Фильтр</div>
                       <div class="filters-block-submenus-header-btn" id="filters-block-submenus-header-btn">
                         <img src="./images/cross-btn.svg" alt="close btn">
                       </div>
                     </div>
-                      
+                    <div class="filters-search">
+                        <div class="field-propertysearchform-location required">
+<label class="control-label" for="propertysearchform-location">Место/название объекта:</label>
+<select id="propertysearchform-location" class="form-control select2-hidden-accessible" name="PropertySearchForm[location]" aria-required="true" data-s2-options="s2options_3267a624" data-krajee-select2="select2_28db1af4" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="propertysearchform-location" tabindex="-1" aria-hidden="true">
+<option value="" data-select2-id="2">Выберите локацию</option>
+</select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-propertysearchform-location-container"><span class="select2-selection__rendered" id="select2-propertysearchform-location-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Выберите локацию</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+<div class="help-block"></div>
+</div>                                        </div>
                       <div class="filters-submenu filters-submenu-first">
                           <p class="title">Цена</p>
                                                   <div class="range">
@@ -3116,8 +3128,8 @@
                                   <span class="range-selected" style="left: 0%;right: 0%;"></span>
                               </div>
                               <div class="range-input">
-                                  <input type="range" name="minPrice" class="min" min="0" max="3999" value="0" step="10">
-                                  <input type="range" name="maxPrice" class="max" min="0" max="4000" value="4000" step="10">
+                                  <input type="range" name="map_minPrice" class="min" min="0" max="3999" value="0" step="10">
+                                  <input type="range" name="map_maxPrice" class="max" min="0" max="4000" value="4000" step="10">
                               </div>
                           </div>
                       </div>
@@ -3128,7 +3140,7 @@
                           <div class="filters-list">
                                                               <div class="filter-item">
                                       <label class="input-container radio-type">
-                                          <input type="radio" name="guestRating" value="1,5">
+                                          <input type="radio" name="map_guestRating" value="1,5">
                                           <div class="checkmark-block">
                                               <span class="checkmark"></span>
                                           </div>
@@ -3137,7 +3149,7 @@
                                   </div>
                                                               <div class="filter-item">
                                       <label class="input-container radio-type">
-                                          <input type="radio" name="guestRating" value="4.5,5">
+                                          <input type="radio" name="map_guestRating" value="4.5,5">
                                           <div class="checkmark-block">
                                               <span class="checkmark"></span>
                                           </div>
@@ -3146,7 +3158,7 @@
                                   </div>
                                                               <div class="filter-item">
                                       <label class="input-container radio-type">
-                                          <input type="radio" name="guestRating" value="4,4.5">
+                                          <input type="radio" name="map_guestRating" value="4,4.5">
                                           <div class="checkmark-block">
                                               <span class="checkmark"></span>
                                           </div>
@@ -3155,7 +3167,7 @@
                                   </div>
                                                               <div class="filter-item hidden">
                                       <label class="input-container radio-type">
-                                          <input type="radio" name="guestRating" value="3.5,4">
+                                          <input type="radio" name="map_guestRating" value="3.5,4">
                                           <div class="checkmark-block">
                                               <span class="checkmark"></span>
                                           </div>
@@ -3171,7 +3183,7 @@
                           <div class="filters-list">
                                                               <div class="filter-item">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="5" name="starRating[]">
+                                          <input type="checkbox" value="5" name="map_starRating[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3180,7 +3192,7 @@
                                   </div>
                                                               <div class="filter-item">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="4" name="starRating[]">
+                                          <input type="checkbox" value="4" name="map_starRating[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3189,7 +3201,7 @@
                                   </div>
                                                               <div class="filter-item">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="3" name="starRating[]">
+                                          <input type="checkbox" value="3" name="map_starRating[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3198,7 +3210,7 @@
                                   </div>
                                                               <div class="filter-item hidden">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="2" name="starRating[]">
+                                          <input type="checkbox" value="2" name="map_starRating[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3207,7 +3219,7 @@
                                   </div>
                                                               <div class="filter-item hidden">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="1" name="starRating[]">
+                                          <input type="checkbox" value="1" name="map_starRating[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3223,7 +3235,7 @@
                           <div class="filters-list">
                                                               <div class="filter-item">
                                       <label class="input-container checkbox-type">
-                                          <input type="checkbox" value="1" name="payments[]">
+                                          <input type="checkbox" value="1" name="map_payments[]">
                                           <div class="checkmark-block">
                                               <img src="./icon-check-white.svg" alt="icon-check">
                                           </div>
@@ -3240,7 +3252,7 @@
                               <div class="filters-list">
                                                                       <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[1,18,19,4,7,9],&quot;11090&quot;:[0,1,3,4,20,25]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[1,18,19,4,7,9],&quot;11090&quot;:[0,1,3,4,20,25]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3249,7 +3261,7 @@
                                       </div>
                                                                       <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[3,10,17],&quot;11090&quot;:[16,7,9,10,11,13,14,15,17,21,22,23,29,30,31,32,33,34,39]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[3,10,17],&quot;11090&quot;:[16,7,9,10,11,13,14,15,17,21,22,23,29,30,31,32,33,34,39]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3258,7 +3270,7 @@
                                       </div>
                                                                       <div class="filter-item blocked" data-partner-11115="1" data-partner-11090="">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[6],&quot;11090&quot;:[]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[6],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3267,7 +3279,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[7],&quot;11090&quot;:[]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[7],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3276,7 +3288,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[5],&quot;11090&quot;:[]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[5],&quot;11090&quot;:[]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3285,7 +3297,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[2],&quot;11090&quot;:[12,26,5]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[2],&quot;11090&quot;:[12,26,5]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3294,7 +3306,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[8]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[8]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3303,7 +3315,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[11],&quot;11090&quot;:[2]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[11],&quot;11090&quot;:[2]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3312,7 +3324,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[12,13],&quot;11090&quot;:[24]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[12,13],&quot;11090&quot;:[24]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3321,7 +3333,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="1" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[14],&quot;11090&quot;:[6]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[14],&quot;11090&quot;:[6]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3330,7 +3342,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[40]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[40]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3339,7 +3351,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[42]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[42]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3348,7 +3360,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[18]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[18]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3357,7 +3369,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[36]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[36]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3366,7 +3378,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[37]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[37]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3375,7 +3387,7 @@
                                       </div>
                                                                       <div class="filter-item hidden blocked" data-partner-11115="" data-partner-11090="1">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[41]}" name="propertyCategories[]">
+                                              <input type="checkbox" value="{&quot;11115&quot;:[],&quot;11090&quot;:[41]}" name="map_propertyCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3391,7 +3403,7 @@
                               <div class="filters-list">
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="wifi" name="amenityCategories[]">
+                                              <input type="checkbox" value="wifi" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3400,7 +3412,7 @@
                                       </div>
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_wifi" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_wifi" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3409,7 +3421,7 @@
                                       </div>
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="parking" name="amenityCategories[]">
+                                              <input type="checkbox" value="parking" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3418,7 +3430,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="swimming_pool" name="amenityCategories[]">
+                                              <input type="checkbox" value="swimming_pool" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3427,7 +3439,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="dryer" name="amenityCategories[]">
+                                              <input type="checkbox" value="dryer" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3436,7 +3448,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="washer" name="amenityCategories[]">
+                                              <input type="checkbox" value="washer" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3445,7 +3457,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="casino" name="amenityCategories[]">
+                                              <input type="checkbox" value="casino" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3454,7 +3466,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="air_conditioning" name="amenityCategories[]">
+                                              <input type="checkbox" value="air_conditioning" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3463,7 +3475,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="airport_transfer" name="amenityCategories[]">
+                                              <input type="checkbox" value="airport_transfer" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3472,7 +3484,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_airport_transfer" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_airport_transfer" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3481,7 +3493,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="bar" name="amenityCategories[]">
+                                              <input type="checkbox" value="bar" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3490,7 +3502,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="crib" name="amenityCategories[]">
+                                              <input type="checkbox" value="crib" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3499,7 +3511,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="dry_cleaning_laundry" name="amenityCategories[]">
+                                              <input type="checkbox" value="dry_cleaning_laundry" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3508,7 +3520,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="gym" name="amenityCategories[]">
+                                              <input type="checkbox" value="gym" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3517,7 +3529,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="kitchen" name="amenityCategories[]">
+                                              <input type="checkbox" value="kitchen" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3526,7 +3538,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="meeting_facility" name="amenityCategories[]">
+                                              <input type="checkbox" value="meeting_facility" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3535,7 +3547,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="ocean_view" name="amenityCategories[]">
+                                              <input type="checkbox" value="ocean_view" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3544,7 +3556,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="pets_allowed" name="amenityCategories[]">
+                                              <input type="checkbox" value="pets_allowed" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3553,7 +3565,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="restaurant_in_hotel" name="amenityCategories[]">
+                                              <input type="checkbox" value="restaurant_in_hotel" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3562,7 +3574,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="spa_services" name="amenityCategories[]">
+                                              <input type="checkbox" value="spa_services" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3571,7 +3583,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="hot_tub" name="amenityCategories[]">
+                                              <input type="checkbox" value="hot_tub" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3580,7 +3592,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="water_park" name="amenityCategories[]">
+                                              <input type="checkbox" value="water_park" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3589,7 +3601,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="electric_charging_station" name="amenityCategories[]">
+                                              <input type="checkbox" value="electric_charging_station" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3605,7 +3617,7 @@
                               <div class="filters-list">
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="accessibility" name="amenityCategories[]">
+                                              <input type="checkbox" value="accessibility" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3614,7 +3626,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="disabled_accessible" name="amenityCategories[]">
+                                              <input type="checkbox" value="disabled_accessible" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3623,7 +3635,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="accessible_bathroom" name="amenityCategories[]">
+                                              <input type="checkbox" value="accessible_bathroom" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3632,7 +3644,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="accessible_parking" name="amenityCategories[]">
+                                              <input type="checkbox" value="accessible_parking" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3641,7 +3653,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="accessible_wheelchair" name="amenityCategories[]">
+                                              <input type="checkbox" value="accessible_wheelchair" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3657,7 +3669,7 @@
                               <div class="filters-list">
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_breakfast" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_breakfast" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3666,7 +3678,7 @@
                                       </div>
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_breakfast_1_or_2_guests" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_breakfast_1_or_2_guests" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3675,7 +3687,7 @@
                                       </div>
                                                                       <div class="filter-item">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_lunch" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_lunch" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3684,7 +3696,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_dinner" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_dinner" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3693,7 +3705,7 @@
                                       </div>
                                                                       <div class="filter-item filter-blocked hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="free_all_meals" name="amenityCategories[]">
+                                              <input type="checkbox" value="free_all_meals" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3702,7 +3714,7 @@
                                       </div>
                                                                       <div class="filter-item hidden">
                                           <label class="input-container checkbox-type">
-                                              <input type="checkbox" value="all_inclusive" name="amenityCategories[]">
+                                              <input type="checkbox" value="all_inclusive" name="map_amenityCategories[]">
                                               <div class="checkmark-block">
                                                   <img src="./icon-check-white.svg" alt="icon-check">
                                               </div>
@@ -3718,7 +3730,7 @@
                           <div class="filters-list">
                               <div class="filter-item">
                                   <label class="input-container checkbox-type">
-                                      <input type="checkbox" value="lgbtFriendly" name="additional[]">
+                                      <input type="checkbox" value="lgbtFriendly" name="map_additional[]">
                                       <div class="checkmark-block">
                                           <img src="./icon-check-white.svg" alt="icon-check">
                                       </div>
@@ -3736,6 +3748,9 @@
               
           </div>
         </div>
+        <div class="map-dashboard-bottom-section-wrapper" id="map-dashboard-bottom-section-wrapper">
+
+        </div>
         <div class="map-dashboard-close-btn" id="map-dashboard-close-btn">
           <img src="./images/cross-btn.svg" alt="">
         </div>
@@ -3744,6 +3759,7 @@
         </div>
         
       </div>
+
       <div class="loader-map-wrapper" id="loader-map">
         <div class="loader-map">
 
@@ -4229,12 +4245,15 @@
 <!-- END Pixel Code -->
 
 <!-- NEW -->
-<script src="./files/map.js"></script>
-<script
+<script src="./files/map.js" type="module"></script>
+<!-- <script
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak&callback=initMap&libraries=marker&v=beta"
 defer
-></script>
+></script> -->
 
+<script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+    ({key: "AIzaSyCCb1g3WbPwWru2h3wjIoQSUskXbQhrMak", v: "weekly"});
+</script>
 
 <!-- NEW -->
 

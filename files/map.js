@@ -1,48 +1,31 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
+
 const formData = new FormData();
-formData.append("PropertySearchForm[location]", "2621");
-formData.append("PropertySearchForm[checkinDate]", "10.04.2024");
-formData.append("PropertySearchForm[checkoutDate]", "12.04.2024");
-formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-formData.append("PropertySearchForm[partner]", "11090");
+formData.append("PropertySearchForm[location]", "6");
+formData.append("PropertySearchForm[checkinDate]", "24.05.2024");
+formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 4 }]));
+formData.append("PropertySearchForm[partner]", "11115");
 formData.append("PropertySearchForm[map]", "true");
 
-// const formData = new FormData();
-// formData.append("PropertySearchForm[location]", "6");
-// formData.append("PropertySearchForm[checkinDate]", "10.07.2024");
-// formData.append("PropertySearchForm[checkoutDate]", "20.07.2024");
-// formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-// formData.append("PropertySearchForm[partner]", "11115");
-// formData.append("PropertySearchForm[map]", "true");
-
-
-// const getHotelsInfo = async () => {
-//   try {
-//     const hotelsInfo = await fetch('https://travelhub.by/hotels/search-map', {
-//           method: 'POST',
-//           body: formData
-//         })
-//         .then(response => {
-//           if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//           }
-//           return response.json();
-//         })
-//         .then(result => {
-//           console.log(result)
-//           return result;
-//         })
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-let currentOpenMarker = null;
-
 const loaderDiv = document.getElementById('loader-map');
+let currentOpenMarker = null;
+let currentOpenMarkerCheck = null;
+const adminFlag = false;
 
-function initMapHotels() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker",
+  );
 
-  fetch('https://travelhub.by/hotels/search-map', {
+  const infoHotels = await fetch('https://travelhub.by/hotels/search-map', {
     method: 'POST',
     body: formData
   })
@@ -53,96 +36,132 @@ function initMapHotels() {
     return response.json();
   })
   .then(result => {
+    console.log(result)
+    return result;
+  })
 
-    
-    let advancedMarkerViews = []
-    const center = {
-      lat: 40.84,
-      lng: -73.97,
-    };
 
-    
+  const dataHotelsObj = infoHotels.data;
+  const currencyName = infoHotels.currency;
+  const countHotels = infoHotels.count;
 
-    const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
-      zoom: 13,
-      center,
-      mapId: "4504f8b37365c3d0",
-      // styles: customMapStyles
-    });
+  const latC = parseFloat(infoHotels.latitude_с);
+  const lngC = parseFloat(infoHotels.longitude_с);
 
-    const dataHotelsObj = result.data;
-    const currencyName = result.currency;
-    const countHotels = result.count;
-    
-    for (const property of dataHotelsObj){
+  const center = {
+    lat: latC,
+    lng: lngC,
+  };
+  
+  const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
+    zoom: 13,
+    center: center,
+    mapId: "4504f8b37365c3d0",
+  });
 
-      const nameHotel = property.name;
+
+  const infoWindow = new google.maps.InfoWindow({
+    content: "",
+    disableAutoPan: true,
+  });
+  // Create an array of alphabetical characters used to label the markers.
+  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // Add some markers to the map.
+  const markers = dataHotelsObj.map((property, i) => {
+
+    const nameHotel = property.name;
       
       const position = {
         lat: parseFloat(property.latitude),
         lng: parseFloat(property.longitude)
       }
 
-      
+      let flagrRefundable = property.refundable;
+      if(flagrRefundable == true){
+        flagrRefundable = 'Полный возврат'
+      }else{
+        flagrRefundable = '';
+      }
 
-      const advancedMarkerView = new google.maps.marker.AdvancedMarkerView({
-        map,
-        content: buildContent(property, currencyName, countHotels),
+      let ratingHotel = property.rating;
+      let ratingDescriptionBlock = ''
+      if(ratingHotel > 0){
+        ratingDescriptionBlock = `
+            <div class="marker-popup-header-description-rate">
+            ${ratingHotel}
+          </div>
+          <div class="marker-popup-header-description">
+            Рейтинг гостей
+          </div>
+        `
+      }else{
+        ratingDescriptionBlock = '';
+      }
+
+      let priceNet = property.priceNet;
+      let priceNetBlock = ''
+      if(priceNet !== null){
+        priceNetBlock = `
+        <div class="marker-popup-footer-description">
+          <div class="marker-popup-footer-description-main">
+            Всего (нетто цена):
+          </div>
+          <div class="marker-popup-footer-description-price">
+          ${priceNet} ${currencyName}
+          </div>
+        </div>
+        `
+      }else{
+        priceNetBlock = '';
+      }
+
+      let priceStrike = property.priceStrike;
+      let priceStrikeBlock = ''
+      if(priceStrike !== null){
+        priceStrikeBlock = `
+        <div class="marker-popup-footer-price-alert">
+        ${priceStrike} ${currencyName}
+        </div>
+        `
+      }else{
+        priceStrikeBlock = '';
+      }
+
+      let availableRooms = property.availableRooms;
+      let availableRoomsBlock = ''
+      if(availableRooms == 1){
+        availableRoomsBlock = `
+        <div class="marker-popup-red-available-description">
+          Остался 1 номер по этой цене 
+        </div>
+        `
+      }else{
+        availableRoomsBlock = '';
+      }
+
+      let quiQuoElem = property.quiQuo;
+      let quiQuoBlock = ''
+      
+      if(adminFlag == true){
+        quiQuoBlock = `
+        <div class="qq-btn-place" data-value="${quiQuoElem}">
+        </div>
+        `
+      }else{
+        quiQuoBlock = '';
+      }
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      position,
+      content: buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock),
         position: position,
         title: nameHotel,
-        // optimized: true,
-      });
-
-  
-      const element = advancedMarkerView.element;
-      
-      element.style.zIndex = '-1'
-      element.addEventListener("click", () => {
-        toggleContentVisibility(advancedMarkerView);
-        
-      });
-      advancedMarkerViews.push(advancedMarkerView);
-
-      buildLeftContent(property,currencyName, countHotels);
-    }
-
-    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
-      loaderDiv.style.display = 'none';
     });
-  })
-  .catch(error => {
+
+    // Получаем все кластеры маркеров из объекта MarkerClusterer
+
+    const contentInfoWindow = `
     
-    console.error('There has been a problem with your fetch operation:', error);
-  });
-
-}
-
-
-function toggleContentVisibility(markerView) {
-    
-    markerView.classList.toggle('zindex-property')
-  const content = markerView.content;
-  if (currentOpenMarker && currentOpenMarker !== markerView) {
-    toggleContentVisibility(currentOpenMarker);
-  }
-
-  content.classList.toggle("highlight");
-  currentOpenMarker = content.classList.contains("highlight") ? markerView : null;
-
-  
-}
-
-function buildContent(property, currencyName, countHotels) {
-  const content = document.createElement("div");
-
-  content.classList.add("property");
-  content.innerHTML = `
-    <div class="icon">
-      <div class="map-marker-description">
-        ${property.priceTotal}${currencyName}
-      </div>
-    </div>
-
     <div class="details">
       <div class="marker-popup-wrapper">
         <div class="marker-popup-header-wrapper">
@@ -159,13 +178,13 @@ function buildContent(property, currencyName, countHotels) {
               </div>
             </div>
             <div class="marker-popup-header-description-wrapper">
-              <div class="marker-popup-header-description-rate">
-                ${property.rating}
-              </div>
-              <div class="marker-popup-header-description">
-                Рейтинг гостей
-              </div>
+              ${ratingDescriptionBlock}
             </div>
+            <div class="marker-popup-refundable-description">
+                        ${flagrRefundable}
+            </div>
+            ${availableRoomsBlock}
+            ${quiQuoBlock}
           </div>
           <a href="#" class="marker-popup-header-btn">
             <img src="./images/arrow-right-btn.svg" alt="">
@@ -173,52 +192,102 @@ function buildContent(property, currencyName, countHotels) {
         </div>
         <div class="marker-popup-footer-info">
                   <div class="marker-popup-footer-description-wrapper">
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (нетто цена):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                        ${property.priceNightly} ${currencyName}
-                      </div>
-                    </div>
+                    ${priceNetBlock}
                     <div class="marker-popup-footer-description">
                       <div class="marker-popup-footer-description-main">
                         Всего (включая налоги и сборы):
                       </div>
                       <div class="marker-popup-footer-description-price">
-                      ${property.priceStrike} ${currencyName}
+                        ${property.priceTotal} ${currencyName}
                       </div>
-                    </div>
+                    
+                </div> 
                   </div>
                   <div class="marker-popup-footer-price-wrapper">
-                    <div class="marker-popup-footer-price-alert">
-                      
-                    </div>
+                    ${priceStrikeBlock}
                     <div class="marker-popup-footer-price">
-                      за ночь ${property.priceTotal} ${currencyName}
+                      за ночь ${property.priceNightly} ${currencyName}
                     </div>
                     
                   </div>
                 </div>
       </div>
     </div>
+    
+    `
+    const element = marker.element;   
+      
+    element.style.zIndex = '-2';
+
+    buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+    
+    marker.addListener("click", () => {
+      infoWindow.setContent(contentInfoWindow);
+      infoWindow.open(map, marker);
+      
+      //Дописать проверку на то есть ли уже уже у этого маркера этот клдасс
+      toggleContentVisibility()
+      buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+      marker.element.querySelector('.property').classList.add("highlight");
+      
+    });
+
+    return marker;
+  });
+
+  google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+    loaderDiv.style.display = 'none';
+  });
+
+
+google.maps.event.addListener(map, 'click', function() {
+  // Закрыть infoWindow, если он открыт
+  if (infoWindow) {
+    
+    infoWindow.close();
+    toggleContentVisibility()
+    const mapDashboardCardsListWrapperX = document.getElementById('map-dashboard-bottom-section-wrapper');
+    mapDashboardCardsListWrapperX.classList.remove('active');
+
+  }
+
+});
+
+  const markerCluster = new MarkerClusterer({ markers, map});
+
+}
+
+
+function toggleContentVisibility() {
+  const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
+  mapDashboardCardsListWrapper.classList.add('active');
+
+  let allMarkersProperty = document.querySelectorAll('.property');
+      allMarkersProperty.forEach((item)=>{
+        item.classList.remove('highlight')
+      })
+}
+
+function buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+  const content = document.createElement("div");
+
+  content.classList.add("property");
+  content.innerHTML = `
+    <div class="icon">
+      <div class="map-marker-description">
+        ${property.priceTotal}${currencyName}
+      </div>
+    </div>
   `;
   return content;
 }
- 
-function buildLeftContent(property, currencyName, countHotels){
+
+function buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
   const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
 
   headerMapCountElement.innerHTML = `${countHotels} отеля в этой области`
-  
-  let flagrRefundable = property.refundable;
-  if(flagrRefundable == true){
-    flagrRefundable = 'Полный возврат'
-  }else{
-    flagrRefundable = '';
-  }
-  
+
   const content = document.createElement("div");
 
   content.classList.add("map-dashboard-card-item");
@@ -236,16 +305,13 @@ function buildLeftContent(property, currencyName, countHotels){
                       </div>
                     </div>
                     <div class="marker-popup-header-description-wrapper">
-                      <div class="marker-popup-header-description-rate">
-                        ${property.rating}
-                      </div>
-                      <div class="marker-popup-header-description">
-                        Рейтинг гостей
-                      </div>
+                      ${ratingDescriptionBlock}
                     </div>
                     <div class="marker-popup-refundable-description">
                         ${flagrRefundable}
-                      </div>
+                    </div>
+                    ${availableRoomsBlock}
+                    ${quiQuoBlock}
                   </div>
                   <a href="#" class="marker-popup-header-btn">
                     <img src="./images/arrow-right-btn.svg" alt="">
@@ -253,35 +319,85 @@ function buildLeftContent(property, currencyName, countHotels){
                 </div>
                 <div class="marker-popup-footer-info">
                   <div class="marker-popup-footer-description-wrapper">
-                    <div class="marker-popup-footer-description">
-                      <div class="marker-popup-footer-description-main">
-                        Всего (нетто цена):
-                      </div>
-                      <div class="marker-popup-footer-description-price">
-                      ${property.priceNightly} ${currencyName}
-                      </div>
-                    </div>
+                    ${priceNetBlock}
                     <div class="marker-popup-footer-description">
                       <div class="marker-popup-footer-description-main">
                         Всего (включая налоги и сборы):
                       </div>
                       <div class="marker-popup-footer-description-price">
-                      ${property.priceStrike} ${currencyName}
+                        ${property.priceTotal} ${currencyName}
                       </div>
-                    </div>
+                    
+                </div> 
                   </div>
                   <div class="marker-popup-footer-price-wrapper">
-                    <div class="marker-popup-footer-price-alert">
-                      
-                    </div>
+                    ${priceStrikeBlock}
                     <div class="marker-popup-footer-price">
-                      за ночь ${property.priceTotal} ${currencyName}
+                      за ночь ${property.priceNightly} ${currencyName}
                     </div>
                     
                   </div>
                 </div>
   `;
   mapDashboardCardsListWrapper.appendChild(content)
+}
+
+function buildBottomContent (property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
+  const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
+  const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
+
+  headerMapCountElement.innerHTML = `${countHotels} отеля в этой области`
+  
+  mapDashboardCardsListWrapper.innerHTML = `
+  <div class = "map-dashboard-card-item">
+  <div class="marker-popup-header-wrapper">
+                  <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
+                  </div>
+                  <div class="marker-popup-header-info">
+                    <div class="marker-popup-header-title-wrapper">
+                      <div class="marker-popup-header-title">
+                        ${property.name}
+                      </div>
+                      <div class="marker-popup-header-title-stars-list" id="marker-popup-header-title-stars-list">
+                        ${buildRatingBlock(property.rating)}
+                      </div>
+                    </div>
+                    <div class="marker-popup-header-description-wrapper">
+                      ${ratingDescriptionBlock}
+                    </div>
+                    <div class="marker-popup-refundable-description">
+                        ${flagrRefundable}
+                      </div>
+                      ${availableRoomsBlock}
+                      ${quiQuoBlock}
+                  </div>
+                  
+                </div>
+                <div class="marker-popup-footer-info">
+                  <div class="marker-popup-footer-description-wrapper">
+                  ${priceNetBlock}
+                    <div class="marker-popup-footer-description">
+                      <div class="marker-popup-footer-description-main">
+                        Всего (включая налоги и сборы):
+                      </div>
+                      <div class="marker-popup-footer-description-price">
+                      ${property.priceTotal} ${currencyName}
+                      </div>
+                    </div>
+                  </div>
+                  ${priceStrikeBlock}
+                  <div class="marker-popup-footer-price-wrapper">
+                    <div class="marker-popup-footer-price">
+                      за ночь ${property.priceNightly} ${currencyName}
+                    </div>
+                    <a href="#" class="marker-popup-header-btn">
+                    <img src="./images/arrow-right-btn.svg" alt="">
+                  </a>
+                  </div>
+                  
+                </div>
+  </div>
+  `
 }
 
 function buildRatingBlock (rating){
@@ -308,8 +424,7 @@ const mapShowSearch = document.getElementById('result-amount-map-search-wrapper'
 const mapDashboardWrapper = document.getElementById('map-dashboard-main-wrapper-fade')
 mapShowSearch.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active');
-  initMapHotels()
-  
+  initMap()
   
   loaderDiv.style.display = 'block';
 })
@@ -317,16 +432,19 @@ mapShowSearch.addEventListener('click', function(){
 const mapDashboardFilterWrapper = document.getElementById('map-dashboard-filter-wrapper');
 const mapDashboardFilterBtn = document.getElementById('map-dashboard-filter-header-btn');
 const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-// mapDashboardFilterBtn.addEventListener('click', function(){
-//   mapDashboardFilterWrapper.classList.toggle('active')
-//   mapDashboardCardsListWrapper.classList.toggle('hide')
-// })
+const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper')
+mapDashboardFilterBtn.addEventListener('click', function(){
+  mapDashboardFilterWrapper.classList.toggle('active')
+  mapDashboardCardsListWrapper.classList.toggle('hide')
+  leftSectionWrapper.classList.toggle('active')
+})
 
 
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
 closeFilterBlockbtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
   mapDashboardCardsListWrapper.classList.toggle('hide')
+  leftSectionWrapper.classList.toggle('active')
 })
 
 
@@ -335,6 +453,7 @@ closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active')
 })
 
+// initMap();
 
 
 
