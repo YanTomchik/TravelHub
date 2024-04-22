@@ -14,6 +14,7 @@ formData.append("PropertySearchForm[partner]", "11115");
 formData.append("PropertySearchForm[map]", "true");
 
 const loaderDiv = document.getElementById('loader-map');
+const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper')
 let currentOpenMarker = null;
 let currentOpenMarkerCheck = null;
 const adminFlag = false;
@@ -27,7 +28,8 @@ async function initMap() {
 
   const infoHotels = await fetch('https://travelhub.by/hotels/search-map', {
     method: 'POST',
-    body: formData
+    body: formData,
+    
   })
   .then(response => {
     if (!response.ok) {
@@ -36,7 +38,6 @@ async function initMap() {
     return response.json();
   })
   .then(result => {
-    console.log(result)
     return result;
   })
 
@@ -57,16 +58,16 @@ async function initMap() {
     zoom: 13,
     center: center,
     mapId: "4504f8b37365c3d0",
+    gestureHandling: 'greedy',
   });
 
 
   const infoWindow = new google.maps.InfoWindow({
     content: "",
-    disableAutoPan: true,
+    disableAutoPan: false,
+    closeButton:false,
   });
-  // Create an array of alphabetical characters used to label the markers.
-  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  // Add some markers to the map.
+
   const markers = dataHotelsObj.map((property, i) => {
 
     const nameHotel = property.name;
@@ -157,9 +158,7 @@ async function initMap() {
         position: position,
         title: nameHotel,
     });
-
-    // Получаем все кластеры маркеров из объекта MarkerClusterer
-
+    //Генерация блока для инфо виндоу
     const contentInfoWindow = `
     
     <div class="details">
@@ -216,11 +215,11 @@ async function initMap() {
     
     `
     const element = marker.element;   
-      
     element.style.zIndex = '-2';
 
     buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-    
+  
+    //Считывание клика по маркеру  
     marker.addListener("click", () => {
       infoWindow.setContent(contentInfoWindow);
       infoWindow.open(map, marker);
@@ -235,11 +234,13 @@ async function initMap() {
     return marker;
   });
 
+//Скрывание лоудера и открытие левого блока при прогрузке карты
   google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
     loaderDiv.style.display = 'none';
+    leftSectionWrapper.classList.toggle('active')
   });
 
-
+//Считывание клика на пустую область карты для закрытия инфо виндоу
 google.maps.event.addListener(map, 'click', function() {
   // Закрыть infoWindow, если он открыт
   if (infoWindow) {
@@ -257,7 +258,7 @@ google.maps.event.addListener(map, 'click', function() {
 
 }
 
-
+//Тоглер для очистки активных маркеров и активации нижнего блока при моб версии
 function toggleContentVisibility() {
   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
   mapDashboardCardsListWrapper.classList.add('active');
@@ -268,6 +269,7 @@ function toggleContentVisibility() {
       })
 }
 
+//Генерация маркеров
 function buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
   const content = document.createElement("div");
 
@@ -282,6 +284,7 @@ function buildContent(property, currencyName, countHotels, flagrRefundable, rati
   return content;
 }
 
+//Генерация левого блока
 function buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
   const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
@@ -342,6 +345,7 @@ function buildLeftContent(property, currencyName, countHotels, flagrRefundable, 
   mapDashboardCardsListWrapper.appendChild(content)
 }
 
+//Генерация блока для мобильной версии
 function buildBottomContent (property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
   const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
@@ -400,6 +404,7 @@ function buildBottomContent (property, currencyName, countHotels, flagrRefundabl
   `
 }
 
+//Генерация блока с рейтингом и количеством звезд
 function buildRatingBlock (rating){
 
   let stars = ''
@@ -420,40 +425,48 @@ function buildRatingBlock (rating){
 
 }
 
+const bodyTag = document.body;
+
+//Открытие карты и генерация ее
 const mapShowSearch = document.getElementById('result-amount-map-search-wrapper')
 const mapDashboardWrapper = document.getElementById('map-dashboard-main-wrapper-fade')
 mapShowSearch.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active');
+  bodyTag.style.overflow = 'hidden';
   initMap()
   
   loaderDiv.style.display = 'block';
+  
 })
 
+//Открытие фильтра
 const mapDashboardFilterWrapper = document.getElementById('map-dashboard-filter-wrapper');
 const mapDashboardFilterBtn = document.getElementById('map-dashboard-filter-header-btn');
 const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper')
+
+
 mapDashboardFilterBtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
   mapDashboardCardsListWrapper.classList.toggle('hide')
-  leftSectionWrapper.classList.toggle('active')
+  
 })
 
-
+//Закрытие фильтра
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
 closeFilterBlockbtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
   mapDashboardCardsListWrapper.classList.toggle('hide')
+  
+})
+
+//Закрытие карты
+const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
+closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
+  mapDashboardWrapper.classList.toggle('active');
+  bodyTag.style.overflow = 'scroll';
   leftSectionWrapper.classList.toggle('active')
 })
 
-
-const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
-closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
-  mapDashboardWrapper.classList.toggle('active')
-})
-
-// initMap();
 
 
 

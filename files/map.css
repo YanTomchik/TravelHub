@@ -1,25 +1,7 @@
-:root {
-    --building-color: #FF9800;
-    --house-color: #0288D1;
-    --shop-color: #7B1FA2;
-    --warehouse-color: #558B2F;
-  }
-
   .gm-fullscreen-control {
     display: none !important;
 }
-  
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  #map {
-    height: 100%;
-    width: 100%;
-  }
+
 /* Стили для infoWindow */
   /* .yNHHyP-marker-view{
     z-index: -2!important;
@@ -55,6 +37,7 @@
     transition: all 0.3s ease-out;
     
   }
+
   .property .details {
     display: none;
   }
@@ -327,13 +310,18 @@
   max-width: 512px;
   /* overflow-y: scroll;
    */
-   display: flex;
+   display: none;
    flex-direction: column;
    gap: 16px;
 }
 
+
 .map-dashboard-left-section-wrapper.active .map-dashboard-filter-main-wrapper{
   height: 100%;
+}
+
+.map-dashboard-left-section-wrapper.active{
+  display: flex;
 }
 
 
@@ -376,7 +364,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-height: 90%;
+  max-height: 100%;
   overflow-y: scroll;
   
 }
@@ -397,8 +385,6 @@
   box-shadow: 0px 4px 47px -10px #00000015;
 }
 
-
-
 .map-dashboard-card-item:hover .marker-popup-header-wrapper .marker-popup-header-btn{
   display: flex;
 }
@@ -413,7 +399,7 @@
 
 .map-dashboard-filter-wrapper.active{
   display: block;
-  height: 90%;
+  height: 100%;
   overflow-y: scroll;
   border-radius: 12px;
 }
