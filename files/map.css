@@ -336,10 +336,6 @@
   padding: 0px 32px;
 }
 
-.map-dashboard-filter-wrapper .filters-submenu.filters-submenu-first{
-  border-top: none;
-}
-
 .map-dashboard-filter-header-wrapper{
   padding: 8px 16px;
   display: flex;
@@ -406,9 +402,13 @@
 
 .filters-block-submenus-header-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 32px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
 }
 
 .filters-block-submenus-header-title{
