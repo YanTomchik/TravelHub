@@ -240,8 +240,26 @@ async function initMap() {
     leftSectionWrapper.classList.toggle('active')
   });
 
+  // Обработка события изменения области видимости карты
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    // Получение текущей области видимости карты
+    const bounds = map.getBounds();
+
+    // Получение координат углов области видимости
+    const ne = bounds.getNorthEast(); // Северо-восточный угол
+    const sw = bounds.getSouthWest(); // Юго-западный угол
+
+    // Вывод координат углов области видимости в консоль
+    // console.log('Северо-восточный угол:', ne.lat(), ne.lng());
+    // console.log('Юго-западный угол:', sw.lat(), sw.lng());
+
+    // Можно также получить центр текущей области видимости
+    // const center = map.getCenter();
+    // console.log('Центр области видимости:', center.lat(), center.lng());
+  });
+
 //Считывание клика на пустую область карты для закрытия инфо виндоу
-google.maps.event.addListener(map, 'click', function() {
+google.maps.event.addListener(map, 'click', function(event) {
   // Закрыть infoWindow, если он открыт
   if (infoWindow) {
     
@@ -250,6 +268,12 @@ google.maps.event.addListener(map, 'click', function() {
     const mapDashboardCardsListWrapperX = document.getElementById('map-dashboard-bottom-section-wrapper');
     mapDashboardCardsListWrapperX.classList.remove('active');
 
+  }
+
+  // Отключение информационных окон элементов инфраструктуры
+  if (event.placeId) {
+    // Call event.stop() on the event to prevent the default info window from showing.
+    event.stop();
   }
 
 });
