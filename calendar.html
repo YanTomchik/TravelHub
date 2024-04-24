@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>easepick</title>
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/range-plugin@1.2.1/dist/index.umd.min.js"></script>
+    <!-- <link rel="stylesheet" href="./files/calendar.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <input id="datepicker"/>
+    <script>
+      const dates = [
+        '2024-04-03',
+        '2024-04-07',
+        '2024-04-08',
+        '2024-04-11',
+        '2024-04-15',
+        '2024-04-16',
+        '2024-04-17',
+        '2024-04-21',
+      ]
+      const picker = new easepick.create({
+        element: document.getElementById('datepicker'),
+        css: [
+          'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
+          './files/calendar.css',
+        ],
+        zIndex: 10,
+        grid: 2,
+        calendars: 2,
+        header: "",
+        autoApply: false,
+        locale: {
+        cancel: "Clear"
+        },
+        AmpPlugin: {
+            resetButton: false,
+            darkMode: false,
+        },
+        LockPlugin: {
+            minDays: -1
+        },
+        PresetPlugin: {
+            position: "left"
+        },
+        plugins: [
+            "AmpPlugin",
+            "RangePlugin",
+            "LockPlugin",
+            "PresetPlugin",
+        ],
+        setup(picker) {
+          // generate random prices
+          const randomInt = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+          }
+          const prices = {};
+          dates.forEach(x => {
+            prices[x] = randomInt(50, 200);
+          });
+          
+          // add price to day element
+          picker.on('view', (evt) => {
+            const { view, date, target } = evt.detail;
+            const d = date ? date.format('YYYY-MM-DD') : null;
+
+            if (view === 'CalendarDay' && prices[d]) {
+              const span = target.querySelector('.day-price') || document.createElement('span');
+              span.className = 'day-price';
+              span.innerHTML = `$ ${prices[d]}`;
+              target.append(span);
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+

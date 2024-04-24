@@ -366,7 +366,7 @@
 }
 
 .map-dashboard-cards-list::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .map-dashboard-cards-list.hide{
