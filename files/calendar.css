@@ -1,0 +1,132 @@
+.container{
+    font-family: 'Poppins'!important;
+}
+
+.calendar {
+    width: 310px;
+    /* background-color: #fff; */
+  }
+
+  .calendar>.days-grid{
+    row-gap: 0px;
+  }
+
+  .calendar>.days-grid>.day .day-price {
+    font-size: 80%;
+    color: #2196f3;
+    /* color: #3bbf56; */
+  }
+
+  .calendar>.days-grid>.day .day-price.green {
+    font-size: 80%;
+    /* color: #2196f3; */
+    color: #3bbf56;
+  }
+
+  .calendar>.days-grid>.day.selected .day-price {
+    color: #fff;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.in-range{
+    background-color: #E7EDF8;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.start{
+    border-radius: 19px 0px 0px 19px;
+    background-color: #3968BF;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.end{
+    border-radius: 0px 19px 19px 0px;
+    background-color: #3968BF;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.start:after{
+    display: none;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.end:after{
+    display: none;
+  }
+
+  .calendar>.days-grid>.day:hover{
+    border: #3968BF;
+    color: #19191E;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day{
+    color: #19191E;
+  }
+
+
+  .calendar>.days-grid>.day.today{
+    color: #3968BF;
+  }
+
+  .container.preset-plugin main.preset-left>.calendars{
+    border-left: 1px solid #E4E6EE;
+  }
+
+  .preset-plugin-container{
+    background-color: #fff;
+  }
+
+  .preset-plugin-container>button:hover{
+    border: 1px solid #3968BF;
+    color: #3968BF;
+  }
+
+  .preset-plugin-container>button{
+    color: #293050;
+  }
+
+  .container>footer .footer-buttons{
+    justify-content: flex-start;
+  }
+
+  .month-name{
+    color: #293050;
+  }
+
+  .calendar>.daynames-row>.dayname{
+    color: #19191E;
+  }
+
+  .container>footer{
+    background-color: #fff;
+    width: 131px;
+    border-right: 1px solid #E4E6EE;
+  }
+
+  .container>footer .footer-buttons>button.cancel-button{
+    color: #3968BF;
+    font-weight: 600;
+    border: none;
+    margin-left: 10px;
+  }
+
+  .calendar>.days-grid>.day .day-price{
+    color: #3968BF;
+  }
+
+  .calendar>.days-grid>.day.selected .day.end .day-price{
+    color: #fff;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day:hover{
+    background-color: #3968BF;
+    color: #fff;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day:active{
+    background-color: #B5B5C2;
+    color: #19191E;
+  }
+
+  .container.range-plugin .calendar>.days-grid>.day.end .day-price{
+    color: #fff;
+  }
+
+  .apply-button.unit{
+    display: none;
+  }
