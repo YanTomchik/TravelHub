@@ -56,8 +56,19 @@
 
   .container.range-plugin .calendar>.days-grid>.day{
     color: #19191E;
+    font-size: 16px;
   }
 
+  .container.range-plugin .calendar>.days-grid>.day:hover .day-price{
+    color: #fff;
+  }
+
+  .calendar>.days-grid>.day{
+    height: 45px;
+    max-height: 50px;
+    width: 45px;
+    max-width: 50px;
+  }
 
   .calendar>.days-grid>.day.today{
     color: #3968BF;
@@ -73,11 +84,14 @@
 
   .preset-plugin-container>button:hover{
     border: 1px solid #3968BF;
-    color: #3968BF;
+    background-color: #3968BF;
+    color: #fff;
   }
 
   .preset-plugin-container>button{
     color: #293050;
+    font-size: 16px;
+    font-family: 'Poppins';
   }
 
   .container>footer .footer-buttons{
@@ -90,11 +104,12 @@
 
   .calendar>.daynames-row>.dayname{
     color: #19191E;
+    font-size: 16px;
   }
 
   .container>footer{
     background-color: #fff;
-    width: 131px;
+    width: 151px;
     border-right: 1px solid #E4E6EE;
   }
 
@@ -103,6 +118,8 @@
     font-weight: 600;
     border: none;
     margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Poppins';
   }
 
   .calendar>.days-grid>.day .day-price{
@@ -129,4 +146,12 @@
 
   .apply-button.unit{
     display: none;
+  }
+
+  .container.preset-plugin main.preset-left .preset-plugin-container, .container.preset-plugin main.preset-right .preset-plugin-container{
+    width: 150px;
+  }
+
+  .container.amp-plugin .calendars .calendar>.header .month-name{
+    font-size: 16px;
   }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech Recognition</title>
+</head>
+<body>
+<button id="start">Начать распознавание</button>
+<div id="output"></div>
+
+
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+<script>
+// Проверяем поддержку Web Speech API в браузере
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    // Создаем новый объект распознавания речи
+    var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    // Устанавливаем параметры
+    recognition.lang = 'ru-RU';
+    recognition.interimResults = true;
+
+    // Функция для обработки распознанной речи
+    recognition.onresult = function(event) {
+        var interimTranscript = '';
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+                document.getElementById('output').innerHTML = event.results[i][0].transcript;
+                alert(event.results[i][0].transcript)
+                const result = event.results[i][0].transcript
+                if(result == 'Покажи алерт' || result == 'Покажи alert'){
+                    alert('Привет')
+                }
+            } else {
+                interimTranscript += event.results[i][0].transcript;
+            }
+        }
+    };
+
+    // Функция для обработки ошибок
+    recognition.onerror = function(event) {
+        console.error('Произошла ошибка распознавания: ' + event.error);
+    };
+
+    // При клике на кнопку начинаем распознавание речи
+    document.getElementById('start').addEventListener('click', function() {
+        recognition.start();
+        console.log('Распознавание начато');
+    });
+} else {
+    // Если Web Speech API не поддерживается, выводим сообщение
+    document.getElementById('output').innerHTML = 'Web Speech API не поддерживается в вашем браузере.';
+    
+}
+</script>
+</body>
+</html>
+
+
+
+  
+  
+  
+
+  
