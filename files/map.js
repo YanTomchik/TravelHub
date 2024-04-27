@@ -6,16 +6,17 @@
 
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
-/*const formData = new FormData();
-formData.append("PropertySearchForm[location]", "6");
-formData.append("PropertySearchForm[checkinDate]", "24.05.2024");
-formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 4 }]));
-formData.append("PropertySearchForm[partner]", "11115");
-formData.append("PropertySearchForm[map]", "true");*/
+// const formData = new FormData();
+// formData.append("PropertySearchForm[location]", "4");
+// formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
+// formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+// formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+// formData.append("PropertySearchForm[partner]", "11115");
+// formData.append("PropertySearchForm[map]", "true");
 
 const loaderDiv = document.getElementById('loader-map');
-const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper')
+const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper');
+
 const adminFlag = false;
 let currentOpenMarker = null;
 let currentOpenMarkerCheck = null;
@@ -28,27 +29,99 @@ function triggerInputEvent(element) {
     element.dispatchEvent(event);
 }
 
+
+async function fetchDataFromAPI(formData) {
+  try {
+      const response = await fetch('https://travelhub.by/hotels/search-map', {
+          method: 'POST',
+          body: formData
+      });
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error('Error fetching data from API:', error);
+      throw error;
+  }
+}
+
+// Функция для получения кэшированных данных из локального хранилища
+function getCachedData() {
+  const cachedData = localStorage.getItem('cachedData');
+  if (cachedData) {
+      return JSON.parse(cachedData);
+  }
+  return null;
+}
+
+// Функция для сохранения данных в локальное хранилище
+function cacheData(data) {
+  localStorage.setItem('cachedData', JSON.stringify(data));
+}
+
+// Функция для получения данных: сначала проверяем кэш, затем загружаем из API
+async function getData() {
+  let data = getCachedData();
+  if (!data) {
+      // get search params
+      // const form = document.getElementById('properties-search-form');
+      // const formData = new FormData(form);
+      // const searchParams = new URLSearchParams();
+    
+      // for (const pair of formData) {
+      //   searchParams.append(pair[0], pair[1]);
+      // }
+      // searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+      
+      const formData = new FormData();
+      formData.append("PropertySearchForm[location]", "5");
+      formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+      formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[map]", "true");
+      data = await fetchDataFromAPI(formData);
+      cacheData(data);
+  }
+  return data;
+}
+
+
+
 async function initMap() {
   // sync filters state
-  $('#filters input[type="checkbox"], #filters input[type="radio"]').each(function() {
-    var className = $(this).attr('class');
-    var checked = $(this).is(':checked');
-    var linkedItems = $('#map_filters .' + className);
-    linkedItems.prop('checked', checked);
-  });
+
+  // $('#filters input[type="checkbox"], #filters input[type="radio"]').each(function() {
+  //   var className = $(this).attr('class');
+  //   var checked = $(this).is(':checked');
+  //   var linkedItems = $('#map_filters .' + className);
+  //   linkedItems.prop('checked', checked);
+  // });
+
+  document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
+    var className = element.getAttribute('class');
+    var checked = element.checked;
+    var linkedItems = document.querySelectorAll('#map_filters .' + className);
+    linkedItems.forEach(function(item) {
+        item.checked = checked;
+    });
+});
 
   const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
-  mapRangeInput[1].value = $('[name="maxPrice"]').val();
+  // mapRangeInput[1].value = $('[name="maxPrice"]').val();
+  mapRangeInput[1].value = document.querySelector('[name="maxPrice"]').value;
+
   triggerInputEvent(mapRangeInput[1]);
 
-  mapRangeInput[0].value = $('[name="minPrice"]').val();
+  // mapRangeInput[0].value = $('[name="minPrice"]').val();
+  mapRangeInput[0].value = document.querySelector('[name="minPrice"]').value;
+
   triggerInputEvent(mapRangeInput[0]);
 
   $('#map_minPrice').text($('#minPrice').text());
   $('#map_maxPrice').text($('#maxPrice').text());
 
   // get search params
-  const form = document.getElementById('properties-search-form');
+  /*const form = document.getElementById('properties-search-form');
   const formData = new FormData(form);
   const searchParams = new URLSearchParams();
 
@@ -56,29 +129,14 @@ async function initMap() {
     searchParams.append(pair[0], pair[1]);
   }
   searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-
+*/
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
     "marker",
   );
 
-  const infoHotels = await fetch('/hotels/search-map', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: searchParams
-
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(result => {
-    return result;
-  })
+  // Получаем данные
+  const infoHotels = await getData();
 
   const dataHotelsObj = infoHotels.data;
   const currencyName = infoHotels.currency;
@@ -104,7 +162,7 @@ async function initMap() {
 
   const infoWindow = new google.maps.InfoWindow({
     content: "",
-    disableAutoPan: false,
+    disableAutoPan: true,
     closeButton:false,
   });
 
@@ -252,7 +310,7 @@ async function initMap() {
           </div>
       </div>
     </div>
-  `
+    `
   const element = marker.element;
     element.style.zIndex = '-2';
 
@@ -260,16 +318,65 @@ async function initMap() {
 
     //Считывание клика по маркеру
     marker.addListener("click", () => {
+
+      // Центрирование карты на местоположении маркера
+      // Вычисление смещения для infoWindow
+      if(window.innerWidth > 1024){
+        let offset = -150;
+        centerMapZoom(offset,map, marker)
+        
+      }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
+        let offset = -250;
+        centerMapZoom(offset,map, marker)        
+      }
+      // Отображение infoWindow
       infoWindow.setContent(contentInfoWindow);
       infoWindow.open(map, marker);
 
+
       //Дописать проверку на то есть ли уже уже у этого маркера этот клдасс
-      toggleContentVisibility()
+      toggleContentVisibility(marker, infoWindow)
+      
       buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
       marker.element.querySelector('.property').classList.add("highlight");
 
     });
 
+    const leftBlockItems = document.querySelectorAll('.map-dashboard-card-item');
+
+    leftBlockItems.forEach((item)=>{
+
+    item.addEventListener('click', () =>{
+        const curItemLat = item.getAttribute('data-position-lat');
+        const curItemLng = item.getAttribute('data-position-lng');
+
+        if(marker.position.Gg == curItemLat && marker.position.Hg == curItemLng){
+          // Вычисление смещения для infoWindow
+          map.setZoom(16);
+          // Центрируем карту на маркере
+          if(window.innerWidth > 1024){
+            let offset = -90;
+            centerMapZoom(offset,map, marker)
+            console.log('>1024')
+            
+          }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
+            let offset = -130;
+            centerMapZoom(offset,map, marker)
+            console.log('<1024 >770')
+            
+          }
+          
+          infoWindow.setContent(contentInfoWindow);
+          infoWindow.open(map, marker);
+
+          toggleContentVisibility()
+          buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+          marker.element.querySelector('.property').classList.add("highlight");
+        }
+        
+      })
+    });
+    
     return marker;
   });
 
@@ -285,52 +392,107 @@ async function initMap() {
     const bounds = map.getBounds();
 
     // Получение координат углов области видимости
-    const ne = bounds.getNorthEast(); // Северо-восточный угол
-    const sw = bounds.getSouthWest(); // Юго-западный угол
+    const ne = bounds.getNorthEast();
+    const sw = bounds.getSouthWest();
 
-    // Вывод координат углов области видимости в консоль
-    // console.log('Северо-восточный угол:', ne.lat(), ne.lng());
-    // console.log('Юго-западный угол:', sw.lat(), sw.lng());
+    const leftBlockWrapper = document.querySelectorAll('.map-dashboard-card-item');
+    //Отображение отлей в левой части в зависимости от зума
+    leftBlockWrapper.forEach((item)=>{
 
-    // Можно также получить центр текущей области видимости
-    // const center = map.getCenter();
-    // console.log('Центр области видимости:', center.lat(), center.lng());
-  });
+      const itemLat = item.getAttribute('data-position-lat');
+      const itemLng = item.getAttribute('data-position-lng');
+
+      if (itemLat >= sw.lat() && itemLat <= ne.lat() && itemLng >= sw.lng() && itemLng <= ne.lng()) {
+        item.style.display = 'block'
+      }else{
+        item.style.display = 'none'
+      }
+
+    })
+  }); 
+
+
+function centerMapZoom (offsetValue, map, marker){
+  var projection = map.getProjection();
+  var centerPixel = projection.fromLatLngToPoint(marker.position);
+  centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
+  var centerLatLng = projection.fromPointToLatLng(centerPixel);
+      
+  map.setCenter(centerLatLng);
+}
 
 //Считывание клика на пустую область карты для закрытия инфо виндоу
-google.maps.event.addListener(map, 'click', function(event) {
-  // Закрыть infoWindow, если он 0рыт
-  if (infoWindow) {
+  google.maps.event.addListener(map, 'click', function(event) {
+    // Закрыть infoWindow, если он 0рыт
+    if (infoWindow) {
 
-    infoWindow.close();
-    toggleContentVisibility()
-    const mapDashboardCardsListWrapperX = document.getElementById('map-dashboard-bottom-section-wrapper');
-    mapDashboardCardsListWrapperX.classList.remove('active');
+      infoWindow.close();
+      toggleContentVisibility()
+      const mapDashboardCardsListWrapperX = document.getElementById('map-dashboard-bottom-section-wrapper');
+      mapDashboardCardsListWrapperX.classList.remove('active');
 
-  }
+    }
 
-  // Отключение информационных окон элементов инфраструктуры
-  if (event.placeId) {
-    // Call event.stop() on the event to prevent the default info window from showing.
-    event.stop();
-  }
+    // Отключение информационных окон элементов инфраструктуры
+    if (event.placeId) {
+      // Call event.stop() on the event to prevent the default info window from showing.
+      event.stop();
+    }
 
-});
+  });
 
-  const markerCluster = new MarkerClusterer({ markers, map});
+  const clusterOptions = {
+    gridSize: 200,
+    maxZoom: null,
+    zoomOnClick: true,
+    averageCenter: false,
+    minimumClusterSize: 3
+}; 
+  const markerCluster = new MarkerClusterer({ markers, map, clusterOptions});
 
 }
 
+
+
 //Тоглер для очистки активных маркеров и активации нижнего блока при моб версии
-function toggleContentVisibility() {
+function toggleContentVisibility(markerView, infoWindow) {
   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
   mapDashboardCardsListWrapper.classList.add('active');
+
+  
 
   let allMarkersProperty = document.querySelectorAll('.property');
       allMarkersProperty.forEach((item)=>{
         item.classList.remove('highlight')
       })
 }
+
+function closeOnclickMarker (markerView, infoWindow){
+  const content = markerView.content;
+
+  if(content.classList.contains("highlight")){
+    markerView.content.classList.remove("highlight");
+    infoWindow.close()
+    console.log(content) 
+  }
+}
+
+
+// Функция для закрытия текущего открытого маркера
+// function toggleContentVisibility(markerView) {
+//   const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
+//   markerView.classList.toggle('zindex-property');
+//   const content = markerView.content;
+//   if (currentOpenMarker && currentOpenMarker !== markerView) {
+//     toggleContentVisibility(currentOpenMarker);
+//   }
+//   content.classList.toggle("highlight");
+//   mapDashboardCardsListWrapper.classList.toggle('active');
+//   currentOpenMarker = content.classList.contains("highlight") ? markerView : null;
+
+
+  
+// }
 
 //Генерация маркеров
 function buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
@@ -357,6 +519,10 @@ function buildLeftContent(property, currencyName, countHotels, flagrRefundable, 
   const content = document.createElement("div");
 
   content.classList.add("map-dashboard-card-item");
+
+  content.setAttribute('data-position-lat',`${property.latitude}`);
+  content.setAttribute('data-position-lng',`${property.longitude}`);
+
   content.innerHTML = `
     <div class="marker-popup-header-wrapper">
       <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
@@ -505,32 +671,74 @@ const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-card
 mapDashboardFilterBtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
   mapDashboardCardsListWrapper.classList.toggle('hide')
+  document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
+  togglerMobileStyleFilterBlock()
+  
 })
 
 //Закрытие фильтра
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
 closeFilterBlockbtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
-  mapDashboardCardsListWrapper.classList.toggle('hide')
+  mapDashboardCardsListWrapper.classList.toggle('hide');
+  document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
+  togglerMobileStyleFilterBlock()
 })
 
 //Закрытие карты
 const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
+const mapCardsListWrapper = document.getElementById('map-dashboard-cards-list');
+
 closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'scroll';
-  leftSectionWrapper.classList.toggle('active')
+  leftSectionWrapper.classList.toggle('active');
+  console.log(document.querySelectorAll('.map-dashboard-card-item').length)
+  mapCardsListWrapper.innerHTML = '';
 })
 
-$(document).ready(function() {
-  $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function() {
-    var className = $(this).attr('class');
-    var checked = $(this).is(':checked');
-    var linkedItems = $('#filters .' + className);
-    linkedItems.prop('checked', checked);
+// $(document).ready(function() {
+//   $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function() {
+//     var className = $(this).attr('class');
+//     var checked = $(this).is(':checked');
+//     var linkedItems = $('#filters .' + className);
+//     linkedItems.prop('checked', checked);
 
-    if (typeof $.fn.yiiActiveForm === 'function') {
-      $('#properties-search-form').yiiActiveForm('validate', true);
-    }
+//     if (typeof $.fn.yiiActiveForm === 'function') {
+//       $('#properties-search-form').yiiActiveForm('validate', true);
+//     }
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').forEach(function(element) {
+      element.addEventListener('change', function() {
+        console.log(element)
+          const className = element.className;
+          
+          const checked = element.checked;
+          const linkedItems = document.querySelectorAll('#filters .' + className);
+          linkedItems.forEach(function(item) {
+              item.checked = checked;
+              console.log('element.className')
+          });
+
+          if (typeof $.fn.yiiActiveForm === 'function') {
+              $('#properties-search-form').yiiActiveForm('validate', true);
+          }
+      });
   });
 });
+
+
+
+function togglerMobileStyleFilterBlock(){
+  if(window.innerWidth <= 770){
+    console.log(window.innerWidth);
+    let filterWrapperMobile = document.querySelector('.map-dashboard-left-section-wrapper.active');
+    filterWrapperMobile.classList.toggle('mobile')
+  }
+}
+
+
+
