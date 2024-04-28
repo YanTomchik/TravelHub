@@ -352,6 +352,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  min-width: 320px;
   /* width: 70%; */
   max-width: 320px;
   justify-content: space-between;
