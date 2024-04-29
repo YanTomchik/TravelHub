@@ -589,7 +589,7 @@ function buildBottomContent (property, currencyName, countHotels, flagrRefundabl
         <div class="marker-popup-footer-price">
           за ночь ${property.priceNightly} ${currencyName}
         </div>
-        <a href="#" class="marker-popup-header-btn">
+        <a href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
           <img src="./images/arrow-right-btn.svg" alt="">
         </a>
       </div>
@@ -665,26 +665,12 @@ closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
   mapCardsListWrapper.innerHTML = '';
 })
 
-// $(document).ready(function() {
-//   $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function() {
-//     var className = $(this).attr('class');
-//     var checked = $(this).is(':checked');
-//     var linkedItems = $('#filters .' + className);
-//     linkedItems.prop('checked', checked);
-
-//     if (typeof $.fn.yiiActiveForm === 'function') {
-//       $('#properties-search-form').yiiActiveForm('validate', true);
-//     }
-//   });
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').forEach(function(element) {
       element.addEventListener('change', function() {
 
           let classNameMapFilter = element.getAttribute('name');
           let classNameFilter = classNameMapFilter.split('map_')[1]
-          console.log(classNameFilter)
           let checked = element.checked;
           let mapFilterInputValue = element.value;
           let linkedItems = document.querySelectorAll(`#filters [name="${classNameFilter}"]`);
@@ -702,26 +688,34 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#properties-search-form').yiiActiveForm('validate', true);
           }
 
-          clearCachedData()
+          clearCachedData()       
 
-          let newformData = new FormData();
-          newformData.append("PropertySearchForm[location]", "4");
-          newformData.append("PropertySearchForm[checkinDate]", "28.05.2024");
-          newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-          newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 4 }]));
-          newformData.append("PropertySearchForm[partner]", "11115");
-          newformData.append("PropertySearchForm[map]", "true");
+          if (!layoutDev) {
 
-          // let form = document.getElementById('properties-search-form');
-          // let newformData = new FormData(form);
-          // const newSearchParams = new URLSearchParams();
+              let form = document.getElementById('properties-search-form');
+              console.log(form)
+              let newformData = new FormData(form);
+              const newSearchParams = new URLSearchParams();
 
-          // for (const pair of newformData) {
-          //   newSearchParams.append(pair[0], pair[1]);
-          // }
-          // newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+              for (const pair of newformData) {
+                newSearchParams.append(pair[0], pair[1]);
+                console.log(pair[0], pair[1])
+              }
+              newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+              initMap(newSearchParams)
 
-          initMap(newformData)
+            } else {
+
+                let newformData = new FormData();
+                newformData.append("PropertySearchForm[location]", "4");
+                newformData.append("PropertySearchForm[checkinDate]", "28.05.2024");
+                newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+                newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 4 }]));
+                newformData.append("PropertySearchForm[partner]", "11115");
+                newformData.append("PropertySearchForm[map]", "true");
+                initMap(newformData)
+                
+            }
       });
   });
 });
