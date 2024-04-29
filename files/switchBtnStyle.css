@@ -1,0 +1,39 @@
+.switch-btn-wrapper{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#flights-search-form .col-xl-3{
+    flex: 0 0 24%;
+    max-width: 24%;
+}
+
+#flights-search-form .row{
+    align-items: center;
+}
+
+#flights-search-form .row .search-btn-block.col-search-button{
+    margin-top: 0px;
+}
+
+
+@media (max-width: 770px) {
+    #flights-search-form .row{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #flights-search-form .col-xl-3{
+        max-width: none;
+    }
+
+    .switch-btn-wrapper{
+        position: absolute;
+        top: 35px;
+        right: 22px;
+        transform: rotate(90deg);
+    }
+}

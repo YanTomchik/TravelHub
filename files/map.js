@@ -63,7 +63,6 @@ async function getData(formDataFromRequest) {
   if (!data) {
 
       let formData = null;
-
       if (formDataFromRequest != null) {
 
         formData = formDataFromRequest;
@@ -714,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newformData.append("PropertySearchForm[partner]", "11115");
                 newformData.append("PropertySearchForm[map]", "true");
                 initMap(newformData)
-                
+
             }
       });
   });
