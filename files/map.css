@@ -520,6 +520,13 @@
   z-index: 9999;
   }
 
+  .marker-popup-header-title-stars-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+
   @keyframes rotation {
   0% {
       transform: rotate(0deg);
@@ -534,6 +541,8 @@
   .map-dashboard-filter-header-wrapper{
     width: fit-content;
     position: absolute;
+    min-width: fit-content;
+    top: 20%;
     /* top: 2%; */
   }
 

@@ -83,11 +83,11 @@ async function getData(formDataFromRequest) {
             formData = searchParams;
         } else {
             formData = new FormData();
-            formData.append("PropertySearchForm[location]", "5");
+            formData.append("PropertySearchForm[location]", "602433");
             formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
             formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
             formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-            formData.append("PropertySearchForm[partner]", "11115");
+            formData.append("PropertySearchForm[partner]", "11090");
             formData.append("PropertySearchForm[map]", "true");
         }
       }
@@ -220,7 +220,7 @@ async function initMap(formData) {
 
     let priceStrike = property.priceStrike;
     let priceStrikeBlock = ''
-    if (priceStrike !== null) {
+    if (priceStrike !== 0 && priceStrike !== null) {
       priceStrikeBlock = `
         <div class="marker-popup-footer-price-alert">
           ${priceStrike} ${currencyName}
