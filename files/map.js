@@ -6,18 +6,15 @@
 
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
-// let formData = new FormData();
-// formData.append("PropertySearchForm[location]", "4");
-// formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-// formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-// formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-// formData.append("PropertySearchForm[partner]", "11115");
-// formData.append("PropertySearchForm[map]", "true");
-
 const loaderDiv = document.getElementById('loader-map');
 const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper');
 
+let layoutDev = (typeof implemented === 'undefined');
+console.log(layoutDev);
+
 const adminFlag = false;
+const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map' : 'hotels/search-map';
+
 let currentOpenMarker = null;
 let currentOpenMarkerCheck = null;
 let flagRefresh = false;
@@ -32,7 +29,7 @@ function triggerInputEvent(element) {
 
 async function fetchDataFromAPI(formData) {
   try {
-      const response = await fetch('https://travelhub.by/hotels/search-map', {
+      const response = await fetch(apiUrl, {
           method: 'POST',
           body: formData
       });
@@ -43,7 +40,7 @@ async function fetchDataFromAPI(formData) {
       throw error;
   }
 
-  
+
 }
 
 // Функция для получения кэшированных данных из локального хранилища
@@ -64,36 +61,35 @@ function cacheData(data) {
 async function getData(formDataFromRequest) {
   let data = getCachedData();
   if (!data) {
-      
+
       let formData = null;
 
-      if(formDataFromRequest!= null){
+      if (formDataFromRequest != null) {
 
         formData = formDataFromRequest;
-        
 
-      }else{
+      } else {
 
+        if (!layoutDev) {
         // get search params
-        // const form = document.getElementById('properties-search-form');
-        // formData = new FormData(form);
-        // const searchParams = new URLSearchParams();
-      
-        // for (const pair of formData) {
-        //   searchParams.append(pair[0], pair[1]);
-        // }
-        // searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+            const form = document.getElementById('properties-search-form');
+            formData = new FormData(form);
+            const searchParams = new URLSearchParams();
 
-        formData = new FormData();  
-        formData.append("PropertySearchForm[location]", "5");
-        formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-        formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-        formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-        formData.append("PropertySearchForm[partner]", "11115");
-        formData.append("PropertySearchForm[map]", "true");
-
-      
-      
+            for (const pair of formData) {
+                searchParams.append(pair[0], pair[1]);
+            }
+            searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+            formData = searchParams;
+        } else {
+            formData = new FormData();
+            formData.append("PropertySearchForm[location]", "5");
+            formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
+            formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+            formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+            formData.append("PropertySearchForm[partner]", "11115");
+            formData.append("PropertySearchForm[map]", "true");
+        }
       }
       data = await fetchDataFromAPI(formData);
       cacheData(data);
@@ -104,20 +100,20 @@ async function getData(formDataFromRequest) {
 async function initMap(formData) {
   loaderDiv.style.display = 'block';
   // sync filters state
-  
+
   document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
     let className = element.getAttribute('name');
     let checked = element.checked;
     let filterInputValue = element.value;
     let linkedItems = document.querySelectorAll(`#map_filters [name="map_${className}"]`);
-    
+
     linkedItems.forEach(function(item) {
       let mapFilterInputValue = item.value;
-        
+
         if(mapFilterInputValue == filterInputValue){
           item.checked = checked;
         }
-        
+
     });
   });
 
@@ -330,10 +326,10 @@ async function initMap(formData) {
       if(window.innerWidth > 1024){
         let offset = -150;
         centerMapZoom(offset,map, marker)
-        
+
       }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
         let offset = -250;
-        centerMapZoom(offset,map, marker)        
+        centerMapZoom(offset,map, marker)
       }
       // Отображение infoWindow
       infoWindow.setContent(contentInfoWindow);
@@ -342,7 +338,7 @@ async function initMap(formData) {
 
       //Дописать проверку на то есть ли уже уже у этого маркера этот клдасс
       toggleContentVisibility()
-      
+
       buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
       marker.element.querySelector('.property').classList.add("highlight");
 
@@ -363,12 +359,12 @@ async function initMap(formData) {
           if(window.innerWidth > 1024){
             let offset = -90;
             centerMapZoom(offset,map, marker)
-            
+
           }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
             let offset = -130;
-            centerMapZoom(offset,map, marker)            
+            centerMapZoom(offset,map, marker)
           }
-          
+
           infoWindow.setContent(contentInfoWindow);
           infoWindow.open(map, marker);
 
@@ -376,10 +372,10 @@ async function initMap(formData) {
           buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
           marker.element.querySelector('.property').classList.add("highlight");
         }
-        
+
       })
     });
-    
+
     return marker;
   });
 
@@ -412,7 +408,7 @@ async function initMap(formData) {
       }
 
     })
-  }); 
+  });
 
 
 function centerMapZoom (offsetValue, map, marker){
@@ -420,7 +416,7 @@ function centerMapZoom (offsetValue, map, marker){
   var centerPixel = projection.fromLatLngToPoint(marker.position);
   centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
   var centerLatLng = projection.fromPointToLatLng(centerPixel);
-      
+
   map.setCenter(centerLatLng);
 }
 
@@ -450,9 +446,9 @@ function centerMapZoom (offsetValue, map, marker){
     zoomOnClick: true,
     averageCenter: false,
     minimumClusterSize: 3
-}; 
+};
   const markerCluster = new MarkerClusterer({ markers, map, clusterOptions});
-  
+
 }
 
 
@@ -646,7 +642,7 @@ mapDashboardFilterBtn.addEventListener('click', function(){
   mapDashboardCardsListWrapper.classList.toggle('hide')
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
   togglerMobileStyleFilterBlock()
-  
+
 })
 
 //Закрытие фильтра
@@ -684,7 +680,7 @@ closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
 
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').forEach(function(element) {
-      element.addEventListener('change', function() {         
+      element.addEventListener('change', function() {
 
           let classNameMapFilter = element.getAttribute('name');
           let classNameFilter = classNameMapFilter.split('map_')[1]
@@ -692,14 +688,14 @@ document.addEventListener('DOMContentLoaded', function() {
           let checked = element.checked;
           let mapFilterInputValue = element.value;
           let linkedItems = document.querySelectorAll(`#filters [name="${classNameFilter}"]`);
-          
+
           linkedItems.forEach(function(item) {
             let filterInputValue = item.value;
-              
+
               if(mapFilterInputValue == filterInputValue){
                 item.checked = checked;
               }
-              
+
           });
 
           if (typeof $.fn.yiiActiveForm === 'function') {
@@ -719,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // let form = document.getElementById('properties-search-form');
           // let newformData = new FormData(form);
           // const newSearchParams = new URLSearchParams();
-        
+
           // for (const pair of newformData) {
           //   newSearchParams.append(pair[0], pair[1]);
           // }
