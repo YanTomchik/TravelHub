@@ -538,6 +538,7 @@ function buildLeftContent(property, currencyName, countHotels, flagrRefundable, 
     </div>
   `;
   mapDashboardCardsListWrapper.appendChild(content)
+
 }
 
 //Генерация блока для мобильной версии
@@ -668,6 +669,13 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').forEach(function(element) {
       element.addEventListener('change', function() {
 
+          const markerStarsList = document.getElementById('marker-popup-header-title-stars-list');
+          
+          mapDashboardFilterWrapper.classList.toggle('active')
+          mapDashboardCardsListWrapper.classList.toggle('hide');
+          document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
+          togglerMobileStyleFilterBlock()
+
           let classNameMapFilter = element.getAttribute('name');
           let classNameFilter = classNameMapFilter.split('map_')[1]
           let checked = element.checked;
@@ -687,7 +695,8 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#properties-search-form').yiiActiveForm('validate', true);
           }
 
-          clearCachedData()       
+          clearCachedData()
+          markerStarsList.innerHTML = ''       
 
           if (!layoutDev) {
 
@@ -706,11 +715,11 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
 
                 let newformData = new FormData();
-                newformData.append("PropertySearchForm[location]", "4");
-                newformData.append("PropertySearchForm[checkinDate]", "28.05.2024");
+                newformData.append("PropertySearchForm[location]", "602433");
+                newformData.append("PropertySearchForm[checkinDate]", "27.05.2024");
                 newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-                newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 4 }]));
-                newformData.append("PropertySearchForm[partner]", "11115");
+                newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
+                newformData.append("PropertySearchForm[partner]", "11090");
                 newformData.append("PropertySearchForm[map]", "true");
                 initMap(newformData)
 
