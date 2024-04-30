@@ -244,7 +244,7 @@ async function initMap(formData) {
     let quiQuoElem = property.quiQuo;
     let quiQuoBlock = ''
 
-    if (adminFlag == true) {
+    if (quiQuoElem != null) {
       quiQuoBlock = `
         <div class="qq-btn-place" data-value="${quiQuoElem}">
         </div>
