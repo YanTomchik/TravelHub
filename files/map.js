@@ -10,7 +10,7 @@ const loaderDiv = document.getElementById('loader-map');
 const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper');
 
 let layoutDev = (typeof implemented === 'undefined');
-console.log(layoutDev);
+// console.log(layoutDev);
 
 const adminFlag = false;
 const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map' : 'hotels/search-map';
@@ -82,9 +82,9 @@ async function getData(formDataFromRequest) {
             formData = searchParams;
         } else {
             formData = new FormData();
-            formData.append("PropertySearchForm[location]", "602433");
-            formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-            formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+            formData.append("PropertySearchForm[location]", "179898");
+            formData.append("PropertySearchForm[checkinDate]", "13.06.2024");
+            formData.append("PropertySearchForm[checkoutDate]", "14.06.2024");
             formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
             formData.append("PropertySearchForm[partner]", "11090");
             formData.append("PropertySearchForm[map]", "true");
@@ -151,8 +151,15 @@ async function initMap(formData) {
     lng: lngC,
   };
 
+  let zoomInitMap = 13;
+  if(countHotels >= 500 && countHotels <= 999){
+    zoomInitMap = 14;
+  }else if(countHotels >= 1000){
+    zoomInitMap = 15;
+  }  
+
   const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
-    zoom: 13,
+    zoom: zoomInitMap,
     center: center,
     mapId: "4504f8b37365c3d0",
     mapTypeControl: false,
@@ -409,7 +416,6 @@ async function initMap(formData) {
     })
   });
 
-
 function centerMapZoom (offsetValue, map, marker){
   var projection = map.getProjection();
   var centerPixel = projection.fromLatLngToPoint(marker.position);
@@ -559,7 +565,7 @@ function buildBottomContent (property, currencyName, countHotels, flagrRefundabl
             ${property.name}
           </div>
           <div class="marker-popup-header-title-stars-list" id="marker-popup-header-title-stars-list">
-            ${buildRatingBlock(property.rating)}
+            ${buildRatingBlock(property.stars)}
           </div>
         </div>
         <div class="marker-popup-header-description-wrapper">
@@ -700,6 +706,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
           if (!layoutDev) {
 
+              const submitBtn = document.querySelector('btn.btn-primary.filter-apply-btn-mobile');
+              submitBtn.click();
+
               let form = document.getElementById('properties-search-form');
               console.log(form)
               let newformData = new FormData(form);
@@ -742,7 +751,5 @@ function togglerMobileStyleFilterBlock(){
 function clearCachedData() {
   localStorage.removeItem('cachedData');
 }
-
-
 
 
