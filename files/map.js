@@ -693,6 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
               if(mapFilterInputValue == filterInputValue){
                 item.checked = checked;
+                triggerInputEvent(item)
               }
 
           });
@@ -705,9 +706,6 @@ document.addEventListener('DOMContentLoaded', function() {
           markerStarsList.innerHTML = ''       
 
           if (!layoutDev) {
-
-              const submitBtn = document.querySelector('btn.btn-primary.filter-apply-btn-mobile');
-              submitBtn.click();
 
               let form = document.getElementById('properties-search-form');
               console.log(form)
