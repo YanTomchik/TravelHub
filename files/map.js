@@ -7,17 +7,15 @@
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
 const loaderDiv = document.getElementById('loader-map');
-const leftSectionWrapper = document.getElementById('map-dashboard-left-section-wrapper');
+const leftSectionWrapper = document.querySelector('.map-dashboard-left-section-wrapper');
+const mapCardsListBottomWrapper = document.querySelector('.map-dashboard-main-wrapper .map-dashboard-bottom-section-wrapper');
+const headerMapCountElement = document.querySelector('.map-dashboard-filter-header-description');
+const leftBlock = document.querySelector('.map-dashboard-cards-list');
+const mobileFilterApplyBtn = document.querySelector('.btn.btn-primary.map-filter-apply-btn-mobile');
 
 let layoutDev = (typeof implemented === 'undefined');
-// console.log(layoutDev);
 
-const adminFlag = false;
 const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map' : 'hotels/search-map';
-
-let currentOpenMarker = null;
-let currentOpenMarkerCheck = null;
-let flagRefresh = false;
 
 function triggerInputEvent(element) {
     let event = new Event('input', {
@@ -96,6 +94,9 @@ async function getData(formDataFromRequest) {
   return data;
 }
 
+let map;
+let markers = [];
+
 async function initMap(formData) {
   loaderDiv.style.display = 'block';
   // sync filters state
@@ -158,7 +159,7 @@ async function initMap(formData) {
     zoomInitMap = 15;
   }  
 
-  const map = new google.maps.Map(document.getElementById("map-dashoard-wrapper"), {
+  map = new google.maps.Map(document.querySelector(".map-dashoard-wrapper"), {
     zoom: zoomInitMap,
     center: center,
     mapId: "4504f8b37365c3d0",
@@ -174,7 +175,8 @@ async function initMap(formData) {
     closeButton:false,
   });
 
-  const markers = dataHotelsObj.map((property, i) => {
+
+  markers = dataHotelsObj.map((property, i) => {
 
     const nameHotel = property.name;
 
@@ -182,6 +184,8 @@ async function initMap(formData) {
       lat: parseFloat(property.latitude),
       lng: parseFloat(property.longitude)
     }
+
+    let hotelPosition = new google.maps.LatLng(property.lat, property.lng);
 
     let flagrRefundable = property.refundable;
 
@@ -266,6 +270,7 @@ async function initMap(formData) {
         position: position,
         title: nameHotel,
     });
+    markers.push(marker);
 
     //Генерация блока для инфо виндоу
     const contentInfoWindow = `
@@ -350,42 +355,34 @@ async function initMap(formData) {
 
     });
 
-    const leftBlockItems = document.querySelectorAll('.map-dashboard-card-item');
+    leftBlock.addEventListener('click', function(event) {
+        const target = event.target.closest('.map-dashboard-card-item');
+        if (!target) return;
 
-    leftBlockItems.forEach((item)=>{
+        const curItemLat = target.getAttribute('data-position-lat');
+        const curItemLng = target.getAttribute('data-position-lng');
 
-    item.addEventListener('click', () =>{
-        const curItemLat = item.getAttribute('data-position-lat');
-        const curItemLng = item.getAttribute('data-position-lng');
+        if (marker.position.Gg == curItemLat && marker.position.Hg == curItemLng) {
+            // Вычисление смещения для infoWindow
+            map.setZoom(16);
 
-        if(marker.position.Gg == curItemLat && marker.position.Hg == curItemLng){
-          // Вычисление смещения для infoWindow
-          map.setZoom(16);
-          // Центрируем карту на маркере
-          if(window.innerWidth > 1024){
-            let offset = -90;
-            centerMapZoom(offset,map, marker)
+            // Центрируем карту на маркере
+            let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
+            centerMapZoom(offset, map, marker);
 
-          }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
-            let offset = -130;
-            centerMapZoom(offset,map, marker)
-          }
+            infoWindow.setContent(contentInfoWindow);
+            infoWindow.open(map, marker);
 
-          infoWindow.setContent(contentInfoWindow);
-          infoWindow.open(map, marker);
-
-          toggleContentVisibility()
-          buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-          marker.element.querySelector('.property').classList.add("highlight");
+            toggleContentVisibility();
+            buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+            marker.element.querySelector('.property').classList.add("highlight");
         }
-
-      })
     });
 
     return marker;
   });
 
-//Скрывание лоудера и открытие левого блока при прогрузке карты
+  //Скрывание лоудера и открытие левого блока при прогрузке карты
   google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
     loaderDiv.style.display = 'none';
     leftSectionWrapper.classList.add('active')
@@ -416,24 +413,14 @@ async function initMap(formData) {
     })
   });
 
-function centerMapZoom (offsetValue, map, marker){
-  var projection = map.getProjection();
-  var centerPixel = projection.fromLatLngToPoint(marker.position);
-  centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
-  var centerLatLng = projection.fromPointToLatLng(centerPixel);
-
-  map.setCenter(centerLatLng);
-}
-
-//Считывание клика на пустую область карты для закрытия инфо виндоу
+  //Считывание клика на пустую область карты для закрытия инфо виндоу
   google.maps.event.addListener(map, 'click', function(event) {
     // Закрыть infoWindow, если он 0рыт
     if (infoWindow) {
 
       infoWindow.close();
       toggleContentVisibility()
-      const mapCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
-      mapCardsListWrapper.classList.remove('active');
+      mapCardsListBottomWrapper.classList.remove('active');
 
     }
 
@@ -453,20 +440,30 @@ function centerMapZoom (offsetValue, map, marker){
     minimumClusterSize: 3
 };
   const markerCluster = new MarkerClusterer({ markers, map, clusterOptions});
-
+  
 }
 
 
+
+
+function centerMapZoom (offsetValue, map, marker){
+  var projection = map.getProjection();
+  var centerPixel = projection.fromLatLngToPoint(marker.position);
+  centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
+  var centerLatLng = projection.fromPointToLatLng(centerPixel);
+
+  map.setCenter(centerLatLng);
+}
+
 //Тоглер для очистки активных маркеров и активации нижнего блока при моб версии
 function toggleContentVisibility() {
-  const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
-  mapDashboardCardsListWrapper.classList.add('active');
+  // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
+  mapCardsListBottomWrapper.classList.add('active');
   let allMarkersProperty = document.querySelectorAll('.property');
       allMarkersProperty.forEach((item)=>{
         item.classList.remove('highlight')
       })
 }
-
 
 //Генерация маркеров
 function buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
@@ -485,8 +482,8 @@ function buildContent(property, currencyName, countHotels, flagrRefundable, rati
 
 //Генерация левого блока
 function buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
-  const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-  const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
+  // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
+  
 
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
@@ -543,18 +540,18 @@ function buildLeftContent(property, currencyName, countHotels, flagrRefundable, 
       </div>
     </div>
   `;
-  mapDashboardCardsListWrapper.appendChild(content)
+  leftBlock.appendChild(content)
 
 }
 
 //Генерация блока для мобильной версии
 function buildBottomContent (property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
-  const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
-  const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
+  // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
+  // const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
 
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
-  mapDashboardCardsListWrapper.innerHTML = `
+  mapCardsListBottomWrapper.innerHTML = `
     <div class = "map-dashboard-card-item">
       <div class="marker-popup-header-wrapper">
         <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
@@ -627,8 +624,8 @@ function buildRatingBlock (rating){
 const bodyTag = document.body;
 
 //Открытие карты и генерация ее
-const mapShowSearch = document.getElementById('result-amount-map-search-wrapper')
-const mapDashboardWrapper = document.getElementById('map-dashboard-main-wrapper-fade')
+const mapShowSearch = document.querySelector('.result-amount-map-search-wrapper')
+const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-fade')
 mapShowSearch.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'hidden';
@@ -638,14 +635,12 @@ mapShowSearch.addEventListener('click', function(){
 })
 
 //Открытие фильтра
-const mapDashboardFilterWrapper = document.getElementById('map-dashboard-filter-wrapper');
-const mapDashboardFilterBtn = document.getElementById('map-dashboard-filter-header-btn');
-const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-
+const mapDashboardFilterWrapper = document.querySelector('.map-dashboard-filter-wrapper');
+const mapDashboardFilterBtn = document.querySelector('.map-dashboard-filter-header-btn');
 
 mapDashboardFilterBtn.addEventListener('click', function(){
   mapDashboardFilterWrapper.classList.toggle('active')
-  mapDashboardCardsListWrapper.classList.toggle('hide')
+  leftBlock.classList.toggle('hide')
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
   togglerMobileStyleFilterBlock()
 
@@ -654,33 +649,28 @@ mapDashboardFilterBtn.addEventListener('click', function(){
 //Закрытие фильтра
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
 closeFilterBlockbtn.addEventListener('click', function(){
-  mapDashboardFilterWrapper.classList.toggle('active')
-  mapDashboardCardsListWrapper.classList.toggle('hide');
+  mapDashboardFilterWrapper.classList.toggle('active');
+  leftBlock.classList.toggle('hide')
+  mapCardsListBottomWrapper.classList.toggle('hide');
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
   togglerMobileStyleFilterBlock()
 })
 
 //Закрытие карты
 const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
-const mapCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-
 closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'scroll';
   leftSectionWrapper.classList.toggle('active');
-  mapCardsListWrapper.innerHTML = '';
+  clearMap()
 })
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').forEach(function(element) {
-      element.addEventListener('change', function() {
 
-          const markerStarsList = document.getElementById('marker-popup-header-title-stars-list');
-          
-          mapDashboardFilterWrapper.classList.toggle('active')
-          mapDashboardCardsListWrapper.classList.toggle('hide');
-          document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
-          togglerMobileStyleFilterBlock()
+  const mapFiltersInput = document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]');
+  
+  mapFiltersInput.forEach(function(element) {
+      element.addEventListener('change', function() {
 
           let classNameMapFilter = element.getAttribute('name');
           let classNameFilter = classNameMapFilter.split('map_')[1]
@@ -698,56 +688,86 @@ document.addEventListener('DOMContentLoaded', function() {
 
           });
 
-          if (typeof $.fn.yiiActiveForm === 'function') {
-              $('#properties-search-form').yiiActiveForm('validate', true);
+          // if (typeof $.fn.yiiActiveForm === 'function') {
+          //     $('#properties-search-form').yiiActiveForm('validate', true);
+          // }
+
+          
+          if(window.innerWidth > 770){
+            reInitMap()
           }
-
-          clearCachedData()
-          markerStarsList.innerHTML = ''       
-
-          if (!layoutDev) {
-
-              let form = document.getElementById('properties-search-form');
-              console.log(form)
-              let newformData = new FormData(form);
-              const newSearchParams = new URLSearchParams();
-
-              for (const pair of newformData) {
-                newSearchParams.append(pair[0], pair[1]);
-                console.log(pair[0], pair[1])
-              }
-              newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-              initMap(newSearchParams)
-
-            } else {
-
-                let newformData = new FormData();
-                newformData.append("PropertySearchForm[location]", "602433");
-                newformData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-                newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-                newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
-                newformData.append("PropertySearchForm[partner]", "11090");
-                newformData.append("PropertySearchForm[map]", "true");
-                initMap(newformData)
-
-            }
+          
       });
   });
 });
 
+//Нажатие на кнопку фильтра
 
+mobileFilterApplyBtn.addEventListener('click', () => {
+  reInitMap()
+})
+
+function reInitMap() {
+
+  mapDashboardFilterWrapper.classList.toggle('active')
+  leftBlock.classList.toggle('hide');
+  document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
+  togglerMobileStyleFilterBlock()
+
+  const markerStarsList = document.getElementById('marker-popup-header-title-stars-list');
+  const propertiesSearchForm = document.getElementById('properties-search-form');
+  clearCachedData()
+  markerStarsList.innerHTML = ''
+
+  if (!layoutDev) {
+    let newformData = new FormData(propertiesSearchForm);
+    const newSearchParams = new URLSearchParams();
+
+    for (const pair of newformData) {
+      newSearchParams.append(pair[0], pair[1]);
+      console.log(pair[0], pair[1])
+    }
+    newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+    clearMap()
+    initMap(newSearchParams)
+
+  } else {
+
+    let newformData = new FormData();
+    newformData.append("PropertySearchForm[location]", "602433");
+    newformData.append("PropertySearchForm[checkinDate]", "27.05.2024");
+    newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+    newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
+    newformData.append("PropertySearchForm[partner]", "11090");
+    newformData.append("PropertySearchForm[map]", "true");
+    clearMap()
+    initMap(newformData)
+
+  }
+}
 
 function togglerMobileStyleFilterBlock(){
   if(window.innerWidth <= 770){
     let filterWrapperMobile = document.querySelector('.map-dashboard-left-section-wrapper.active');
-    filterWrapperMobile.classList.toggle('mobile')
+    filterWrapperMobile.classList.toggle('mobile');
   }
 }
-
 
 // Функция для очистки данных из локального хранилища
 function clearCachedData() {
   localStorage.removeItem('cachedData');
 }
 
+// Функция для очистки карты
+function clearMap() {
+  leftBlock.innerHTML = '';
+  mapCardsListBottomWrapper.innerHTML = '';
+
+  // Удаление всех маркеров
+  markers.forEach(marker => marker.setMap(null));
+  markers.length = 0;
+
+  // Очистка карты
+  map = null;
+}
 
