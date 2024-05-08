@@ -672,11 +672,11 @@ $(document).ready(function() {
 
     if (typeof $.fn.yiiActiveForm === 'function') {
       $('#properties-search-form').yiiActiveForm('validate', true);
-      reInitMap()
+      if(window.innerWidth > 770){
+        reInitMap()
+      }
     }
 
-    //if(window.innerWidth > 770){
-    //}
   });
 });
 
