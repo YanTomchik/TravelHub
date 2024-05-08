@@ -23,6 +23,7 @@ function triggerInputEvent(element) {
         cancelable: true
     });
     element.dispatchEvent(event);
+    console.log(element);
 }
 
 async function fetchDataFromAPI(formData) {
@@ -100,20 +101,13 @@ let markers = [];
 async function initMap(formData) {
   loaderDiv.style.display = 'block';
   // sync filters state
-
   document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
-    let className = element.getAttribute('name');
-    let checked = element.checked;
-    let filterInputValue = element.value;
-    let linkedItems = document.querySelectorAll(`#map_filters [name="map_${className}"]`);
+    var className = element.className;
+    var checked = element.checked;
+    var linkedItems = document.querySelectorAll('#map_filters .' + className);
 
-    linkedItems.forEach(function(item) {
-      let mapFilterInputValue = item.value;
-
-        if(mapFilterInputValue == filterInputValue){
-          item.checked = checked;
-        }
-
+    linkedItems.forEach(function(linkedItem) {
+       linkedItem.checked = checked;
     });
   });
 
@@ -157,7 +151,7 @@ async function initMap(formData) {
     zoomInitMap = 14;
   }else if(countHotels >= 1000){
     zoomInitMap = 15;
-  }  
+  }
 
   map = new google.maps.Map(document.querySelector(".map-dashoard-wrapper"), {
     zoom: zoomInitMap,
@@ -438,12 +432,10 @@ async function initMap(formData) {
     zoomOnClick: true,
     averageCenter: false,
     minimumClusterSize: 3
-};
+  };
   const markerCluster = new MarkerClusterer({ markers, map, clusterOptions});
-  
+
 }
-
-
 
 
 function centerMapZoom (offsetValue, map, marker){
@@ -483,7 +475,7 @@ function buildContent(property, currencyName, countHotels, flagrRefundable, rati
 //Генерация левого блока
 function buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
   // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-  
+
 
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
@@ -665,41 +657,29 @@ closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
   clearMap()
 })
 
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+  $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function() {
+    var className = $(this).attr('class');
+    var checked = $(this).is(':checked');
+    var linkedItems = $('#filters .' + className);
+    linkedItems.prop('checked', checked);
 
-  const mapFiltersInput = document.querySelectorAll('#map_filters input[type="checkbox"], #map_filters input[type="radio"]');
-  
-  mapFiltersInput.forEach(function(element) {
-      element.addEventListener('change', function() {
+    linkedItems.each(function() {
+        var event = new Event('change', { bubbles: true });
+        this.dispatchEvent(event);
+    });
 
-          let classNameMapFilter = element.getAttribute('name');
-          let classNameFilter = classNameMapFilter.split('map_')[1]
-          let checked = element.checked;
-          let mapFilterInputValue = element.value;
-          let linkedItems = document.querySelectorAll(`#filters [name="${classNameFilter}"]`);
 
-          linkedItems.forEach(function(item) {
-            let filterInputValue = item.value;
+    if (typeof $.fn.yiiActiveForm === 'function') {
+      $('#properties-search-form').yiiActiveForm('validate', true);
+      reInitMap()
+    }
 
-              if(mapFilterInputValue == filterInputValue){
-                item.checked = checked;
-                triggerInputEvent(item)
-              }
-
-          });
-
-          // if (typeof $.fn.yiiActiveForm === 'function') {
-          //     $('#properties-search-form').yiiActiveForm('validate', true);
-          // }
-
-          
-          if(window.innerWidth > 770){
-            reInitMap()
-          }
-          
-      });
+    //if(window.innerWidth > 770){
+    //}
   });
 });
+
 
 //Нажатие на кнопку фильтра
 
