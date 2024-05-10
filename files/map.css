@@ -25,6 +25,11 @@
     display: none!important;
   }
   /*  */
+
+  .marker-popup-header-info .qq-btn-place{
+    display: flex;
+    justify-content: left;
+  }
   
   .property {
     align-items: center;
