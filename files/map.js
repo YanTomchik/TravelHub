@@ -23,7 +23,7 @@ function triggerInputEvent(element) {
         cancelable: true
     });
     element.dispatchEvent(event);
-    console.log(element);
+    // console.log(element);
 }
 
 async function fetchDataFromAPI(formData) {
@@ -81,11 +81,11 @@ async function getData(formDataFromRequest) {
             formData = searchParams;
         } else {
             formData = new FormData();
-            formData.append("PropertySearchForm[location]", "179898");
-            formData.append("PropertySearchForm[checkinDate]", "13.06.2024");
-            formData.append("PropertySearchForm[checkoutDate]", "14.06.2024");
+            formData.append("PropertySearchForm[location]", "4");
+            formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
+            formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
             formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-            formData.append("PropertySearchForm[partner]", "11090");
+            formData.append("PropertySearchForm[partner]", "11115");
             formData.append("PropertySearchForm[map]", "true");
         }
       }
@@ -101,15 +101,15 @@ let markers = [];
 async function initMap(formData) {
   loaderDiv.style.display = 'block';
   // sync filters state
-  document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
-    var className = element.className;
-    var checked = element.checked;
-    var linkedItems = document.querySelectorAll('#map_filters .' + className);
+  // document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
+  //   var className = element.className;
+  //   var checked = element.checked;
+  //   var linkedItems = document.querySelectorAll('#map_filters .' + className);
 
-    linkedItems.forEach(function(linkedItem) {
-       linkedItem.checked = checked;
-    });
-  });
+  //   linkedItems.forEach(function(linkedItem) {
+  //      linkedItem.checked = checked;
+  //   });
+  // });
 
   const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
   mapRangeInput[1].value = document.querySelector('[name="maxPrice"]').value;
@@ -301,7 +301,7 @@ async function initMap(formData) {
               ${priceNetBlock}
               <div class="marker-popup-footer-description">
                 <div class="marker-popup-footer-description-main">
-                  ${translationsHub?.onlyOneRoom ?? 'Всего (включая налоги и сборы):'}
+                  Всего (включая налоги и сборы):
                 </div>
                 <div class="marker-popup-footer-description-price">
                   ${property.priceTotal} ${currencyName}
@@ -697,7 +697,10 @@ function reInitMap() {
   const markerStarsList = document.getElementById('marker-popup-header-title-stars-list');
   const propertiesSearchForm = document.getElementById('properties-search-form');
   clearCachedData()
-  markerStarsList.innerHTML = ''
+  if(markerStarsList !=null){
+    markerStarsList.innerHTML = ''
+  }
+  
 
   if (!layoutDev) {
     let newformData = new FormData(propertiesSearchForm);
@@ -705,10 +708,9 @@ function reInitMap() {
 
     for (const pair of newformData) {
       newSearchParams.append(pair[0], pair[1]);
-      console.log(pair[0], pair[1])
+      // console.log(pair[0], pair[1])
     }
     newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-    clearMap()
     initMap(newSearchParams)
 
   } else {
@@ -720,10 +722,11 @@ function reInitMap() {
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");
-    clearMap()
     initMap(newformData)
 
   }
+
+  clearMap()
 }
 
 function togglerMobileStyleFilterBlock(){
