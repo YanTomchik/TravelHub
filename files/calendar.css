@@ -1066,3 +1066,12 @@
 .default-input-date.hide{
   display: none;
 }
+
+@media (max-width: 566px){
+  .search-form .checkboxes-row {
+    gap: 8px;
+}
+.search-form .checkboxes-row .checkbox-block.charter{
+  margin-top: 0px;
+}
+}
