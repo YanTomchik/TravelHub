@@ -171,6 +171,8 @@
       grid-template-columns: repeat(7, 58px);
       margin: 8px 0 3px
     }
+
+
   
     .air-datepicker-body--day-name {
       color: #7B8199;
@@ -689,7 +691,9 @@
     }
   
     .air-datepicker.-is-mobile- * {
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      grid-template-columns: repeat(7, 46px);
+      grid-auto-rows: 46px;
     }
   
     .air-datepicker.-is-mobile- .air-datepicker--pointer {
