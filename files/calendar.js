@@ -16,8 +16,8 @@ let charterDirectionsCache = null;
 
 const datepickerInput = document.querySelector('.form-control.form-control-solid.form-control-lg');
 
-let codeIataFrom = null;
-let codeIataTo = null;
+let codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
+let codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
 const radioButtons = document.querySelectorAll('.flight-route');
 const charterCheckbox = document.querySelector('.charter-checkbox');
 
@@ -57,6 +57,10 @@ radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', () => {
         datepickerInput.innerHTML = '';
         datepickerInput.value = '';
+        inputCharterFrom.value = ''
+    inputCharterFrom.innerHTML = ''
+    inputCharterTo.value = ''
+    inputCharterTo.innerHTML = ''
         radioButtonValue = radioButton.value;
 
         if (radioButtonValue == 'trip' && !charterCheckbox.checked) {
@@ -90,6 +94,11 @@ charterCheckbox.addEventListener('change', () => {
     radioButtonValue = radiobuttonValueCheck()
     datepickerInput.innerHTML = '';
     datepickerInput.value = '';
+
+    inputCharterFrom.value = ''
+    inputCharterFrom.innerHTML = ''
+    inputCharterTo.value = ''
+    inputCharterTo.innerHTML = ''
     // console.log(radioButtonValue)
     if (charterCheckbox.checked) {
 
