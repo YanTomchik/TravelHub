@@ -56,6 +56,7 @@
       justify-content: center;
       z-index: 1;
       gap: 2px;
+      font-size: 18px;
     }
   
     .air-datepicker-cell.-focus- {
@@ -167,7 +168,7 @@
   
     .air-datepicker-body--day-names {
       display: grid;
-      grid-template-columns: repeat(7, 48px);
+      grid-template-columns: repeat(7, 62px);
       margin: 8px 0 3px
     }
   
@@ -195,8 +196,8 @@
     }
   
     .air-datepicker-body--cells.-days- {
-      grid-template-columns: repeat(7, 48px);
-      grid-auto-rows: 48px;
+      grid-template-columns: repeat(7, 62px);
+      grid-auto-rows: 62px;
     }
   
     .air-datepicker-body--cells.-months- {
@@ -230,6 +231,10 @@
       cursor: pointer;
       align-items: center;
       justify-content: center
+    }
+
+    .air-datepicker-nav--title{
+      font-size: 18px;
     }
   
     .air-datepicker-nav--action {
@@ -351,7 +356,7 @@
       display: flex;
       align-items: center;
       flex: 1;
-      font-size: 14px;
+      font-size: 16px;
       text-align: center
     }
   
@@ -548,7 +553,7 @@
       --adp-background-color-in-range-focused: rgba(92, 196, 239, .2);
       --adp-background-color-selected-other-month-focused: #8ad5f4;
       --adp-background-color-selected-other-month: #a2ddf6;
-      --adp-color: #4a4a4a;
+      --adp-color: #000;
       --adp-color-secondary: #9c9c9c;
       --adp-accent-color: #4eb5e6;
       --adp-color-current-date: var(--adp-accent-color);
@@ -623,7 +628,8 @@
       width: fit-content;
       position: absolute;
       transition: opacity var(--adp-transition-duration) var(--adp-transition-ease), transform var(--adp-transition-duration) var(--adp-transition-ease);
-      z-index: var(--adp-z-index)
+      z-index: var(--adp-z-index);
+      /* transform: scale(1.2); */
     }
   
     .air-datepicker:not(.-custom-position-) {
@@ -863,7 +869,7 @@
     }
 
     .air-datepicker .day-price {
-      font-size: 9px;
+      font-size: 12px;
     font-weight: 400;
     line-height: 12px;
       color:#9ea9b7;
@@ -882,8 +888,8 @@
     }
 
     .loader-calendar {
-      border: 16px solid #f3f3f3; /* Light grey */
-      border-top: 16px solid #3498db; /* Blue */
+      border: 16px solid #f3f3f3; 
+      border-top: 16px solid #3498db;
       border-radius: 50%;
       width: 120px;
       height: 120px;
@@ -909,7 +915,6 @@
       left: 0;
       z-index: 4;
       background-color: #F4F6F990;
-      /* background-color: transparent; */
       display: block;
     }
     
@@ -927,8 +932,8 @@
       box-sizing: border-box;
       /* animation: rotation 1s linear infinite; */
       position: absolute;
-      top: 20%;
-      left: 43%;
+      top: 25%;
+      left: 45%;
       z-index: 9999;
       }
 
@@ -975,7 +980,7 @@
   grid-template-columns: 2fr 1fr; /* Три колонки равной ширины */
   gap: 20px;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   background-color: #fff;
   width: 500px;
   padding: 20px;

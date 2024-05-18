@@ -771,3 +771,30 @@ function hideLoaderCharter(typeH) {
     const loader = document.querySelector(`.loader-calendar-wrapper.${typeH}`);
     loader.style.display = 'none';
 }
+
+document.getElementById('input-charter-class-from').addEventListener('input', function() {
+    let filter = this.value.toUpperCase();
+    let items = document.querySelectorAll('#dropdown-charter-list-country-from .dropdown-charter-item');
+    
+    items.forEach(function(item) {
+      if (item.textContent.toUpperCase().indexOf(filter) > -1) {
+        item.style.display = ''; // Показать элемент
+      } else {
+        item.style.display = 'none'; // Скрыть элемент
+      }
+    });
+  });
+
+
+  document.getElementById('input-charter-class-to').addEventListener('input', function() {
+    let filter = this.value.toUpperCase();
+    let items = document.querySelectorAll('#dropdown-charter-list-country-to .dropdown-charter-item');
+    
+    items.forEach(function(item) {
+      if (item.textContent.toUpperCase().indexOf(filter) > -1) {
+        item.style.display = ''; // Показать элемент
+      } else {
+        item.style.display = 'none'; // Скрыть элемент
+      }
+    });
+  });
