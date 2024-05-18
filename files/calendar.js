@@ -38,7 +38,10 @@ if (window.innerWidth < 767) {
 
 //Изначальное отображение календаря
 if (datepickerInput) {
-    datepicker = createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
+    console.log(radioButtonValue)
+    datepicker = mainCreateDatepickers(datepickerInput,radioButtonValue, 'startDatepicker');
+    
+    
 }
 
 function radiobuttonValueCheck() {
@@ -50,63 +53,85 @@ function radiobuttonValueCheck() {
         }
 
     });
+    
     return rdbValue;
 }
 
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', () => {
-        datepickerInput.innerHTML = '';
-        datepickerInput.value = '';
-        inputCharterFrom.value = ''
+function mainCreateDatepickers (datepickerInput, radioButtonValue, typeRenderDatepicker){
+    if (radioButtonValue == 'trip' && !charterCheckbox.checked) {
+        if(typeRenderDatepicker != 'startDatepicker'){
+            datepicker.destroy()
+        }
+        
+        codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
+        codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
+
+        datepicker = createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
+    }
+    else if (radioButtonValue == 'one' && !charterCheckbox.checked) {
+        if(typeRenderDatepicker != 'startDatepicker'){
+            datepicker.destroy()
+        }
+
+        codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
+        codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
+
+        datepicker = createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
+    } else if (radioButtonValue == 'trip' && charterCheckbox.checked) {
+        if(typeRenderDatepicker != 'startDatepicker'){
+            datepicker.destroy()
+        }
+        clearCharterFlightsCache();
+        clearDirectionsCache();
+        datepicker = createTwoWayCharterCalendar(datepickerInput, 'twoWay')
+    }
+    else if (radioButtonValue == 'one' && charterCheckbox.checked) {
+        if(typeRenderDatepicker != 'startDatepicker'){
+            datepicker.destroy()
+        }
+        clearCharterFlightsCache();
+        clearDirectionsCache();
+        datepicker = createOneWayCharterCalendar(datepickerInput, 'oneWay')
+    }
+    return datepicker;
+}
+
+function clearInputs (){
+    datepickerInput.innerHTML = '';
+    datepickerInput.value = '';
+    inputCharterFrom.value = ''
     inputCharterFrom.innerHTML = ''
     inputCharterTo.value = ''
-    inputCharterTo.innerHTML = ''
+    inputCharterTo.innerHTML = '';
+}
+
+function togglerInputsShowHide (){
+    charterInputFrom.classList.toggle('active');
+    charterInputTo.classList.toggle('active');
+
+    defaultInputFrom.classList.toggle('hide');
+    defaultInputTo.classList.toggle('hide');
+}
+
+
+
+radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', () => {
+        
+    clearInputs()
         radioButtonValue = radioButton.value;
 
-        if (radioButtonValue == 'trip' && !charterCheckbox.checked) {
-            datepicker.destroy()
-            codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
-            codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
-
-            datepicker = createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
-        }
-        else if (radioButtonValue == 'one' && !charterCheckbox.checked) {
-            datepicker.destroy()
-
-            codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
-            codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
-
-            datepicker = createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
-        } else if (radioButtonValue == 'trip' && charterCheckbox.checked) {
-            datepicker.destroy()
-            datepicker = createTwoWayCharterCalendar(datepickerInput, 'twoWay')
-        }
-        else if (radioButtonValue == 'one' && charterCheckbox.checked) {
-            datepicker.destroy()
-
-            datepicker = createOneWayCharterCalendar(datepickerInput, 'oneWay')
-        }
+        datepicker = mainCreateDatepickers(datepickerInput,radioButtonValue);
     });
 
 });
 
 charterCheckbox.addEventListener('change', () => {
     radioButtonValue = radiobuttonValueCheck()
-    datepickerInput.innerHTML = '';
-    datepickerInput.value = '';
-
-    inputCharterFrom.value = ''
-    inputCharterFrom.innerHTML = ''
-    inputCharterTo.value = ''
-    inputCharterTo.innerHTML = ''
-    // console.log(radioButtonValue)
+    clearInputs()
     if (charterCheckbox.checked) {
 
-        charterInputFrom.classList.toggle('active');
-        charterInputTo.classList.toggle('active');
-
-        defaultInputFrom.classList.toggle('hide');
-        defaultInputTo.classList.toggle('hide');
+        togglerInputsShowHide()
 
 
         datepicker.destroy()
@@ -119,12 +144,7 @@ charterCheckbox.addEventListener('change', () => {
         }
 
     } else {
-        // datepicker.destroy()
-        charterInputFrom.classList.toggle('active');
-        charterInputTo.classList.toggle('active');
-
-        defaultInputFrom.classList.toggle('hide');
-        defaultInputTo.classList.toggle('hide');
+        togglerInputsShowHide()
     }
     
 })
@@ -153,8 +173,7 @@ function findFlightData(from, to) {
     return null; // если ничего не найдено
 }
 
-
-const splitFlightsData = (data) => {
+const splitFlightsDataCharterTwoWay = (data) => {
     const newData = {};
 
     for (const key in data) {
@@ -167,8 +186,8 @@ const splitFlightsData = (data) => {
             }
 
             newData[fromCode][toCode] = {
-                from: parseDates(data[key].from),
-                back: parseDates(data[key].back)
+                from: parseDatesCharterTwoWay(data[key].from),
+                back: parseDatesCharterTwoWay(data[key].back)
             };
         }
     }
@@ -177,7 +196,7 @@ const splitFlightsData = (data) => {
 };
 
 // Функция для парсинга дат (учитывает возможность массивов и объектов)
-const parseDates = (dates) => {
+const parseDatesCharterTwoWay = (dates) => {
     if (Array.isArray(dates)) {
         return dates; // Возвращаем массив, если dates является массивом
     } else if (typeof dates === 'object') {
@@ -188,6 +207,22 @@ const parseDates = (dates) => {
     }
 };
 
+
+// Функция для получения кэшированных данных из локального хранилища
+function getCachedDataCharterFlights() {
+    const cachedData = localStorage.getItem('charterData');
+    if (cachedData) {
+        return JSON.parse(cachedData);
+    }
+    return null;
+}
+
+// Функция для сохранения данных в локальное хранилище
+function setLocalStorageCharterFlights(data) {
+    const jsonData = JSON.stringify(data);
+    localStorage.setItem('charterData', jsonData);
+}
+
 async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
     const apiUrl = 'https://chartertickets.com.ua/api/avia';
     const token = 'MjFL6mR6DGfHDA9Y3d_rDB60D-sK9MXV';
@@ -195,7 +230,13 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
     codeIataFrom = inputCharterFrom.value;
     codeIataTo = inputCharterTo.value;
 
-    console.log(typeWay)
+    // Проверка кэша
+    const cachedData = getCachedDataCharterFlights();
+    if (cachedData) {
+        return processFlightData(typeWay, cachedData, codeIataFrom, codeIataTo);
+    }
+
+    console.log(typeWay);
 
     try {
         showLoader();
@@ -203,102 +244,153 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        let flightData = null;
+        setLocalStorageCharterFlights(data);
 
-        if (typeWay == 'oneWay') {
-            const formattedFlights = Object.entries(data).reduce((acc, [flight, dates]) => {
-                const from = flight.slice(0, 3);
-                const to = flight.slice(3);
-                acc[flight] = { from, to, dates };
-                return acc;
-            }, {});
-
-            // Функция для поиска рейса по заданным параметрам
-            const findFlightData = (formattedFlights, from, to) => {
-                for (const [flight, data] of Object.entries(formattedFlights)) {
-                    if (data.from === from && data.to === to) {
-                        return data;
-                    }
-                }
-                return null; // если ничего не найдено
-            };
-
-            // Поиск рейсов по заданным параметрам
-            flightData = findFlightData(formattedFlights, codeIataFrom, codeIataTo);
-        } else {
-            const newFormattedFlightsData = splitFlightsData(data);
-                const getFlightData = (data, fromCode, toCode) => {
-                    if (data[fromCode] && data[fromCode][toCode]) {
-                        return {
-                            from: data[fromCode][toCode].from,
-                            back: data[fromCode][toCode].back
-                        };
-                    } else {
-                        return null;  // Возвращаем null, если данные не найдены
-                    }
-                };
-                flightData = getFlightData(newFormattedFlightsData, codeIataFrom, codeIataTo);
-
-            
-        }
-
-        
-        return flightData
-
+        return processFlightData(typeWay, data, codeIataFrom, codeIataTo);
     } catch (error) {
         throw new Error('There was a problem with your fetch operation:', error);
     }
+}
+
+function processFlightData(typeWay, data, codeIataFrom, codeIataTo) {
+    let flightData = null;
+
+    if (typeWay === 'oneWay') {
+        const formattedFlights = Object.entries(data).reduce((acc, [flight, dates]) => {
+            const from = flight.slice(0, 3);
+            const to = flight.slice(3);
+            acc[flight] = { from, to, dates };
+            return acc;
+        }, {});
+
+        // Функция для поиска рейса по заданным параметрам
+        const findFlightData = (formattedFlights, from, to) => {
+            for (const [flight, data] of Object.entries(formattedFlights)) {
+                if (data.from === from && data.to === to) {
+                    return data;
+                }
+            }
+            return null; // если ничего не найдено
+        };
+
+        // Поиск рейсов по заданным параметрам
+        flightData = findFlightData(formattedFlights, codeIataFrom, codeIataTo);
+    } else {
+        const newFormattedFlightsData = splitFlightsDataCharterTwoWay(data);
+        const getFlightData = (data, fromCode, toCode) => {
+            if (data[fromCode] && data[fromCode][toCode]) {
+                return {
+                    from: data[fromCode][toCode].from,
+                    back: data[fromCode][toCode].back
+                };
+            } else {
+                return null;  // Возвращаем null, если данные не найдены
+            }
+        };
+        flightData = getFlightData(newFormattedFlightsData, codeIataFrom, codeIataTo);
+    }
+
+    return flightData;
+}
+
+
+// Функция для получения кэшированных данных из локального хранилища
+function getCachedDirectionsData() {
+    const cachedData = localStorage.getItem('directionsData');
+    if (cachedData) {
+        return JSON.parse(cachedData);
+    }
+    return null;
+}
+
+// Функция для сохранения данных в локальное хранилище
+function setLocalStorageDirectionsData(data) {
+    const jsonData = JSON.stringify(data);
+    localStorage.setItem('directionsData', jsonData);
 }
 
 async function getFlightCharterDirectionsCalendar() {
     const apiUrl = 'https://chartertickets.com.ua/api/avia/directions';
     const token = 'MjFL6mR6DGfHDA9Y3d_rDB60D-sK9MXV';
 
+    // Проверка кэша
+    const cachedData = getCachedDirectionsData();
+    if (cachedData) {
+        return processDirectionsData(cachedData);
+    }
+
     try {
         const response = await fetch(`${apiUrl}?token=${token}`);
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        // console.log(data);
-        const flightObject = data.reduce((acc, flight) => {
-            const from = flight.slice(0, 3);
-            const to = flight.slice(3);
-            acc[flight] = { from, to };
-            return acc;
-        }, {});
+        setLocalStorageDirectionsData(data);
 
-        
-        return flightObject;
+        return processDirectionsData(data);
     } catch (error) {
         throw new Error('There was a problem with your fetch operation:', error);
     }
 }
 
+function processDirectionsData(data) {
+    const flightObject = data.reduce((acc, flight) => {
+        const from = flight.slice(0, 3);
+        const to = flight.slice(3);
+        acc[flight] = { from, to };
+        return acc;
+    }, {});
+
+    return flightObject;
+}
+
+
+// Функция для получения кэшированных данных из локального хранилища
+function getCachedFlightData(key) {
+    const cachedData = localStorage.getItem(key);
+    if (cachedData) {
+        return JSON.parse(cachedData);
+    }
+    return null;
+}
+
+// Функция для сохранения данных в локальное хранилище
+function setLocalStorageFlightData(key, data) {
+    const jsonData = JSON.stringify(data);
+    localStorage.setItem(key, jsonData);
+}
+
+// Функция для генерации уникального ключа для кэширования на основе параметров запроса
+function generateCacheKey(firstDate, daysAfter, codeIataFrom, codeIataTo, typeRequest) {
+    return `${firstDate}_${daysAfter}_${codeIataFrom}_${codeIataTo}_${typeRequest}`;
+}
+
+// Функция для очистки кэша данных о рейсах
+function clearFlightCache() {
+    localStorage.clear();  // Или localStorage.removeItem(key) для конкретного ключа
+}
+
+// Основная функция для получения данных
 const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest) => {
     const apiUrl = 'https://api.travelhub.by/flight/calendar';
 
     codeIataFrom = document.getElementById('flightsearchform-locationfrom').options[1].value;
     codeIataTo = document.getElementById('flightsearchform-locationto').options[1].value;
 
-
     let firstDate = todayString;
     let daysAfter = calculateDaysAfter(today);
-    let daysBefore = '5'
+    let daysBefore = '5';
     let termIata = null;
-    if (firstDateToSend != undefined) {
-        firstDate = firstDateToSend
+    if (firstDateToSend !== undefined) {
+        firstDate = firstDateToSend;
     }
-    if (daysAfterToSend != undefined) {
+    if (daysAfterToSend !== undefined) {
         daysAfter = daysAfterToSend;
-        // daysBefore = 0;
     }
 
-    if (typeRequest == 'return') {
-
+    if (typeRequest === 'return') {
         termIata = codeIataFrom;
         codeIataFrom = codeIataTo;
         codeIataTo = termIata;
-
     }
 
     const queryParams = new URLSearchParams({
@@ -317,6 +409,14 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     const headers = new Headers();
     headers.append('Authorization', 'Bearer AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ');
 
+    const cacheKey = generateCacheKey(firstDate, daysAfter, codeIataFrom, codeIataTo, typeRequest);
+
+    // Проверка кэша
+    const cachedData = getCachedFlightData(cacheKey);
+    if (cachedData) {
+        return cachedData;
+    }
+
     try {
         showLoader();
 
@@ -329,7 +429,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         }
 
         const data = await response.json();
-        // console.log(data)
+        setLocalStorageFlightData(cacheKey, data);
 
         return data;
     } catch (error) {
@@ -396,7 +496,9 @@ function showLoader() {
 
 function hideLoader() {
     const loader = document.querySelector('.loader-calendar-wrapper.calendar');
+    if (loader) {
     loader.style.display = 'none';
+    }
 }
 
 function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
@@ -665,7 +767,6 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
     return datepickerTwoWayCharter;
 }
 
-
 if (inputCharterFrom != undefined) {
     const dropdownCharter = document.getElementById('dropdown-charter-from');
     const dropDownCharterList = document.getElementById('dropdown-charter-list-country-from');
@@ -769,7 +870,9 @@ function showLoaderCharter(typeS) {
 function hideLoaderCharter(typeH) {
     // console.log(typeH)
     const loader = document.querySelector(`.loader-calendar-wrapper.${typeH}`);
-    loader.style.display = 'none';
+    if (loader) {
+        loader.style.display = 'none';
+        }
 }
 
 document.getElementById('input-charter-class-from').addEventListener('input', function() {
@@ -798,3 +901,28 @@ document.getElementById('input-charter-class-from').addEventListener('input', fu
       }
     });
   });
+
+  // Функция для очистки кэша данных о чартерных рейсах
+function clearCharterFlightsCache() {
+    localStorage.removeItem('charterData');
+}
+
+// Функция для очистки кэша данных о направлениях
+function clearDirectionsCache() {
+    localStorage.removeItem('directionsData');
+}
+
+document.getElementById('input-charter-class-from').addEventListener('input', function() {
+    if (this.value === '') {
+        document.getElementById('input-charter-class-to').value = '';
+    }
+});
+
+document.getElementById('input-charter-class-to').addEventListener('input', function() {
+    if (this.value === '') {
+        document.getElementById('input-charter-class-from').value = '';
+    }
+});
+
+//ДОБАВИТЬ ВЫЗОВ ЭТОЙ ФУНКЦИИ ПРИ ПОИСКЕ НОВОМ
+// clearFlightCache();

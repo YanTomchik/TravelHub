@@ -32,5 +32,5 @@ let optionTo = document.getElementById('flightsearchform-locationto').options[1]
     inputsArrAvia[0].textContent = secondInputAvia;
     inputsArrAvia[1].textContent = temp;
 
-
+    clearFlightCache();
 })
