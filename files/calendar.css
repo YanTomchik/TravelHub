@@ -1009,6 +1009,10 @@
   color: #3968BF;
   padding: 8px 16px;
   border-radius: 8px;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -1068,10 +1072,24 @@
 }
 
 @media (max-width: 566px){
-  .search-form .checkboxes-row {
-    gap: 8px;
-}
-.search-form .checkboxes-row .checkbox-block.charter{
-  margin-top: 0px;
-}
+    .search-form .checkboxes-row {
+      gap: 8px;
+  }
+  .search-form .checkboxes-row .checkbox-block.charter{
+    margin-top: 0px;
+  }
+
+  .dropdown-charter{
+    grid-template-columns: 2fr 1fr;
+    width: 93.5%;
+    max-height: none;
+  }
+
+  .dropdown-charter.to{
+    width: 100%;
+  }
+
+  .dropdown-charter-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
