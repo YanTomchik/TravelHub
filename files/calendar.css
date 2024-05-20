@@ -1101,4 +1101,9 @@
   .dropdown-charter-list {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .loader-calendar{
+    top: 25%;
+    left: 42%;;
+  }
 }
