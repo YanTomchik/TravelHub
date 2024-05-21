@@ -1,7 +1,14 @@
 const switchBtnAvia = document.getElementById('switch-btn-wrapper');
 switchBtnAvia.addEventListener('click', function (params) {
-    let optionFrom = document.getElementById('flightsearchform-locationfrom').options[1];
-    let optionTo = document.getElementById('flightsearchform-locationto').options[1];
+    let optionFromArr = document.getElementById('flightsearchform-locationfrom').options;
+    let optionToArr = document.getElementById('flightsearchform-locationto').options;
+
+    let optionFrom = optionFromArr[optionFromArr.length - 1];
+    let optionTo = optionToArr[optionToArr.length - 1];
+
+    console.log(optionFrom.value)
+    console.log(optionTo.value)
+
     // Сохраняем текущие значения option элементов
     let tempValue = optionFrom.value;
     let tempText = optionFrom.textContent;
@@ -14,6 +21,9 @@ switchBtnAvia.addEventListener('click', function (params) {
     optionTo.value = tempValue;
     optionTo.textContent = tempText;
     optionTo.selected = true;
+
+    console.log(optionFrom.value)
+    console.log(optionTo.value)
     // Получаем и сохраняем отображаемые значения из элементов select2
     let inputsArrAvia = document.querySelectorAll('.select2-selection__rendered');
     let firstInputAvia = inputsArrAvia[0].title;
@@ -49,7 +59,8 @@ switchBtnAvia.addEventListener('click', function (params) {
         // clearCharterFlightsCache()
     }
 
-
+    
+    // datepicker.clear()
     // Очищаем кеш полетов (если необходимо)
-    clearFlightCache();
+    clearFlightCache('flightCache_');
 });
