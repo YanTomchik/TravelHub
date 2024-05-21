@@ -760,7 +760,7 @@ if (inputCharterFrom != undefined) {
                         dropDownCharterList.appendChild(divElement); // Добавляем div с `from` в контейнер
                         // Добавляем обработчик клика для div
                         divElement.addEventListener('click', (event) => {
-                            inputCharterFrom.value = divElement.textContent;\
+                            inputCharterFrom.value = divElement.textContent;
                         });
                     }
 
