@@ -995,7 +995,7 @@
 
 .dropdown-charter-list{
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Три колонки равной ширины */
+  grid-template-columns: repeat(2, 1fr); /* Три колонки равной ширины */
   gap: 10px; /* Расстояние между элементами */
   width: 100%;
   overflow-y: scroll;
@@ -1004,8 +1004,9 @@
 
 
 .dropdown-charter-list-city{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Три колонки равной ширины */
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: repeat(1, 1fr);  */
   gap: 10px; /* Расстояние между элементами */
   width: 100%;
   overflow-y: scroll;
@@ -1013,7 +1014,7 @@
 }
 
 .dropdown-charter-item{
-  width: fit-content;
+  width: auto;
   background-color: #F3F6F9;
   color: #3968BF;
   padding: 8px 16px;
@@ -1021,7 +1022,12 @@
   min-width: 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+}
+
+.dropdown-charter-item.active{
+  background-color: #3968BF;
+  color: #fff;
 }
 
 

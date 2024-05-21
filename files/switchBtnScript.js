@@ -1,47 +1,11 @@
 const switchBtnAvia = document.getElementById('switch-btn-wrapper');
 switchBtnAvia.addEventListener('click', function (params) {
-    let optionFromArr = document.getElementById('flightsearchform-locationfrom').options;
-    let optionToArr = document.getElementById('flightsearchform-locationto').options;
+    
+    switchOptionsToRequest();
 
-    let optionFrom = optionFromArr[optionFromArr.length - 1];
-    let optionTo = optionToArr[optionToArr.length - 1];
+    switchTextContent();
 
-    console.log(optionFrom.value)
-    console.log(optionTo.value)
-
-    // Сохраняем текущие значения option элементов
-    let tempValue = optionFrom.value;
-    let tempText = optionFrom.textContent;
-
-    // Меняем значения option элементов местами
-    optionFrom.value = optionTo.value;
-    optionFrom.textContent = optionTo.textContent;
-    optionFrom.selected = true;
-
-    optionTo.value = tempValue;
-    optionTo.textContent = tempText;
-    optionTo.selected = true;
-
-    console.log(optionFrom.value)
-    console.log(optionTo.value)
-    // Получаем и сохраняем отображаемые значения из элементов select2
-    let inputsArrAvia = document.querySelectorAll('.select2-selection__rendered');
-    let firstInputAvia = inputsArrAvia[0].title;
-    let secondInputAvia = inputsArrAvia[1].title;
-
-    // Сохраняем текущее отображаемое значение первого инпута
-    let temp = firstInputAvia;
-
-    // Меняем отображаемые значения местами
-    inputsArrAvia[0].title = secondInputAvia;
-    inputsArrAvia[1].title = temp;
-
-    // Обновляем отображение значений
-    inputsArrAvia[0].textContent = secondInputAvia;
-    inputsArrAvia[1].textContent = temp;
-
-
-    // Получаем элементы <input>
+    // Получаем элементы input для чартеров
     let inputFrom = document.getElementById('input-charter-class-from');
     let inputTo = document.getElementById('input-charter-class-to');
 
@@ -56,11 +20,48 @@ switchBtnAvia.addEventListener('click', function (params) {
 
         inputTo.value = tempValue;
         inputTo.setAttribute('placeholder', tempText);
-        // clearCharterFlightsCache()
     }
 
-    
-    // datepicker.clear()
-    // Очищаем кеш полетов (если необходимо)
     clearFlightCache('flightCache_');
+    
 });
+
+
+function switchTextContent (){
+    // Получить элементы select и их отображаемые названия
+    const fromSelect = $('#flightsearchform-locationfrom');
+    const toSelect = $('#flightsearchform-locationto');
+    const fromOptionText = fromSelect.find('option:selected').text();
+    const toOptionText = toSelect.find('option:selected').text();
+
+    // Поменять местами значения и отображаемый текст
+    fromSelect.val(toSelect.val()).trigger('change');
+    toSelect.val(fromSelect.val()).trigger('change');
+
+    // Обновить текстовое содержимое на странице
+    const fromContainer = document.getElementById('select2-flightsearchform-locationfrom-container');
+    const toContainer = document.getElementById('select2-flightsearchform-locationto-container');
+    fromContainer.textContent = fromOptionText;
+    toContainer.textContent = toOptionText;
+}
+
+function switchOptionsToRequest (){
+    let optionFromArr = document.getElementById('flightsearchform-locationfrom').options;
+    let optionToArr = document.getElementById('flightsearchform-locationto').options;
+
+    let optionFrom = optionFromArr[optionFromArr.length - 1];
+    let optionTo = optionToArr[optionToArr.length - 1];
+
+    // Сохраняем текущие значения option элементов
+    let tempValue = optionFrom.value;
+    let tempText = optionFrom.textContent;
+
+    // Меняем значения option элементов местами
+    optionFrom.value = optionTo.value;
+    optionFrom.textContent = optionTo.textContent;
+    optionFrom.selected = true;
+
+    optionTo.value = tempValue;
+    optionTo.textContent = tempText;
+    optionTo.selected = true;
+}
