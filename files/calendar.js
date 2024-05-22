@@ -725,7 +725,6 @@ function togglerInputsShowHide (){
     defaultInputTo.classList.toggle('hide');
 }
 
-
 let selectedCityCode = null;
 let selectedCityName = null;
 
@@ -787,6 +786,9 @@ if (inputCharterFrom != undefined) {
                                 inputCharterFrom.setAttribute('iata-from', selectedCityCode);
                                 inputCharterFrom.value = selectedCityName;
                                 dropdownCharter.style.display = 'none';
+
+                                
+                                inputCharterTo.click();
                             });
                         });
                     });
@@ -890,6 +892,7 @@ if (inputCharterTo != undefined) {
         }, 0);
     });
 }
+
 
 function showLoaderCharter(typeS) {
     const loader = document.querySelector(`.loader-calendar-wrapper.${typeS}`);
