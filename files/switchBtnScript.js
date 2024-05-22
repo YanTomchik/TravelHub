@@ -28,21 +28,27 @@ switchBtnAvia.addEventListener('click', function (params) {
 
 
 function switchTextContent (){
-    // Получить элементы select и их отображаемые названия
+    // Получить элементы select
     const fromSelect = $('#flightsearchform-locationfrom');
     const toSelect = $('#flightsearchform-locationto');
+
+    // Получить текущие значения
+    const fromValue = fromSelect.val();
+    const toValue = toSelect.val();
+
+    // Получить отображаемый текст
     const fromOptionText = fromSelect.find('option:selected').text();
     const toOptionText = toSelect.find('option:selected').text();
 
-    // Поменять местами значения и отображаемый текст
-    fromSelect.val(toSelect.val()).trigger('change');
-    toSelect.val(fromSelect.val()).trigger('change');
+    // Поменять местами значения
+    fromSelect.val(toValue).trigger('change');
+    toSelect.val(fromValue).trigger('change');
 
-    // Обновить текстовое содержимое на странице
-    const fromContainer = document.getElementById('select2-flightsearchform-locationfrom-container');
-    const toContainer = document.getElementById('select2-flightsearchform-locationto-container');
-    fromContainer.textContent = fromOptionText;
-    toContainer.textContent = toOptionText;
+    // Обновить текстовое содержимое select2 контейнеров
+    const fromContainer = document.querySelector('#select2-flightsearchform-locationfrom-container');
+    const toContainer = document.querySelector('#select2-flightsearchform-locationto-container');
+    fromContainer.textContent = toOptionText;
+    toContainer.textContent = fromOptionText;
 }
 
 function switchOptionsToRequest (){

@@ -579,7 +579,6 @@ function createOneWayCharterCalendar(datepickerInput, typeWay) {
                 getFlightCharterCalendar(typeWay)
                     .then(response => {
                         const dates = response.dates;
-                        console.log(response);
 
                         // Find the earliest date in the dates array
                         const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
@@ -746,25 +745,20 @@ if (inputCharterFrom != undefined) {
                 dropDownCharterList.innerHTML = '';
                 dropDownCharterListCity.innerHTML = '';
 
-                const countries = new Set();
+                const countries = Object.keys(response);
                 const countryCityMap = {};
                 const cityCodeMap = {};
 
-                Object.entries(response).forEach(([cityCode, cityData]) => {
-                    const countryName = cityData.country;
-                    const cityName = cityData.title;
-
-                    if (countryName) {
-                        countries.add(countryName);
-                        if (!countryCityMap[countryName]) {
-                            countryCityMap[countryName] = [];
-                        }
+                countries.forEach(countryName => {
+                    const cities = Object.entries(response[countryName]);
+                    countryCityMap[countryName] = [];
+                    
+                    cities.forEach(([cityCode, cityData]) => {
+                        const cityName = cityData.title;
                         countryCityMap[countryName].push(cityName);
                         cityCodeMap[cityName] = cityCode;
-                    }
-                });
+                    });
 
-                countries.forEach(countryName => {
                     const countryDivElement = document.createElement('div');
                     countryDivElement.classList.add('dropdown-charter-item');
                     countryDivElement.textContent = countryName;
@@ -830,27 +824,24 @@ if (inputCharterTo != undefined) {
                 dropDownCharterListTo.innerHTML = '';
                 dropDownCharterListCityTo.innerHTML = '';
 
-                const countriesTo = new Set();
                 const countryCityMapTo = {};
                 const cityCodeMapTo = {};
 
-                if (selectedCityCode && response[selectedCityCode]) {
-                    const directions = response[selectedCityCode].directions;
+                if (selectedCityCode) {
+                    const selectedCountry = Object.keys(response).find(country => 
+                        Object.keys(response[country]).includes(selectedCityCode)
+                    );
 
-                    Object.entries(directions).forEach(([cityCode, cityName]) => {
-                        const countryName = response[cityCode]?.country;
+                    const directions = response[selectedCountry][selectedCityCode].directions;
 
-                        if (countryName) {
-                            countriesTo.add(countryName);
-                            if (!countryCityMapTo[countryName]) {
-                                countryCityMapTo[countryName] = [];
-                            }
+                    Object.entries(directions).forEach(([countryName, cities]) => {
+                        countryCityMapTo[countryName] = [];
+
+                        Object.entries(cities).forEach(([cityCode, cityName]) => {
                             countryCityMapTo[countryName].push(cityName);
                             cityCodeMapTo[cityName] = cityCode;
-                        }
-                    });
+                        });
 
-                    countriesTo.forEach(countryName => {
                         const countryDivElementTo = document.createElement('div');
                         countryDivElementTo.classList.add('dropdown-charter-item');
                         countryDivElementTo.textContent = countryName;
@@ -900,8 +891,6 @@ if (inputCharterTo != undefined) {
     });
 }
 
-
-
 function showLoaderCharter(typeS) {
     const loader = document.querySelector(`.loader-calendar-wrapper.${typeS}`);
     loader.style.display = 'block'
@@ -949,7 +938,7 @@ document.getElementById('input-charter-class-from').addEventListener('input', fu
   });
 
 
-  document.getElementById('input-charter-class-to').addEventListener('input', function() {
+document.getElementById('input-charter-class-to').addEventListener('input', function() {
     let filter = this.value.toUpperCase();
     let items = document.querySelectorAll('#dropdown-charter-list-country-to .dropdown-charter-item');
     
