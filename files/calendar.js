@@ -261,8 +261,8 @@ function setLocalStorageFlightData(key, data) {
 }
 
 // Функция для генерации уникального ключа для кэширования на основе параметров запроса
-function generateCacheKey(firstDate, daysAfter, codeIataFrom, codeIataTo, typeRequest) {
-    return `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}`;
+function generateCacheKey(firstDate, codeIataFrom, codeIataTo, typeRequest) {
+    return `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}`;
 }
 
 // Основная функция для получения данных
@@ -277,7 +277,9 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     let daysAfter = calculateDaysAfter(today);
     let daysBefore = '5';
     let termIata = null;
+    // console.log(firstDate)
     if (firstDateToSend !== undefined) {
+        // console.log(firstDateToSend)
         firstDate = firstDateToSend;
     }
     if (daysAfterToSend !== undefined) {
@@ -304,9 +306,9 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         daysAfter: `${daysAfter}`
     });
 
-    console.log(firstDate);
-    console.log(codeIataFrom);
-    console.log(codeIataTo)
+    // console.log(firstDate);
+    // console.log(codeIataFrom);
+    // console.log(codeIataTo)
 
     const headers = new Headers();
     headers.append('Authorization', 'Bearer AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ');
@@ -317,7 +319,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
         const cachedData = getCachedFlightData(cacheKey);
         if (cachedData) {
-            console.log(cachedData)
+            // console.log(cachedData)
             return cachedData;
         }
 
@@ -396,6 +398,8 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: true,
         numberOfMonths: 2,
         onSelect: function (formattedDate, date, inst) {
+            selectedDate = formatDateToString(formattedDate.date[0]);
+            // console.log(formatDateToString(formattedDate.date[0]))
             if (formattedDate.date[1] != undefined) {
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
@@ -433,10 +437,9 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
             if (inst) {
                 if (selectedDate) {
                     // Устанавливаем сохраненную дату как текущую
-                    inst.setViewDate(selectedDate);
-                }
-                
-                getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    // datepicker.setViewDate(selectedDate);
+                    console.log(selectedDate)
+                    getFlightCalendar(selectedDate, undefined, codeIataFrom, codeIataTo, typeRequest)
                     .then(response => {
                         if (response.status === 'error') {
                             hideLoader();
@@ -448,6 +451,23 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         displayPrices(dates);
                         hideLoader();
                     });
+                    
+                }else{
+                    getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    .then(response => {
+                        if (response.status === 'error') {
+                            hideLoader();
+                        }
+                        const dates = response.result.map(entry => ({
+                            date: entry.date,
+                            price: entry.price
+                        }));
+                        displayPrices(dates);
+                        hideLoader();
+                    });
+                }
+                
+                
             }
         },
         onChangeViewDate: function ({ month, year }) {
@@ -482,16 +502,16 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         autoClose: true,
         range: false,
         numberOfMonths: 2,
-        onSelect: function (formattedDate, date, inst) {
-            selectedDate = date; // Сохраняем выбранную дату
+        onSelect: function ({date, formattedDate, datepicker}){            
+            selectedDate = formattedDate; // Сохраняем выбранную дату
         },
         onShow: function (inst) {
             if (inst) {
                 if (selectedDate) {
                     // Устанавливаем сохраненную дату как текущую
-                    inst.setViewDate(selectedDate);
-                }
-                getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    // datepicker.setViewDate(selectedDate);
+
+                    getFlightCalendar(selectedDate, undefined, codeIataFrom, codeIataTo, typeRequest)
                     .then(response => {
                         if (response.status === 'error') {
                             hideLoader();
@@ -503,6 +523,24 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         displayPrices(dates);
                         hideLoader();
                     });
+                    
+                }else{
+                    getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    .then(response => {
+                        if (response.status === 'error') {
+                            hideLoader();
+                        }
+                        const dates = response.result.map(entry => ({
+                            date: entry.date,
+                            price: entry.price
+                        }));
+                        displayPrices(dates);
+                        hideLoader();
+                    });
+                }
+                    
+                
+                
             }
         },
         onChangeViewDate: function ({ month, year }) {
@@ -526,6 +564,8 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
 
     return datepickerOneWay;
 }
+
+
 
 function createOneWayCharterCalendar(datepickerInput, typeWay) {
     let datepickerCharter = new AirDatepicker(datepickerInput, {
