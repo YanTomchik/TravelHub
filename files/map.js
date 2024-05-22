@@ -7,6 +7,7 @@
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
 const loaderDiv = document.getElementById('loader-map');
+const loaderDivCardsList = document.querySelector('.loader-cards-list-wrapper')
 const leftSectionWrapper = document.querySelector('.map-dashboard-left-section-wrapper');
 const mapCardsListBottomWrapper = document.querySelector('.map-dashboard-main-wrapper .map-dashboard-bottom-section-wrapper');
 const headerMapCountElement = document.querySelector('.map-dashboard-filter-header-description');
@@ -15,143 +16,286 @@ const mobileFilterApplyBtn = document.querySelector('.btn.btn-primary.map-filter
 
 let layoutDev = (typeof implemented === 'undefined');
 
-const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map' : 'hotels/search-map';
-
 function triggerInputEvent(element) {
-    let event = new Event('input', {
-        bubbles: true,
-        cancelable: true
-    });
-    element.dispatchEvent(event);
-    // console.log(element);
+  let event = new Event('input', {
+      bubbles: true,
+      cancelable: true
+  });
+  element.dispatchEvent(event);
+  // console.log(element);
 }
 
-async function fetchDataFromAPI(formData) {
-  try {
-      const response = await fetch(apiUrl, {
-          method: 'POST',
-          body: formData
-      });
-      const data = await response.json();
+const CACHE_EXPIRY_MS = 3600000; // 1 hour cache expiry
+
+function generateCacheKey(prefix) {
+  return `cache_${prefix}`;
+}
+
+function getCachedData(cacheKey) {
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    const { data, timestamp } = JSON.parse(cached);
+    if (Date.now() - timestamp < CACHE_EXPIRY_MS) {
       return data;
-  } catch (error) {
-      console.error('Error fetching data from API:', error);
-      throw error;
-  }
-
-
-}
-
-// Функция для получения кэшированных данных из локального хранилища
-function getCachedData() {
-  const cachedData = localStorage.getItem('cachedData');
-  if (cachedData) {
-      return JSON.parse(cachedData);
+    }
   }
   return null;
 }
 
-// Функция для сохранения данных в локальное хранилище
-function cacheData(data) {
-  localStorage.setItem('cachedData', JSON.stringify(data));
+function setCachedData(cacheKey, data) {
+  const cacheObject = {
+    data,
+    timestamp: Date.now()
+  };
+  localStorage.setItem(cacheKey, JSON.stringify(cacheObject));
 }
 
-// Функция для получения данных: сначала проверяем кэш, затем загружаем из API
-async function getData(formDataFromRequest) {
-  let data = getCachedData();
-  if (!data) {
+async function fetchMarkerData(formDataFromRequest) {
+  let formData = null;
+  if (formDataFromRequest != null) {
 
-      let formData = null;
-      if (formDataFromRequest != null) {
+    formData = formDataFromRequest;
 
-        formData = formDataFromRequest;
+  } else {
+    
 
+    if (!layoutDev) {
+      // get search params
+          const form = document.getElementById('properties-search-form');
+          formData = new FormData(form);
+          const searchParams = new URLSearchParams();
+
+          for (const pair of formData) {
+              searchParams.append(pair[0], pair[1]);
+          }
+          searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+          formData = searchParams;
       } else {
+        formData = new FormData();
+        formData.append("PropertySearchForm[location]", "4");
+        formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+        formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+        formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+        formData.append("PropertySearchForm[partner]", "11115");
+        formData.append("PropertySearchForm[map]", "true");
+      }
 
-        if (!layoutDev) {
-        // get search params
-            const form = document.getElementById('properties-search-form');
-            formData = new FormData(form);
-            const searchParams = new URLSearchParams();
+  }
 
-            for (const pair of formData) {
-                searchParams.append(pair[0], pair[1]);
-            }
-            searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-            formData = searchParams;
-        } else {
-            formData = new FormData();
-            formData.append("PropertySearchForm[location]", "4");
-            formData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-            formData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
-            formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-            formData.append("PropertySearchForm[partner]", "11115");
-            formData.append("PropertySearchForm[map]", "true");
+  const cacheKey = generateCacheKey('markerData');
+  let cachedData = getCachedData(cacheKey);
+
+  if (cachedData) {
+    return cachedData;
+  }
+
+
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map-points' : 'hotels/search-map-points';
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    setCachedData(cacheKey, data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching data from API:', error);
+    throw error;
+  }
+}
+
+async function fetchPropertyData(propertyId,formDataFromRequest) {
+  
+
+  let formData = null;
+  if (formDataFromRequest != null) {
+
+    formData = formDataFromRequest;
+
+  } else {
+    
+
+    if (!layoutDev) {
+      // get search params
+          const form = document.getElementById('properties-search-form');
+          formData = new FormData(form);
+          const searchParams = new URLSearchParams();
+
+          for (const pair of formData) {
+              searchParams.append(pair[0], pair[1]);
+          }
+          if (propertyId !== undefined) {
+            searchParams.append("PropertySearchForm[propertyId]", `${propertyId}`);
+          }
+          searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+          formData = searchParams;
+      } else {
+        formData = new FormData();
+        formData.append("PropertySearchForm[location]", "4");
+        formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+        formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+        formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+        formData.append("PropertySearchForm[partner]", "11115");
+        formData.append("PropertySearchForm[map]", "true");
+        if (propertyId !== undefined) {
+          formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
         }
       }
-      data = await fetchDataFromAPI(formData);
-      cacheData(data);
+
   }
-  return data;
+
+  const cacheKey = generateCacheKey(`property_${propertyId}`);
+  let cachedData = getCachedData(cacheKey);
+
+  if (cachedData) {
+    return cachedData;
+  }
+
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    setCachedData(cacheKey, data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching data from API:', error);
+    throw error;
+  }
 }
 
-let map;
-let markers = [];
+async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
+  let formData = null;
+  if (formDataFromRequest != null) {
+    formData = formDataFromRequest;
+  } else {
+    if (!layoutDev) {
+      const form = document.getElementById('properties-search-form');
+      formData = new FormData(form);
+      const searchParams = new URLSearchParams();
+      for (const pair of formData) {
+        searchParams.append(pair[0], pair[1]);
+      }
+      if (offset !== undefined && limit !== undefined) {
+        searchParams.append("PropertySearchForm[offset]", `${offset}`);
+        searchParams.append("PropertySearchForm[limit]", `${limit}`);
+      }
+      searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+      formData = searchParams;
+    } else {
+      formData = new FormData();
+      formData.append("PropertySearchForm[location]", "4");
+      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[map]", "true");
+      if (offset !== undefined && limit !== undefined) {
+        formData.append("PropertySearchForm[offset]", `${offset}`);
+        formData.append("PropertySearchForm[limit]", `${limit}`);
+      }
+    }
+  }
+
+  const cacheKey = generateCacheKey(`leftBlock_${offset}_${limit}`);
+  let cachedData = getCachedData(cacheKey);
+
+  if (cachedData) {
+    return cachedData;
+  }
+
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    setCachedData(cacheKey, data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching data from API:', error);
+    throw error;
+  }
+}
+
+let offset = 31;
+const limit = 30;
+
+async function lazyLoadLeftBlock() {
+  if (loaderDiv.style.display !== 'none') return; // Не загружать данные, если уже идет загрузка
+  loaderDivCardsList.style.display = 'block';
+
+  const newItems = await fetchLeftBlockData(offset, limit, null);
+  const { data: dataHotelsObj, currency: currencyName, count: countHotels } = newItems;
+
+  dataHotelsObj.forEach((property) => {
+    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly } = property;
+
+    const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
+    const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
+    const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
+    const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+    const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
+    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+
+    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+  });
+
+  offset += limit;
+  // console.log(offset);
+  // console.log(limit);
+  
+  loaderDivCardsList.style.display = 'none';
+}
+
+leftBlock.addEventListener('scroll', () => {
+  if (leftBlock.scrollTop + leftBlock.clientHeight >= leftBlock.scrollHeight) {
+    lazyLoadLeftBlock();
+  }
+});
+
+
+let map = null;
+let markers = null;
 
 async function initMap(formData) {
   loaderDiv.style.display = 'block';
-  // sync filters state
-  // document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
-  //   var className = element.className;
-  //   var checked = element.checked;
-  //   var linkedItems = document.querySelectorAll('#map_filters .' + className);
-
-  //   linkedItems.forEach(function(linkedItem) {
-  //      linkedItem.checked = checked;
-  //   });
-  // });
 
   const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
-  mapRangeInput[1].value = document.querySelector('[name="maxPrice"]').value;
+  const minPriceInput = document.querySelector('[name="minPrice"]').value;
+  const maxPriceInput = document.querySelector('[name="maxPrice"]').value;
 
-  triggerInputEvent(mapRangeInput[1]);
-
-  mapRangeInput[0].value = document.querySelector('[name="minPrice"]').value;
+  mapRangeInput[0].value = minPriceInput;
+  mapRangeInput[1].value = maxPriceInput;
 
   triggerInputEvent(mapRangeInput[0]);
+  triggerInputEvent(mapRangeInput[1]);
 
-  const minPriceText = document.querySelector('#min-price').textContent;
-  document.querySelector('#map_min-price').textContent = minPriceText;
-
-  const maxPriceText = document.querySelector('#map_max-price').textContent;
-  document.querySelector('#map_max-price').textContent = maxPriceText;
+  document.querySelector('#map_min-price').textContent = document.querySelector('#min-price').textContent;
+  document.querySelector('#map_max-price').textContent = document.querySelector('#max-price').textContent;
 
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker",
-  );
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const markerData = await fetchMarkerData(formData);
+  
 
-  // Получаем данные
-  const infoHotels = await getData(formData);
+  const { data: markerDataObj, latitude_с: latC, longitude_с: lngC, currency: markerDataCurrencyName, count: markerDataCountHotels } = markerData;
 
-  const dataHotelsObj = infoHotels.data;
-  const currencyName = infoHotels.currency;
-  const countHotels = infoHotels.count;
+  let limitForRequestLeftBlock = 30;
+  let offsetForRequestLeftBlock = 0;
+  
+  const leftBlockData = await fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData);
+  const { data: dataHotelsObj, currency: currencyName, count: countHotels } = leftBlockData;
 
-  const latC = parseFloat(infoHotels.latitude_с);
-  const lngC = parseFloat(infoHotels.longitude_с);
-
-  const center = {
-    lat: latC,
-    lng: lngC,
-  };
-
-  let zoomInitMap = 13;
-  if(countHotels >= 500 && countHotels <= 999){
-    zoomInitMap = 14;
-  }else if(countHotels >= 1000){
-    zoomInitMap = 15;
-  }
+  const center = { lat: parseFloat(latC), lng: parseFloat(lngC) };
+  const zoomInitMap = 11;
 
   map = new google.maps.Map(document.querySelector(".map-dashoard-wrapper"), {
     zoom: zoomInitMap,
@@ -166,225 +310,139 @@ async function initMap(formData) {
   const infoWindow = new google.maps.InfoWindow({
     content: "",
     disableAutoPan: true,
-    closeButton:false,
+    closeButton: false,
   });
 
+  const leftBlockItems = dataHotelsObj.map((property) => {
+    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly } = property;
 
-  markers = dataHotelsObj.map((property, i) => {
+    const position = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+    const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
+    const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
+    const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
+    const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+    const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
+    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
 
-    const nameHotel = property.name;
+    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+  });
 
-    const position = {
-      lat: parseFloat(property.latitude),
-      lng: parseFloat(property.longitude)
-    }
+  await lazyLoadLeftBlock(); 
 
-    let hotelPosition = new google.maps.LatLng(property.lat, property.lng);
-
-    let flagrRefundable = property.refundable;
-
-    if (flagrRefundable == true) {
-      flagrRefundable = translationsHub?.fullRefund ?? 'Полный возврат'
-    } else {
-      flagrRefundable = '';
-    }
-
-    let ratingHotel = property.rating;
-    let ratingDescriptionBlock = ''
-    if(ratingHotel > 0) {
-      ratingDescriptionBlock = `
-        <div class="marker-popup-header-description-rate">
-          ${ratingHotel}
-        </div>
-        <div class="marker-popup-header-description">
-          ${translationsHub?.guestRating ?? 'Рейтинг гостей'}
-        </div>
-      `
-    } else {
-      ratingDescriptionBlock = '';
-    }
-
-    let priceNet = property.priceNet;
-    let priceNetBlock = ''
-
-    if (priceNet !== null) {
-      priceNetBlock = `
-        <div class="marker-popup-footer-description">
-          <div class="marker-popup-footer-description-main">
-            ${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}
-          </div>
-          <div class="marker-popup-footer-description-price">
-          ${priceNet} ${currencyName}
-          </div>
-        </div>
-        `
-    } else{
-      priceNetBlock = '';
-    }
-
-    let priceStrike = property.priceStrike;
-    let priceStrikeBlock = ''
-    if (priceStrike !== 0 && priceStrike !== null) {
-      priceStrikeBlock = `
-        <div class="marker-popup-footer-price-alert">
-          ${priceStrike} ${currencyName}
-        </div>
-      `
-    } else {
-      priceStrikeBlock = '';
-    }
-
-    let availableRooms = property.availableRooms;
-    let availableRoomsBlock = ''
-    if (availableRooms == 1) {
-      availableRoomsBlock = `
-        <div class="marker-popup-red-available-description">
-          ${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}
-        </div>
-      `
-    } else {
-      availableRoomsBlock = '';
-    }
-
-    let quiQuoElem = property.quiQuo;
-    let quiQuoBlock = ''
-
-    if (quiQuoElem != null) {
-      quiQuoBlock = `
-        <div class="qq-btn-place" data-value="${quiQuoElem}">
-        </div>
-      `
-    } else {
-      quiQuoBlock = '';
-    }
+  const markers = markerDataObj.map((markerInfo) => {
+    const { id, price, lat, lng } = markerInfo;
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
-      position,
-      content: buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock),
-        position: position,
-        title: nameHotel,
+      position: { lat: parseFloat(lat), lng: parseFloat(lng) },
+      content: buildContent(price, currencyName),
+      title: `${id}`,
     });
-    markers.push(marker);
 
-    //Генерация блока для инфо виндоу
-    const contentInfoWindow = `
-      <div class="details">
-        <div class="marker-popup-wrapper">
-          <div class="marker-popup-header-wrapper">
-            <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
-            </div>
-            <div class="marker-popup-header-info">
-              <div class="marker-popup-header-title-wrapper">
-                <div class="marker-popup-header-title">
-                  ${property.name}
-                </div>
+    marker.addListener("click", async () => {
+      const propertyId = marker.title;
 
-                <div class="marker-popup-header-title-stars-list">
-                  ${buildRatingBlock(property.stars)}
+      const propertyData = await fetchPropertyData(propertyId,formData);
+      // console.log(propertyData.data[0])
+      const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
+
+      const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
+      const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
+      const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
+      const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+      const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
+      const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+
+      const contentInfoWindow = `
+        <div class="details">
+          <div class="marker-popup-wrapper">
+            <div class="marker-popup-header-wrapper">
+              <div class="market-popup-header-img-wrapper" style="background-image:url(${image});"></div>
+              <div class="marker-popup-header-info">
+                <div class="marker-popup-header-title-wrapper">
+                  <div class="marker-popup-header-title">${name}</div>
+                  <div class="marker-popup-header-title-stars-list">${buildRatingBlock(stars)}</div>
                 </div>
+                <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
+                <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+                ${availableRoomsBlock}
+                ${quiQuoBlock}
               </div>
-              <div class="marker-popup-header-description-wrapper">
-                ${ratingDescriptionBlock}
-              </div>
-              <div class="marker-popup-refundable-description">
-                ${flagrRefundable}
-              </div>
-              ${availableRoomsBlock}
-              ${quiQuoBlock}
+              <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header
+              //
+              -btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
             </div>
-            <a target="_blank" href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
-              <img src="./images/arrow-right-btn.svg" alt="">
-            </a>
-          </div>
-          <div class="marker-popup-footer-info">
-            <div class="marker-popup-footer-description-wrapper">
-              ${priceNetBlock}
-              <div class="marker-popup-footer-description">
-                <div class="marker-popup-footer-description-main">
-                  Всего (включая налоги и сборы):
-                </div>
-                <div class="marker-popup-footer-description-price">
-                  ${property.priceTotal} ${currencyName}
-                </div>
-              </div>
-            </div>
-            <div class="marker-popup-footer-price-wrapper">
-              ${priceStrikeBlock}
-              <div class="marker-popup-footer-price">
-                за ночь ${property.priceNightly} ${currencyName}
-              </div>
+            <div class="marker-popup-footer-info">
+              <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
+              <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div></div>
             </div>
           </div>
-      </div>
-    </div>
-    `
-    const element = marker.element;
-    element.style.zIndex = '-2';
+        </div>
+      `;
 
-    buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+      
 
-    //Считывание клика по маркеру
-    marker.addListener("click", () => {
+      const offset = window.innerWidth > 1024 ? -150 : window.innerWidth >= 770 ? -250 : 0;
+      centerMapZoom(offset, map, marker);
 
-      // Центрирование карты на местоположении маркера
-      // Вычисление смещения для infoWindow
-      if(window.innerWidth > 1024){
-        let offset = -150;
-        centerMapZoom(offset,map, marker)
-
-      }else if(window.innerWidth <= 1024 && window.innerWidth >= 770){
-        let offset = -250;
-        centerMapZoom(offset,map, marker)
-      }
-      // Отображение infoWindow
       infoWindow.setContent(contentInfoWindow);
       infoWindow.open(map, marker);
 
-
-      //Дописать проверку на то есть ли уже уже у этого маркера этот клдасс
-      toggleContentVisibility()
-
-      buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+      toggleContentVisibility();
+      buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
       marker.element.querySelector('.property').classList.add("highlight");
-
     });
 
     leftBlock.addEventListener('click', function(event) {
-        const target = event.target.closest('.map-dashboard-card-item');
-        if (!target) return;
+      const target = event.target.closest('.map-dashboard-card-item');
+      if (!target) return;
 
-        const curItemLat = target.getAttribute('data-position-lat');
-        const curItemLng = target.getAttribute('data-position-lng');
+      const curItemLat = target.getAttribute('data-position-lat');
+      const curItemLng = target.getAttribute('data-position-lng');
 
-        if (marker.position.Gg == curItemLat && marker.position.Hg == curItemLng) {
-            // Вычисление смещения для infoWindow
-            map.setZoom(16);
+      if (marker.position.Gg == curItemLat && marker.position.Hg == curItemLng) {
+          // Вычисление смещения для infoWindow
+          map.setZoom(16);
 
-            // Центрируем карту на маркере
-            let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
-            centerMapZoom(offset, map, marker);
+          // Центрируем карту на маркере
+          let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
+          centerMapZoom(offset, map, marker);
 
-            infoWindow.setContent(contentInfoWindow);
-            infoWindow.open(map, marker);
+          // console.log(target)
+          const markerPopupHeaderWrapper = target.querySelector('.marker-popup-header-wrapper').outerHTML;
+          const markerPopupFooterInfo = target.querySelector('.marker-popup-footer-info').outerHTML;
+          // console.log(markerPopupHeaderWrapper)
+          // console.log(markerPopupFooterInfo)
+          const contentInfoWindow = `
+        <div class="details">
+          <div class="marker-popup-wrapper">
+            ${markerPopupHeaderWrapper}
+            ${markerPopupFooterInfo}
+          </div>
+        </div>
+      `;
 
-            toggleContentVisibility();
-            buildBottomContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-            marker.element.querySelector('.property').classList.add("highlight");
-        }
-    });
+          infoWindow.setContent(contentInfoWindow);
+          infoWindow.open(map, marker);
+
+          toggleContentVisibility();
+          // buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+          marker.element.querySelector('.property').classList.add("highlight");
+      }
+  });
 
     return marker;
   });
 
-  //Скрывание лоудера и открытие левого блока при прогрузке карты
-  google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+  google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
     loaderDiv.style.display = 'none';
-    leftSectionWrapper.classList.add('active')
+    leftSectionWrapper.classList.add('active');
   });
 
   // Обработка события изменения области видимости карты
   google.maps.event.addListener(map, 'bounds_changed', function() {
-    // Получение текущей области видимости карты
+    // console.log(window.innerWidth)
+    if(window.innerWidth >= 770){
+      // Получение текущей области видимости карты
     const bounds = map.getBounds();
 
     // Получение координат углов области видимости
@@ -397,7 +455,7 @@ async function initMap(formData) {
 
       const itemLat = item.getAttribute('data-position-lat');
       const itemLng = item.getAttribute('data-position-lng');
-
+      
       if (itemLat >= sw.lat() && itemLat <= ne.lat() && itemLng >= sw.lng() && itemLng <= ne.lng()) {
         item.style.display = 'block'
       }else{
@@ -405,25 +463,20 @@ async function initMap(formData) {
       }
 
     })
+    }
+    
+    
   });
 
-  //Считывание клика на пустую область карты для закрытия инфо виндоу
-  google.maps.event.addListener(map, 'click', function(event) {
-    // Закрыть infoWindow, если он 0рыт
+  google.maps.event.addListener(map, 'click', (event) => {
     if (infoWindow) {
-
       infoWindow.close();
-      toggleContentVisibility()
+      toggleContentVisibility();
       mapCardsListBottomWrapper.classList.remove('active');
-
     }
-
-    // Отключение информационных окон элементов инфраструктуры
     if (event.placeId) {
-      // Call event.stop() on the event to prevent the default info window from showing.
       event.stop();
     }
-
   });
 
   const clusterOptions = {
@@ -431,12 +484,53 @@ async function initMap(formData) {
     maxZoom: null,
     zoomOnClick: true,
     averageCenter: false,
-    minimumClusterSize: 3
+    minimumClusterSize: 3,
   };
-  const markerCluster = new MarkerClusterer({ markers, map, clusterOptions});
-
+  new MarkerClusterer({ markers, map, clusterOptions });
 }
 
+function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+  headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
+
+  const content = document.createElement("div");
+  content.classList.add("map-dashboard-card-item");
+  content.setAttribute('data-position-lat',`${property.latitude}`);
+  content.setAttribute('data-position-lng',`${property.longitude}`);
+
+  content.innerHTML = `
+    <div class="marker-popup-header-wrapper">
+      <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});"></div>
+      <div class="marker-popup-header-info">
+        <div class="marker-popup-header-title-wrapper">
+          <div class="marker-popup-header-title">${property.name}</div>
+          <div class="marker-popup-header-title-stars-list">${buildRatingBlock(property.stars)}</div>
+        </div>
+        <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
+        <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+        ${availableRoomsBlock}
+        ${quiQuoBlock}
+      </div>
+      <a target="_blank" href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
+        <img src="./images/arrow-right-btn.svg" alt="">
+      </a>
+    </div>
+    <div class="marker-popup-footer-info">
+      <div class="marker-popup-footer-description-wrapper">
+        ${priceNetBlock}
+        <div class="marker-popup-footer-description">
+          <div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div>
+          <div class="marker-popup-footer-description-price">${property.priceTotal} ${currencyName}</div>
+        </div>
+      </div>
+      ${priceStrikeBlock ? `<div class="marker-popup-footer-price-alert">${priceStrikeBlock}</div>` : ''}
+      <div class="marker-popup-footer-price-wrapper">
+        <div class="marker-popup-footer-price">за ночь ${property.priceNightly} ${currencyName}</div>
+      </div>
+    </div>
+  `;
+
+  leftBlock.appendChild(content);
+}
 
 function centerMapZoom (offsetValue, map, marker){
   var projection = map.getProjection();
@@ -457,160 +551,74 @@ function toggleContentVisibility() {
       })
 }
 
-//Генерация маркеров
-function buildContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+function buildContent(price, currencyName) {
   const content = document.createElement("div");
-
   content.classList.add("property");
+
+  const priceTotal = price;
+  const markerDescription = `${priceTotal} ${currencyName}`;
+
   content.innerHTML = `
     <div class="icon">
       <div class="map-marker-description">
-        ${property.priceTotal}${currencyName}
+        ${markerDescription}
       </div>
     </div>
   `;
   return content;
 }
 
-//Генерация левого блока
-function buildLeftContent(property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
-  // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-cards-list');
-
-
-  headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
-
-  const content = document.createElement("div");
-
-  content.classList.add("map-dashboard-card-item");
-
-  content.setAttribute('data-position-lat',`${property.latitude}`);
-  content.setAttribute('data-position-lng',`${property.longitude}`);
-
-  content.innerHTML = `
-    <div class="marker-popup-header-wrapper">
-      <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
-      </div>
-      <div class="marker-popup-header-info">
-        <div class="marker-popup-header-title-wrapper">
-          <div class="marker-popup-header-title">
-            ${property.name}
-          </div>
-          <div class="marker-popup-header-title-stars-list" id="marker-popup-header-title-stars-list">
-            ${buildRatingBlock(property.stars)}
-          </div>
-        </div>
-        <div class="marker-popup-header-description-wrapper">
-          ${ratingDescriptionBlock}
-        </div>
-        <div class="marker-popup-refundable-description">
-          ${flagrRefundable}
-        </div>
-        ${availableRoomsBlock}
-        ${quiQuoBlock}
-      </div>
-      <a target="_blank" href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
-        <img src="./images/arrow-right-btn.svg" alt="">
-      </a>
-    </div>
-    <div class="marker-popup-footer-info">
-      <div class="marker-popup-footer-description-wrapper">
-        ${priceNetBlock}
-        <div class="marker-popup-footer-description">
-          <div class="marker-popup-footer-description-main">
-            Всего (включая налоги и сборы):
-          </div>
-          <div class="marker-popup-footer-description-price">
-            ${property.priceTotal} ${currencyName}
-          </div>
-        </div>
-      </div>
-      <div class="marker-popup-footer-price-wrapper">
-        ${priceStrikeBlock}
-        <div class="marker-popup-footer-price">
-          за ночь ${property.priceNightly} ${currencyName}
-        </div>
-      </div>
-    </div>
-  `;
-  leftBlock.appendChild(content)
-
-}
-
-//Генерация блока для мобильной версии
-function buildBottomContent (property, currencyName, countHotels, flagrRefundable, ratingDescriptionBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock){
-  // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
-  // const headerMapCountElement = document.getElementById('map-dashboard-filter-header-description');
-
+function buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
   mapCardsListBottomWrapper.innerHTML = `
-    <div class = "map-dashboard-card-item">
+  
+    <div class="map-dashboard-card-item">
+    <a href="/hotels/${id}/${url}" class=map-dashboard-card-item-href>
       <div class="marker-popup-header-wrapper">
-        <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});">
-      </div>
-      <div class="marker-popup-header-info">
-        <div class="marker-popup-header-title-wrapper">
-          <div class="marker-popup-header-title">
-            ${property.name}
+        <div class="market-popup-header-img-wrapper" style="background-image:url(${image});"></div>
+        <div class="marker-popup-header-info">
+          <div class="marker-popup-header-title-wrapper">
+            <div class="marker-popup-header-title">${name}</div>
+            <div class="marker-popup-header-title-stars-list">${buildRatingBlock(stars)}</div>
           </div>
-          <div class="marker-popup-header-title-stars-list" id="marker-popup-header-title-stars-list">
-            ${buildRatingBlock(property.stars)}
+          <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
+          <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+          ${availableRoomsBlock}
+          ${quiQuoBlock}
+        </div>
+      </div>
+      <div class="marker-popup-footer-info">
+        <div class="marker-popup-footer-description-wrapper">
+          ${priceNetBlock}
+          <div class="marker-popup-footer-description">
+            <div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div>
+            <div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div>
           </div>
         </div>
-        <div class="marker-popup-header-description-wrapper">
-          ${ratingDescriptionBlock}
+        ${priceStrikeBlock ? `<div class="marker-popup-footer-price-alert">${priceStrikeBlock}</div>` : ''}
+        <div class="marker-popup-footer-price-wrapper">
+          <div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div>
+          <a href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
         </div>
-        <div class="marker-popup-refundable-description">
-            ${flagrRefundable}
-        </div>
-        ${availableRoomsBlock}
-        ${quiQuoBlock}
       </div>
+      </a>
     </div>
-    <div class="marker-popup-footer-info">
-      <div class="marker-popup-footer-description-wrapper">
-        ${priceNetBlock}
-        <div class="marker-popup-footer-description">
-          <div class="marker-popup-footer-description-main">
-            Всего (включая налоги и сборы):
-          </div>
-          <div class="marker-popup-footer-description-price">
-            ${property.priceTotal} ${currencyName}
-          </div>
-        </div>
-      </div>
-      ${priceStrikeBlock}
-      <div class="marker-popup-footer-price-wrapper">
-        <div class="marker-popup-footer-price">
-          за ночь ${property.priceNightly} ${currencyName}
-        </div>
-        <a href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
-          <img src="./images/arrow-right-btn.svg" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-  `
+    
+    
+  `;
 }
 
-//Генерация блока с рейтингом и количеством звезд
-function buildRatingBlock (rating){
+function buildRatingBlock(rating) {
+  let stars = '';
 
-  let stars = ''
-  let ratingToItterate = 0;
+  const roundedRating = Math.round(rating);
 
-  if (rating - Math.floor(rating) === 0.5) {
-    ratingToItterate = Math.floor(rating);
-  } else {
-    ratingToItterate =  Math.round(rating);
-  }
-
-  for(let i=0; i < ratingToItterate; i++){
+  for (let i = 0; i < roundedRating; i++) {
     stars += '<img src="./images/hotels/star-icon.svg" alt="star" class="marker-popup-header-title-star-item">';
   }
 
   return stars;
-
 }
 
 const bodyTag = document.body;
@@ -739,6 +747,9 @@ function togglerMobileStyleFilterBlock(){
 // Функция для очистки данных из локального хранилища
 function clearCachedData() {
   localStorage.removeItem('cachedData');
+  clearMarkerCache('cache_markerData');
+  clearLeftBlockCache('cache_leftBlock');
+  clearPropertyCache('cache_property_')
 }
 
 // Функция для очистки карты
@@ -747,10 +758,45 @@ function clearMap() {
   mapCardsListBottomWrapper.innerHTML = '';
 
   // Удаление всех маркеров
-  markers.forEach(marker => marker.setMap(null));
   markers.length = 0;
 
   // Очистка карты
   map = null;
+}
+
+function clearMarkerCache(prefix) {
+    
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith(prefix)) {
+          keysToRemove.push(key);
+      }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+}
+
+function clearPropertyCache(prefix) {
+    
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith(prefix)) {
+          keysToRemove.push(key);
+      }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+}
+
+function clearLeftBlockCache(prefix) {
+    
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith(prefix)) {
+          keysToRemove.push(key);
+      }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key));
 }
 

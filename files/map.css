@@ -30,6 +30,10 @@
     display: flex;
     justify-content: left;
   }
+
+  .map-dashboard-card-item-href{
+    color: #000;
+  }
   
   .property {
     align-items: center;
@@ -541,6 +545,32 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   left: 50%;
   z-index: 9999;
   }
+
+  .loader-cards-list-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    /* background-color: #F4F6F990; */
+    display: none;
+  }
+
+  .loader-cards-list {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #3D7B50;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 9999;
+    }
 
   .marker-popup-header-title-stars-list{
     display: flex;
