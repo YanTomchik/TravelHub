@@ -166,8 +166,6 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
         locationTo: `${codeIataTo}`,
     });
 
-    console.log(`${apiUrl}?${queryParams}`)
-
     const headers = new Headers();
     headers.append('Authorization', 'Bearer AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ');
 
@@ -343,7 +341,6 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         throw new Error('There was a problem with your fetch operation:', error);
     }
 };
-
 
 const displayPrices = (prices, type) => {
     const allDayPrices = document.querySelectorAll('.day-price');
@@ -565,8 +562,6 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
     return datepickerOneWay;
 }
 
-
-
 function createOneWayCharterCalendar(datepickerInput, typeWay) {
     let datepickerCharter = new AirDatepicker(datepickerInput, {
         language: 'en',
@@ -584,8 +579,16 @@ function createOneWayCharterCalendar(datepickerInput, typeWay) {
                 getFlightCharterCalendar(typeWay)
                     .then(response => {
                         const dates = response.dates;
-                        console.log(response)
-                        datepicker.update({
+                        console.log(response);
+
+                        // Find the earliest date in the dates array
+                        const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
+
+                        // console.log(earliestDate)
+
+                        datepickerCharter.update({
+                            // startDate: '2024-11-04', // Set the initial display date to the earliest date
+                            
                             onRenderCell: ({ date, cellType }) => {
                                 if (cellType === 'day') {
                                     const dateString = date.toISOString().split('T')[0];
@@ -600,21 +603,20 @@ function createOneWayCharterCalendar(datepickerInput, typeWay) {
                                         };
                                     } else {
                                         return {
-                                            disabled: true
+                                            disabled: true,
+                                            start:earliestDate,
                                         };
                                     }
                                 }
                             }
                         });
+                        datepickerCharter.setViewDate(earliestDate)
 
-                        // displayCharterDates(dates);
                         hideLoader();
                     });
-
             }
-
         },
-    })
+    });
     return datepickerCharter;
 }
 
@@ -632,7 +634,7 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                 getFlightCharterCalendar(typeWay)
                     .then(response => {
                         
-
+                        
                         const dates = response.back;
                         console.log(response)
                         datepicker.update({
@@ -673,6 +675,7 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                         
                         console.log(response)
                         const dates = response.from;
+                        const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
                         datepicker.update({
                             onRenderCell: ({ date, cellType }) => {
                                 if (cellType === 'day') {
@@ -694,6 +697,7 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                                 }
                             }
                         });
+                        datepickerTwoWayCharter.setViewDate(earliestDate)
                         hideLoader();
                     });
 
