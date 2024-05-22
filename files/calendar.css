@@ -1105,11 +1105,15 @@
   }
 
   .dropdown-charter-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .loader-calendar{
     top: 25%;
     left: 42%;;
+  }
+
+  .dropdown-header-charter{
+    min-height: 40px;
   }
 }
