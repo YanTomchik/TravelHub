@@ -1,6 +1,6 @@
 const switchBtnAvia = document.getElementById('switch-btn-wrapper');
 switchBtnAvia.addEventListener('click', function (params) {
-    
+
     switchOptionsToRequest();
 
     switchTextContent();
@@ -22,36 +22,36 @@ switchBtnAvia.addEventListener('click', function (params) {
         inputTo.setAttribute('placeholder', tempText);
     }
 
+    datepicker.clear(true)
+
     clearFlightCache('flightCache_');
-    
+
 });
 
 
-function switchTextContent (){
+function switchTextContent() {
     // Получить элементы select
-    const fromSelect = $('#flightsearchform-locationfrom');
-    const toSelect = $('#flightsearchform-locationto');
+    let fromSelect = $('#flightsearchform-locationfrom');
+    let toSelect = $('#flightsearchform-locationto');
 
     // Получить текущие значения
-    const fromValue = fromSelect.val();
-    const toValue = toSelect.val();
+    let fromValue = fromSelect.val();
+    let toValue = toSelect.val();
 
     // Получить отображаемый текст
-    const fromOptionText = fromSelect.find('option:selected').text();
-    const toOptionText = toSelect.find('option:selected').text();
+    let fromOptionText = $('#select2-flightsearchform-locationfrom-container').text();
+    let toOptionText = $('#select2-flightsearchform-locationto-container').text();
 
     // Поменять местами значения
-    fromSelect.val(toValue).trigger('change');
-    toSelect.val(fromValue).trigger('change');
+    let optionFrom = new Option(fromOptionText, fromValue, true, true);
+    let optionTo = new Option(toOptionText, toValue, true, true);
+    fromSelect.append(optionTo).trigger('change');
+    toSelect.append(optionFrom).trigger('change');
 
-    // Обновить текстовое содержимое select2 контейнеров
-    const fromContainer = document.querySelector('#select2-flightsearchform-locationfrom-container');
-    const toContainer = document.querySelector('#select2-flightsearchform-locationto-container');
-    fromContainer.textContent = toOptionText;
-    toContainer.textContent = fromOptionText;
+    
 }
 
-function switchOptionsToRequest (){
+function switchOptionsToRequest() {
     let optionFromArr = document.getElementById('flightsearchform-locationfrom').options;
     let optionToArr = document.getElementById('flightsearchform-locationto').options;
 
