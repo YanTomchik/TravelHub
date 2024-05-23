@@ -1209,9 +1209,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-6 col-lg-6 col-xl-3 charter-input-from" id="charter-input-from">
-                                                                    <div class="form-group field-flightsearchform-locationfrom required">
+                                                                    <div class="form-group">
                                                                         <label class="control-label"
-                                                                            for="flightsearchform-locationfrom">Откуда</label>
+                                                                            for="">Откуда</label>
                                                                     <div class="input-charter-container">
                                                                         <input type="text" autocomplete="off" placeholder="Откуда" class="input-charter-class" id="input-charter-class-from">
                                                                     </div>
@@ -1276,9 +1276,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-6 col-lg-6 col-xl-3 charter-input-to" id="charter-input-to">
-                                                                    <div class="form-group field-flightsearchform-locationto required">
+                                                                    <div class="form-group">
                                                                         <label class="control-label"
-                                                                            for="flightsearchform-locationto">Куда</label>
+                                                                            for="">Куда</label>
                                                                     <div class="input-charter-container">
                                                                         <input type="text" autocomplete="off" placeholder="Куда" class="input-charter-class" id="input-charter-class-to">
                                                                     </div>
@@ -1320,6 +1320,9 @@
                                                                         </div>
 
                                                                         <div class="help-block"></div>
+                                                                        <div class="error-message-user" id="error-message-user">
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-6 col-xl-3 flight-period"
@@ -2186,6 +2189,7 @@
     </a>
     <script>var HOST_URL = "https://travelhub.by/";</script>
     <script>var MAIN_LANGUAGE = "ru";</script>
+    <script>const USER_CURRENCY = "EUR";</script>
     <script>
         var KTAppSettings = {
             "breakpoints": {
