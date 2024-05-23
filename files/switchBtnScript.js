@@ -1,31 +1,30 @@
 const switchBtnAvia = document.getElementById('switch-btn-wrapper');
 switchBtnAvia.addEventListener('click', function (params) {
-
     switchOptionsToRequest();
 
     switchTextContent();
-
     // Получаем элементы input для чартеров
-    let inputFrom = document.getElementById('input-charter-class-from');
-    let inputTo = document.getElementById('input-charter-class-to');
+    const fromInput = document.getElementById('input-charter-class-from');
+    const toInput = document.getElementById('input-charter-class-to');
 
-    if (inputFrom != undefined && inputTo != undefined) {
-        // Сохраняем текущие значения и отображаемый текст
-        let tempValue = inputFrom.value;
-        let tempText = inputFrom.getAttribute('placeholder');
+    if (fromInput != undefined && toInput != undefined) {
+        
+        const fromValue = fromInput.value;
+        const fromIATA = fromInput.getAttribute('iata-from');
 
-        // Меняем значения местами
-        inputFrom.value = inputTo.value;
-        inputFrom.setAttribute('placeholder', inputTo.getAttribute('placeholder'));
+        const toValue = toInput.value;
+        const toIATA = toInput.getAttribute('iata-to');
 
-        inputTo.value = tempValue;
-        inputTo.setAttribute('placeholder', tempText);
+        // Поменять местами значения
+        fromInput.value = toValue;
+        fromInput.setAttribute('iata-from', toIATA);
+
+        toInput.value = fromValue;
+        toInput.setAttribute('iata-to', fromIATA);
     }
-
     datepicker.clear(true)
 
-    clearFlightCache('flightCache_');
-
+    clearAllCache();
 });
 
 
@@ -48,7 +47,7 @@ function switchTextContent() {
     fromSelect.append(optionTo).trigger('change');
     toSelect.append(optionFrom).trigger('change');
 
-    
+
 }
 
 function switchOptionsToRequest() {

@@ -60,6 +60,8 @@ const charterInputTo = document.getElementById('charter-input-to');
 const defaultInputFrom = document.getElementById('input-default-flights-from');
 const defaultInputTo = document.getElementById('input-default-flights-to');
 
+const errorMessageUserElem = document.querySelector('.error-message-user');
+
 let radioButtonValue = radiobuttonValueCheck();
 //Change
 let isMobileFlag = window.matchMedia("only screen and (max-width: 760px)").matches;
@@ -130,7 +132,7 @@ function mainCreateDatepickers(datepickerInput, radioButtonValue, typeRenderDate
 radioButtonsWrappers.forEach(elem => {
 
     elem.addEventListener('click', () => {
-        
+
         let eventChange = new Event('change', {
             bubbles: true,
             cancelable: true
@@ -140,41 +142,37 @@ radioButtonsWrappers.forEach(elem => {
         let flagToDrag = null;
         if (inputElem.classList.contains('flight-route')) {
             flagToDrag = 'radio';
-        } else if(inputElem.classList.contains('charter-checkbox')){
+        } else if (inputElem.classList.contains('charter-checkbox')) {
             flagToDrag = 'checkbox';
         }
 
 
 
 
-        if(flagToDrag == 'radio'){
+        if (flagToDrag == 'radio') {
             clearInputs();
+            clearFlightCache('flightCache_');
             inputElem.checked = true;
             radioButtonValue = inputElem.value;
-            // datepicker.destroy()
             datepicker = mainCreateDatepickers(datepickerInput, radioButtonValue);
             inputElem.dispatchEvent(eventChange);
 
-        }else if(flagToDrag == 'checkbox'){
+        } else if (flagToDrag == 'checkbox') {
             console.log(inputElem)
-            
+
             inputElem.checked = !inputElem.checked;
-            togglerInputsShowHide()
+
             inputElem.dispatchEvent(eventChange);
-
-
         }
 
     })
-
-
-
 })
 
 
 charterCheckbox.addEventListener('change', () => {
     radioButtonValue = radiobuttonValueCheck()
     clearInputs()
+    togglerInputsShowHide()
     if (charterCheckbox.checked) {
         // togglerInputsShowHide()
         if (radioButtonValue == 'one') {
@@ -242,7 +240,7 @@ const setLocalStorageFlightData = (key, data) => {
 
 // Функция для генерации уникального ключа для кэширования на основе параметров запроса
 const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest) =>
-    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}`;
+    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${USER_CURRENCY}`;
 
 // Функция для получения кэшированных данных из локального хранилища с проверкой срока действия
 const getCachedDataCharterFlights = (codeIataFrom, codeIataTo) => {
@@ -335,6 +333,10 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
 
     const cachedData = getCachedDataCharterFlights(codeIataFrom, codeIataTo);
     if (cachedData) {
+        if (errorMessageUserElem.classList.contains('active')) {
+            errorMessageUserElem.classList.remove('active');
+            errorMessageUserElem.innerHTML = '';
+        }
         return cachedData;
     }
 
@@ -352,12 +354,30 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
         if (typeWay == 'trip') {
             if (data.from.length != 0 && data.back.length != 0) {
                 setLocalStorageCharterFlights(data, codeIataFrom, codeIataTo);
+                if (errorMessageUserElem.classList.contains('active')) {
+                    errorMessageUserElem.classList.remove('active');
+                    errorMessageUserElem.innerHTML = '';
+                }
+            } else {
+                datepicker.hide()
+                errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
+                errorMessageUserElem.classList.add('active');
             }
         } else {
             if (data.dates.length != 0) {
                 setLocalStorageCharterFlights(data, codeIataFrom, codeIataTo);
+                if (errorMessageUserElem.classList.contains('active')) {
+                    errorMessageUserElem.classList.remove('active');
+                    errorMessageUserElem.innerHTML = '';
+                }
+            } else {
+                datepicker.hide()
+                errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
+                errorMessageUserElem.classList.add('active');
             }
         }
+
+
 
 
         return data;
@@ -433,7 +453,8 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         infants: '0',
         cabinClass: 'economy',
         daysBefore: `${daysBefore}`,
-        daysAfter: `${daysAfter}`
+        daysAfter: `${daysAfter}`,
+        currency: `${USER_CURRENCY}`
     });
 
     const headers = new Headers();
@@ -445,11 +466,12 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
     const cachedData = getCachedFlightData(cacheKey);
     if (cachedData) {
+        if (errorMessageUserElem.classList.contains('active')) {
+            errorMessageUserElem.classList.remove('active');
+            errorMessageUserElem.innerHTML = '';
+        }
         return cachedData;
     }
-
-    console.log(`${apiUrl}?${queryParams}`)
-    console.log(firstDate)
 
     try {
         showLoader();
@@ -465,6 +487,15 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         const data = await response.json();
         if (data.status != 'error') {
             setLocalStorageFlightData(cacheKey, data);
+            // Hide errorMessageUserElem if it is active
+            if (errorMessageUserElem.classList.contains('active')) {
+                errorMessageUserElem.classList.remove('active');
+                errorMessageUserElem.innerHTML = '';
+            }
+        } else {
+            datepicker.hide();
+            errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
+            errorMessageUserElem.classList.add('active');
         }
 
 
@@ -1114,5 +1145,20 @@ searchBtnFlight.addEventListener('click', () => {
     clearFlightCache('flightCache_');
 })
 
+
+function clearAllCache() {
+    clearFlightCache('flightCache_');
+    clearCharterFlightsCache('charterData');
+}
+
+if (isMobileFlag == true) {
+    // Добавляем обработчик события scroll
+    window.addEventListener('scroll', () => {
+        if(datepicker!=undefined){
+            datepicker.hide()
+        }
+        
+    });
+}
 
 
