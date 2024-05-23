@@ -718,6 +718,7 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                     if (response.status === 'error') {
                         hideLoader();
                     }
+                    console.log(response)
                     const dates = response.result.map(entry => ({
                         date: entry.date,
                         price: entry.price
@@ -1138,6 +1139,9 @@ document.getElementById('input-charter-class-to').addEventListener('input', func
     }
 });
 
+document.querySelector('#select2-flightsearchform-locationfrom-container').addEventListener('input', clearAllCache);
+document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('input', clearAllCache);
+
 //ДОБАВИТЬ ВЫЗОВ ЭТОЙ ФУНКЦИИ ПРИ ПОИСКЕ НОВОМ
 const searchBtnFlight = document.querySelector('.btn.btn-primary.search-btn');
 
@@ -1147,6 +1151,7 @@ searchBtnFlight.addEventListener('click', () => {
 
 
 function clearAllCache() {
+    console.log('clearCache')
     clearFlightCache('flightCache_');
     clearCharterFlightsCache('charterData');
 }
@@ -1160,5 +1165,7 @@ if (isMobileFlag == true) {
         
     });
 }
+
+
 
 
