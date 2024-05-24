@@ -354,30 +354,12 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
         if (typeWay == 'trip') {
             if (data.from.length != 0 && data.back.length != 0) {
                 setLocalStorageCharterFlights(data, codeIataFrom, codeIataTo);
-                if (errorMessageUserElem.classList.contains('active')) {
-                    errorMessageUserElem.classList.remove('active');
-                    errorMessageUserElem.innerHTML = '';
-                }
-            } else {
-                datepicker.hide()
-                errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
-                errorMessageUserElem.classList.add('active');
             }
         } else {
             if (data.dates.length != 0) {
                 setLocalStorageCharterFlights(data, codeIataFrom, codeIataTo);
-                if (errorMessageUserElem.classList.contains('active')) {
-                    errorMessageUserElem.classList.remove('active');
-                    errorMessageUserElem.innerHTML = '';
-                }
-            } else {
-                datepicker.hide()
-                errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
-                errorMessageUserElem.classList.add('active');
             }
         }
-
-
 
 
         return data;
@@ -425,6 +407,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
 
     let firstDate = todayString;
+    console.log(firstDate)
 
     let daysAfter = calculateDaysAfter(today);
     let daysBefore = '0';
@@ -487,15 +470,6 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         const data = await response.json();
         if (data.status != 'error') {
             setLocalStorageFlightData(cacheKey, data);
-            // Hide errorMessageUserElem if it is active
-            if (errorMessageUserElem.classList.contains('active')) {
-                errorMessageUserElem.classList.remove('active');
-                errorMessageUserElem.innerHTML = '';
-            }
-        } else {
-            datepicker.hide();
-            errorMessageUserElem.innerHTML = `По вашему направлению ничего не найдено`;
-            errorMessageUserElem.classList.add('active');
         }
 
 
@@ -611,7 +585,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         });
 
                 } else {
-                    getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
@@ -686,9 +660,11 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         });
 
                 } else {
-                    console.log(codeIataFrom)
-                    console.log(codeIataTo)
-                    getFlightCalendar(undefined, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    // console.log(codeIataFrom)
+                    console.log(datepicker.viewDate.getMonth()+1);
+                    console.log(formatDateToString(datepicker.viewDate))
+                    
+                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
