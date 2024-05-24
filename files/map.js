@@ -154,12 +154,13 @@ async function fetchPropertyData(propertyId,formDataFromRequest) {
   }
 
   const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
-
+  
   try {
     const response = await fetch(apiUrl, {
       method: 'POST',
       body: formData
     });
+    // console.log(response)
     const data = await response.json();
     setCachedData(cacheKey, data);
     return data;
@@ -265,21 +266,24 @@ leftBlock.addEventListener('scroll', () => {
 let map = null;
 let markers = null;
 
-async function initMap(formData) {
+async function initMap(formData,typeRender) {
+  if(typeRender == 'showFilter'){
+    mapDashboardFilterWrapper.classList.toggle('active')
+    leftBlock.classList.toggle('hide')
+    document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter');
+    // togglerMobileStyleFilterBlock()
+  }
   loaderDiv.style.display = 'block';
 
   const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
-  const minPriceInput = document.querySelector('[name="minPrice"]').value;
-  const maxPriceInput = document.querySelector('[name="maxPrice"]').value;
-
-  mapRangeInput[0].value = minPriceInput;
-  mapRangeInput[1].value = maxPriceInput;
-
-  triggerInputEvent(mapRangeInput[0]);
+  mapRangeInput[1].value = $('[name="maxPrice"]').val();
   triggerInputEvent(mapRangeInput[1]);
 
-  document.querySelector('#map_min-price').textContent = document.querySelector('#min-price').textContent;
-  document.querySelector('#map_max-price').textContent = document.querySelector('#max-price').textContent;
+  mapRangeInput[0].value = $('[name="minPrice"]').val();
+  triggerInputEvent(mapRangeInput[0]);
+
+  $('#map_minPrice').text($('#minPrice').text());
+  $('#map_maxPrice').text($('#maxPrice').text());
 
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
@@ -522,8 +526,9 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
           <div class="marker-popup-footer-description-price">${property.priceTotal} ${currencyName}</div>
         </div>
       </div>
-      ${priceStrikeBlock ? `<div class="marker-popup-footer-price-alert">${priceStrikeBlock}</div>` : ''}
+      
       <div class="marker-popup-footer-price-wrapper">
+      ${priceStrikeBlock}
         <div class="marker-popup-footer-price">за ночь ${property.priceNightly} ${currencyName}</div>
       </div>
     </div>
@@ -678,12 +683,12 @@ $(document).ready(function() {
     });
 
 
-    if (typeof $.fn.yiiActiveForm === 'function') {
-      $('#properties-search-form').yiiActiveForm('validate', true);
+    // if (typeof $.fn.yiiActiveForm === 'function') {
+    //   $('#properties-search-form').yiiActiveForm('validate', true);
       if(window.innerWidth > 770){
         reInitMap()
       }
-    }
+    // }
 
   });
 });
@@ -692,6 +697,7 @@ $(document).ready(function() {
 //Нажатие на кнопку фильтра
 
 mobileFilterApplyBtn.addEventListener('click', () => {
+  
   reInitMap()
 })
 
@@ -699,6 +705,7 @@ function reInitMap() {
 
   mapDashboardFilterWrapper.classList.toggle('active')
   leftBlock.classList.toggle('hide');
+  
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
   togglerMobileStyleFilterBlock()
 
@@ -708,7 +715,11 @@ function reInitMap() {
   if(markerStarsList !=null){
     markerStarsList.innerHTML = ''
   }
-  
+
+  let typeRender = undefined;
+  if(window.innerWidth > 770){
+    typeRender = 'showFilter'
+  }
 
   if (!layoutDev) {
     let newformData = new FormData(propertiesSearchForm);
@@ -719,7 +730,7 @@ function reInitMap() {
       // console.log(pair[0], pair[1])
     }
     newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-    initMap(newSearchParams)
+    initMap(newSearchParams,typeRender)
 
   } else {
 
@@ -730,7 +741,7 @@ function reInitMap() {
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");
-    initMap(newformData)
+    initMap(newformData,typeRender)
 
   }
 
@@ -755,10 +766,8 @@ function clearCachedData() {
 // Функция для очистки карты
 function clearMap() {
   leftBlock.innerHTML = '';
+  headerMapCountElement.innerHTML=''
   mapCardsListBottomWrapper.innerHTML = '';
-
-  // Удаление всех маркеров
-  markers.length = 0;
 
   // Очистка карты
   map = null;
@@ -800,3 +809,18 @@ function clearLeftBlockCache(prefix) {
   keysToRemove.forEach(key => localStorage.removeItem(key));
 }
 
+
+// Найти форму с action /hotels/search
+const form = document.querySelector('form[action="/hotels/search"]');
+
+if (form) {
+    // Найти кнопку внутри этой формы
+    const searchButtonBlock = form.querySelector('.search-btn-block.col-search-button button');
+
+    if (searchButtonBlock) {
+        // Добавить обработчик события клика
+        searchButtonBlock.addEventListener('click', () => {
+            clearCachedData();
+        });
+    }
+}
