@@ -332,6 +332,10 @@
       color: #fff;
       background: #3968BF;
     }
+
+    .-selected-.air-datepicker-cell.-day-.charter-day{
+      background-color: #3968BF;
+    }
   
     .air-datepicker-button:focus {
       color: var(--adp-btn-color-hover);
