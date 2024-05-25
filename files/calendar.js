@@ -260,8 +260,8 @@ const setLocalStorageFlightData = (key, data) => {
 };
 
 // Функция для генерации уникального ключа для кэширования на основе параметров запроса
-const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest) =>
-    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${USER_CURRENCY}`;
+const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest,cabinClassContainer, adultCounter, childrenCounter, infantCounter) =>
+    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${USER_CURRENCY}_${cabinClassContainer}_${adultCounter}_${childrenCounter}_${infantCounter}`;
 
 // Функция для получения кэшированных данных из локального хранилища с проверкой срока действия
 const getCachedDataCharterFlights = (codeIataFrom, codeIataTo) => {
@@ -427,6 +427,21 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     codeIataFrom = codeIataFromArr[codeIataFromArr.length - 1].value;
     codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
 
+    let adultCounter = document.getElementById('adult-counter').innerHTML;
+    let childrenCounter = document.getElementById('children-counter').innerHTML;
+    let infantCounter = document.getElementById('infant-counter').innerHTML;
+    let cabinClassContainer = document.getElementById('select2-cabin-class-container').innerHTML;
+    if(cabinClassContainer == 'Эконом'){
+        cabinClassContainer = 'economy';
+    }else if(cabinClassContainer == 'Бизнес'){
+        cabinClassContainer = 'business'
+    }
+
+    // console.log(cabinClassContainer)
+    // console.log(adultCounter)
+    // console.log(childrenCounter)
+    // console.log(infantCounter)
+
     let firstDate = todayString;
     // console.log(firstDate)
 
@@ -447,18 +462,18 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         codeIataTo = termIata;
     }
 
-    // console.log(codeIataFrom);
-    // console.log(codeIataTo);
+    console.log(codeIataFrom);
+    console.log(codeIataTo);
 
     const queryParams = new URLSearchParams({
         route: 'one',
         locationFrom: `${codeIataFrom}`,
         locationTo: `${codeIataTo}`,
         date: `${firstDate}`,
-        adults: '1',
-        children: '0',
-        infants: '0',
-        cabinClass: 'economy',
+        adults: `${adultCounter}`,
+        children: `${childrenCounter}`,
+        infants: `${infantCounter}`,
+        cabinClass: `${cabinClassContainer}`,
         daysBefore: `${daysBefore}`,
         daysAfter: `${daysAfter}`,
         currency: `${USER_CURRENCY}`
@@ -469,7 +484,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
     let monthToCacheKey = firstDate.split('.')[1]
 
-    const cacheKey = generateCacheKey(monthToCacheKey, codeIataFrom, codeIataTo, typeRequest);
+    const cacheKey = generateCacheKey(monthToCacheKey, codeIataFrom, codeIataTo, typeRequest, cabinClassContainer, adultCounter, childrenCounter, infantCounter);
 
     const cachedData = getCachedFlightData(cacheKey);
     if (cachedData) {
@@ -582,15 +597,15 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         //   hideLoader();
 
                     });
-            } else {
+            } else if (formattedDate.date[0] != undefined){
                 //когда нажал на первую дату
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
                 typeRequest = 'return'
                 getFlightCalendar(firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
                     .then(response => {
-                        console.log('нажал на первую')
-                        console.log(response)                        
+                        // console.log('нажал на первую')
+                        // console.log(response)                        
                         const dates = response.result.map(entry => ({
                             date: entry.date,
                             price: entry.price
@@ -1153,9 +1168,6 @@ document.getElementById('input-charter-class-to').addEventListener('input', func
     }
 });
 
-document.querySelector('#select2-flightsearchform-locationfrom-container').addEventListener('input', clearAllCache);
-document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('input', clearAllCache);
-
 //ДОБАВИТЬ ВЫЗОВ ЭТОЙ ФУНКЦИИ ПРИ ПОИСКЕ НОВОМ
 const searchBtnFlight = document.querySelector('.btn.btn-primary.search-btn');
 
@@ -1181,5 +1193,16 @@ if (isMobileFlag == true) {
 }
 
 
+document.querySelector('#flightsearchform-locationfrom').addEventListener('change', function(){
+    clearAllCache()
+    datepicker.setViewDate(today)
+    datepicker.clear(true)
+    
+})
 
-
+document.querySelector('#flightsearchform-locationto').addEventListener('change', function(){
+    clearAllCache()
+    datepicker.setViewDate(today)
+    datepicker.clear(true)
+    
+})
