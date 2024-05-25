@@ -26,6 +26,27 @@ const localeRu = {
     firstDay: 1
 }
 
+const localeButtons = {
+    'en': 'Today',
+    'ru': 'Сегодня',
+    // Добавьте другие языки, если необходимо
+};
+
+const buttonsCalendar = [
+    {
+        content: localeButtons[MAIN_LANGUAGE],
+        onClick(datepicker) {
+            let viewDate = datepicker.viewDate;
+            let today = new Date();
+            
+            // Since timepicker takes initial time from 'viewDate', set up time here, 
+            // otherwise time will be equal to 00:00 if user navigated through datepicker
+            datepicker.selectDate(today)
+
+        }
+    },'clear'
+]
+
 
 // Переводим даты в строки
 let todayString = formatDateToString(today);
@@ -158,7 +179,7 @@ radioButtonsWrappers.forEach(elem => {
             inputElem.dispatchEvent(eventChange);
 
         } else if (flagToDrag == 'checkbox') {
-            console.log(inputElem)
+            // console.log(inputElem)
 
             inputElem.checked = !inputElem.checked;
 
@@ -407,7 +428,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
 
     let firstDate = todayString;
-    console.log(firstDate)
+    // console.log(firstDate)
 
     let daysAfter = calculateDaysAfter(today);
     let daysBefore = '0';
@@ -425,6 +446,9 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         codeIataFrom = codeIataTo;
         codeIataTo = termIata;
     }
+
+    // console.log(codeIataFrom);
+    // console.log(codeIataTo);
 
     const queryParams = new URLSearchParams({
         route: 'one',
@@ -533,8 +557,13 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: true,
         numberOfMonths: 2,
         showOtherMonths: false,
+        buttons:buttonsCalendar,
         onSelect: function (formattedDate, date, inst) {
-            selectedDate = formatDateToString(formattedDate.date[0]);
+            if(formattedDate.date[0] !=undefined){
+                selectedDate = formatDateToString(formattedDate.date[0]);
+            }
+            
+            //когда нажал на вторую дату
             if (formattedDate.date[1] != undefined) {
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
@@ -543,6 +572,8 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         if (response.status == 'error') {
                             hideLoader()
                         }
+                        // console.log('нажал на вторую')
+                        // console.log(response)
                         const dates = response.result.map(entry => ({
                             date: entry.date,
                             price: entry.price
@@ -552,11 +583,14 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
 
                     });
             } else {
+                //когда нажал на первую дату
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
                 typeRequest = 'return'
                 getFlightCalendar(firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
                     .then(response => {
+                        console.log('нажал на первую')
+                        console.log(response)                        
                         const dates = response.result.map(entry => ({
                             date: entry.date,
                             price: entry.price
@@ -565,17 +599,21 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         hideLoader();
                     });
             }
-
+            
 
         },
         onShow: function (inst) {
             if (inst) {
+
                 if (selectedDate) {
-                    getFlightCalendar(selectedDate, undefined, codeIataFrom, codeIataTo, typeRequest)
+                    // console.log(selectedDate)
+                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
                             }
+                            // console.log('if select date');
+                            // console.log(response)
                             const dates = response.result.map(entry => ({
                                 date: entry.date,
                                 price: entry.price
@@ -590,6 +628,8 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                             if (response.status === 'error') {
                                 hideLoader();
                             }
+                            // console.log('только отобразился');
+                            // console.log(response)
                             const dates = response.result.map(entry => ({
                                 date: entry.date,
                                 price: entry.price
@@ -637,6 +677,7 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: false,
         numberOfMonths: 2,
         showOtherMonths: false,
+        buttons: buttonsCalendar,
         onSelect: function ({ date, formattedDate, datepicker }) {
             selectedDate = formattedDate; // Сохраняем выбранную дату
         },
@@ -660,16 +701,13 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         });
 
                 } else {
-                    // console.log(codeIataFrom)
-                    console.log(datepicker.viewDate.getMonth()+1);
-                    console.log(formatDateToString(datepicker.viewDate))
                     
                     getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
                             }
-                            console.log(response)
+                            // console.log(response)
                             const dates = response.result.map(entry => ({
                                 date: entry.date,
                                 price: entry.price
@@ -694,7 +732,7 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                     if (response.status === 'error') {
                         hideLoader();
                     }
-                    console.log(response)
+                    // console.log(response)
                     const dates = response.result.map(entry => ({
                         date: entry.date,
                         price: entry.price
@@ -1127,7 +1165,7 @@ searchBtnFlight.addEventListener('click', () => {
 
 
 function clearAllCache() {
-    console.log('clearCache')
+    // console.log('clearCache')
     clearFlightCache('flightCache_');
     clearCharterFlightsCache('charterData');
 }

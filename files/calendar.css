@@ -320,17 +320,17 @@
   
     .air-datepicker-button {
       display: inline-flex;
-      color: var(--adp-btn-color);
+      color: #3968BF;
       border-radius: var(--adp-btn-border-radius);
       cursor: pointer;
       height: var(--adp-btn-height);
       border: none;
-      background: rgba(255, 255, 255, 0)
+      background: transparent;
     }
   
     .air-datepicker-button:hover {
-      color: var(--adp-btn-color-hover);
-      background: var(--adp-btn-background-color-hover)
+      color: #fff;
+      background: #3968BF;
     }
   
     .air-datepicker-button:focus {
@@ -1148,4 +1148,14 @@
   .dropdown-header-charter{
     min-height: 40px;
   }
+
+  .air-datepicker-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .air-datepicker-button{
+    padding: 0px 15px;
+  }
+
 }
