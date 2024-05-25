@@ -557,7 +557,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: true,
         numberOfMonths: 2,
         showOtherMonths: false,
-        buttons:buttonsCalendar,
+        // buttons:buttonsCalendar,
         onSelect: function (formattedDate, date, inst) {
             if(formattedDate.date[0] !=undefined){
                 selectedDate = formatDateToString(formattedDate.date[0]);
@@ -677,7 +677,7 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: false,
         numberOfMonths: 2,
         showOtherMonths: false,
-        buttons: buttonsCalendar,
+        // buttons: buttonsCalendar,
         onSelect: function ({ date, formattedDate, datepicker }) {
             selectedDate = formattedDate; // Сохраняем выбранную дату
         },
