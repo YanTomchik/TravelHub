@@ -26,28 +26,6 @@ const localeRu = {
     firstDay: 1
 }
 
-const localeButtons = {
-    'en': 'Today',
-    'ru': 'Сегодня',
-    // Добавьте другие языки, если необходимо
-};
-
-const buttonsCalendar = [
-    {
-        content: localeButtons[MAIN_LANGUAGE],
-        onClick(datepicker) {
-            let viewDate = datepicker.viewDate;
-            let today = new Date();
-            
-            // Since timepicker takes initial time from 'viewDate', set up time here, 
-            // otherwise time will be equal to 00:00 if user navigated through datepicker
-            datepicker.selectDate(today)
-
-        }
-    },'clear'
-]
-
-
 // Переводим даты в строки
 let todayString = formatDateToString(today);
 let typeRequest = 'start';
@@ -692,7 +670,6 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         range: false,
         numberOfMonths: 2,
         showOtherMonths: false,
-        // buttons: buttonsCalendar,
         onSelect: function ({ date, formattedDate, datepicker }) {
             selectedDate = formattedDate; // Сохраняем выбранную дату
         },
@@ -1205,4 +1182,9 @@ document.querySelector('#flightsearchform-locationto').addEventListener('change'
     datepicker.setViewDate(today)
     datepicker.clear(true)
     
+})
+
+
+document.querySelector('.remove-datepicker-date').addEventListener('click', ()=>{
+    datepicker.clear()
 })
