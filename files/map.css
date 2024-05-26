@@ -588,6 +588,11 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
   } 
 
+  @media (max-width: 1200px){
+  .map-dashboard-filter-wrapper .filters-block {
+      width: 322px;
+  }  }
+
 @media (max-width: 770px) {
 
   button.btn.btn-primary.map-filter-apply-btn-mobile {

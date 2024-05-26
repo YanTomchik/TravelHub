@@ -371,9 +371,7 @@ async function initMap(formData,typeRender) {
                 ${availableRoomsBlock}
                 ${quiQuoBlock}
               </div>
-              <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header
-              //
-              -btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
+              <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
             </div>
             <div class="marker-popup-footer-info">
               <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
@@ -384,13 +382,12 @@ async function initMap(formData,typeRender) {
       `;
 
       
-
       const offset = window.innerWidth > 1024 ? -150 : window.innerWidth >= 770 ? -250 : 0;
       centerMapZoom(offset, map, marker);
 
       infoWindow.setContent(contentInfoWindow);
       infoWindow.open(map, marker);
-
+      
       toggleContentVisibility();
       buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
       marker.element.querySelector('.property').classList.add("highlight");
@@ -490,7 +487,8 @@ async function initMap(formData,typeRender) {
     averageCenter: false,
     minimumClusterSize: 3,
   };
-  new MarkerClusterer({ markers, map, clusterOptions });
+  const markerCluster = new MarkerClusterer({ markers, map, clusterOptions });
+
 }
 
 function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
