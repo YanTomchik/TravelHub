@@ -1170,15 +1170,14 @@ if (isMobileFlag == true) {
     });
 }
 
-
-document.querySelector('#flightsearchform-locationfrom').addEventListener('change', function(){
+document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('change', function(){
     clearAllCache()
     datepicker.setViewDate(today)
     datepicker.clear(true)
     
 })
 
-document.querySelector('#flightsearchform-locationto').addEventListener('change', function(){
+document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('change', function(){
     clearAllCache()
     datepicker.setViewDate(today)
     datepicker.clear(true)
