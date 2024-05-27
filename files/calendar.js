@@ -800,6 +800,7 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
         autoClose: true,
         range: true,
         numberOfMonths: 2,
+        multipleDatesSeparator: ' - ',
         showOtherMonths: false,
         onSelect: function (formattedDate, date, inst) {
             if (formattedDate.date[0] != undefined) {
