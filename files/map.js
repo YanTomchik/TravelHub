@@ -284,15 +284,37 @@ async function initMap(formData,typeRender) {
   }
   loaderDiv.style.display = 'block';
 
-  const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
-  mapRangeInput[1].value = $('[name="maxPrice"]').val();
-  triggerInputEvent(mapRangeInput[1]);
+  // const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
+  // mapRangeInput[1].value = $('[name="maxPrice"]').val();
+  // triggerInputEvent(mapRangeInput[1]);
 
-  mapRangeInput[0].value = $('[name="minPrice"]').val();
-  triggerInputEvent(mapRangeInput[0]);
+  // mapRangeInput[0].value = $('[name="minPrice"]').val();
+  // triggerInputEvent(mapRangeInput[0]);
 
-  $('#map_minPrice').text($('#minPrice').text());
-  $('#map_maxPrice').text($('#maxPrice').text());
+  // $('#map_minPrice').text($('#minPrice').text());
+  // $('#map_maxPrice').text($('#maxPrice').text());
+
+  const mapMinPrice = document.querySelector('input[name="map_minPrice"]');
+        const mapMaxPrice = document.querySelector('input[name="map_maxPrice"]');
+        const minPrice = document.querySelector('input[name="minPrice"]');
+        const maxPrice = document.querySelector('input[name="maxPrice"]');
+
+        const mapMinPriceText = document.getElementById('map_min-price');
+        const mapMaxPriceText = document.getElementById('map_max-price');
+        const minPriceText = document.getElementById('min-price');
+        const maxPriceText = document.getElementById('max-price');
+
+        function syncValues(source, target, sourceText, targetText) {
+            target.value = source.value;
+            sourceText.textContent = source.value;
+            targetText.textContent = source.value;
+        }
+
+        mapMinPrice.addEventListener('input', () => syncValues(mapMinPrice, minPrice, mapMinPriceText, minPriceText));
+        mapMaxPrice.addEventListener('input', () => syncValues(mapMaxPrice, maxPrice, mapMaxPriceText, maxPriceText));
+
+        minPrice.addEventListener('input', () => syncValues(minPrice, mapMinPrice, minPriceText, mapMinPriceText));
+        maxPrice.addEventListener('input', () => syncValues(maxPrice, mapMaxPrice, maxPriceText, mapMaxPriceText));
 
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
