@@ -1169,4 +1169,12 @@
     padding: 0px 15px;
   }
 
+
+  .air-datepicker-body--cells.-months- {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.air-datepicker-body--cells.-years-{
+  grid-template-columns: repeat(3, 1fr);
+}
 }
