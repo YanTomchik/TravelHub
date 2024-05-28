@@ -228,7 +228,7 @@ const setLocalStorageFlightData = (key, data) => {
 };
 
 // Функция для генерации уникального ключа для кэширования на основе параметров запроса
-const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest,cabinClassContainer, adultCounter, childrenCounter, infantCounter) =>
+const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest, cabinClassContainer, adultCounter, childrenCounter, infantCounter) =>
     `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${USER_CURRENCY}_${cabinClassContainer}_${adultCounter}_${childrenCounter}_${infantCounter}`;
 
 // Функция для получения кэшированных данных из локального хранилища с проверкой срока действия
@@ -398,16 +398,16 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     let childrenCounter = document.getElementById('children-counter').innerHTML;
     let infantCounter = document.getElementById('infant-counter').innerHTML;
     let cabinClassContainer = document.getElementById('select2-cabin-class-container').innerHTML;
-    if(cabinClassContainer == 'Эконом'){
+    if (cabinClassContainer == 'Эконом') {
         cabinClassContainer = 'economy';
-    }else if(cabinClassContainer == 'Бизнес'){
+    } else if (cabinClassContainer == 'Бизнес') {
         cabinClassContainer = 'business'
     }
 
     // console.log(cabinClassContainer)
     // console.log(adultCounter)
     // console.log(childrenCounter)
-    console.log(typeRequest)
+    // console.log(typeRequest)
 
     let firstDate = todayString;
     // console.log(firstDate)
@@ -417,7 +417,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     let termIata = null;
     if (firstDateToSend !== undefined) {
         firstDate = firstDateToSend;
-        console.log(firstDate)
+        // console.log(firstDate)
     }
     if (daysAfterToSend !== undefined) {
         daysAfter = daysAfterToSend;
@@ -430,8 +430,8 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         codeIataTo = termIata;
     }
 
-    console.log(codeIataFrom);
-    console.log(codeIataTo);
+    // console.log(codeIataFrom);
+    // console.log(codeIataTo);
 
     const queryParams = new URLSearchParams({
         route: 'one',
@@ -529,7 +529,7 @@ const displayPrices = (prices, type) => {
 };
 
 function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
-    
+
     let selectedDate = null; // Переменная для хранения выбранной даты
     let datepickerBothWay = new AirDatepicker(datepickerInput, {
         locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
@@ -543,10 +543,10 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         showOtherMonths: false,
         // buttons:buttonsCalendar,
         onSelect: function (formattedDate, date, inst) {
-            if(formattedDate.date[0] !=undefined){
+            if (formattedDate.date[0] != undefined) {
                 selectedDate = formatDateToString(formattedDate.date[0]);
             }
-            
+
             //когда нажал на вторую дату
             if (formattedDate.date[1] != undefined) {
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
@@ -566,7 +566,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         //   hideLoader();
 
                     });
-            } else if (formattedDate.date[0] != undefined){
+            } else if (formattedDate.date[0] != undefined) {
                 //когда нажал на первую дату
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
@@ -583,12 +583,12 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         hideLoader();
                     });
             }
-            
+
 
         },
         onShow: function (inst) {
             if (inst) {
-                
+
                 if (selectedDate) {
                     month = selectedDate.split('.')[1];
                     year = selectedDate.split('.')[2];
@@ -686,7 +686,7 @@ function createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         });
 
                 } else {
-                    
+
                     getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
                         .then(response => {
                             if (response.status === 'error') {
@@ -797,8 +797,8 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
         showOtherMonths: false,
         onSelect: function (formattedDate, date, inst) {
             if (formattedDate.date[0] != undefined) {
-               
-                
+
+
                 getFlightCharterCalendar(typeWay)
                     .then(response => {
 
@@ -806,21 +806,21 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                         const dates = response.back;
                         datepicker.update({
                             onRenderCell: ({ date, cellType }) => {
-                                dates.forEach(elem=>{
+                                dates.forEach(elem => {
                                     datepicker.enableDate(new Date(elem))
                                 })
                             }
-                            
+
                         })
                         datepicker.update({
-                            
+
                             onRenderCell: ({ date, cellType }) => {
-                                
-                                
+
+
                                 if (cellType === 'day') {
 
-                                    
-                                    
+
+
                                     const day = String(date.getDate()).padStart(2, '0');
                                     const month = String(date.getMonth() + 1).padStart(2, '0');
                                     const year = date.getFullYear();
@@ -829,13 +829,13 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                                     const renderCellDateFormat = new Date(renderCellDateTwoWay);
 
                                     if (dates.includes(renderCellDateTwoWay) && renderCellDateFormat > formattedDate.date[0]) {
-                                        
+
                                         return {
                                             html: `<span class="available-date">${date.getDate()}</span>`,
                                             classes: 'charter-day',
-                                            
+
                                         };
-                                        
+
                                     } else {
                                         return {
                                             disabled: true
@@ -1174,28 +1174,34 @@ function clearAllCache() {
 
 if (isMobileFlag == true) {
     // Добавляем обработчик события scroll
-        window.addEventListener('scroll', () => {
-            if(datepicker.visible){
-                datepicker.hide()
-            }
-        });
+    window.addEventListener('scroll', () => {
+        if (datepicker.visible) {
+            datepicker.hide()
+        }
+    });
 }
 
-$('#flightsearchform-locationfrom').on('change', function(){
+$('#flightsearchform-locationfrom').on('change', function () {
     clearAllCache()
-    datepicker.setViewDate(today)
-    datepicker.clear(true)
-    
+    if (datepicker != undefined || datepicker != null) {
+        datepicker.setViewDate(today)
+        datepicker.clear(true)
+        typeRequest = 'start'
+    }
+
+
 })
 
-$('#flightsearchform-locationto').on('change', function(){
+$('#flightsearchform-locationto').on('change', function () {
     clearAllCache()
-    datepicker.setViewDate(today)
-    datepicker.clear(true)
-    
+    if (datepicker != undefined || datepicker != null) {
+        datepicker.setViewDate(today)
+        datepicker.clear(true)
+        typeRequest = 'start'
+    }
 })
 
 
-document.querySelector('.remove-datepicker-date').addEventListener('click', ()=>{
+document.querySelector('.remove-datepicker-date').addEventListener('click', () => {
     datepicker.clear()
 })
