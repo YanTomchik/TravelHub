@@ -477,13 +477,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
         return data;
     } catch (error) {
-        if (error.name === 'AbortError') {
-            console.error('The request took too long and was aborted.');
-            // Вызовите здесь вашу функцию
-            callFunctionOnTimeout();
-        } else {
-            console.error('Error:', error);
-        }
+        
         hideLoader();
         throw new Error(error);
     }
