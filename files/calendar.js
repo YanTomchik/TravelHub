@@ -418,7 +418,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     // console.log(cabinClassContainer)
     // console.log(adultCounter)
     // console.log(childrenCounter)
-    // console.log(infantCounter)
+    console.log(typeRequest)
 
     let firstDate = todayString;
     // console.log(firstDate)
@@ -539,6 +539,7 @@ const displayPrices = (prices, type) => {
 };
 
 function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
+    
     let selectedDate = null; // Переменная для хранения выбранной даты
     let datepickerBothWay = new AirDatepicker(datepickerInput, {
         locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
@@ -560,7 +561,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
             if (formattedDate.date[1] != undefined) {
                 const firstDateToSend = formatDateToString(formattedDate.date[0]);
                 const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
-                getFlightCalendar(firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
+                getFlightCalendar(firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, undefined)
                     .then(response => {
                         if (response.status == 'error') {
                             hideLoader()
@@ -597,10 +598,10 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
         },
         onShow: function (inst) {
             if (inst) {
-
+                
                 if (selectedDate) {
                     // console.log(selectedDate)
-                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
+                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, undefined)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
@@ -616,7 +617,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
                         });
 
                 } else {
-                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, typeRequest)
+                    getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, undefined)
                         .then(response => {
                             if (response.status === 'error') {
                                 hideLoader();
@@ -641,7 +642,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
             let firstDateToSend = new Date(year, month, '01');
             const formattedFirstDate = formatDateToString(new Date(firstDateToSend));
             const daysAfterToSend = calculateDaysAfter(new Date(firstDateToSend));
-            getFlightCalendar(formattedFirstDate, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
+            getFlightCalendar(formattedFirstDate, daysAfterToSend, codeIataFrom, codeIataTo, undefined)
                 .then(response => {
                     if (response.status == 'error') {
                         hideLoader()
@@ -804,6 +805,8 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
         showOtherMonths: false,
         onSelect: function (formattedDate, date, inst) {
             if (formattedDate.date[0] != undefined) {
+               
+                
                 getFlightCharterCalendar(typeWay)
                     .then(response => {
 
@@ -811,7 +814,21 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                         const dates = response.back;
                         datepicker.update({
                             onRenderCell: ({ date, cellType }) => {
+                                dates.forEach(elem=>{
+                                    datepicker.enableDate(new Date(elem))
+                                })
+                            }
+                            
+                        })
+                        datepicker.update({
+                            
+                            onRenderCell: ({ date, cellType }) => {
+                                
+                                
                                 if (cellType === 'day') {
+
+                                    
+                                    
                                     const day = String(date.getDate()).padStart(2, '0');
                                     const month = String(date.getMonth() + 1).padStart(2, '0');
                                     const year = date.getFullYear();
@@ -820,10 +837,13 @@ function createTwoWayCharterCalendar(datepickerInput, typeWay) {
                                     const renderCellDateFormat = new Date(renderCellDateTwoWay);
 
                                     if (dates.includes(renderCellDateTwoWay) && renderCellDateFormat > formattedDate.date[0]) {
+                                        
                                         return {
                                             html: `<span class="available-date">${date.getDate()}</span>`,
-                                            classes: 'charter-day'
+                                            classes: 'charter-day',
+                                            
                                         };
+                                        
                                     } else {
                                         return {
                                             disabled: true
