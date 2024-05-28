@@ -37,8 +37,8 @@ let charterDirectionsCache = null;
 const datepickerInput = document.querySelector('.form-control.form-control-solid.form-control-lg');
 datepickerInput.setAttribute('autocomplete', 'off');
 
-let codeIataFrom = document.getElementById('flightsearchform-locationfrom').value;
-let codeIataTo = document.getElementById('flightsearchform-locationto').value;
+let codeIataFrom = $('#flightsearchform-locationfrom').val();
+let codeIataTo = $('#flightsearchform-locationto').val();
 
 let codeIataFromArr = document.getElementById('flightsearchform-locationfrom').options;
 let codeIatatoArr = document.getElementById('flightsearchform-locationto').options;
@@ -87,8 +87,8 @@ function mainCreateDatepickers(datepickerInput, radioButtonValue, typeRenderDate
             datepicker.destroy()
         }
 
-        codeIataFrom = codeIataFromArr[codeIataFromArr.length - 1].value;
-        codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
+        codeIataFrom = $('#flightsearchform-locationfrom').val();
+        codeIataTo = $('#flightsearchform-locationto').val()
 
         datepicker = createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
     }
@@ -97,8 +97,8 @@ function mainCreateDatepickers(datepickerInput, radioButtonValue, typeRenderDate
             datepicker.destroy()
         }
 
-        codeIataFrom = codeIataFromArr[codeIataFromArr.length - 1].value;
-        codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
+        codeIataFrom = $('#flightsearchform-locationfrom').val()
+        codeIataTo = $('#flightsearchform-locationto').val();
 
         datepicker = createOneWayCalendar(datepickerInput, codeIataFrom, codeIataTo);
     } else if (radioButtonValue == 'trip' && charterCheckbox.checked) {
@@ -402,8 +402,8 @@ async function getFlightCharterDirectionsCalendar() {
 const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest) => {
     const apiUrl = 'https://api.travelhub.by/flight/calendar';
 
-    codeIataFrom = codeIataFromArr[codeIataFromArr.length - 1].value;
-    codeIataTo = codeIatatoArr[codeIatatoArr.length - 1].value;
+    codeIataFrom = $('#flightsearchform-locationfrom').val();
+    codeIataTo = $('#flightsearchform-locationto').val();
 
     let adultCounter = document.getElementById('adult-counter').innerHTML;
     let childrenCounter = document.getElementById('children-counter').innerHTML;
@@ -1170,14 +1170,14 @@ if (isMobileFlag == true) {
     });
 }
 
-document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('change', function(){
+$('#flightsearchform-locationfrom').on('change', function(){
     clearAllCache()
     datepicker.setViewDate(today)
     datepicker.clear(true)
     
 })
 
-document.querySelector('#select2-flightsearchform-locationto-container').addEventListener('change', function(){
+$('#flightsearchform-locationto').on('change', function(){
     clearAllCache()
     datepicker.setViewDate(today)
     datepicker.clear(true)
