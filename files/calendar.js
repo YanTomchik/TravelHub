@@ -401,37 +401,25 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     if (cabinClassContainer == 'Эконом') {
         cabinClassContainer = 'economy';
     } else if (cabinClassContainer == 'Бизнес') {
-        cabinClassContainer = 'business'
+        cabinClassContainer = 'business';
     }
 
-    // console.log(cabinClassContainer)
-    // console.log(adultCounter)
-    // console.log(childrenCounter)
-    // console.log(typeRequest)
-
     let firstDate = todayString;
-    // console.log(firstDate)
-
     let daysAfter = calculateDaysAfter(today);
     let daysBefore = '0';
     let termIata = null;
     if (firstDateToSend !== undefined) {
         firstDate = firstDateToSend;
-        // console.log(firstDate)
     }
     if (daysAfterToSend !== undefined) {
         daysAfter = daysAfterToSend;
     }
-
 
     if (typeRequest === 'return') {
         termIata = codeIataFrom;
         codeIataFrom = codeIataTo;
         codeIataTo = termIata;
     }
-
-    // console.log(codeIataFrom);
-    // console.log(codeIataTo);
 
     const queryParams = new URLSearchParams({
         route: 'one',
@@ -450,7 +438,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     const headers = new Headers();
     headers.append('Authorization', 'Bearer AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ');
 
-    let monthToCacheKey = firstDate.split('.')[1]
+    let monthToCacheKey = firstDate.split('.')[1];
 
     const cacheKey = generateCacheKey(monthToCacheKey, codeIataFrom, codeIataTo, typeRequest, cabinClassContainer, adultCounter, childrenCounter, infantCounter);
 
@@ -466,22 +454,36 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     try {
         showLoader();
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+            controller.abort();
+        }, 10000);
+
         const response = await fetch(`${apiUrl}?${queryParams}`, {
-            headers: headers
+            headers: headers,
+            signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
-        if (data.status != 'error') {
+        if (data.status !== 'error') {
             setLocalStorageFlightData(cacheKey, data);
         }
 
-
         return data;
     } catch (error) {
+        if (error.name === 'AbortError') {
+            console.error('The request took too long and was aborted.');
+            // Вызовите здесь вашу функцию
+            callFunctionOnTimeout();
+        } else {
+            console.error('Error:', error);
+        }
         hideLoader();
         throw new Error(error);
     }
