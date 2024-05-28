@@ -106,9 +106,10 @@ async function fetchMarkerData(formDataFromRequest) {
   }
 }
 
-async function fetchPropertyData(propertyId,formDataFromRequest) {
-  
-
+async function fetchPropertyData(propertyId,formDataFromRequest, marker) {
+  console.log(propertyId)
+  marker.element.querySelector('.map-marker-description').classList.add('white-marker-text')
+  marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block'
   let formData = null;
   if (formDataFromRequest != null) {
 
@@ -148,8 +149,13 @@ async function fetchPropertyData(propertyId,formDataFromRequest) {
 
   const cacheKey = generateCacheKey(`property_${propertyId}`);
   let cachedData = getCachedData(cacheKey);
+  
+  formData.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+  });
 
   if (cachedData) {
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
     return cachedData;
   }
 
@@ -160,11 +166,14 @@ async function fetchPropertyData(propertyId,formDataFromRequest) {
       method: 'POST',
       body: formData
     });
-    // console.log(response)
+    console.log(response)
     const data = await response.json();
     setCachedData(cacheKey, data);
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
     return data;
   } catch (error) {
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
+    
     console.error('Error fetching data from API:', error);
     throw error;
   }
@@ -345,8 +354,8 @@ async function initMap(formData,typeRender) {
     marker.addListener("click", async () => {
       const propertyId = marker.title;
 
-      const propertyData = await fetchPropertyData(propertyId,formData);
-      // console.log(propertyData.data[0])
+      const propertyData = await fetchPropertyData(propertyId,formData,marker);
+      console.log(propertyData)
       const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
 
       const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
@@ -381,7 +390,6 @@ async function initMap(formData,typeRender) {
         </div>
       `;
 
-      
       const offset = window.innerWidth > 1024 ? -150 : window.innerWidth >= 770 ? -250 : 0;
       centerMapZoom(offset, map, marker);
 
@@ -552,6 +560,10 @@ function toggleContentVisibility() {
       allMarkersProperty.forEach((item)=>{
         item.classList.remove('highlight')
       })
+      let allMarkersLoaders = document.querySelectorAll('.map-marker-description.white-marker-text');
+      allMarkersLoaders.forEach((item)=>{
+        item.classList.remove('white-marker-text')
+      })
 }
 
 function buildContent(price, currencyName) {
@@ -563,6 +575,7 @@ function buildContent(price, currencyName) {
 
   content.innerHTML = `
     <div class="icon">
+    <div class="loader-icon-marker"></div>
       <div class="map-marker-description">
         ${markerDescription}
       </div>
@@ -681,12 +694,12 @@ $(document).ready(function() {
     });
 
 
-    // if (typeof $.fn.yiiActiveForm === 'function') {
-    //   $('#properties-search-form').yiiActiveForm('validate', true);
+    if (typeof $.fn.yiiActiveForm === 'function') {
+      $('#properties-search-form').yiiActiveForm('validate', true);
       if(window.innerWidth > 770){
         reInitMap()
       }
-    // }
+    }
 
   });
 });

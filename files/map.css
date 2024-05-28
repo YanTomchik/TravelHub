@@ -26,6 +26,22 @@
   }
   /*  */
 
+  .loader-icon-marker{
+    width: 12px;
+    height: 12px;
+    border: 1px solid #3D7B50;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    position: absolute;
+    top: 6px;
+    left: 22px;
+    z-index: 9999;
+    display: none;
+  }
+
   .marker-popup-header-info .qq-btn-place{
     display: flex;
     justify-content: left;
@@ -104,6 +120,10 @@
     letter-spacing: -0.01em;
     padding: 4px 8px;
     white-space: nowrap;
+}
+
+.map-marker-description.white-marker-text{
+  color: #fff;
 }
 
 .marker-popup-wrapper{
@@ -527,10 +547,6 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   background-color: #F4F6F9;
 }
 
-
-
-
-
 .loader-map {
   width: 48px;
   height: 48px;
@@ -547,13 +563,13 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .loader-cards-list-wrapper{
-    width: 100%;
-    height: 100%;
+    width: 92%;
+    height: 85%;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 72px;
+    left: 16px;
     z-index: 4;
-    /* background-color: #F4F6F990; */
+    background-color: #F4F6F990;
     display: none;
   }
 
@@ -568,7 +584,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     animation: rotation 1s linear infinite;
     position: absolute;
     top: 45%;
-    left: 45%;
+    left: 48%;
     z-index: 9999;
     }
 
