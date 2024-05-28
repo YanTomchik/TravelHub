@@ -118,16 +118,6 @@ function mainCreateDatepickers(datepickerInput, radioButtonValue, typeRenderDate
     return datepicker;
 }
 
-// radioButtons.forEach(radioButton => {
-//     radioButton.addEventListener('change', () => {
-
-//         clearInputs();
-//         radioButtonValue = radioButton.value;
-//         datepicker = mainCreateDatepickers(datepickerInput, radioButtonValue);
-//     });
-
-// });
-
 radioButtonsWrappers.forEach(elem => {
 
     elem.addEventListener('click', () => {
@@ -314,7 +304,6 @@ const clearFlightCache = (prefix) => {
     });
 };
 
-
 async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
     codeIataFrom = inputCharterFrom.getAttribute('iata-from');
     codeIataTo = inputCharterTo.getAttribute('iata-to');
@@ -428,6 +417,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     let termIata = null;
     if (firstDateToSend !== undefined) {
         firstDate = firstDateToSend;
+        console.log(firstDate)
     }
     if (daysAfterToSend !== undefined) {
         daysAfter = daysAfterToSend;
@@ -600,7 +590,9 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
             if (inst) {
                 
                 if (selectedDate) {
-                    // console.log(selectedDate)
+                    month = selectedDate.split('.')[1];
+                    year = selectedDate.split('.')[2];
+                    datepicker.setViewDate(new Date(`${year}.${month}.01`))
                     getFlightCalendar(formatDateToString(datepicker.viewDate), undefined, codeIataFrom, codeIataTo, undefined)
                         .then(response => {
                             if (response.status === 'error') {
@@ -642,7 +634,7 @@ function createBothWayCalendar(datepickerInput, codeIataFrom, codeIataTo) {
             let firstDateToSend = new Date(year, month, '01');
             const formattedFirstDate = formatDateToString(new Date(firstDateToSend));
             const daysAfterToSend = calculateDaysAfter(new Date(firstDateToSend));
-            getFlightCalendar(formattedFirstDate, daysAfterToSend, codeIataFrom, codeIataTo, undefined)
+            getFlightCalendar(formattedFirstDate, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
                 .then(response => {
                     if (response.status == 'error') {
                         hideLoader()
@@ -1182,12 +1174,11 @@ function clearAllCache() {
 
 if (isMobileFlag == true) {
     // Добавляем обработчик события scroll
-    window.addEventListener('scroll', () => {
-        if(datepicker!=undefined){
-            datepicker.hide()
-        }
-        
-    });
+        window.addEventListener('scroll', () => {
+            if(datepicker.visible){
+                datepicker.hide()
+            }
+        });
 }
 
 $('#flightsearchform-locationfrom').on('change', function(){

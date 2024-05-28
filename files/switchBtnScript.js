@@ -51,11 +51,10 @@ function switchTextContent() {
 }
 
 function switchOptionsToRequest() {
-    let optionFrom = document.getElementById('select2-flightsearchform-locationfrom-container');
-    let optionTo = document.getElementById('select2-flightsearchform-locationto-container');
+    let optionFrom = $('#select2-flightsearchform-locationfrom-container').text();
+    let optionTo = $('#select2-flightsearchform-locationto-container').text();
 
-    let tempText = optionFrom.textContent;
+    $('#select2-flightsearchform-locationfrom-container').text(optionTo);
+    $('#select2-flightsearchform-locationto-container').text(optionFrom);
 
-    optionFrom.textContent = optionTo.textContent;
-    optionTo.textContent = tempText;
 }
