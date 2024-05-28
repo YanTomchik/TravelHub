@@ -51,22 +51,11 @@ function switchTextContent() {
 }
 
 function switchOptionsToRequest() {
-    let optionFromArr = document.getElementById('flightsearchform-locationfrom').options;
-    let optionToArr = document.getElementById('flightsearchform-locationto').options;
+    let optionFrom = document.getElementById('select2-flightsearchform-locationfrom-container');
+    let optionTo = document.getElementById('select2-flightsearchform-locationto-container');
 
-    let optionFrom = optionFromArr[optionFromArr.length - 1];
-    let optionTo = optionToArr[optionToArr.length - 1];
-
-    // Сохраняем текущие значения option элементов
-    let tempValue = optionFrom.value;
     let tempText = optionFrom.textContent;
 
-    // Меняем значения option элементов местами
-    optionFrom.value = optionTo.value;
     optionFrom.textContent = optionTo.textContent;
-    optionFrom.selected = true;
-
-    optionTo.value = tempValue;
     optionTo.textContent = tempText;
-    optionTo.selected = true;
 }
