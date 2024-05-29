@@ -107,55 +107,49 @@ async function fetchMarkerData(formDataFromRequest) {
 }
 
 async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
-  console.log(propertyId)
-  marker.element.querySelector('.map-marker-description').classList.add('white-marker-text')
-  marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block'
-  let formData = null;
+  console.log(propertyId);
+  marker.element.querySelector('.map-marker-description').classList.add('white-marker-text');
+  marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block';
+
+  let formData;
+
   if (formDataFromRequest != null) {
-
+    // Использование переданного formDataFromRequest
     formData = formDataFromRequest;
-
+    formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
   } else {
-
+    formData = new FormData();
 
     if (!layoutDev) {
-      // get search params
+      // Получение данных из формы на странице
       const form = document.getElementById('properties-search-form');
-      formData = new FormData(form);
-      const searchParams = new URLSearchParams();
-
-      for (const pair of formData) {
-        searchParams.append(pair[0], pair[1]);
-      }
-      if (propertyId !== undefined) {
-        searchParams.append("PropertySearchForm[propertyId]", `${propertyId}`);
-      }
-      searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-      formData = searchParams;
+      const tempFormData = new FormData(form);
+      tempFormData.forEach((value, key) => {
+        formData.append(key, value);
+      });
     } else {
-      formData = new FormData();
+      // Использование предопределенных значений
       formData.append("PropertySearchForm[location]", "4");
       formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
       formData.append("PropertySearchForm[partner]", "11115");
       formData.append("PropertySearchForm[map]", "true");
-      if (propertyId !== undefined) {
-        formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
-      }
     }
 
+    formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
+    formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
   }
 
   const cacheKey = generateCacheKey(`property_${propertyId}`);
-  let cachedData = getCachedData(cacheKey);
+  const cachedData = getCachedData(cacheKey);
 
   formData.forEach((value, key) => {
     console.log(`${key}: ${value}`);
   });
 
   if (cachedData) {
-    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none';
     return cachedData;
   }
 
@@ -166,18 +160,18 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       method: 'POST',
       body: formData
     });
-    console.log(response)
+    console.log(response);
     const data = await response.json();
     setCachedData(cacheKey, data);
-    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none';
     return data;
   } catch (error) {
-    marker.element.querySelector('.loader-icon-marker').style.display = 'none'
-
+    marker.element.querySelector('.loader-icon-marker').style.display = 'none';
     console.error('Error fetching data from API:', error);
     throw error;
   }
 }
+
 
 async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
   let formData = null;
@@ -281,6 +275,7 @@ leftBlock.addEventListener('scroll', () => {
 
 let map = null;
 let markers = null;
+let animationFrame;
 
 async function initMap(formData, typeRender) {
   if (typeRender == 'showFilter') {
@@ -490,6 +485,8 @@ async function initMap(formData, typeRender) {
     return marker;
   });
 
+  
+
   google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
     loaderDiv.style.display = 'none';
     leftSectionWrapper.classList.add('active');
@@ -547,6 +544,8 @@ async function initMap(formData, typeRender) {
 
 }
 
+
+
 function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
@@ -597,8 +596,41 @@ function centerMapZoom(offsetValue, map, marker) {
   centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
   var centerLatLng = projection.fromPointToLatLng(centerPixel);
 
-  map.setCenter(centerLatLng);
+  // map.setCenter(centerLatLng);
+  smoothPanTo(centerLatLng, map)
 }
+
+function smoothPanTo(newCenter, map) {
+  const duration = 1000; // duration of the animation in ms
+  const steps = 30; // number of steps for the animation
+  const interval = duration / steps;
+  
+  const startCenter = map.getCenter();
+  const startLat = startCenter.lat();
+  const startLng = startCenter.lng();
+  const endLat = newCenter.lat();
+  const endLng = newCenter.lng();
+  
+  let currentStep = 0;
+
+  function animate() {
+      currentStep += 1;
+      const progress = currentStep / steps;
+      
+      const currentLat = startLat + (endLat - startLat) * progress;
+      const currentLng = startLng + (endLng - startLng) * progress;
+      
+      map.setCenter({ lat: currentLat, lng: currentLng });
+
+      if (currentStep < steps) {
+          animationFrame = requestAnimationFrame(animate);
+      }
+  }
+
+  cancelAnimationFrame(animationFrame);
+  animate();
+}
+
 
 //Тоглер для очистки активных маркеров и активации нижнего блока при моб версии
 function toggleContentVisibility() {
