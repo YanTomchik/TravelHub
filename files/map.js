@@ -18,8 +18,8 @@ let layoutDev = (typeof implemented === 'undefined');
 
 function triggerInputEvent(element) {
   let event = new Event('input', {
-      bubbles: true,
-      cancelable: true
+    bubbles: true,
+    cancelable: true
   });
   element.dispatchEvent(event);
   // console.log(element);
@@ -57,28 +57,28 @@ async function fetchMarkerData(formDataFromRequest) {
     formData = formDataFromRequest;
 
   } else {
-    
+
 
     if (!layoutDev) {
       // get search params
-          const form = document.getElementById('properties-search-form');
-          formData = new FormData(form);
-          const searchParams = new URLSearchParams();
+      const form = document.getElementById('properties-search-form');
+      formData = new FormData(form);
+      const searchParams = new URLSearchParams();
 
-          for (const pair of formData) {
-              searchParams.append(pair[0], pair[1]);
-          }
-          searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-          formData = searchParams;
-      } else {
-        formData = new FormData();
-        formData.append("PropertySearchForm[location]", "4");
-        formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-        formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
-        formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-        formData.append("PropertySearchForm[partner]", "11115");
-        formData.append("PropertySearchForm[map]", "true");
+      for (const pair of formData) {
+        searchParams.append(pair[0], pair[1]);
       }
+      searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+      formData = searchParams;
+    } else {
+      formData = new FormData();
+      formData.append("PropertySearchForm[location]", "4");
+      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[map]", "true");
+    }
 
   }
 
@@ -106,7 +106,7 @@ async function fetchMarkerData(formDataFromRequest) {
   }
 }
 
-async function fetchPropertyData(propertyId,formDataFromRequest, marker) {
+async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
   console.log(propertyId)
   marker.element.querySelector('.map-marker-description').classList.add('white-marker-text')
   marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block'
@@ -116,40 +116,40 @@ async function fetchPropertyData(propertyId,formDataFromRequest, marker) {
     formData = formDataFromRequest;
 
   } else {
-    
+
 
     if (!layoutDev) {
       // get search params
-          const form = document.getElementById('properties-search-form');
-          formData = new FormData(form);
-          const searchParams = new URLSearchParams();
+      const form = document.getElementById('properties-search-form');
+      formData = new FormData(form);
+      const searchParams = new URLSearchParams();
 
-          for (const pair of formData) {
-              searchParams.append(pair[0], pair[1]);
-          }
-          if (propertyId !== undefined) {
-            searchParams.append("PropertySearchForm[propertyId]", `${propertyId}`);
-          }
-          searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-          formData = searchParams;
-      } else {
-        formData = new FormData();
-        formData.append("PropertySearchForm[location]", "4");
-        formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-        formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
-        formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-        formData.append("PropertySearchForm[partner]", "11115");
-        formData.append("PropertySearchForm[map]", "true");
-        if (propertyId !== undefined) {
-          formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
-        }
+      for (const pair of formData) {
+        searchParams.append(pair[0], pair[1]);
       }
+      if (propertyId !== undefined) {
+        searchParams.append("PropertySearchForm[propertyId]", `${propertyId}`);
+      }
+      searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+      formData = searchParams;
+    } else {
+      formData = new FormData();
+      formData.append("PropertySearchForm[location]", "4");
+      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[map]", "true");
+      if (propertyId !== undefined) {
+        formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
+      }
+    }
 
   }
 
   const cacheKey = generateCacheKey(`property_${propertyId}`);
   let cachedData = getCachedData(cacheKey);
-  
+
   formData.forEach((value, key) => {
     console.log(`${key}: ${value}`);
   });
@@ -160,7 +160,7 @@ async function fetchPropertyData(propertyId,formDataFromRequest, marker) {
   }
 
   const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
-  
+
   try {
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -173,7 +173,7 @@ async function fetchPropertyData(propertyId,formDataFromRequest, marker) {
     return data;
   } catch (error) {
     marker.element.querySelector('.loader-icon-marker').style.display = 'none'
-    
+
     console.error('Error fetching data from API:', error);
     throw error;
   }
@@ -242,6 +242,7 @@ async function lazyLoadLeftBlock() {
   if (loaderDiv.style.display !== 'none') return; // Не загружать данные, если уже идет загрузка
   loaderDivCardsList.style.display = 'block';
 
+
   const newItems = await fetchLeftBlockData(offset, limit, null);
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = newItems;
 
@@ -261,13 +262,19 @@ async function lazyLoadLeftBlock() {
   offset += limit;
   // console.log(offset);
   // console.log(limit);
-  
+
   loaderDivCardsList.style.display = 'none';
 }
 
 leftBlock.addEventListener('scroll', () => {
   if (leftBlock.scrollTop + leftBlock.clientHeight >= leftBlock.scrollHeight) {
-    lazyLoadLeftBlock();
+    console.log(headerMapCountElement.textContent.split(' ')[0])
+    const countOfHotelsHeader = Number(headerMapCountElement.textContent.split(' ')[0]) + 30;
+    console.log(offset)
+    if (offset <= countOfHotelsHeader) {
+      lazyLoadLeftBlock();
+    }
+
   }
 });
 
@@ -275,8 +282,8 @@ leftBlock.addEventListener('scroll', () => {
 let map = null;
 let markers = null;
 
-async function initMap(formData,typeRender) {
-  if(typeRender == 'showFilter'){
+async function initMap(formData, typeRender) {
+  if (typeRender == 'showFilter') {
     mapDashboardFilterWrapper.classList.toggle('active')
     leftBlock.classList.toggle('hide')
     document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter');
@@ -293,39 +300,58 @@ async function initMap(formData,typeRender) {
 
   // $('#map_minPrice').text($('#minPrice').text());
   // $('#map_maxPrice').text($('#maxPrice').text());
+  $(document).ready(function () {
+    const mapMinPrice = $('input[name="map_minPrice"]');
+    const mapMaxPrice = $('input[name="map_maxPrice"]');
+    const minPrice = $('input[name="minPrice"]');
+    const maxPrice = $('input[name="maxPrice"]');
 
-  const mapMinPrice = document.querySelector('input[name="map_minPrice"]');
-        const mapMaxPrice = document.querySelector('input[name="map_maxPrice"]');
-        const minPrice = document.querySelector('input[name="minPrice"]');
-        const maxPrice = document.querySelector('input[name="maxPrice"]');
+    const mapMinPriceText = $('#map_min-price');
+    const mapMaxPriceText = $('#map_max-price');
+    const minPriceText = $('#min-price');
+    const maxPriceText = $('#max-price');
 
-        const mapMinPriceText = document.getElementById('map_min-price');
-        const mapMaxPriceText = document.getElementById('map_max-price');
-        const minPriceText = document.getElementById('min-price');
-        const maxPriceText = document.getElementById('max-price');
+    function syncValues(source, target, sourceText, targetText) {
+      target.val(source.val()).trigger('input');
+      sourceText.text(source.val());
+      targetText.text(source.val());
+    }
 
-        function syncValues(source, target, sourceText, targetText) {
-            target.value = source.value;
-            sourceText.textContent = source.value;
-            targetText.textContent = source.value;
-        }
+    function updateText() {
+      mapMinPriceText.text(mapMinPrice.val());
+      mapMaxPriceText.text(mapMaxPrice.val());
+      minPriceText.text(minPrice.val());
+      maxPriceText.text(maxPrice.val());
+    }
 
-        mapMinPrice.addEventListener('input', () => syncValues(mapMinPrice, minPrice, mapMinPriceText, minPriceText));
-        mapMaxPrice.addEventListener('input', () => syncValues(mapMaxPrice, maxPrice, mapMaxPriceText, maxPriceText));
+    mapMinPrice.on('input', function () {
+      syncValues(mapMinPrice, minPrice, mapMinPriceText, minPriceText);
+    });
 
-        minPrice.addEventListener('input', () => syncValues(minPrice, mapMinPrice, minPriceText, mapMinPriceText));
-        maxPrice.addEventListener('input', () => syncValues(maxPrice, mapMaxPrice, maxPriceText, mapMaxPriceText));
+    mapMaxPrice.on('input', function () {
+      syncValues(mapMaxPrice, maxPrice, mapMaxPriceText, maxPriceText);
+    });
 
+    minPrice.on('input', function () {
+      syncValues(minPrice, mapMinPrice, minPriceText, mapMinPriceText);
+    });
+
+    maxPrice.on('input', function () {
+      syncValues(maxPrice, mapMaxPrice, maxPriceText, mapMaxPriceText);
+    });
+
+    updateText(); // Initialize text
+  });
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const markerData = await fetchMarkerData(formData);
-  
+
 
   const { data: markerDataObj, latitude_с: latC, longitude_с: lngC, currency: markerDataCurrencyName, count: markerDataCountHotels } = markerData;
 
   let limitForRequestLeftBlock = 30;
   let offsetForRequestLeftBlock = 0;
-  
+
   const leftBlockData = await fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData);
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = leftBlockData;
 
@@ -362,7 +388,7 @@ async function initMap(formData,typeRender) {
     buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
   });
 
-  await lazyLoadLeftBlock(); 
+  await lazyLoadLeftBlock();
 
   const markers = markerDataObj.map((markerInfo) => {
     const { id, price, lat, lng } = markerInfo;
@@ -376,7 +402,7 @@ async function initMap(formData,typeRender) {
     marker.addListener("click", async () => {
       const propertyId = marker.title;
 
-      const propertyData = await fetchPropertyData(propertyId,formData,marker);
+      const propertyData = await fetchPropertyData(propertyId, formData, marker);
       console.log(propertyData)
       const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
 
@@ -417,13 +443,13 @@ async function initMap(formData,typeRender) {
 
       infoWindow.setContent(contentInfoWindow);
       infoWindow.open(map, marker);
-      
+
       toggleContentVisibility();
-      buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+      buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
       marker.element.querySelector('.property').classList.add("highlight");
     });
 
-    leftBlock.addEventListener('click', function(event) {
+    leftBlock.addEventListener('click', function (event) {
       const target = event.target.closest('.map-dashboard-card-item');
       if (!target) return;
 
@@ -431,19 +457,19 @@ async function initMap(formData,typeRender) {
       const curItemLng = target.getAttribute('data-position-lng');
 
       if (marker.position.Gg == curItemLat && marker.position.Hg == curItemLng) {
-          // Вычисление смещения для infoWindow
-          map.setZoom(16);
+        // Вычисление смещения для infoWindow
+        map.setZoom(16);
 
-          // Центрируем карту на маркере
-          let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
-          centerMapZoom(offset, map, marker);
+        // Центрируем карту на маркере
+        let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
+        centerMapZoom(offset, map, marker);
 
-          // console.log(target)
-          const markerPopupHeaderWrapper = target.querySelector('.marker-popup-header-wrapper').outerHTML;
-          const markerPopupFooterInfo = target.querySelector('.marker-popup-footer-info').outerHTML;
-          // console.log(markerPopupHeaderWrapper)
-          // console.log(markerPopupFooterInfo)
-          const contentInfoWindow = `
+        // console.log(target)
+        const markerPopupHeaderWrapper = target.querySelector('.marker-popup-header-wrapper').outerHTML;
+        const markerPopupFooterInfo = target.querySelector('.marker-popup-footer-info').outerHTML;
+        // console.log(markerPopupHeaderWrapper)
+        // console.log(markerPopupFooterInfo)
+        const contentInfoWindow = `
         <div class="details">
           <div class="marker-popup-wrapper">
             ${markerPopupHeaderWrapper}
@@ -452,14 +478,14 @@ async function initMap(formData,typeRender) {
         </div>
       `;
 
-          infoWindow.setContent(contentInfoWindow);
-          infoWindow.open(map, marker);
+        infoWindow.setContent(contentInfoWindow);
+        infoWindow.open(map, marker);
 
-          toggleContentVisibility();
-          // buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-          marker.element.querySelector('.property').classList.add("highlight");
+        toggleContentVisibility();
+        // buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+        marker.element.querySelector('.property').classList.add("highlight");
       }
-  });
+    });
 
     return marker;
   });
@@ -470,33 +496,33 @@ async function initMap(formData,typeRender) {
   });
 
   // Обработка события изменения области видимости карты
-  google.maps.event.addListener(map, 'bounds_changed', function() {
+  google.maps.event.addListener(map, 'bounds_changed', function () {
     // console.log(window.innerWidth)
-    if(window.innerWidth >= 770){
+    if (window.innerWidth >= 770) {
       // Получение текущей области видимости карты
-    const bounds = map.getBounds();
+      const bounds = map.getBounds();
 
-    // Получение координат углов области видимости
-    const ne = bounds.getNorthEast();
-    const sw = bounds.getSouthWest();
+      // Получение координат углов области видимости
+      const ne = bounds.getNorthEast();
+      const sw = bounds.getSouthWest();
 
-    const leftBlockWrapper = document.querySelectorAll('.map-dashboard-card-item');
-    //Отображение отлей в левой части в зависимости от зума
-    leftBlockWrapper.forEach((item)=>{
+      const leftBlockWrapper = document.querySelectorAll('.map-dashboard-card-item');
+      //Отображение отлей в левой части в зависимости от зума
+      leftBlockWrapper.forEach((item) => {
 
-      const itemLat = item.getAttribute('data-position-lat');
-      const itemLng = item.getAttribute('data-position-lng');
-      
-      if (itemLat >= sw.lat() && itemLat <= ne.lat() && itemLng >= sw.lng() && itemLng <= ne.lng()) {
-        item.style.display = 'block'
-      }else{
-        item.style.display = 'none'
-      }
+        const itemLat = item.getAttribute('data-position-lat');
+        const itemLng = item.getAttribute('data-position-lng');
 
-    })
+        if (itemLat >= sw.lat() && itemLat <= ne.lat() && itemLng >= sw.lng() && itemLng <= ne.lng()) {
+          item.style.display = 'block'
+        } else {
+          item.style.display = 'none'
+        }
+
+      })
     }
-    
-    
+
+
   });
 
   google.maps.event.addListener(map, 'click', (event) => {
@@ -526,8 +552,8 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
 
   const content = document.createElement("div");
   content.classList.add("map-dashboard-card-item");
-  content.setAttribute('data-position-lat',`${property.latitude}`);
-  content.setAttribute('data-position-lng',`${property.longitude}`);
+  content.setAttribute('data-position-lat', `${property.latitude}`);
+  content.setAttribute('data-position-lng', `${property.longitude}`);
 
   content.innerHTML = `
     <div class="marker-popup-header-wrapper">
@@ -565,7 +591,7 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
   leftBlock.appendChild(content);
 }
 
-function centerMapZoom (offsetValue, map, marker){
+function centerMapZoom(offsetValue, map, marker) {
   var projection = map.getProjection();
   var centerPixel = projection.fromLatLngToPoint(marker.position);
   centerPixel.x += offsetValue / Math.pow(2, map.getZoom());
@@ -579,13 +605,13 @@ function toggleContentVisibility() {
   // const mapDashboardCardsListWrapper = document.getElementById('map-dashboard-bottom-section-wrapper');
   mapCardsListBottomWrapper.classList.add('active');
   let allMarkersProperty = document.querySelectorAll('.property');
-      allMarkersProperty.forEach((item)=>{
-        item.classList.remove('highlight')
-      })
-      let allMarkersLoaders = document.querySelectorAll('.map-marker-description.white-marker-text');
-      allMarkersLoaders.forEach((item)=>{
-        item.classList.remove('white-marker-text')
-      })
+  allMarkersProperty.forEach((item) => {
+    item.classList.remove('highlight')
+  })
+  let allMarkersLoaders = document.querySelectorAll('.map-marker-description.white-marker-text');
+  allMarkersLoaders.forEach((item) => {
+    item.classList.remove('white-marker-text')
+  })
 }
 
 function buildContent(price, currencyName) {
@@ -606,7 +632,7 @@ function buildContent(price, currencyName) {
   return content;
 }
 
-function buildBottomContent(name,stars,priceTotal,priceNightly,id,url,image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
   mapCardsListBottomWrapper.innerHTML = `
@@ -664,7 +690,7 @@ const bodyTag = document.body;
 //Открытие карты и генерация ее
 const mapShowSearch = document.querySelector('.result-amount-map-search-wrapper')
 const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-fade')
-mapShowSearch.addEventListener('click', function(){
+mapShowSearch.addEventListener('click', function () {
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'hidden';
   initMap()
@@ -676,7 +702,7 @@ mapShowSearch.addEventListener('click', function(){
 const mapDashboardFilterWrapper = document.querySelector('.map-dashboard-filter-wrapper');
 const mapDashboardFilterBtn = document.querySelector('.map-dashboard-filter-header-btn');
 
-mapDashboardFilterBtn.addEventListener('click', function(){
+mapDashboardFilterBtn.addEventListener('click', function () {
   mapDashboardFilterWrapper.classList.toggle('active')
   leftBlock.classList.toggle('hide')
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
@@ -686,7 +712,7 @@ mapDashboardFilterBtn.addEventListener('click', function(){
 
 //Закрытие фильтра
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
-closeFilterBlockbtn.addEventListener('click', function(){
+closeFilterBlockbtn.addEventListener('click', function () {
   mapDashboardFilterWrapper.classList.toggle('active');
   leftBlock.classList.toggle('hide')
   mapCardsListBottomWrapper.classList.toggle('hide');
@@ -696,29 +722,29 @@ closeFilterBlockbtn.addEventListener('click', function(){
 
 //Закрытие карты
 const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
-closeMapDashboardMainWrapperBtn.addEventListener('click', function(){
+closeMapDashboardMainWrapperBtn.addEventListener('click', function () {
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'scroll';
   leftSectionWrapper.classList.toggle('active');
   clearMap()
 })
 
-$(document).ready(function() {
-  $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function() {
+$(document).ready(function () {
+  $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function () {
     var className = $(this).attr('class');
     var checked = $(this).is(':checked');
     var linkedItems = $('#filters .' + className);
     linkedItems.prop('checked', checked);
 
-    linkedItems.each(function() {
-        var event = new Event('change', { bubbles: true });
-        this.dispatchEvent(event);
+    linkedItems.each(function () {
+      var event = new Event('change', { bubbles: true });
+      this.dispatchEvent(event);
     });
 
 
     if (typeof $.fn.yiiActiveForm === 'function') {
       $('#properties-search-form').yiiActiveForm('validate', true);
-      if(window.innerWidth > 770){
+      if (window.innerWidth > 770) {
         reInitMap()
       }
     }
@@ -730,7 +756,7 @@ $(document).ready(function() {
 //Нажатие на кнопку фильтра
 
 mobileFilterApplyBtn.addEventListener('click', () => {
-  
+
   reInitMap()
 })
 
@@ -738,19 +764,19 @@ function reInitMap() {
 
   mapDashboardFilterWrapper.classList.toggle('active')
   leftBlock.classList.toggle('hide');
-  
+
   document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
   togglerMobileStyleFilterBlock()
 
   const markerStarsList = document.getElementById('marker-popup-header-title-stars-list');
   const propertiesSearchForm = document.getElementById('properties-search-form');
   clearCachedData()
-  if(markerStarsList !=null){
+  if (markerStarsList != null) {
     markerStarsList.innerHTML = ''
   }
 
   let typeRender = undefined;
-  if(window.innerWidth > 770){
+  if (window.innerWidth > 770) {
     typeRender = 'showFilter'
   }
 
@@ -763,7 +789,7 @@ function reInitMap() {
       // console.log(pair[0], pair[1])
     }
     newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-    initMap(newSearchParams,typeRender)
+    initMap(newSearchParams, typeRender)
 
   } else {
 
@@ -774,15 +800,15 @@ function reInitMap() {
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");
-    initMap(newformData,typeRender)
+    initMap(newformData, typeRender)
 
   }
 
   clearMap()
 }
 
-function togglerMobileStyleFilterBlock(){
-  if(window.innerWidth <= 770){
+function togglerMobileStyleFilterBlock() {
+  if (window.innerWidth <= 770) {
     let filterWrapperMobile = document.querySelector('.map-dashboard-left-section-wrapper.active');
     filterWrapperMobile.classList.toggle('mobile');
   }
@@ -799,7 +825,7 @@ function clearCachedData() {
 // Функция для очистки карты
 function clearMap() {
   leftBlock.innerHTML = '';
-  headerMapCountElement.innerHTML=''
+  headerMapCountElement.innerHTML = ''
   mapCardsListBottomWrapper.innerHTML = '';
 
   // Очистка карты
@@ -807,37 +833,37 @@ function clearMap() {
 }
 
 function clearMarkerCache(prefix) {
-    
+
   const keysToRemove = [];
   for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key.startsWith(prefix)) {
-          keysToRemove.push(key);
-      }
+    const key = localStorage.key(i);
+    if (key.startsWith(prefix)) {
+      keysToRemove.push(key);
+    }
   }
   keysToRemove.forEach(key => localStorage.removeItem(key));
 }
 
 function clearPropertyCache(prefix) {
-    
+
   const keysToRemove = [];
   for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key.startsWith(prefix)) {
-          keysToRemove.push(key);
-      }
+    const key = localStorage.key(i);
+    if (key.startsWith(prefix)) {
+      keysToRemove.push(key);
+    }
   }
   keysToRemove.forEach(key => localStorage.removeItem(key));
 }
 
 function clearLeftBlockCache(prefix) {
-    
+
   const keysToRemove = [];
   for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key.startsWith(prefix)) {
-          keysToRemove.push(key);
-      }
+    const key = localStorage.key(i);
+    if (key.startsWith(prefix)) {
+      keysToRemove.push(key);
+    }
   }
   keysToRemove.forEach(key => localStorage.removeItem(key));
 }
@@ -847,13 +873,13 @@ function clearLeftBlockCache(prefix) {
 const form = document.querySelector('form[action="/hotels/search"]');
 
 if (form) {
-    // Найти кнопку внутри этой формы
-    const searchButtonBlock = form.querySelector('.search-btn-block.col-search-button button');
+  // Найти кнопку внутри этой формы
+  const searchButtonBlock = form.querySelector('.search-btn-block.col-search-button button');
 
-    if (searchButtonBlock) {
-        // Добавить обработчик события клика
-        searchButtonBlock.addEventListener('click', () => {
-            clearCachedData();
-        });
-    }
+  if (searchButtonBlock) {
+    // Добавить обработчик события клика
+    searchButtonBlock.addEventListener('click', () => {
+      clearCachedData();
+    });
+  }
 }

@@ -24,6 +24,10 @@
   .gm-style-iw-tc{
     display: none!important;
   }
+
+  .gm-style-iw-ch{
+    display: none;
+  }
   /*  */
 
   .loader-icon-marker{
@@ -398,7 +402,7 @@
   flex-direction: column;
   gap: 16px;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   
 }
 
