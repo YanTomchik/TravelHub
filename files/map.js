@@ -296,48 +296,7 @@ async function initMap(formData, typeRender) {
 
   // $('#map_minPrice').text($('#minPrice').text());
   // $('#map_maxPrice').text($('#maxPrice').text());
-  $(document).ready(function () {
-    const mapMinPrice = $('input[name="map_minPrice"]');
-    const mapMaxPrice = $('input[name="map_maxPrice"]');
-    const minPrice = $('input[name="minPrice"]');
-    const maxPrice = $('input[name="maxPrice"]');
-
-    const mapMinPriceText = $('#map_min-price');
-    const mapMaxPriceText = $('#map_max-price');
-    const minPriceText = $('#min-price');
-    const maxPriceText = $('#max-price');
-
-    function syncValues(source, target, sourceText, targetText) {
-      target.val(source.val()).trigger('input');
-      sourceText.text(source.val());
-      targetText.text(source.val());
-    }
-
-    function updateText() {
-      mapMinPriceText.text(mapMinPrice.val());
-      mapMaxPriceText.text(mapMaxPrice.val());
-      minPriceText.text(minPrice.val());
-      maxPriceText.text(maxPrice.val());
-    }
-
-    mapMinPrice.on('input', function () {
-      syncValues(mapMinPrice, minPrice, mapMinPriceText, minPriceText);
-    });
-
-    mapMaxPrice.on('input', function () {
-      syncValues(mapMaxPrice, maxPrice, mapMaxPriceText, maxPriceText);
-    });
-
-    minPrice.on('input', function () {
-      syncValues(minPrice, mapMinPrice, minPriceText, mapMinPriceText);
-    });
-
-    maxPrice.on('input', function () {
-      syncValues(maxPrice, mapMaxPrice, maxPriceText, mapMaxPriceText);
-    });
-
-    updateText(); // Initialize text
-  });
+  
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const markerData = await fetchMarkerData(formData);
@@ -774,12 +733,35 @@ $(document).ready(function () {
     });
 
 
-    // if (typeof $.fn.yiiActiveForm === 'function') {
-      // $('#properties-search-form').yiiActiveForm('validate', true);
+    if (typeof $.fn.yiiActiveForm === 'function') {
+      $('#properties-search-form').yiiActiveForm('validate', true);
       if (window.innerWidth > 770) {
         reInitMap()
       }
-    // }
+    }
+
+  });
+});
+
+$(document).ready(function () {
+  $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function () {
+    var className = $(this).attr('class');
+    var checked = $(this).is(':checked');
+    var linkedItems = $('#filters .' + className);
+    linkedItems.prop('checked', checked);
+
+    linkedItems.each(function () {
+      var event = new Event('change', { bubbles: true });
+      this.dispatchEvent(event);
+    });
+
+
+    if (typeof $.fn.yiiActiveForm === 'function') {
+      $('#properties-search-form').yiiActiveForm('validate', true);
+      if (window.innerWidth > 770) {
+        reInitMap()
+      }
+    }
 
   });
 });
