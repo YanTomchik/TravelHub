@@ -116,6 +116,7 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
   if (formDataFromRequest != null) {
     // Использование переданного formDataFromRequest
     formData = formDataFromRequest;
+    formData.delete("PropertySearchForm[propertyId]");
     formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
   } else {
     formData = new FormData();
@@ -542,9 +543,8 @@ async function initMap(formData, typeRender) {
   };
   const markerCluster = new MarkerClusterer({ markers, map, clusterOptions });
 
+
 }
-
-
 
 function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
@@ -774,12 +774,12 @@ $(document).ready(function () {
     });
 
 
-    if (typeof $.fn.yiiActiveForm === 'function') {
-      $('#properties-search-form').yiiActiveForm('validate', true);
+    // if (typeof $.fn.yiiActiveForm === 'function') {
+      // $('#properties-search-form').yiiActiveForm('validate', true);
       if (window.innerWidth > 770) {
         reInitMap()
       }
-    }
+    // }
 
   });
 });
@@ -827,8 +827,8 @@ function reInitMap() {
 
     let newformData = new FormData();
     newformData.append("PropertySearchForm[location]", "602433");
-    newformData.append("PropertySearchForm[checkinDate]", "27.05.2024");
-    newformData.append("PropertySearchForm[checkoutDate]", "30.05.2024");
+    newformData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+    newformData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");
