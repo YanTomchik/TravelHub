@@ -1,0 +1,30 @@
+.list-cell__button .multiple-input-list__btn .btn i{
+    padding-right: 0px!important;
+}
+
+.list-cell__button .multiple-input-list__btn .btn{
+    cursor: pointer;
+}
+
+#kt_form_update_payment_shares .d-flex.justify-content-center.mb-5{
+    justify-content: space-between!important;
+}
+
+#orderPaymentsSharesChangeModal .modal-header{
+    justify-content: center;
+}
+
+#filter-modal h3{
+    font-size: 18px;
+}
+
+#filter-modal .fancybox-slide--html .fancybox-close-small{
+    top: 10px;
+}
+
+
+@media (max-width: 566px){
+    .modal .modal-header .modal-title{
+        font-size:20px ;
+    }
+}

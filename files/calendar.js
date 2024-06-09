@@ -59,8 +59,6 @@ const charterInputTo = document.getElementById('charter-input-to');
 const defaultInputFrom = document.getElementById('input-default-flights-from');
 const defaultInputTo = document.getElementById('input-default-flights-to');
 
-const errorMessageUserElem = document.querySelector('.error-message-user');
-
 let radioButtonValue = radiobuttonValueCheck();
 //Change
 let isMobileFlag = window.matchMedia("only screen and (max-width: 760px)").matches;
@@ -321,10 +319,6 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
 
     const cachedData = getCachedDataCharterFlights(codeIataFrom, codeIataTo);
     if (cachedData) {
-        if (errorMessageUserElem.classList.contains('active')) {
-            errorMessageUserElem.classList.remove('active');
-            errorMessageUserElem.innerHTML = '';
-        }
         return cachedData;
     }
 
@@ -444,10 +438,6 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
     const cachedData = getCachedFlightData(cacheKey);
     if (cachedData) {
-        if (errorMessageUserElem.classList.contains('active')) {
-            errorMessageUserElem.classList.remove('active');
-            errorMessageUserElem.innerHTML = '';
-        }
         return cachedData;
     }
 
@@ -477,7 +467,9 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 
         return data;
     } catch (error) {
-        
+        if (error.name === 'AbortError') {
+            setLocalStorageFlightData(cacheKey, undefined);
+        }
         hideLoader();
         throw new Error(error);
     }
@@ -747,7 +739,14 @@ function createOneWayCharterCalendar(datepickerInput, typeWay) {
                         const dates = response.dates;
                         const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
 
+                        datepickerCharter.update({
+                            onRenderCell: ({ date, cellType }) => {
+                                dates.forEach(elem => {
+                                    datepickerCharter.enableDate(new Date(elem))
+                                })
+                            }
 
+                        })
                         datepickerCharter.update({
                             onRenderCell: ({ date, cellType }) => {
                                 if (cellType === 'day') {

@@ -11,6 +11,11 @@
     <script type="text/javascript" async="" src="./files/js"></script>
     <script async="" src="./files/tag.js"></script>
     <script async="" src="./files/gtm.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous">
+</script>
     <script type="application/ld+json">{
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -1318,10 +1323,9 @@
                                                                                 title="Выбрать дату"><i
                                                                                     class="glyphicon glyphicon-calendar kv-dp-icon"></i></span>
                                                                                     <span class="remove-datepicker-date" id="remove-datepicker-date">
-                                                                                        <img src="./images/cross-btn.svg" alt="">
+                                                                                        <img src="./images/cross-icon.svg" alt="">
                                                                                     </span>
                                                                         </div>
-
                                                                         <div class="help-block"></div>
                                                                         <div class="error-message-user" id="error-message-user">
 
@@ -1532,7 +1536,255 @@
                         </div>
 
                         <div class="find-hotel-result-block">
+                            <div class="filters-block filters-block-mobile" style="cursor: pointer;">
+                                <div class="card card-custom">
+                                    <h3 class="title filters-block-button">Дополнительный фильтр<img class="filters-block-icon" src="./images/hotels/filter.svg">
+                                    </h3>
+                                </div>
+                            </div>
                             <div id="filters" class="filters-block filters-block-desktop">
+                                <div class="card card-custom filters-block-submenus">
+                                    <h3 class="title">Дополнительный фильтр</h3>
+                                    <div class="filters-submenu filters-submenu-first">
+                                        <p class="title">Цена</p>
+                                        <div class="range range-price-wrapper">
+                                            <div class="range-price">
+                                                <p id="min-price">0$</p>
+                                                <p id="max-price">+1000$</p>
+                                            </div>
+                                            <div class="range-slider">
+                                                <span class="range-selected" style="left: 0;right: 0;"></span>
+                                            </div>
+                                            <div class="range-input">
+                                                <input type="range" name="minPrice" class="min" min="0" max="990" value="0" step="10">
+                                                <input type="range" name="maxPrice" class="max" min="0" max="1000" value="1000" step="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title search-title">Чартер</p>
+                                
+                                        <div class="filters-list">
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="charter" data-name="charter" value="1">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">Да</p>
+                                                </label>
+                                            </div>
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="charter" data-name="charter" value="0">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">Нет</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title search-title">Пересадки</p>
+                                
+                                        <div class="filters-list">
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="transfer" data-name="transfer" value="all">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">Любое</p>
+                                                </label>
+                                            </div>
+                                                                        <div class="filter-item">
+                                                    <label class="input-container radio-type">
+                                                        <input type="radio" name="transfer" data-name="transfer" value="1">
+                                                        <div class="checkmark-block">
+                                                            <span class="checkmark"></span>
+                                                        </div>
+                                                        <p class="value">1 пересадка</p>
+                                                    </label>
+                                                </div>
+                                                                        <div class="filter-item">
+                                                    <label class="input-container radio-type">
+                                                        <input type="radio" name="transfer" data-name="transfer" value="2">
+                                                        <div class="checkmark-block">
+                                                            <span class="checkmark"></span>
+                                                        </div>
+                                                        <p class="value">2 пересадки</p>
+                                                    </label>
+                                                </div>
+                                                                </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title search-title">Бесплатный багаж</p>
+                                
+                                        <div class="filters-list">
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="baggage" data-name="baggage" value="all">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">Любое</p>
+                                                </label>
+                                            </div>
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="baggage" data-name="baggage" value="1">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">С багажом</p>
+                                                </label>
+                                            </div>
+                                            <div class="filter-item">
+                                                <label class="input-container radio-type">
+                                                    <input type="radio" name="baggage" data-name="baggage" value="0">
+                                                    <div class="checkmark-block">
+                                                        <span class="checkmark"></span>
+                                                    </div>
+                                                    <p class="value">Без багажа</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title">Время вылета туда</p>
+                                        <div class="range range-departure-wrapper">
+                                            <div class="range-departure">
+                                                <p id="min-departure">00:00</p>
+                                                <p id="max-departure">24:00</p>
+                                            </div>
+                                            <div class="range-slider">
+                                                <span class="range-selected" style="left: 0;right: 0;"></span>
+                                            </div>
+                                            <div class="range-input">
+                                                <input type="range" name="departureMin" class="min" min="0" max="1425" value="0" step="15">
+                                                <input type="range" name="departureMax" class="max" min="0" max="1440" value="1440" step="15">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search filter-return" style="display: none;">
+                                        <p class="title">Время вылета обратно</p>
+                                        <div class="range range-return-wrapper">
+                                            <div class="range-return">
+                                                <p id="min-return">00:00</p>
+                                                <p id="max-return">24:00</p>
+                                            </div>
+                                            <div class="range-slider">
+                                                <span class="range-selected" style="left: 0;right: 0;"></span>
+                                            </div>
+                                            <div class="range-input">
+                                                <input type="range" name="returnMin" class="min" min="0" max="1425" value="0" step="15">
+                                                <input type="range" name="returnMax" class="max" min="0" max="1440" value="1440" step="15">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title">Длительность пересадки</p>
+                                        <div class="range range-duration-wrapper">
+                                            <div class="range-duration">
+                                                <p id="min-duration">00:00</p>
+                                                <p id="max-duration">24:00</p>
+                                            </div>
+                                            <div class="range-slider">
+                                                <span class="range-selected" style="left: 0;right: 0;"></span>
+                                            </div>
+                                            <div class="range-input">
+                                                <input type="range" name="durationMin" class="min" min="0" max="1425" value="0" step="15">
+                                                <input type="range" name="durationMax" class="max" min="0" max="1440" value="1440" step="15">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="filters-submenu for-search">
+                                        <p class="title search-title">Авиакомпания</p>
+                                
+                                        <div class="filters-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="MU" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">China Eastern</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="EK" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Emirates</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                    <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="EY" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Etihad Airways</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="FZ" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Flydubai</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="GF" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Gulf Air</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="QR" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Qatar Airways</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="3U" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Sichuan Airlines</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="filter-item">
+                                                    <label class="input-container checkbox-type">
+                                                        <input type="checkbox" value="UL" name="airlines[]" data-name="airline">
+                                                        <div class="checkmark-block">
+                                                            <img src="/images/hotels/icon-check-white.svg" alt="icon-check">
+                                                        </div>
+                                                        <p class="value">Srilankan Airlines</p>
+                                                    </label>
+                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <input type="hidden" id="currency-sign" value="$">
@@ -1557,7 +1809,7 @@
                                 <img class="filters-block-icon filters-block-icon-small"
                                     src="./files/filter.svg"><b>Дополнительный фильтр</b>
                             </h3>
-                            <div class="filter-modal-content filters-block"></div>
+                            <div class="filter-modal-content filters-block" style="display: block;"></div>
                             <button type="submit" class="btn btn-primary filter-apply-btn-mobile">Применить</button>
                         </div>
 
@@ -2193,96 +2445,14 @@
     <script>var HOST_URL = "https://travelhub.by/";</script>
     <script>var MAIN_LANGUAGE = "ru";</script>
     <script>const USER_CURRENCY = "USD";</script>
-    <script>
-        var KTAppSettings = {
-            "breakpoints": {
-                "sm": 576,
-                "md": 768,
-                "lg": 992,
-                "xl": 1200,
-                "xxl": 1200
-            },
-            "colors": {
-                "theme": {
-                    "base": {
-                        "white": "#ffffff",
-                        "primary": "#6993FF",
-                        "secondary": "#E5EAEE",
-                        "success": "#1BC5BD",
-                        "info": "#8950FC",
-                        "warning": "#FFA800",
-                        "danger": "#F64E60",
-                        "light": "#F3F6F9",
-                        "dark": "#212121"
-                    },
-                    "light": {
-                        "white": "#ffffff",
-                        "primary": "#E1E9FF",
-                        "secondary": "#ECF0F3",
-                        "success": "#C9F7F5",
-                        "info": "#EEE5FF",
-                        "warning": "#FFF4DE",
-                        "danger": "#FFE2E5",
-                        "light": "#F3F6F9",
-                        "dark": "#D6D6E0"
-                    },
-                    "inverse": {
-                        "white": "#ffffff",
-                        "primary": "#ffffff",
-                        "secondary": "#212121",
-                        "success": "#ffffff",
-                        "info": "#ffffff",
-                        "warning": "#ffffff",
-                        "danger": "#ffffff",
-                        "light": "#464E5F",
-                        "dark": "#ffffff"
-                    }
-                },
-                "gray": {
-                    "gray-100": "#F3F6F9",
-                    "gray-200": "#ECF0F3",
-                    "gray-300": "#E5EAEE",
-                    "gray-400": "#D6D6E0",
-                    "gray-500": "#B5B5C3",
-                    "gray-600": "#80808F",
-                    "gray-700": "#464E5F",
-                    "gray-800": "#1B283F",
-                    "gray-900": "#212121"
-                }
-            },
-            "font-family": "Poppins"
-        };
-    </script>
+   
     <!--end::Global Config-->
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(89565151, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-            ecommerce: "dataLayer"
-        });
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/89565151" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Pixel Code for https://upstickapp.com/ -->
-    <script defer="" src="./files/sr7iy6qfsiz3iwbmucdbeiikg85opllv"></script>
-    <!-- END Pixel Code -->
-
-
+    
 <!-- NEW -->
+
+<script src="./files/togglerFilterBlockMobile.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.0/air-datepicker.min.js"></script>
 <script src="./files/switchBtnScript.js"></script>
 <script src="./files/calendar.js"></script>
@@ -2297,12 +2467,14 @@
     <script src="./files/fullcalendar.bundle.js"></script>
     <script src="./files/slick.js"></script>
     <script src="./files/widgets.js"></script>
+    <script src="./files/jquery.fancybox.min.js"></script>
+    <script src="./files/jquery.fancybox(1).min.js"></script>
     <!-- <script src="./files/custom.js"></script> -->
     <!-- <script src="./files/moment(1).min.js"></script>
-<script src="./files/jquery.fancybox.min.js"></script>
+
 <script src="./files/header.js"></script>
 <script src="./files/landing.js"></script>
-<script src="./files/jquery.fancybox(1).min.js"></script>
+
 <script src="./files/FlightHandler.class.js"></script>
 <script src="./files/FilterMenu.class.js"></script>
 <script src="./files/select2.full.min.js"></script>
