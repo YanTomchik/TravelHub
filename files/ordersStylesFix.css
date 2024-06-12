@@ -22,6 +22,9 @@
     top: 10px;
 }
 
+#w1-popover{
+    z-index: 1000;
+}
 
 @media (max-width: 566px){
     .modal .modal-header .modal-title{

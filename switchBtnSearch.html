@@ -1142,29 +1142,7 @@
                                             <div class="search-form">
                                                 <form id="flights-search-form"
                                                     action="https://travelhub.by/flights/search" method="post">
-                                                    <div class="row mb-5 ml-0">
-                                                        <div class="checkboxes-row">
-                                                            <div class="checkbox-block">
-                                                                <input class="flight-route" type="radio"
-                                                                    name="FlightSearchForm[route]" value="one"
-                                                                    checked="">
-                                                                <p class="checkbox-title">В одну сторону</p>
-                                                            </div>
-
-                                                            <div class="checkbox-block">
-                                                                <input class="flight-route" type="radio"
-                                                                    name="FlightSearchForm[route]" value="trip">
-                                                                <p class="checkbox-title">Туда и обратно</p>
-                                                            </div>
-                                                            <!-- NEW -->
-                                                            <div class="checkbox-block charter">
-                                                                <input class="charter-checkbox" type="checkbox"
-                                                                    name="FlightSearchForm[route]" value="charter">
-                                                                <p class="checkbox-title">Только чартеры</p>
-                                                            </div>
-                                                            <!-- NEW -->
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <!-- NEW -->
                                                     <!-- ADD ID AND CLASS TO-->
                                                     <div class="row">
@@ -1307,24 +1285,12 @@
                                                                         class="form-group field-hotel-book-checkin-date">
                                                                         <label class="control-label"
                                                                             for="hotel-book-checkin-date">Когда</label>
-                                                                        <div id="hotel-book-checkin-date-kvdate"
-                                                                            class="input-group date"><input type="text" autocomplete="off"
-                                                                                id="hotel-book-checkin-date"
-                                                                                class="form-control form-control-solid form-control-lg krajee-datepicker datepicker-oneway"
-                                                                                name="FlightSearchForm[date]"
-                                                                                value=""
-                                                                                data-datepicker-source="hotel-book-checkin-date-kvdate"
-                                                                                data-datepicker-type="3"
-                                                                                data-krajee-kvdatepicker="kvDatepicker_32a08e5d"><span
-                                                                                class="input-group-addon kv-date-remove"
-                                                                                title="Очистить поле"><i
-                                                                                    class="glyphicon glyphicon-remove kv-dp-icon"></i></span><span
-                                                                                class="input-group-addon kv-date-picker"
-                                                                                title="Выбрать дату"><i
-                                                                                    class="glyphicon glyphicon-calendar kv-dp-icon"></i></span>
-                                                                                    <span class="remove-datepicker-date" id="remove-datepicker-date">
-                                                                                        <img src="./images/cross-icon.svg" alt="">
-                                                                                    </span>
+                                                                        <div class="date-inputs-wrapper twoway" id="hotel-book-checkin-date-kvdate">
+                                                                            <input type="text" class="date-inputs-item left datepicker-avia-from" placeholder="Туда" autocomplete="off">
+                                                                            <input type="text" class="date-inputs-item right datepicker-avia-to" placeholder="Обратно" autocomplete="off">
+                                                                            <span class="remove-datepicker-date" id="remove-datepicker-date">
+                                                                                <img src="./images/cross-icon.svg" alt="Cross-btn">
+                                                                            </span>
                                                                         </div>
                                                                         <div class="help-block"></div>
                                                                         <div class="error-message-user" id="error-message-user">
@@ -1509,6 +1475,29 @@
                                                         <div class="search-btn-block col-search-button">
                                                             <button type="submit"
                                                                 class="btn btn-primary search-btn">Поиск</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-5 ml-0">
+                                                        <div class="checkboxes-row">
+                                                            <!-- <div class="checkbox-block">
+                                                                <input class="flight-route" type="radio"
+                                                                    name="FlightSearchForm[route]" value="one"
+                                                                    checked="">
+                                                                <p class="checkbox-title">В одну сторону</p>
+                                                            </div>
+
+                                                            <div class="checkbox-block">
+                                                                <input class="flight-route" type="radio"
+                                                                    name="FlightSearchForm[route]" value="trip">
+                                                                <p class="checkbox-title">Туда и обратно</p>
+                                                            </div> -->
+                                                            <!-- NEW -->
+                                                            <div class="checkbox-block charter">
+                                                                <input class="charter-checkbox" type="checkbox"
+                                                                    name="FlightSearchForm[route]" value="charter">
+                                                                <p class="checkbox-title">Только чартеры</p>
+                                                            </div>
+                                                            <!-- NEW -->
                                                         </div>
                                                     </div>
                                                     <!-- NEW -->
