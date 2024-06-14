@@ -178,7 +178,7 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
 function updateLeftBlockWithMarkerData(markerData) {
   // const leftBlock = document.getElementById('leftBlock');
   leftBlock.innerHTML = ''; // Очищаем текущий контент
-  
+
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = markerData;
 
   dataHotelsObj.forEach(property => {
@@ -199,18 +199,32 @@ function updateLeftBlockWithMarkerData(markerData) {
 
 async function fetchMarkerDataWithinBounds(existingMarkers) {
   const formData = new FormData();
-  formData.append("PropertySearchForm[location]", "4");
-      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
-      formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11115");
-      formData.append("PropertySearchForm[map]", "true");
-  
+
+  if (!layoutDev) {
+    // Получение данных из формы на странице
+    const form = document.getElementById('properties-search-form');
+    const tempFormData = new FormData(form);
+    tempFormData.forEach((value, key) => {
+      formData.append(key, value);
+    });
+  } else {
+    // Использование предопределенных значений
+    formData.append("PropertySearchForm[location]", "4");
+    formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
+    formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+    formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
+    formData.append("PropertySearchForm[partner]", "11115");
+    formData.append("PropertySearchForm[map]", "true");
+  }
 
   // Добавляем первые 30 идентификаторов маркеров в параметр PropertySearchForm[propertyId][]
   const markerIds = existingMarkers.slice(0, 30);
   // console.log(markerIds)
   markerIds.forEach(id => formData.append("PropertySearchForm[propertyId][]", id));
+  formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
+
+
+
 
   const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
 
@@ -319,7 +333,7 @@ leftBlock.addEventListener('scroll', () => {
     const countOfHotelsHeader = Number(headerMapCountElement.textContent.split(' ')[0]);
     // console.log(offset)
     // console.log(countOfHotelsHeader)
-    
+
     if (offset < countOfHotelsHeader) {
       lazyLoadLeftBlock();
     }
@@ -347,7 +361,7 @@ async function initMap(formData, typeRender) {
 
   let limitForRequestLeftBlock = 30;
   let offsetForRequestLeftBlock = 0;
-  
+
   const leftBlockData = await fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData);
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = leftBlockData;
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
@@ -413,12 +427,16 @@ async function initMap(formData, typeRender) {
         <div class="details">
           <div class="marker-popup-wrapper">
             <div class="marker-popup-header-wrapper">
+            <a href="/hotels/${id}/${url}" class=map-dashboard-card-item-href>
               <div class="market-popup-header-img-wrapper" style="background-image:url(${image});"></div>
+              </a>
               <div class="marker-popup-header-info">
+              <a href="/hotels/${id}/${url}" class=map-dashboard-card-item-href>
                 <div class="marker-popup-header-title-wrapper">
                   <div class="marker-popup-header-title">${name}</div>
                   <div class="marker-popup-header-title-stars-list">${buildRatingBlock(stars)}</div>
                 </div>
+                </a>
                 <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
                 <div class="marker-popup-refundable-description">${flagRefundableText}</div>
                 ${availableRoomsBlock}
@@ -488,25 +506,26 @@ async function initMap(formData, typeRender) {
 
   const markerCluster = new MarkerClusterer({ map, markers });
 
-  google.maps.event.addListener(map, 'idle', async function() {
+  google.maps.event.addListener(map, 'idle', async function () {
     const bounds = map.getBounds();
-  
+
     const visibleMarkers = markers.filter(marker => {
       const position = marker.position;
       return bounds.contains(position);
     });
-  
+
     const existingMarkers = visibleMarkers.map(marker => marker.title);
-  
+
     if (visibleMarkers.length < markers.length) {
+
       const newMarkerData = await fetchMarkerDataWithinBounds(existingMarkers);
-  
+
       // Обновляем leftBlock с новыми данными маркеров
       updateLeftBlockWithMarkerData(newMarkerData);
     }
   });
-  
-  
+
+
   google.maps.event.addListener(map, 'click', (event) => {
     if (infoWindow) {
       infoWindow.close();
@@ -528,21 +547,25 @@ async function initMap(formData, typeRender) {
 /////
 
 function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
-  
+
   const content = document.createElement("div");
   content.classList.add("map-dashboard-card-item");
-  content.setAttribute('id',`marker-${property.id}`)
+  content.setAttribute('id', `marker-${property.id}`)
   content.setAttribute('data-position-lat', `${property.latitude}`);
   content.setAttribute('data-position-lng', `${property.longitude}`);
 
   content.innerHTML = `
     <div class="marker-popup-header-wrapper">
+    <a href="/hotels/${property.id}/${property.url}" class=map-dashboard-card-item-href>
       <div class="market-popup-header-img-wrapper" style="background-image:url(${property.image});"></div>
+      </a>
       <div class="marker-popup-header-info">
+      <a href="/hotels/${property.id}/${property.url}" class=map-dashboard-card-item-href>
         <div class="marker-popup-header-title-wrapper">
           <div class="marker-popup-header-title">${property.name}</div>
           <div class="marker-popup-header-title-stars-list">${buildRatingBlock(property.stars)}</div>
         </div>
+        </a>
         <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
         <div class="marker-popup-refundable-description">${flagRefundableText}</div>
         ${availableRoomsBlock}
@@ -585,27 +608,27 @@ function smoothPanTo(newCenter, map) {
   const duration = 1000; // duration of the animation in ms
   const steps = 30; // number of steps for the animation
   const interval = duration / steps;
-  
+
   const startCenter = map.getCenter();
   const startLat = startCenter.lat();
   const startLng = startCenter.lng();
   const endLat = newCenter.lat();
   const endLng = newCenter.lng();
-  
+
   let currentStep = 0;
 
   function animate() {
-      currentStep += 1;
-      const progress = currentStep / steps;
-      
-      const currentLat = startLat + (endLat - startLat) * progress;
-      const currentLng = startLng + (endLng - startLng) * progress;
-      
-      map.setCenter({ lat: currentLat, lng: currentLng });
+    currentStep += 1;
+    const progress = currentStep / steps;
 
-      if (currentStep < steps) {
-          animationFrame = requestAnimationFrame(animate);
-      }
+    const currentLat = startLat + (endLat - startLat) * progress;
+    const currentLng = startLng + (endLng - startLng) * progress;
+
+    map.setCenter({ lat: currentLat, lng: currentLng });
+
+    if (currentStep < steps) {
+      animationFrame = requestAnimationFrame(animate);
+    }
   }
 
   cancelAnimationFrame(animationFrame);
