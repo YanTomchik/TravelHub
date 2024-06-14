@@ -107,7 +107,7 @@ async function fetchMarkerData(formDataFromRequest) {
 }
 
 async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
-  console.log(propertyId);
+  // console.log(propertyId);
   marker.element.querySelector('.map-marker-description').classList.add('white-marker-text');
   marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block';
 
@@ -145,9 +145,9 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
   const cacheKey = generateCacheKey(`property_${propertyId}`);
   const cachedData = getCachedData(cacheKey);
 
-  formData.forEach((value, key) => {
-    console.log(`${key}: ${value}`);
-  });
+  // formData.forEach((value, key) => {
+  //   console.log(`${key}: ${value}`);
+  // });
 
   if (cachedData) {
     marker.element.querySelector('.loader-icon-marker').style.display = 'none';
@@ -161,7 +161,7 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       method: 'POST',
       body: formData
     });
-    console.log(response);
+    // console.log(response);
     const data = await response.json();
     setCachedData(cacheKey, data);
     marker.element.querySelector('.loader-icon-marker').style.display = 'none';
@@ -288,7 +288,8 @@ let offset = 31;
 const limit = 30;
 
 async function lazyLoadLeftBlock() {
-  if (loaderDiv.style.display !== 'none') return; // Не загружать данные, если уже идет загрузка
+  // console.log(loaderDiv.style.display)
+  //if (loaderDivCardsList.style.display !== 'none') return; // Не загружать данные, если уже идет загрузка
   loaderDivCardsList.style.display = 'block';
 
   const newItems = await fetchLeftBlockData(offset, limit, null);
@@ -308,15 +309,16 @@ async function lazyLoadLeftBlock() {
   });
 
   offset += limit;
-
+  loaderDiv.style.display = 'none'
   loaderDivCardsList.style.display = 'none';
+  leftSectionWrapper.classList.add('active');
 }
 
 leftBlock.addEventListener('scroll', () => {
   if (leftBlock.scrollTop + leftBlock.clientHeight >= leftBlock.scrollHeight) {
     const countOfHotelsHeader = Number(headerMapCountElement.textContent.split(' ')[0]);
-    console.log(offset)
-    console.log(countOfHotelsHeader)
+    // console.log(offset)
+    // console.log(countOfHotelsHeader)
     
     if (offset < countOfHotelsHeader) {
       lazyLoadLeftBlock();
