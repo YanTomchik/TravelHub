@@ -345,12 +345,37 @@ let markers = [];
 let animationFrame;
 
 async function initMap(formData, typeRender) {
+  
+
   if (typeRender == 'showFilter') {
     mapDashboardFilterWrapper.classList.toggle('active')
     leftBlock.classList.toggle('hide')
     document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter');
   }
   loaderDiv.style.display = 'block';
+
+  document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
+    var className = element.className;
+    if(className !=undefined || className!= ''){
+      var checked = element.checked;
+      var linkedItems = document.querySelectorAll('#map_filters .' +  className);
+      linkedItems.forEach(function(linkedItem) {
+         linkedItem.checked = checked;
+      });
+    }
+      
+    });
+  
+    const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
+    mapRangeInput[1].value = document.querySelector('[name="maxPrice"]').value;
+    triggerInputEvent(mapRangeInput[1]);
+    mapRangeInput[0].value = document.querySelector('[name="minPrice"]').value;
+    triggerInputEvent(mapRangeInput[0]);
+    const minPriceText = document.querySelector('#min-price').textContent;
+    document.querySelector('#map_min-price').textContent = minPriceText;
+    const maxPriceText = document.querySelector('#map_max-price').textContent;
+    document.querySelector('#map_max-price').textContent = maxPriceText;
+  
 
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
