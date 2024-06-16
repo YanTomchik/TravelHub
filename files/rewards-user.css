@@ -1,0 +1,227 @@
+.bronze{
+    background-color: #B99C7E;
+}
+
+.silver{
+    background-color: #858585;
+}
+
+.gold{
+    background-color: #B48F31;
+}
+
+.default{
+    background-color: #E4E4E4;
+}
+
+.rewards-status-wrapper.bronze{
+    background-color: #B99C7E;
+}
+
+.rewards-status-wrapper.silver{
+    background-color: #858585;
+}
+
+.rewards-status-wrapper.gold{
+    background-color: #B48F31;
+}
+
+.rewards-user-middle.bronze{
+    background-color: #B99C7E;
+}
+
+.rewards-user-middle.silver{
+    background-color: #858585;
+}
+
+.rewards-user-middle.gold{
+    background-color: #B48F31;
+}
+
+.rewards-user-container{
+    width: 95%;
+    height: 180px;
+    /* background-color: #E4E4E4; */
+    padding: 10px 0px;
+    border-radius: 24px;
+    position: relative;
+    margin: 60px auto 15px;
+}
+
+.title-wrapper .title{
+    font-size: 18px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.title-wrapper .subtitle{
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+}
+
+.rewards-user-container-center-info{
+    background-color: #fff;
+    border-radius: 16px;
+    /* padding: 0px 18px; */
+    /* margin: 0px 18px; */
+    margin: 0 auto;
+    width: 90%;
+    min-height: 90px;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+}
+
+.rewards-status-wrapper{
+    background-color: #B99C7E;
+    border-radius: 5px;
+    padding: 2px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    font-size: 11px;
+    margin-top: 0px;
+    color: #fff;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.rewards-header-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+
+.reward-description{
+    font-size: 11px;
+    line-height: 24px;
+    color: #000;
+}
+
+.reward-progress-bar-wrapper{
+    padding: 0px 20px;
+    position: relative;
+}
+
+.progress-bar-back{
+    background-color: #E4E4E4;
+    border-radius: 13px;
+    width: 100%;
+    height: 14px;
+}
+
+.progress-bar-main{
+    border-color: #E9E9E9;
+    border-radius: 13px;
+    width: 20%;
+    height: 14px;
+    position: absolute;
+    left: auto;
+    top: 0px;
+}
+
+.rewards-user-top{
+    background-color: #FBFBFB;
+    height: 40%;
+    width: 100%;
+    position: absolute;
+    top: -60px;
+    border-radius: 22px 22px 0px 0px;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rewards-user-middle{
+    background-color: #E4E4E4;
+    height: 70%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 22px 22px 0px 0px;
+    z-index: -1;
+}
+
+.rewards-user-bottom{
+    background-color: #F4F6F9;
+    height: 30%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0px 0px 22px 22px;
+    /* z-index: -1; */
+}
+
+.more-btn-description{
+    font-size: 11px;
+    line-height: 24px;
+    color: #3968BF;
+    border-bottom: 1px dotted #3968BF;
+}
+
+.rewards-header-more-btn{
+    display: flex;
+    align-items: center;
+}
+
+.rewards-header-more-btn{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.more-btn-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rewards-user-top-img{
+    width: 100%;
+    height: 50px;
+}
+
+.rewards-user-top-img img{
+    width: 100%;
+    height: 100%;
+}
+
+/*DEFAULT NULL STATUS CARDS  */
+
+.rewards-user-container.default-style .rewards-user-top{
+    display: none;
+}
+
+.rewards-user-container.default-style{
+    margin: 10px auto 15px;
+    height: 150px;
+}
+
+.rewards-user-container.default-style .title-wrapper .subtitle{
+    display: none;
+}
+
+.rewards-user-container.default-style .title-wrapper .title{
+    color: #19191E;
+    font-size: 20px;
+}
+
+.rewards-user-container.default-style .rewards-user-container-center-info{
+    top: 30%;
+}

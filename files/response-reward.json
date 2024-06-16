@@ -1,0 +1,50 @@
+{
+    "payout": 0,
+    "current": {
+        "id": 5,
+        "type": 0,
+        "title": "Серебряный",
+        "tier": "2",
+        "rewardType": "discount",
+        "rewardValue": "5.00",
+        "purchaseThreshold": "5000.00"
+    },
+    "next": {
+        "id": 6,
+        "type": 0,
+        "title": "Золотой",
+        "tier": "3",
+        "rewardType": "discount",
+        "rewardValue": "7.00",
+        "purchaseThreshold": "10000.00"
+    },
+    "all": [
+        {
+            "id": 1,
+            "type": 1,
+            "title": "Бронзовый",
+            "tier": "1",
+            "rewardType": "commission",
+            "rewardValue": "0.50",
+            "purchaseThreshold": "20000.00"
+        },
+        {
+            "id": 2,
+            "type": 1,
+            "title": "Серебряный",
+            "tier": "2",
+            "rewardType": "commission",
+            "rewardValue": "0.75",
+            "purchaseThreshold": "50000.00"
+        },
+        {
+            "id": 3,
+            "type": 1,
+            "title": "Золотой",
+            "tier": "3",
+            "rewardType": "commission",
+            "rewardValue": "1.00",
+            "purchaseThreshold": "100000.00"
+        }
+    ]
+}
