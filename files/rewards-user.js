@@ -1,3 +1,4 @@
+
 function formatNumber(value) {
     return parseFloat(value).toFixed(2);
 }
@@ -18,13 +19,24 @@ function updateRewardsBlock(data) {
     
 
     if (currentStatusToDraw != 'default-style') {
-
-        document.getElementById('user-status-title').textContent = currentStatus.title.toUpperCase();
-        document.getElementById('reward-description').innerHTML = `+<b>${formatNumber(nextStatus.purchaseThreshold)}</b> USD до`;
-
         const statusWrapper = document.getElementById('rewards-status-wrapper');
+        if(currentStatus.tier != '3'){
+            
+            document.getElementById('reward-description').innerHTML = `+<b>${formatNumber(nextStatus.purchaseThreshold)}</b> USD до`;
+            
         statusWrapper.textContent = nextStatus.title.toUpperCase();
         statusWrapper.classList.add(nextStatusToDraw);
+        }else{
+            statusWrapper.style.display = 'none'
+            document.getElementById('reward-description').style.display = 'none';
+            document.querySelector('.rewards-header-more-btn').style.display = 'none'
+            document.querySelector('.gold-reward-wrapper').style.display = 'block';
+            document.querySelector('.rewards-header-wrapper').style.justifyContent = 'space-around';
+            
+        }
+        
+        document.getElementById('user-status-title').textContent = currentStatus.title.toUpperCase();
+        
 
         const progressBar = document.getElementById('progress-bar-main');
         progressBar.style.width = `${Math.min(100, (data.payout / parseFloat(nextStatus.purchaseThreshold)) * 100)}%`;
@@ -46,6 +58,8 @@ function updateRewardsBlock(data) {
 
         const descriptionAccountImg = document.querySelector('.description-info-desktop-account-img');
         descriptionAccountImg.src = `./images/${currentStatusToDraw}-plane-reward.svg`;
+
+        
 
     } else {
         document.getElementById('rewards-user-container').classList.add('default-style');

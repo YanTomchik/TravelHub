@@ -83,7 +83,7 @@
     width: 90%;
     min-height: 90px;
     position: absolute;
-    top: 35%;
+    top: 38%;
     left: 5%;
 }
 
@@ -106,7 +106,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 10px;
+    padding: 10px;
 }
 
 .reward-description{
@@ -118,6 +118,7 @@
 .reward-progress-bar-wrapper{
     padding: 0px 20px;
     position: relative;
+    width: 100%;
 }
 
 .progress-bar-back{
@@ -130,6 +131,7 @@
 .progress-bar-main{
     background-color: #858585;
     /* border-color: #E9E9E9; */
+    max-width: 85%;
     border-radius: 13px;
     width: 20%;
     height: 14px;
@@ -266,4 +268,18 @@
 
 .description-info-desktop-account-wrapper.gold .description-info-desktop-account{
     color: #B48F31;
+}
+
+.gold-reward-wrapper{
+    display: none;
+    text-align: center;
+}
+
+.gold-reward-wrapper .gold-reward-description{
+    font-weight: 600;
+}
+
+.gold-reward-img img{
+    width: 30px;
+    height: 30px;
 }
