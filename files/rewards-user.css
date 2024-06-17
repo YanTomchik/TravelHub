@@ -38,6 +38,8 @@
     background-color: #B48F31;
 }
 
+
+
 .rewards-user-container{
     width: 95%;
     height: 180px;
@@ -126,7 +128,8 @@
 }
 
 .progress-bar-main{
-    border-color: #E9E9E9;
+    background-color: #858585;
+    /* border-color: #E9E9E9; */
     border-radius: 13px;
     width: 20%;
     height: 14px;
@@ -224,4 +227,43 @@
 
 .rewards-user-container.default-style .rewards-user-container-center-info{
     top: 30%;
+}
+
+.description-info-desktop-account-wrapper img{
+    width: 24px;
+    height: auto;
+}
+
+.description-info-desktop-account-wrapper{
+    display: flex;
+    gap: 4px;
+}
+
+.description-info-desktop-account-wrapper .description-info-desktop-account{
+    font-weight: 600;
+}
+
+.description-info-desktop-account-wrapper.bronze{
+    background-color: transparent;
+}
+
+.description-info-desktop-account-wrapper.silver{
+    background-color: transparent;
+}
+
+.description-info-desktop-account-wrapper.gold{
+    background-color: transparent;
+}
+
+
+.description-info-desktop-account-wrapper.bronze .description-info-desktop-account{
+    color: #B99C7E;
+}
+
+.description-info-desktop-account-wrapper.silver .description-info-desktop-account{
+    color: #858585;
+}
+
+.description-info-desktop-account-wrapper.gold .description-info-desktop-account{
+    color: #B48F31;
 }
