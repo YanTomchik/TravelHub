@@ -48,12 +48,13 @@
     border-radius: 24px;
     position: relative;
     margin: 60px auto 15px;
+    display: none;
 }
 
 .title-wrapper .title{
     font-size: 18px;
     line-height: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -151,6 +152,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .rewards-user-middle{
@@ -224,11 +226,12 @@
 
 .rewards-user-container.default-style .title-wrapper .title{
     color: #19191E;
-    font-size: 20px;
+    font-size: 12px;
+    text-align: center;
 }
 
 .rewards-user-container.default-style .rewards-user-container-center-info{
-    top: 30%;
+    top: 34%;
 }
 
 .description-info-desktop-account-wrapper img{
@@ -237,7 +240,7 @@
 }
 
 .description-info-desktop-account-wrapper{
-    display: flex;
+    display: none;
     gap: 4px;
 }
 
