@@ -193,6 +193,7 @@ function updateLeftBlockWithMarkerData(markerData) {
     // leftBlock.innerHTML = ''
     buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
     // console.log(markerInfo)
+    leftBlock.scrollTop = 0;
   });
 }
 
@@ -363,7 +364,7 @@ async function initMap(formData, typeRender) {
          linkedItem.checked = checked;
       });
     }
-      
+    clearCachedData()
     });
   
     const mapRangeInput = document.querySelectorAll("#map_filters .range-input input");
@@ -409,19 +410,6 @@ async function initMap(formData, typeRender) {
     disableAutoPan: true,
     closeButton: false,
   });
-
-  // dataHotelsObj.forEach((property) => {
-  //   const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly } = property;
-
-  //   const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
-  //   const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
-  //   const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
-  //   const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
-  //   const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
-  //   const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
-
-  //   buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-  // });
 
   await lazyLoadLeftBlock();
 
@@ -806,11 +794,39 @@ $(document).ready(function () {
       $('#properties-search-form').yiiActiveForm('validate', true);
       if (window.innerWidth > 770) {
         reInitMap()
+
       }
     }
 
   });
+
+  $('#map_filters .range-input input').on('input', function () {
+    let event = new Event('input', { bubbles: true });
+    const mapRangeInputSite = document.querySelectorAll("#filters .range-input input");
+    const mapRangeInputMap = document.querySelectorAll("#map_filters .range-input input");
+    
+    document.querySelector('[name="maxPrice"]').value = mapRangeInputMap[1].value
+    mapRangeInputSite[1].dispatchEvent(event);
+    document.querySelector('[name="minPrice"]').value = mapRangeInputMap[0].value;
+    mapRangeInputSite[0].dispatchEvent(event);
+
+    let minPriceTextMap = document.querySelector('#min-price').textContent;
+    minPriceTextMap = document.querySelector('#map_min-price').textContent;
+      let maxPriceTextMap = document.querySelector('#map_max-price').textContent;
+      maxPriceTextMap = document.querySelector('#map_max-price').textContent;
+
+      if (typeof $.fn.yiiActiveForm === 'function') {
+        $('#properties-search-form').yiiActiveForm('validate', true);
+        if (window.innerWidth > 770) {
+          reInitMap()
+  
+        }
+      }
+
+  })
+
 });
+
 
 //Нажатие на кнопку фильтра
 
