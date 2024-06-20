@@ -800,7 +800,13 @@ $(document).ready(function () {
 
   });
 
-  $('#map_filters .range-input input').on('input', function () {
+  
+
+});
+
+
+$(document).ready(function () {
+  $('#map_filters .range-input input').on('change', function () {
     let event = new Event('input', { bubbles: true });
     const mapRangeInputSite = document.querySelectorAll("#filters .range-input input");
     const mapRangeInputMap = document.querySelectorAll("#map_filters .range-input input");
@@ -824,8 +830,7 @@ $(document).ready(function () {
       }
 
   })
-
-});
+})
 
 
 //Нажатие на кнопку фильтра
