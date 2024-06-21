@@ -421,6 +421,12 @@ const displayPrices = (prices, type) => {
                         divR.classList.add('green')
                     }
                     divR.innerHTML = `${elem.price}`;
+        
+                    // Check if elem.price has more than 6 characters
+                    if (elem.price.length > 6) {
+                        divR.style.fontSize = '9px';
+                    }
+        
                     element.append(divR);
                 }
             });
@@ -433,10 +439,17 @@ const displayPrices = (prices, type) => {
                         div.classList.add('green')
                     }
                     div.innerHTML = `${elem.price}`;
+        
+                    // Check if elem.price has more than 6 characters
+                    if (elem.price.length > 6) {
+                        div.style.fontSize = '9px';
+                    }
+        
                     element.append(div);
                 }
             });
         }
+        
     });
 
 };
