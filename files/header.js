@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabHeaders = document.querySelectorAll(".language-tab");
     const tabContents = document.querySelectorAll(".language-content");
 
+    const tabHeadersMobile = document.querySelectorAll(".language-tab");
+    const tabContentsMobile = document.querySelectorAll(".language-content");
+
     tabHeaders.forEach((header) => {
+        
         header.addEventListener("click", () => {
+            
             // Убираем класс 'active' у всех заголовков
             tabHeaders.forEach((h) => h.classList.remove("active"));
             // Добавляем класс 'active' только к выбранному заголовку
@@ -22,15 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const toggleButton = document.querySelector(".header-language > span");
+    const toggleButtonmobile = document.querySelector(".header-right-block-sub-menu .header-language > span");
     const dropdown = document.querySelector(".header-language-dropdown");
+    const dropdownMobile = document.querySelector(".header-right-block-sub-menu .header-language-dropdown");
 
     // Функция для открытия/закрытия блока
     function toggleDropdown() {
         dropdown.classList.toggle("active");
     }
 
+    function toggleDropdownMobile() {
+        dropdownMobile.classList.toggle("active");
+    }
+
     // Открытие/закрытие по клику на <span>
     toggleButton.addEventListener("click", toggleDropdown);
+
+    // Открытие/закрытие по клику на <span>
+    toggleButtonmobile.addEventListener("click", toggleDropdownMobile);
 
     // Закрытие блока при клике вне блока
     document.addEventListener("click", function (event) {

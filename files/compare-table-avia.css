@@ -1,0 +1,199 @@
+.controls {
+    /* margin-bottom: 20px; */
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #585858;
+}
+
+/* .controls button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #444;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #555;
+} */
+
+.highlighted-top {
+    background-color: blue !important;
+    color: white !important;
+}
+
+.highlighted-right {
+    background-color: blue !important;
+    color: white !important;
+}
+
+.slide-date-btn{
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.slide-date-btn:hover{
+    transform: scale(1.1);
+}
+
+.table-container {
+    /* position: relative; */
+    width: 100%;
+    /* max-width: 1200px; */
+}
+
+.compare-table-avia-title{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+}
+
+.price-table {
+    border-collapse: collapse;
+    width: 100%;
+    /* max-width: 1200px; */
+}
+
+.price-table th,
+.price-table td {
+    border: 1px solid #E4E6EE;
+    padding: 2px;
+    text-align: center;
+}
+
+.price-table th:first-child,
+.price-table td:first-child {
+    border-left: none;
+}
+
+.price-table th {
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+}
+
+.price-table thead th:last-child {
+    border: none;
+}
+
+.price-table td {
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    padding: 10px;
+}
+
+.weekend.red{
+    color: #BF3939;
+}
+
+.weekend{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.price-table td.lowest-price {
+    background-color: #008000;
+    /* Green for lowest price */
+}
+
+.price-table td.selected {
+    /* background-color: #0044cc; */
+    /* border: 1px solid #3968BF; */
+    background-color: #3968bf;
+    color: #fff;
+    /* Blue for selected cell */
+}
+
+.price-table td.selected
+
+.price-table td.low-price {
+    color: #008000;
+    /* Green for low prices */
+}
+
+/* .price-table td.high-price {
+    color: #ff0000;
+} */
+
+.price-table .highlighted-row {
+    background-color: #E6EBF3 !important;
+}
+
+.price-table .highlighted-col {
+    background-color: #E6EBF3 !important;
+}
+
+.vertical-controls {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    width: 40px;
+    /* position: absolute; */
+    top: 50%;
+    right: 0px;
+    gap: 8px;
+}
+
+.vertical-controls{
+    writing-mode: vertical-rl;
+}
+
+.center-table-content-wrapper{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+/* .vertical-controls button {
+    padding: 10px;
+    background-color: #444;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.vertical-controls button:hover {
+    background-color: #555;
+} */
+
+.compare-table-avia-container {
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+.compare-table-avia-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 32px 24px 32px;
+    border-bottom: 1px solid #E4E6EE;
+}
+
+/* New styles added */
+.highlighted-top {
+    background-color: blue !important;
+    color: white !important;
+}
+
+.highlighted-right {
+    background-color: blue !important;
+    color: white !important;
+}

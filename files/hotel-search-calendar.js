@@ -59,3 +59,12 @@ let datepickerHotel = new AirDatepicker(datepickerTourInput, {
 document.querySelector('.remove-datepicker-date').addEventListener('click', () => {
     datepickerHotel.clear()
 })
+
+document.querySelector('.check').addEventListener('click',()=>{
+    datepickerHotel.selectDate([today,`${new Date('06.02.2024')}`])
+})
+
+
+$(document).ready(function () {
+    datepickerHotel.selectDate([today,`${new Date('06.02.2024')}`])
+})

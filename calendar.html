@@ -1,87 +1,232 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>easepick</title>
-    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@easepick/range-plugin@1.2.1/dist/index.umd.min.js"></script>
-    <!-- <link rel="stylesheet" href="./files/calendar.css"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<html lang="en">
 
-  </head>
-  <body>
-    <input id="datepicker"/>
-    <script>
-      const dates = [
-        '2024-04-03',
-        '2024-04-07',
-        '2024-04-08',
-        '2024-04-11',
-        '2024-04-15',
-        '2024-04-16',
-        '2024-04-17',
-        '2024-04-21',
-      ]
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Datepicker Example</title>
+  <!-- Подключение стилей Air Datepicker -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker/dist/locale/air-datepicker.css">
+   -->
+  <link rel="stylesheet" href="./files/calendar.css">
+  <!-- Подключение jQuery -->
+  <script src="
+https://cdn.jsdelivr.net/npm/air-datepicker@3.5.0/air-datepicker.min.js
+"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
 
-      const picker = new easepick.create({
-        element: document.getElementById('datepicker'),
-        css: [
-          'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
-          './files/calendar.css',
-        ],
-        zIndex: 10,
-        grid: 2,
-        calendars: 2,
-        header: "",
-        autoApply: false,
-        locale: {
-        cancel: "Clear"
-        },
-        AmpPlugin: {
-            resetButton: false,
-            darkMode: false,
-        },
-        LockPlugin: {
-            minDays: -1
-        },
-        PresetPlugin: {
-            position: "left"
-        },
-        plugins: [
-            "AmpPlugin",
-            "RangePlugin",
-            "LockPlugin",
-            "PresetPlugin",
-        ],
-        setup(picker) {
-          // generate random prices
-          const randomInt = (min, max) => {
-            return Math.floor(Math.random() * (max - min + 1) + min)
-          }
-          const prices = {};
-          dates.forEach(x => {
-            prices[x] = randomInt(50, 200);
+    
+  </style>
+</head>
+
+<body>
+
+  <!-- Элемент для отображения выбранной даты -->
+  <input type="text" class="datepicker-here" id="datepicker-here" data-language="en">
+
+  <!-- Подключение скрипта Air Datepicker -->
+
+
+
+  <script>
+    const blockedDates = [
+        '2024-05-20',
+        '2024-05-21',
+        '2024-05-22'
+    ];
+
+    const today = new Date();
+
+    function calculateDaysAfter(date) {
+      const lastDayOfNextMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      const differenceInMilliseconds = lastDayOfNextMonth - date;
+      return Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+    }
+
+    function formatDateToString(date) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    }
+
+    // Переводим даты в строки
+    var todayString = formatDateToString(today);
+
+    const getFlightCalendar = async (firstDateToSend, daysAfterToSend, type) => {
+      const apiUrl = 'https://api.travelhub.by/flight/calendar';
+
+      let firstDate = todayString;
+      let daysAfter = calculateDaysAfter(today);
+      let daysBefore = '5'
+      if (firstDateToSend != undefined) {
+        firstDate = firstDateToSend
+      }
+      if (daysAfterToSend != undefined) {
+        daysAfter = daysAfterToSend;
+        // daysBefore = 0;
+      }
+
+      const queryParams = new URLSearchParams({
+        route: 'one',
+        locationFrom: 'MSQ',
+        locationTo: 'MOW',
+        date: `${firstDate}`,
+        adults: '2',
+        children: '0',
+        infants: '0',
+        cabinClass: 'economy',
+        daysBefore: `${daysBefore}`,
+        daysAfter: `${daysAfter}`
+      });
+
+      const headers = new Headers();
+      headers.append('Authorization', 'Bearer AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ');
+
+      try {
+        const response = await fetch(`${apiUrl}?${queryParams}`, {
+          headers: headers
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(data)
+        return data;
+      } catch (error) {
+        throw new Error('There was a problem with your fetch operation:', error);
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const datepickerInput = document.getElementById('datepicker-here');
+      if (datepickerInput) {
+        const datepicker = new AirDatepicker(datepickerInput, {
+          language: 'en',
+          inline: false,
+          minDate: new Date(),
+          isMobile: true,
+          multipleDates: true,
+          multipleDatesSeparator: ' - ',
+          range: true,
+          numberOfMonths: 2,
+          onSelect: function (formattedDate, date, inst) {
+            if (formattedDate.date[1] != undefined) {
+              const firstDateToSend = formatDateToString(formattedDate.date[0]);
+              const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
+              getFlightCalendar(firstDateToSend, daysAfterToSend)
+                .then(response => {
+                  const dates = response.result.map(entry => ({
+                    date: entry.date,
+                    price: entry.price
+                  }));
+                  displayPrices(dates, 'reRender');
+                });
+            } else {
+              const firstDateToSend = formatDateToString(formattedDate.date[0]);
+              const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
+              getFlightCalendar(firstDateToSend, daysAfterToSend)
+                .then(response => {
+                  const dates = response.result.map(entry => ({
+                    date: entry.date,
+                    price: entry.price
+                  }));
+                  displayPrices(dates, 'reRender');
+                });
+            }
+
+
+          },
+          onShow: function (inst) {
+            if (inst) {
+              getFlightCalendar()
+                .then(response => {
+                  const dates = response.result.map(entry => ({
+                    date: entry.date,
+                    price: entry.price
+                  }));
+                  displayPrices(dates);
+                });
+            }
+          },
+          onChangeViewDate: function ({ month, year }) {
+            const firstDateToSend = `${month + 1}.01.${year}`;
+            const formattedFirstDate = formatDateToString(new Date(firstDateToSend));
+            const daysAfterToSend = calculateDaysAfter(new Date(firstDateToSend));
+            const type = 'reRender';
+            getFlightCalendar(formattedFirstDate, daysAfterToSend, type)
+              .then(response => {
+                const dates = response.result.map(entry => ({
+                  date: entry.date,
+                  price: entry.price
+                }));
+                displayPrices(dates);
+              });
+          },
+          // onRenderCell({date, cellType}) {
+          //   if (cellType === 'day') {
+          //       const dateString = date.toISOString().split('T')[0];
+          //       if (blockedDates.includes(dateString)) {
+          //           return {
+          //               classes: 'disabled',
+          //               disabled: true
+          //           };
+          //       }
+          //   }
+        // }
+
+
+        });
+      }
+
+    });
+
+    const displayPrices = (prices, type) => {
+      const allDayPrices = document.querySelectorAll('.day-price');
+      allDayPrices.forEach(elem => elem.remove());
+      // Find the minimum price
+      const minPrice = Math.min(...prices.map(priceObj => priceObj.price));
+      console.log(minPrice)
+      const cells = document.querySelectorAll('.air-datepicker-cell');
+      cells.forEach(element => {
+        const cellDateDay = element.getAttribute('data-date').padStart(2, '0');
+        const cellDateMonth = String(Number(element.getAttribute('data-month')) + 1).padStart(2, '0');
+        const cellDateYear = element.getAttribute('data-year');
+        const cellDate = `${cellDateDay}.${cellDateMonth}.${cellDateYear}`;
+
+        if (type === 'reRender') {
+          prices.forEach(elem => {
+            if (elem.date === cellDate) {
+              const divR = document.createElement('div');
+              divR.className = 'day-price';
+              if (elem.price === minPrice) {
+                divR.classList.add('green')
+              }
+              divR.innerHTML = `${elem.price}`;
+              element.append(divR);
+            }
           });
-          
-          // add price to day element
-          picker.on('view', (evt) => {
-            const { view, date, target } = evt.detail;
-            const d = date ? date.format('YYYY-MM-DD') : null;
-
-            if (view === 'CalendarDay' && prices[d]) {
-              const span = target.querySelector('.day-price') || document.createElement('span');
-              span.className = 'day-price';
-              span.innerHTML = `$ ${prices[d]}`;
-              target.append(span);
+        } else {
+          prices.forEach(elem => {
+            if (elem.date === cellDate) {
+              const div = document.createElement('div');
+              div.className = 'day-price';
+              if (elem.price === minPrice) {
+                div.classList.add('green')
+        }
+              div.innerHTML = `${elem.price}`;
+              element.append(div);
             }
           });
         }
       });
-    </script>
-  </body>
+    };
+
+
+  </script>
+</body>
+
 </html>
-
-
-

@@ -25,54 +25,7 @@
     ></script>
     <script async="" src="./files/tag.js"></script>
     <script async="" src="./files/gtm.js"></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "TravelHub",
-        "url": "https://travelhub.by",
-        "logo": "https://travelhub.by/images/logotext-travelhub.svg",
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 108-93-93",
-            "contactType": "Операторский отдел"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 106-94-94",
-            "contactType": "Операторский отдел"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 109-93-93",
-            "contactType": "Операторский отдел"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 106-93-93",
-            "contactType": "Операторский отдел"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 108-93-93",
-            "contactType": "Отдел работы с B2B"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+375 (29) 383-34-34",
-            "contactType": "Авиа отдел"
-          }
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Я. Коласа, 73-3, офис 8",
-          "addressLocality": "г. Минск",
-          "postalCode": "220113",
-          "addressCountry": "Беларусь"
-        }
-      }
-    </script>
+    
 
     <meta
       name="viewport"
@@ -205,6 +158,8 @@
       href="./files/daterangepicker-kv.min.css"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="./files/compare-table-avia.css">
     <script src="./files/moment.min.js"></script>
     <script>
       var formatLocation = function (row) {
@@ -1709,6 +1664,53 @@
                 <input type="hidden" id="currency-sign" value="Br" />
 
                 <div class="air-result-block">
+                  <!-- NEW -->
+                  <div class="compare-table-avia-container" id="compare-table-avia-container">
+                    <div class="compare-table-avia-header-wrapper">
+                      <div class="compare-table-avia-title">
+                        Сравнительная таблица перелетов
+                      </div>
+                      <div class="close-btn">
+                        <img src="./images/cross-btn.svg" alt="">
+                      </div>
+                    </div>
+                    <div class="compare-table-avia-info-wrapper">
+                      <div class="controls">
+                        <p>Туда</p>
+                        <div id="prevDateBtn" class="slide-date-btn prev">
+                          <img src="./images/hotels/chevron-left.svg" alt="">
+                        </div>
+                        <div id="nextDateBtn" class="slide-date-btn next">
+                          <img src="./images/hotels/chevron-right.svg" alt="">
+                        </div>
+                      </div>
+                      <div class="center-table-content-wrapper">
+                        <div class="table-container">
+                          <table class="price-table">
+                            <thead>
+                              <tr id="date-header"></tr>
+                            </thead>
+                            <tbody id="price-table-body"></tbody>
+                          </table>
+                          
+                        </div>
+                        <!-- <div class="check"></div> -->
+                        <div class="vertical-controls">
+                          
+                          <div id="prevDateVerticalBtn" class="slide-date-btn prev">
+                            <img src="./images/hotels/chevron-up.svg" alt="">
+                          </div>
+                          <div id="nextDateVerticalBtn" class="slide-date-btn next">
+                            <img src="./images/hotels/chevron-down.svg" alt="">
+                          </div>
+                          <p>Обратно</p>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  <!-- NEW -->
                   <h3
                     class="result-block-error-message"
                     style="display: none"
@@ -3704,56 +3706,7 @@
     </script>
     <!--end::Global Config-->
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-      (function (m, e, t, r, i, k, a) {
-        m[i] =
-          m[i] ||
-          function () {
-            (m[i].a = m[i].a || []).push(arguments);
-          };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-          if (document.scripts[j].src === r) {
-            return;
-          }
-        }
-        (k = e.createElement(t)),
-          (a = e.getElementsByTagName(t)[0]),
-          (k.async = 1),
-          (k.src = r),
-          a.parentNode.insertBefore(k, a);
-      })(
-        window,
-        document,
-        "script",
-        "https://mc.yandex.ru/metrika/tag.js",
-        "ym"
-      );
-
-      ym(89565151, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-        ecommerce: "dataLayer",
-      });
-    </script>
-    <noscript
-      ><div>
-        <img
-          src="https://mc.yandex.ru/watch/89565151"
-          style="position: absolute; left: -9999px"
-          alt=""
-        /></div
-    ></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Pixel Code for https://upstickapp.com/ -->
-    <script
-      defer=""
-      src="./files/sr7iy6qfsiz3iwbmucdbeiikg85opllv"
-    ></script>
-    <!-- END Pixel Code -->
+    
 
     <script src="./files/jquery.js"></script>
     <script src="./files/yii.js"></script>
@@ -4144,6 +4097,10 @@
       };
     </script>
 
+    <!-- NEW  -->
+    <script src="./files/table-matrix-avia.js"></script>
+    <!-- NEW  -->
+
     <script>
       // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/slskl0cp'
       (function () {
@@ -4181,79 +4138,7 @@
       })();
     </script>
 
-    <script type="text/javascript" id="">
-      (function (b, e, f, g, c, a, d) {
-        b[c] =
-          b[c] ||
-          function () {
-            (b[c].a = b[c].a || []).push(arguments);
-          };
-        b[c].l = 1 * new Date();
-        for (a = 0; a < document.scripts.length; a++)
-          if (document.scripts[a].src === g) return;
-        a = e.createElement(f);
-        d = e.getElementsByTagName(f)[0];
-        a.async = 1;
-        a.src = g;
-        d.parentNode.insertBefore(a, d);
-      })(
-        window,
-        document,
-        "script",
-        "https://mc.yandex.ru/metrika/tag.js",
-        "ym"
-      );
-      ym(89565151, "init", {
-        clickmap: !0,
-        trackLinks: !0,
-        accurateTrackBounce: !0,
-        webvisor: !0,
-      });
-    </script>
-    <noscript
-      ><div>
-        <img
-          src="https://mc.yandex.ru/watch/89565151"
-          style="position: absolute; left: -9999px"
-          alt=""
-        /></div
-    ></noscript>
-
-    <script type="text/javascript" id="">
-      !(function (b, e, f, g, a, c, d) {
-        b.fbq ||
-          ((a = b.fbq =
-            function () {
-              a.callMethod
-                ? a.callMethod.apply(a, arguments)
-                : a.queue.push(arguments);
-            }),
-          b._fbq || (b._fbq = a),
-          (a.push = a),
-          (a.loaded = !0),
-          (a.version = "2.0"),
-          (a.queue = []),
-          (c = e.createElement(f)),
-          (c.async = !0),
-          (c.src = g),
-          (d = e.getElementsByTagName(f)[0]),
-          d.parentNode.insertBefore(c, d));
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js"
-      );
-      fbq("init", "943376383977574");
-      fbq("track", "PageView");
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=943376383977574&amp;ev=PageView&amp;noscript=1"
-    /></noscript>
+    
     <svg
       id="SvgjsSvg1001"
       width="2"
