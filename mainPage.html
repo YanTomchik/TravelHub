@@ -1571,6 +1571,9 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="support-link">
+                                <a href="#">Связаться с поддержкой</a>
+                            </div>
                             <div class="header-account-links">
                                 <a href="https://travelhub.by/agency">Агентствам</a>
                                 <a href="https://travelhub.by/b2b">Корпоративным клиентам</a>
@@ -2294,49 +2297,47 @@
                                         Присоединяйтесь к нам и будьте наконец-то счастливы
                                     </p>
                                 </div>
-                                <div class="radio-group">
+                                <div class="radio-group start-work">
                                     <label>
-                                        <input type="radio" name="option" value="t-agent" checked>
+                                        <input type="radio" name="option" value="t-agent" id="t-agent" checked>
                                         <span>Турагент</span>
                                     </label>
                                     <label>
-                                        <input type="radio" name="option" value="company">
+                                        <input type="radio" name="option" value="company" id="company">
                                         <span>Компания</span>
                                     </label>
                                     <label>
-                                        <input type="radio" name="option" value="tourist">
+                                        <input type="radio" name="option" value="tourist" id="tourist">
                                         <span>Турист</span>
                                     </label>
                                 </div>
+                                
                                 <form action="" method="post">
                                     <div class="fullname-inputs-wrapper">
                                         <div class="form-group field-contactform-name required">
-                                    
                                             <input type="text" id="contactform-name" class="form-control" name="ContactForm[name]" autocomplete="off"
                                                 required="required" placeholder="Имя" aria-required="true">
-                                        
                                             <div class="help-block"></div>
                                         </div>
                                         <div class="form-group field-contactform-name required">
-                                    
                                             <input type="text" id="contactform-name" class="form-control" name="ContactForm[name]" autocomplete="off"
                                                 required="required" placeholder="Фамилия" aria-required="true">
-                                        
                                             <div class="help-block"></div>
                                         </div>
                                     </div>
                                     <div class="form-group field-contactform-phone required">
-                                    
                                         <input type="text" id="contactform-phone" class="form-control phone-input" name="ContactForm[phone]" placeholder="Телефон"
                                             data-prev="" autocomplete="tel" required="required" aria-required="true" im-insert="true">
-                                    
+                                        <div class="help-block"></div>
+                                    </div>
+                                    <div class="form-group field-contactform-company-name" id="contactform-company-name">
+                                        <input type="text" id="company-name" class="form-control company-name-input" name="CompanyName[name]" placeholder="Название компании"
+                                            data-prev="" autocomplete="off" aria-required="true" im-insert="true">
                                         <div class="help-block"></div>
                                     </div>
                                     <div class="form-group field-contactform-email required">
-                                    
                                         <input type="text" id="contactform-email" class="form-control" name="ContactForm[email]" autocomplete="off"
                                             required="required" placeholder="Еmail" aria-required="true">
-                                    
                                         <div class="help-block"></div>
                                     </div>
                                     <div class="form-terms-wrapper">
@@ -2353,7 +2354,6 @@
                                     <div class="already-have-account-wrapper">
                                         <a href="#" class="blue-text"><b>Уже есть аккаунт</b></a>
                                     </div>
-                                    
                                 </form>
                             </div>
                         </div>

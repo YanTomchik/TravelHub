@@ -112,6 +112,29 @@ $(document).ready(function () {
     });
   });
 
+  
+  const tAgentRadio = document.getElementById('t-agent');
+  const companyRadio = document.getElementById('company');
+  const touristRadio = document.getElementById('tourist');
+  const companyNameField = document.getElementById('contactform-company-name');
+
+  function toggleCompanyNameField() {
+      if (tAgentRadio.checked || companyRadio.checked) {
+          companyNameField.style.display = 'block';
+      } else {
+          companyNameField.style.display = 'none';
+      }
+  }
+
+  tAgentRadio.addEventListener('change', toggleCompanyNameField);
+  companyRadio.addEventListener('change', toggleCompanyNameField);
+  touristRadio.addEventListener('change', toggleCompanyNameField);
+
+  // Initial check
+  toggleCompanyNameField();
+
+
+
 });
 
 

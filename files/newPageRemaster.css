@@ -707,6 +707,10 @@ footer.main-page{
 display: none!important;
 }
 
+#contactform-company-name {
+    display: none;
+}
+
 @media (max-width: 770px) {
     .top-brands-wrapper-img{
         display: none;
