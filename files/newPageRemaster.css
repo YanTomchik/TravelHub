@@ -723,13 +723,13 @@ footer.main-page{
 .feedback-footer-description .name p{
     
 
-    color: #191C30;
+    color: #fff;
     font-size: 18px;
     font-weight: 700;
 }
 
 .feedback-footer-description .company-name p{
-    color: #191C30;
+    color: #fff;
     font-size: 13px;
     font-weight: normal;
 }
