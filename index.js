@@ -135,6 +135,20 @@ $(document).ready(function () {
 
 
 
+// function updateBackgroundBlur() {
+//     var currentSlide = $('.landing-banner-list').slick('slickCurrentSlide');
+//     var currentImage = $('.landing-banner-list .slick-slide').eq(currentSlide).find('img').attr('src');
+//     $('.background-blur').css('background-image', 'url(' + currentImage + ')');
+// }
+
+// // При инициализации слайдера
+// updateBackgroundBlur();
+
+// // При смене слайда
+// $('.landing-banner-list').on('afterChange', function(event, slick, currentSlide){
+//     updateBackgroundBlur();
+// });
+
 });
 
 
