@@ -795,6 +795,14 @@ display: none!important;
     height: 400px;
 }
 
+.header-top{
+    background-color: #fff;
+}
+
+.header-top .logo{
+    height: 50px;
+}
+
 @media (max-width: 770px) {
 
     .background-blur-wrapper{
