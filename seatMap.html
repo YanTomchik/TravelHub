@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amadeus Seat Map</title>
+    <style>
+        .seat-map {
+            display: grid;
+            grid-template-columns: repeat(6, 50px);
+            gap: 10px;
+            justify-content: center;
+        }
+        .seat, .facility, .wing, .exit {
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .seat {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray;
+            color: white;
+        }
+        .seat.selected {
+            background-color: green;
+        }
+        .seat.occupied {
+            background-color: red;
+            cursor: not-allowed;
+        }
+        .facility {
+            background-color: #F5EE9E;
+        }
+        .wing {
+            background-color: #99B2DD;
+        }
+        .exit span {
+            background-color: #499167;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="App"></div>
+    <script src="./files/dataSeatMap.js"></script>
+    <script src="./files/seatMap.js"></script>
+</body>
+</html>

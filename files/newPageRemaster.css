@@ -390,17 +390,9 @@
 }
 
 .slider-new .country-card-status{
-    background-color: #3968BF;
-    border: 1px solid #fff;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
 }
 
 .slider-new .slider-offer-of-day::after{
@@ -761,8 +753,58 @@ display: none!important;
     display: none;
 }
 
+.header.header-fixed .header-bottom{
+    /* padding: 15px 40px; */
+}
+
+.header.header-fixed .header-bottom .header-bottom-left a{
+    padding: 20px 0px;
+}
+
+.header.header-fixed .header-bottom .header-bottom-left a.active::after{
+    background: url('../images/travelhub-main-background.png');
+    height: 4px;
+}
+
+
+.header-search-wrapper input{
+    height: 37px;
+    background-color: #F4F6F9;
+    border-radius: 8px;
+    min-width: 330px;
+    border: none;
+    outline: none;
+    padding: 8px 35px;
+}
+
+.header-search-wrapper{
+    position: relative;
+}
+
+.header-search-wrapper img{
+    position: absolute;
+    top: 6px;
+    left: 8px;
+}
 
 @media (max-width: 770px) {
+
+    .header.header-fixed .header-top{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-has-auth .header-toggle-nav-mobile{
+        top: 20px;
+    }
+
+    .header-search-wrapper{
+        margin-top: 15px;
+    }
+
+    .support-link{
+        display: none;
+    }
     .top-brands-wrapper-img{
         display: none;
     }
