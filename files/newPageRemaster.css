@@ -805,6 +805,10 @@ display: none!important;
 
 @media (max-width: 770px) {
 
+    .header-top .logo{
+        height: 40px;
+    }
+
     .background-blur-wrapper{
         height: 102%;
     }
