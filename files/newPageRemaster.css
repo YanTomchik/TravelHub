@@ -40,8 +40,8 @@
 }
 
 .cards-middle-item-img{
-    width: 59px;
-    height: 59px;
+    min-width: 59px;
+    min-height: 59px;
     margin-right: 20px;
 }
 
