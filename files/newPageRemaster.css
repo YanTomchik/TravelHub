@@ -811,18 +811,17 @@ display: none!important;
     height: 50px;
 }
 
-.footer-img-wrapper{
+/* .footer-img-wrapper{
     width: 500px;
     height: 350px;
     background-size: cover;
     background-position: center;
-}
+} */
 
 @media (max-width: 770px) {
 
     .footer-img-wrapper{
-        width: 350px;
-        height: 245px;
+        display: none;
     }
 
     .header-top .logo{
