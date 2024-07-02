@@ -44,6 +44,7 @@
     min-height: 59px; */
     margin-right: 20px;
     min-width: 45px;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .cards-middle-item-info-wrapper{
@@ -396,9 +397,10 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    box-shadow: 0px 0px 7.4px rgba(0, 0, 0, 0.36);
     /* background: #fff; */
     /* padding: 8px; */
-    /* border-radius: 6px; */
+    border-radius: 4px;
     /* border: 2px solid #f00; */
     /* border-image: url('../images/main-pattern.svg') 2px; */
 }
