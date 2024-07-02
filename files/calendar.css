@@ -899,6 +899,23 @@
       color: #3e7b51;
     }
 
+
+    .air-datepicker-cell.-in-range-.charter-day{
+      background: #E7EDF8;
+      border-radius: 0;
+      color: #555;
+    }
+  
+    .air-datepicker-cell.-in-range-.charter-day:hover {
+      background: #3968BF;
+      color: #fff;
+    }
+
+    .air-datepicker-cell.-in-range-.charter-day:hover {
+      background: #3968BF;
+      /* color: #fff; */
+    }
+
     .air-datepicker .charter-day{
       background-color: #3e7b51;
       color: #fff;

@@ -135,16 +135,12 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     minDate: new Date(),
     isMobile: isMobileFlag,
     autoClose: true,
-    range: false,
+    range: true,
     numberOfMonths: 2,
+    multipleDatesSeparator: ' - ',
     showOtherMonths: false,
     onSelect: function (formattedDate, date, inst) {
-        // datepickerOneWay.hide()
-        // console.log(formattedDate)
-        // if(formattedDate.length!=0){
-        //     clearDatepickerBtn.classList.add('active')
-        // }
-    },
+    }, 
     onShow: function (inst) {
         if (inst) {
             getFlightToursCalendar()
