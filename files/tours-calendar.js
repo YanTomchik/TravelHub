@@ -127,7 +127,7 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
     }
 }
 
-getFlightToursCalendar()
+// getFlightToursCalendar()
 
 let datepickerTour = new AirDatepicker(datepickerTourInput, {
     locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
