@@ -403,6 +403,11 @@
     /* border-image: url('../images/main-pattern.svg') 2px; */
 }
 
+.slider-new .country-card-status img{
+    width: 40px;
+    height: 40px;
+}
+
 .slider-new .slider-offer-of-day::after{
     content: none;
 }
@@ -509,6 +514,14 @@
     margin: 6rem 0rem 0rem 0rem;
     background-color: #fff;
     padding: 50px 80px 20px;
+   
+}
+
+.row.footer-mobile-app{
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .banner-mobile-app-img{
