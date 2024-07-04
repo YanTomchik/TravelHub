@@ -44,57 +44,6 @@ $(document).ready(function () {
     ]
   });
 
-  // $('.news-digest-list').slick({
-  //   dots: false,
-  //   infinite: true,
-  //   speed: 300,
-  //   slidesToShow: 1,
-  //   variableWidth: true,
-  //   responsive: [
-  //     {
-  //       breakpoint: 992,
-  //       settings: {
-  //         arrows: true,
-  //       }
-  //     }
-  //   ]
-  // });
-
-
-  // $('.move-logos-remaster').slick({
-  //   dots: false,
-  //   allows: false,
-  //   slidesToShow: 1,
-  //   variableWidth: true,
-  //   autoplay: true,
-  //   autoplaySpeed: 1500,
-  //   pauseOnFocus: false,
-  //   pauseOnHover: false,
-  //   responsive: [
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         variableWidth: true,
-  //         centerMode: true,
-  //       }
-  //     }
-  //   ]
-  // });
-  // const slideLogosItems = document.querySelectorAll('.logos-item');
-
-  // let maxLogosHeight = 0;
-
-  // slideLogosItems.forEach((item) => {
-  //   const itemLogosHeight = item.clientHeight;
-  //   console.log(itemLogosHeight);
-  //   if (itemLogosHeight > maxLogosHeight) {
-  //     maxLogosHeight = itemLogosHeight;
-  //   }
-  // });
-
-  // slideLogosItems.forEach((item) => {
-  //   item.style.height = `100px`;
-  // });
 
   const dropdownToggle = document.querySelectorAll(".dropdown-toggle");
   
@@ -132,22 +81,6 @@ $(document).ready(function () {
 
   // Initial check
   toggleCompanyNameField();
-
-
-
-// function updateBackgroundBlur() {
-//     var currentSlide = $('.landing-banner-list').slick('slickCurrentSlide');
-//     var currentImage = $('.landing-banner-list .slick-slide').eq(currentSlide).find('img').attr('src');
-//     $('.background-blur').css('background-image', 'url(' + currentImage + ')');
-// }
-
-// // При инициализации слайдера
-// updateBackgroundBlur();
-
-// // При смене слайда
-// $('.landing-banner-list').on('afterChange', function(event, slick, currentSlide){
-//     updateBackgroundBlur();
-// });
 
 });
 
