@@ -1,50 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amadeus Seat Map</title>
-    <style>
-        .seat-map {
-            display: grid;
-            grid-template-columns: repeat(6, 50px);
-            gap: 10px;
-            justify-content: center;
-        }
-        .seat, .facility, .wing, .exit {
-            position: absolute;
-            text-align: center;
-            line-height: 50px;
-            cursor: pointer;
-        }
-        .seat { 
-            width: 50px;
-            height: 50px;
-            background-color: lightgray;
-            color: white;
-        }
-        .seat.selected {
-            background-color: green;
-        }
-        .seat.occupied {
-            background-color: red;
-            cursor: not-allowed;
-        }
-        .facility {
-            background-color: #F5EE9E;
-        }
-        .wing {
-            background-color: #99B2DD;
-        }
-        .exit span {
-            background-color: #499167;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat Map</title>
+  <style>
+    /* .available { background-color: green; } */
+    /* .unavailable { background-color: red; } */
+    /* .active { border: 2px solid yellow; } */
+    .seat, .facility, .exit, .wing { position: absolute; text-align: center;
+    line-height: 50px;
+    cursor: pointer;}
+    
+    /* .facility { background-color: #F5EE9E; } */
+    .exit { background-color: #499167; }
+    .wing { background-color: #99B2DD; width: 250px; }
+    .seat { 
+        width: 50px;
+        height: 50px;
+        /* background-color: lightgray; */
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .seat.blocked { 
+    color: #000;
+    cursor: not-allowed;
+}
+
+.top-plane-wrapper{
+    background-color: #f5f7fc;
+    border-radius: 50% 50% 0px 0px;
+    /* height: 150px;
+    width: 300px; */
+}
+
+.seat.selected {
+    background-color: #c1c1c1;
+}
+
+.seat.available:hover { 
+    background-color: #3E7B50!important;
+}
+
+.seat.active { 
+    background-color: #3E7B50!important;
+}
+
+.seat.occupied {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.facility {
+    background-color: #aea75d;
+    width: 50px;
+    height: 50px;
+    color: #000;
+    border-radius: 5px;
+}
+
+.deck-wrapper{
+    position: relative;
+    background-color: #f5f7fc;
+    padding: 2.5em;
+    /* min-width: 310px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0px 16px 16px;
+}
+  </style>
 </head>
 <body>
-    <div id="app" class="App"></div>
-    <script src="./files/dataSeatMap.js"></script>
-    <script src="./files/seatMap.js"></script>
+  <div id="app-seatmap"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const app = document.getElementById('app-seatmap');
+      const flightId = 'eJzTd9c3cjIxDvMDAAoKAiU%3D';
+      const service = 'amadeus_us';
+      const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
+
+      fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${bearerToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const seatMap = data.result[0];
+        console.log(data)
+        const selectedSeats = {};
+        let travelers = [];
+
+        const displaySeats = (seatList) => {
+          return seatList.map(seat => {
+            const color = seat.travelerPricing[1].seatAvailabilityStatus === 'AVAILABLE' ? "#3968BF" : "#d9d9d9";
+            const classType = seat.travelerPricing[1].seatAvailabilityStatus === 'AVAILABLE' ? "available" : "blocked";
+            const style = `left: ${seat.coordinates.y * 4 + 2.5}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
+            return `<div class="seat ${classType}" style="${style}" data-seat-number="${seat.number}" data-seat-id="${seat.coordinates.x}-${seat.coordinates.y}" data-price="${seat.travelerPricing[0].price.total}" data-currency="${seat.travelerPricing[0].price.currency}">${seat.number}</div>`;
+          }).join('');
+        };
+
+        const displayFacilities = (facilityList) => {
+          return facilityList.map(facility => {
+            const style = `left: ${(facility.coordinates.y * 4)+2.5}em; top: ${(facility.coordinates.x * 4)+2.5}em`;
+            return `<div class="facility" style="${style}">${facility.code}</div>`;
+          }).join('');
+        };
+
+        const displayExits = (exitRows) => {
+          if (exitRows && exitRows.length > 0) {
+            return exitRows.map(row => {
+              const styleLeft = `left: -4.1em; top: ${row * 2}em;`;
+              const styleRight = `left: 13.5em; top: ${row * 2}em;`;
+              return `<div class="exit"><span style="${styleLeft}">EXIT</span><span style="${styleRight}">EXIT</span></div>`;
+            }).join('');
+          }
+          return '';
+        };
+
+        const displayWings = (start, end) => {
+            const wings = [];
+            ['left', 'right'].forEach(orientation => {
+                const wingDiv = document.createElement('div');
+                wingDiv.className = 'wing';
+                wingDiv.style.left = orientation === 'left' ? "-568px" : "24.3em";
+                wingDiv.style.top = `${start * 2}em`;
+                wingDiv.style.height = `${(end - start) * 2}em`;
+                wingDiv.style.position = `absolute`;
+                wingDiv.style.width = `250px`;
+                wingDiv.innerHTML = orientation === 'left' ? `<img src="./images/wing-vector-left.svg" alt="">` : `<img src="./images/wing-vector-right.svg" alt="">`;
+                wings.push(wingDiv);
+            });
+            return wings;
+        };
+
+        const createTopPlane = (deck) => {
+            const width = deck.deckConfiguration.width;
+            const length = deck.deckConfiguration.length;
+
+            const orientation = `width: ${(width * 3.8) + 5}em; height: ${length * 0.6}em;`;
+
+            // const deckDiv = document.createElement('div');
+            // deckDiv.id = 'top-plane';
+            // deckDiv.className = 'top-plane-wrapper';
+            // deckDiv.style.width = `${(width * 3.8) + 5}em`;
+            // deckDiv.style.height = `${length * 0.6}em`;
+
+            // return deckDiv;
+
+            return `<div class="top-plane-wrapper" id="top-plane" style="${orientation}"></div>`;
+
+        };
+
+        const renderDeck = (deck) => {
+          const width = deck.deckConfiguration.width * 3.8;
+          const length = deck.deckConfiguration.length * 4;
+          const seatList = deck.seats;
+          const facilities = deck.facilities;
+          const exitRows = deck.deckConfiguration.exitRowsX;
+          const wingStart = deck.deckConfiguration.startWingsX;
+          const wingEnd = deck.deckConfiguration.endWingsX;
+
+          return `
+            <div id="deck" style="width: ${width}em; height: ${length}em;" class='deck-wrapper'>
+              
+              
+              ${displaySeats(seatList)}
+              ${displayFacilities(facilities)}
+              ${displayExits(exitRows)}
+            </div>
+          `;
+        };
+
+        seatMap.decks.forEach(deck => {
+            const wingStart = deck.deckConfiguration.startWingsX;
+          const wingEnd = deck.deckConfiguration.endWingsX;
+
+            const topPlaneElem = createTopPlane(deck);
+            const wings = displayWings(wingStart, wingEnd);
+            wings.forEach(wing => app.appendChild(wing));
+            // console.log(wingElements)
+
+            app.innerHTML += createTopPlane(deck);
+            app.innerHTML += renderDeck(deck);
+            // app.appendChild(wingElements)
+            // app.prependChild(topPlaneElem)
+          
+        });
+
+        app.addEventListener('click', (e) => {
+          if (e.target.classList.contains('seat')) {
+            const seatNumber = e.target.dataset.seatNumber;
+            const seatId = e.target.dataset.seatId;
+            const seatPrice = e.target.dataset.price;
+            const seatCurrency = e.target.dataset.currency;
+
+            if (!selectedSeats[seatId]) {
+              selectedSeats[seatId] = { seatNumber, seatPrice, seatCurrency };
+              e.target.classList.add('active');
+            } else {
+              delete selectedSeats[seatId];
+              e.target.classList.remove('active');
+            }
+
+            updateTravelers(selectedSeats);
+          }
+        });
+
+        const updateTravelers = (selectedSeats) => {
+          travelers = Object.entries(selectedSeats).map(([seatId, seatData], index) => ({
+            id: `T${index + 1}`,
+            segments: [
+              {
+                id: "S1",
+                seatNumber: seatData.seatNumber,
+                price: seatData.seatPrice,
+                currency: seatData.seatCurrency
+              }
+            ]
+          }));
+          
+          console.log({
+            orderId: "40533",
+            orderServiceId: "12312",
+            service: service,
+            flightId: flightId,
+            hash: seatMap.hash,
+            flightOfferId: seatMap.flightOfferId,
+            travelers: travelers
+          });
+        };
+
+      })
+      .catch(error => {
+        console.error('Error fetching seat map:', error);
+      });
+    });
+  </script>
 </body>
 </html>
