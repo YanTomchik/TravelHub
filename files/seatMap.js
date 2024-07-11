@@ -128,7 +128,7 @@ function renderFlight() {
         if (selectedSeat) {
             infoDiv.innerHTML += `
             <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}<br>-->
-            <div class="passenger-item-wrapper">
+            <div class="passenger-item-wrapper active">
                                                             <div class="passenger-info-wrapper">
                                                                 <div class="passenger-icon">
                                                                     T${travelerId}
@@ -468,7 +468,7 @@ app.addEventListener('click', (e) => {
                     if (selectedSeat) {
                         infoDiv.innerHTML += `
                         <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}<br>-->
-                        <div class="passenger-item-wrapper">
+                        <div class="passenger-item-wrapper active">
                                                             <div class="passenger-info-wrapper">
                                                                 <div class="passenger-icon">
                                                                     T${travelerId}
