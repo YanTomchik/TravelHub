@@ -346,3 +346,10 @@
     color: #7f7f7f;
 }
 
+.main-title-seatmap{
+    font-weight: 700;
+    font-size: 2em;
+    color: #000;
+    margin-top: 1%;
+    margin-left: 2%;
+}
