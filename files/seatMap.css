@@ -22,7 +22,7 @@
     width: 95%;
     height: 95%;
     overflow: scroll;
-    background-color: #fff;
+    background-color: #f2f8fc;
     border-radius: 16px;
     position: relative;
 }
@@ -139,7 +139,7 @@
     top: 0;
     left: 0;
     z-index: 4;
-    background-color: #F4F6F990;
+    background-color: #F4F6F9;
     /* display: block; */
 }
 
@@ -185,6 +185,154 @@
 }
 
 .submit-seatmap-data-btn{
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
+    /* margin: 0 auto; */
 }
+
+.btns-action-wrapper{
+    width: 50%;
+}
+
+.seat-popup{
+    display: none;
+    position: absolute;
+}
+
+.seat-popup.active{
+    position: relative;
+    top: -9em;
+    color: #000;
+    display: flex;
+    justify-content: space-around;
+    background-color: #3d774c;
+    border-radius: 6px;
+    padding: 5px 8px;
+    min-width: 200px;
+    box-shadow: 0px 4px 47px -10px rgba(0, 0, 0, 0.2);
+}
+
+.seat-popup-number{
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.seat-popup-price{
+    font-size: 16px;
+    color: #fff;
+}
+
+.right-seatmap-container{
+    position: absolute;
+    top: 100px;
+    right: 40px;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* padding: 20px; */
+}
+
+.flight-info-main-wrapper{
+    display: flex;
+    /* align-items: flex-start; */
+    flex-direction: column;
+    border: 1px solid #c3c7cc;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.right-seatmap-header-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2e2e2e;
+}
+
+.flight-description-wrapper{
+    display: flex;
+    gap: 8px;
+}
+
+.passenger-item-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+.flight-description-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.passengers-list-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.passengers-list-wrapper .seat-info{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.passenger-info-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.passenger-item-checkbox-wrapper{
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #d8dcdf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.passenger-item-checkbox-wrapper.green{
+    background-color: #3D7B50;
+    
+}
+
+.passenger-item-checkbox-wrapper.green .number{
+    color: #fff;
+    font-weight: 700;
+}
+
+.passenger-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3968BF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 700; 
+    font-size: 18px;   
+}
+
+.passenger-description-wrapper .name{
+    font-weight: 700;
+    font-size: 16px;
+    color: #3968BF;
+}
+
+.passenger-description-wrapper .extra-info{
+    font-size: 14px;
+    color: #7f7f7f;
+}
+
