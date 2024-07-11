@@ -68,7 +68,7 @@
     border-radius: 50% 50% 0px 0px; */
 
     position: relative;
-    top: -12em;
+    /* top: -12em; */
 }
 
 .seat.selected {
