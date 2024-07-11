@@ -35,8 +35,8 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     this.dataOrderServiceId = dataOrderServiceId;
     currentTraveler = 1;
 
-    // fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
-        fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
+    fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
+        // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${bearerToken}`,
@@ -294,8 +294,8 @@ function displayWings(start, end) {
         wingDiv.style.top = `${start * 4}em`;
         wingDiv.style.height = `${(end - start) * 4}em`;
         wingDiv.style.position = `relative`;
-                    wingDiv.innerHTML = orientation === 'left' ? `<img src="./images/seat-map-wing-desktop-left.svg" alt="" class='left-wing'>` : `<img src="./images/seat-map-wing-desktop-right.svg" alt="">`;
-        // wingDiv.innerHTML = orientation === 'left' ? `<img src="/images/seatmap/seat-map-wing-desktop-left.svg" alt="" class='left-wing'>` : `<img src="/images/seatmap/seat-map-wing-desktop-right.svg" alt="">`;
+        // wingDiv.innerHTML = orientation === 'left' ? `<img src="./images/seat-map-wing-desktop-left.svg" alt="" class='left-wing'>` : `<img src="./images/seat-map-wing-desktop-right.svg" alt="">`;
+        wingDiv.innerHTML = orientation === 'left' ? `<img src="/images/seatmap/seat-map-wing-desktop-left.svg" alt="" class='left-wing'>` : `<img src="/images/seatmap/seat-map-wing-desktop-right.svg" alt="">`;
         wings.push(wingDiv);
     });
     return wings;
