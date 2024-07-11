@@ -129,24 +129,27 @@ function renderFlight() {
             infoDiv.innerHTML += `
             <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}<br>-->
             <div class="passenger-item-wrapper">
-                                                <div class="passenger-info-wrapper">
-                                                    <div class="passenger-icon">
-                                                        T${travelerId}
-                                                    </div>
-                                                    <div class="passenger-description-wrapper">
-                                                        <div class="name">
-                                                            Traveler ${travelerId}
+                                                            <div class="passenger-info-wrapper">
+                                                                <div class="passenger-icon">
+                                                                    T${travelerId}
+                                                                </div>
+                                                                <div class="passenger-description-wrapper">
+                                                                    <div class="name">
+                                                                        Traveler ${travelerId}
+                                                                    </div>
+                                                                    <div class="extra-info">
+                                                                        total ${selectedSeat.totalGross} ${selectedSeat.currency}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="passenger-item-checkbox-wrapper green">
+                                                                <div class = "number">
+                                                                    ${selectedSeat.seat}
+                                                                </div>
+                                                            
+                                                            </div>
+            
                                                         </div>
-                                                        <div class="extra-info">
-                                                            seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="passenger-item-checkbox-wrapper">
-
-                                                </div>
-
-                                            </div>
             `;
         } else {
             infoDiv.innerHTML += `
@@ -271,7 +274,7 @@ function displaySeats(seatList, travelerIds) {
         const style = `left: ${seat.coordinates.y * 4 + 2.5}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
 
         return `<div class="seat ${classType}" style="${style}" data-seat-number="${seat.number}" data-seat-id="${seat.coordinates.x}-${seat.coordinates.y}" data-flight-index="${currentFlightIndex}" data-total="${seat.travelerPricing[0].price.total}" data-currency="${seat.travelerPricing[0].price.currency}"> ${seat.number} 
-        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${seat.travelerPricing[0].price.total} ${seat.travelerPricing[0].price.currency}</div></div>
+        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${seat.travelerPricing[0].price.total * grossMultiplier} ${seat.travelerPricing[0].price.currency}</div></div>
         </div>`;
     }).join('');
 }

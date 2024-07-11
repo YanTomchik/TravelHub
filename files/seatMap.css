@@ -195,20 +195,21 @@
 
 .seat-popup{
     display: none;
-    position: absolute;
-}
-
-.seat-popup.active{
     position: relative;
-    top: -9em;
+    
     color: #000;
-    display: flex;
-    justify-content: space-around;
     background-color: #3d774c;
     border-radius: 6px;
     padding: 5px 8px;
     min-width: 200px;
     box-shadow: 0px 4px 47px -10px rgba(0, 0, 0, 0.2);
+}
+
+.seat-popup.active{
+    display: flex;
+    justify-content: space-around;
+    top: -9em;
+    right: 4em;
 }
 
 .seat-popup-number{
@@ -223,14 +224,13 @@
 }
 
 .right-seatmap-container{
-    position: absolute;
-    top: 120px;
-    right: 40px;
+    position: fixed;
+    top: 10%;
+    right: 5%;
     min-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    /* padding: 20px; */
 }
 
 .flight-info-main-wrapper{
