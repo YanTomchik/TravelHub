@@ -18,7 +18,6 @@ let dataFlightId;
 let dataOrderId;
 let dataOrderServiceId;
 const grossMultiplier = 1.2;
-const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
 let currentTraveler = 1; // Initialize the current traveler
 
@@ -27,6 +26,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     const service = dataService;
     const orderId = dataOrderId;
     const serviceOrderId = dataOrderServiceId;
+    const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
     // Store the variables once in initSeatMap
     this.dataService = dataService;
@@ -36,7 +36,8 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     currentTraveler = 1;
 
     // fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
-    fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&test=true&cabin=business`, {
+        // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
+            fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&test=true&cabin=business`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${bearerToken}`,
@@ -58,7 +59,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
             console.log(flightsData)
             renderFlight();
 
-            let headerFlightsInfo = displayHeaderFlightInfo(arrivalName, departureName)
+            let headerFlightsInfo = displayHeaderFlightInfo(arrivalName,departureName)
             // console.log(headerFlightsInfo)
             flightDescriptionWrapper.innerHTML = headerFlightsInfo;
             loaderDiv.style.display = 'none';
@@ -68,7 +69,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
         });
 }
 
-function displayHeaderFlightInfo(arrivalName, departureName) {
+function displayHeaderFlightInfo(arrivalName, departureName){
 
     return `<div class="icon-flight">
                                                     <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M17.737 1.076c-1.21-.656-2.586-.308-3.526.1l-2.804 1.217L6.585.136 3.714.251l3.981 3.757-2.537 1.121-2.64-.935-1.768.767 1.597 1.846c-.168.188-.321.451-.182.728.18.362.717.545 1.596.545.18 0 .375-.008.584-.023.965-.071 2.012-.3 2.666-.584l10.022-4.35c.865-.375 1.296-.77 1.318-1.205.01-.226-.087-.556-.614-.842zM.75 11.533h17.602v.662H.75z"></path></svg>
@@ -110,8 +111,10 @@ function renderFlight() {
 
         const deckElement = document.createElement('div');
         deckElement.innerHTML = renderDeck(deck, travelerIds);
-
+        
+        
         app.appendChild(deckElement);
+        
     });
 
     // Display textual information for each traveler
@@ -213,6 +216,7 @@ function renderFlight() {
             currentTraveler = 1;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
             renderFlight();
+            
         } else {
             submitData();
         }
@@ -243,6 +247,7 @@ function renderFlight() {
 
     // Update button text if it's the last flight
     document.getElementById('next-flight-btn').textContent = currentFlightIndex < flightsData.result.length - 1 ? 'Next Flight' : 'Submit Data';
+    
 }
 
 function renderDeck(deck, travelerIds) {
@@ -368,11 +373,12 @@ async function submitData() {
         travelers: travelers
     };
 
+    showButtonLoader();
+
     try {
-        const response = await fetch('https://api.travelhub.by/flight/seat-update', {
+        const response = await fetch('http://api.travelhub.local:8085/flight/seat-update', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${bearerToken}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataToSend)
@@ -386,6 +392,8 @@ async function submitData() {
         }
     } catch (error) {
         console.error('Error submitting seat data:', error);
+    } finally {
+        hideButtonLoader(button);
     }
 }
 
@@ -554,11 +562,30 @@ function showPopup(event) {
 
 function hidePopup() {
     const seatPopupArr = document.querySelectorAll('.seat-popup')
-    seatPopupArr.forEach(elem => {
-        if (elem.classList.contains('active')) {
+    seatPopupArr.forEach(elem=>{
+        if(elem.classList.contains('active')){
             elem.classList.remove('active')
         }
+        
     })
+    
 }
 
+// Функция для показа лоудера внутри кнопки
+function showButtonLoader() {
+    const button = document.querySelector('.submit-seatmap-data-btn')
+    const spinner = document.createElement('span');
+    spinner.classList.add('spinner-submit-seatmap');
+    button.appendChild(spinner);
+    button.disabled = true;
+}
 
+// Функция для скрытия лоудера внутри кнопки
+function hideButtonLoader() {
+    const button = document.querySelector('.submit-seatmap-data-btn')
+    const spinner = button.querySelector('.spinner-submit-seatmap');
+    if (spinner) {
+        button.removeChild(spinner);
+    }
+    button.disabled = false;
+}
