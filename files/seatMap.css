@@ -196,7 +196,7 @@
 .seat-popup{
     display: none;
     position: relative;
-    
+    z-index: 2;
     color: #000;
     background-color: #3d774c;
     border-radius: 6px;
