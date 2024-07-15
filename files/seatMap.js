@@ -38,7 +38,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
 
     // fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
         // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
-            fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&test=true&cabin=business`, {
+            fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${bearerToken}`,
