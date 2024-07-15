@@ -10,6 +10,7 @@ let flightsData;
 let hashSeatMap;
 let flightOfferId;
 let numTravelers;
+let numFlights;
 let departureName;
 let arrivalName;
 
@@ -18,6 +19,7 @@ let dataFlightId;
 let dataOrderId;
 let dataOrderServiceId;
 const grossMultiplier = 1.2;
+const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
 let currentTraveler = 1; // Initialize the current traveler
 
@@ -26,7 +28,6 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     const service = dataService;
     const orderId = dataOrderId;
     const serviceOrderId = dataOrderServiceId;
-    const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
     // Store the variables once in initSeatMap
     this.dataService = dataService;
@@ -53,6 +54,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
             hashSeatMap = data.hash;
             flightOfferId = data.result[currentFlightIndex].flightOfferId;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
+            numFlights = flightsData.result.length;
             arrivalName = data.result[currentFlightIndex].arrival.iataCode;
             departureName = data.result[currentFlightIndex].departure.iataCode;
 
@@ -111,10 +113,10 @@ function renderFlight() {
 
         const deckElement = document.createElement('div');
         deckElement.innerHTML = renderDeck(deck, travelerIds);
-        
-        
+
+
         app.appendChild(deckElement);
-        
+
     });
 
     // Display textual information for each traveler
@@ -216,7 +218,7 @@ function renderFlight() {
             currentTraveler = 1;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
             renderFlight();
-            
+
         } else {
             submitData();
         }
@@ -247,7 +249,7 @@ function renderFlight() {
 
     // Update button text if it's the last flight
     document.getElementById('next-flight-btn').textContent = currentFlightIndex < flightsData.result.length - 1 ? 'Next Flight' : 'Submit Data';
-    
+
 }
 
 function renderDeck(deck, travelerIds) {
@@ -376,9 +378,10 @@ async function submitData() {
     showButtonLoader();
 
     try {
-        const response = await fetch('http://api.travelhub.local:8085/flight/seat-update', {
+        const response = await fetch('https://api.travelhub.by/flight/seat-update', {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${bearerToken}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataToSend)
@@ -401,7 +404,6 @@ app.addEventListener('click', (e) => {
     if (e.target.classList.contains('seat')) {
         const seatNumber = e.target.dataset.seatNumber;
         const seatId = e.target.dataset.seatId;
-        // const travelerId = e.target.dataset.travelerId ?? 0;
         const flightIndex = parseInt(e.target.dataset.flightIndex);
         const seatPrice = parseFloat(e.target.dataset.total);
         const seatCurrency = e.target.dataset.currency;
@@ -566,9 +568,9 @@ function hidePopup() {
         if(elem.classList.contains('active')){
             elem.classList.remove('active')
         }
-        
+
     })
-    
+
 }
 
 // Функция для показа лоудера внутри кнопки
