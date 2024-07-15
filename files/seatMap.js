@@ -35,10 +35,11 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     this.dataOrderId = dataOrderId;
     this.dataOrderServiceId = dataOrderServiceId;
     currentTraveler = 1;
-
+    console.log(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`)
     // fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
-        // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
-            fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`, {
+    // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
+    // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`, {
+    fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=economy`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${bearerToken}`,
@@ -49,21 +50,14 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
         .then(data => {
             selectedSeats = {};
             currentFlightIndex = 0;
-
             flightsData = data;
             hashSeatMap = data.hash;
             flightOfferId = data.result[currentFlightIndex].flightOfferId;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
             numFlights = flightsData.result.length;
-            arrivalName = data.result[currentFlightIndex].arrival.iataCode;
-            departureName = data.result[currentFlightIndex].departure.iataCode;
-
-            console.log(flightsData)
             renderFlight();
 
-            let headerFlightsInfo = displayHeaderFlightInfo(arrivalName,departureName)
-            // console.log(headerFlightsInfo)
-            flightDescriptionWrapper.innerHTML = headerFlightsInfo;
+
             loaderDiv.style.display = 'none';
         })
         .catch(error => {
@@ -71,7 +65,8 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
         });
 }
 
-function displayHeaderFlightInfo(arrivalName, departureName){
+function displayHeaderFlightInfo(arrivalName, departureName) {
+    console.log(arrivalName)
 
     return `<div class="icon-flight">
                                                     <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M17.737 1.076c-1.21-.656-2.586-.308-3.526.1l-2.804 1.217L6.585.136 3.714.251l3.981 3.757-2.537 1.121-2.64-.935-1.768.767 1.597 1.846c-.168.188-.321.451-.182.728.18.362.717.545 1.596.545.18 0 .375-.008.584-.023.965-.071 2.012-.3 2.666-.584l10.022-4.35c.865-.375 1.296-.77 1.318-1.205.01-.226-.087-.556-.614-.842zM.75 11.533h17.602v.662H.75z"></path></svg>
@@ -87,7 +82,13 @@ function displayHeaderFlightInfo(arrivalName, departureName){
 
 function renderFlight() {
     const flight = flightsData.result[currentFlightIndex];
-    const travelerIds = Array.from({length: numTravelers}, (_, i) => `${i + 1}`);
+    const travelerIds = Array.from({ length: numTravelers }, (_, i) => `${i + 1}`);
+
+    arrivalName = flightsData.result[currentFlightIndex].arrival.iataCode;
+    departureName = flightsData.result[currentFlightIndex].departure.iataCode;
+
+    let headerFlightsInfo = displayHeaderFlightInfo(arrivalName, departureName)
+    flightDescriptionWrapper.innerHTML = headerFlightsInfo;
 
     app.innerHTML = '';
     passengersListWrapper.innerHTML = '';
@@ -110,6 +111,8 @@ function renderFlight() {
         wingsWrapper.classList.add('wings-wrapper');
         wings.forEach(wing => wingsWrapper.appendChild(wing));
         app.appendChild(wingsWrapper);
+
+
 
         const deckElement = document.createElement('div');
         deckElement.innerHTML = renderDeck(deck, travelerIds);
@@ -209,7 +212,7 @@ function renderFlight() {
     nextFlightBtn.textContent = currentFlightIndex < flightsData.result.length - 1 ? 'Next Flight' : 'Submit Data';
     nextFlightBtn.disabled = true;
     // Add the classes
-    nextFlightBtn.classList.add('btn', 'btn-primary', 'font-weight-bolder', 'mb-5', 'submit-seatmap-data-btn');
+    nextFlightBtn.classList.add('btn', 'btn-primary', 'font-weight-bolder', 'mb-5', 'submit-seatmap-data-btn', 'submit');
     btnsActionWrapper.appendChild(nextFlightBtn);
 
     nextFlightBtn.addEventListener('click', () => {
@@ -274,7 +277,7 @@ function displaySeats(seatList, travelerIds) {
     return seatList.map((seat, seatIndex) => {
         const color = seat.travelerPricing.some(pricing => pricing.seatAvailabilityStatus === 'AVAILABLE') ? "#3968BF" : "#d9d9d9";
         const classType = seat.travelerPricing.some(pricing => pricing.seatAvailabilityStatus === 'AVAILABLE') ? "available" : "blocked";
-        const style = `left: ${seat.coordinates.y * 4 + 2.5}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
+        const style = `left: ${seat.coordinates.y * 4 + 2}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
 
         return `<div class="seat ${classType}" style="${style}" data-seat-number="${seat.number}" data-seat-id="${seat.coordinates.x}-${seat.coordinates.y}" data-flight-index="${currentFlightIndex}" data-total="${seat.travelerPricing[0].price.total}" data-currency="${seat.travelerPricing[0].price.currency}"> ${seat.number} 
         <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${seat.travelerPricing[0].price.total * grossMultiplier} ${seat.travelerPricing[0].price.currency}</div></div>
@@ -309,7 +312,7 @@ function displayWings(start, end) {
 
 function displayFacilities(facilityList) {
     return facilityList.map(facility => {
-        const style = `left: ${(facility.coordinates.y * 4) + 2.5}em; top: ${(facility.coordinates.x * 4) + 2.5}em`;
+        const style = `left: ${(facility.coordinates.y * 4) + 2}em; top: ${(facility.coordinates.x * 4) + 2.5}em`;
         return `<div class="facility" style="${style}">${facility.code}</div>`;
     }).join('');
 }
@@ -401,7 +404,7 @@ async function submitData() {
 }
 
 app.addEventListener('click', (e) => {
-    if (e.target.classList.contains('seat')) {
+    if (e.target.classList.contains('seat') && !e.target.classList.contains('blocked')) {
         const seatNumber = e.target.dataset.seatNumber;
         const seatId = e.target.dataset.seatId;
         const flightIndex = parseInt(e.target.dataset.flightIndex);
@@ -461,7 +464,7 @@ app.addEventListener('click', (e) => {
             if (infoDiv) {
                 infoDiv.innerHTML = '';
                 const flight = flightsData.result[currentFlightIndex];
-                const travelerIds = Array.from({length: numTravelers}, (_, i) => `${i + 1}`);
+                const travelerIds = Array.from({ length: numTravelers }, (_, i) => `${i + 1}`);
 
                 for (let i = 0; i < numTravelers; i++) {
                     const travelerId = travelerIds[i];
@@ -564,8 +567,8 @@ function showPopup(event) {
 
 function hidePopup() {
     const seatPopupArr = document.querySelectorAll('.seat-popup')
-    seatPopupArr.forEach(elem=>{
-        if(elem.classList.contains('active')){
+    seatPopupArr.forEach(elem => {
+        if (elem.classList.contains('active')) {
             elem.classList.remove('active')
         }
 
@@ -575,7 +578,7 @@ function hidePopup() {
 
 // Функция для показа лоудера внутри кнопки
 function showButtonLoader() {
-    const button = document.querySelector('.submit-seatmap-data-btn')
+    const button = document.querySelector('.submit-seatmap-data-btn.submit')
     const spinner = document.createElement('span');
     spinner.classList.add('spinner-submit-seatmap');
     button.appendChild(spinner);
@@ -584,7 +587,7 @@ function showButtonLoader() {
 
 // Функция для скрытия лоудера внутри кнопки
 function hideButtonLoader() {
-    const button = document.querySelector('.submit-seatmap-data-btn')
+    const button = document.querySelector('.submit-seatmap-data-btn.submit')
     const spinner = button.querySelector('.spinner-submit-seatmap');
     if (spinner) {
         button.removeChild(spinner);
