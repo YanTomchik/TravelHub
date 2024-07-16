@@ -57,7 +57,6 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
             numFlights = flightsData.result.length;
             renderFlight();
 
-
             loaderDiv.style.display = 'none';
         })
         .catch(error => {
@@ -66,7 +65,6 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
 }
 
 function displayHeaderFlightInfo(arrivalName, departureName) {
-    console.log(arrivalName)
 
     return `<div class="icon-flight">
                                                     <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M17.737 1.076c-1.21-.656-2.586-.308-3.526.1l-2.804 1.217L6.585.136 3.714.251l3.981 3.757-2.537 1.121-2.64-.935-1.768.767 1.597 1.846c-.168.188-.321.451-.182.728.18.362.717.545 1.596.545.18 0 .375-.008.584-.023.965-.071 2.012-.3 2.666-.584l10.022-4.35c.865-.375 1.296-.77 1.318-1.205.01-.226-.087-.556-.614-.842zM.75 11.533h17.602v.662H.75z"></path></svg>
@@ -112,8 +110,6 @@ function renderFlight() {
         wings.forEach(wing => wingsWrapper.appendChild(wing));
         app.appendChild(wingsWrapper);
 
-
-
         const deckElement = document.createElement('div');
         deckElement.innerHTML = renderDeck(deck, travelerIds);
 
@@ -133,7 +129,7 @@ function renderFlight() {
 
         if (selectedSeat) {
             infoDiv.innerHTML += `
-            <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}<br>-->
+            <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${roundValue(selectedSeat.totalGross, seatCurrency)} ${selectedSeat.currency}<br>-->
             <div class="passenger-item-wrapper active">
                                                             <div class="passenger-info-wrapper">
                                                                 <div class="passenger-icon">
@@ -144,7 +140,7 @@ function renderFlight() {
                                                                         Traveler ${travelerId}
                                                                     </div>
                                                                     <div class="extra-info">
-                                                                        total ${selectedSeat.totalGross} ${selectedSeat.currency}
+                                                                        total ${roundValue(selectedSeat.totalGross, seatCurrency)} ${selectedSeat.currency}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -280,7 +276,7 @@ function displaySeats(seatList, travelerIds) {
         const style = `left: ${seat.coordinates.y * 4 + 2}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
 
         return `<div class="seat ${classType}" style="${style}" data-seat-number="${seat.number}" data-seat-id="${seat.coordinates.x}-${seat.coordinates.y}" data-flight-index="${currentFlightIndex}" data-total="${seat.travelerPricing[0].price.total}" data-currency="${seat.travelerPricing[0].price.currency}"> ${seat.number} 
-        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${seat.travelerPricing[0].price.total * grossMultiplier} ${seat.travelerPricing[0].price.currency}</div></div>
+        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${roundValue(seat.travelerPricing[0].price.total * grossMultiplier, seat.travelerPricing[0].price.currency)} ${seat.travelerPricing[0].price.currency}</div></div>
         </div>`;
     }).join('');
 }
@@ -326,6 +322,15 @@ function displayExits(exitRows) {
         }).join('');
     }
     return '';
+}
+
+function roundValue(value, currency) {
+    switch (currency) {
+        case 'KZT':
+            return Math.ceil(value);
+        default:
+            return Math.round(value * 100) / 100;
+    }
 }
 
 const bodyTag = document.body;
@@ -414,10 +419,12 @@ app.addEventListener('click', (e) => {
 
         let travelerId = e.target.dataset.travelerId ?? currentTraveler;
 
-        const allSeatsSelected = Object.keys(selectedSeats).length === numTravelers && Object.values(selectedSeats).every(travelerSeats => {
-            // Check if the number of selected seats for this traveler matches the number of travelers
-            return Object.values(travelerSeats).filter(seat => seat).length === numTravelers;
-        });
+        let numSelectedSeats = 0;
+        Object.values(selectedSeats).forEach(travelerSeats => {
+            numSelectedSeats = numSelectedSeats + Object.keys(travelerSeats).length;
+        })
+
+        const allSeatsSelected = Object.keys(selectedSeats).length === numTravelers && numSelectedSeats === numTravelers * numFlights;
 
         if (!allSeatsSelected || selectedSeats[travelerId] && selectedSeats[travelerId][flightIndex] && selectedSeats[travelerId][flightIndex].seat === seatNumber) {
             if (action === 'add' && !selectedSeats[travelerId]) {
@@ -428,7 +435,7 @@ app.addEventListener('click', (e) => {
                 selectedSeats[travelerId][flightIndex] = {
                     seat: seatNumber,
                     total: seatPrice,
-                    totalGross: seatPrice * grossMultiplier,
+                    totalGross: roundValue(seatPrice * grossMultiplier, seatCurrency),
                     currency: seatCurrency
                 };
                 e.target.classList.add('active');
@@ -477,7 +484,7 @@ app.addEventListener('click', (e) => {
                     // }
                     if (selectedSeat) {
                         infoDiv.innerHTML += `
-                        <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${selectedSeat.totalGross} ${selectedSeat.currency}<br>-->
+                        <!--Traveler ${travelerId}, seat ${selectedSeat.seat}, total ${roundValue(selectedSeat.totalGross, seatCurrency)} ${selectedSeat.currency}<br>-->
                         <div class="passenger-item-wrapper active">
                                                             <div class="passenger-info-wrapper">
                                                                 <div class="passenger-icon">
@@ -488,7 +495,7 @@ app.addEventListener('click', (e) => {
                                                                         Traveler ${travelerId}
                                                                     </div>
                                                                     <div class="extra-info">
-                                                                        total ${selectedSeat.totalGross} ${selectedSeat.currency}
+                                                                        total ${roundValue(selectedSeat.totalGross, seatCurrency)} ${selectedSeat.currency}
                                                                     </div>
                                                                 </div>
                                                             </div>
