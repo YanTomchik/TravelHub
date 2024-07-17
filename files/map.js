@@ -183,7 +183,7 @@ function updateLeftBlockWithMarkerData(markerData) {
     const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
     const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
     const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
-    const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+    const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
     const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
     // leftBlock.innerHTML = ''
@@ -309,7 +309,7 @@ async function lazyLoadLeftBlock() {
     const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
     const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
     const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
-    const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+    const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
     const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
 
@@ -432,7 +432,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                 const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
                 const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
                 const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
-                const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+                const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
                 const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
                 const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
       
@@ -497,7 +497,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
       const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
       const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
       const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
-      const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+      const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
       const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
       const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
 
