@@ -455,7 +455,7 @@ async function initMap(formData, typeRender) {
                 ${availableRoomsBlock}
                 ${quiQuoBlock}
               </div>
-              <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
+              <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="/images/arrow-right-btn.svg" alt=""></a>
             </div>
             <div class="marker-popup-footer-info">
               <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
@@ -585,7 +585,7 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
         ${quiQuoBlock}
       </div>
       <a target="_blank" href="/hotels/${property.id}/${property.url}" class="marker-popup-header-btn">
-        <img src="./images/arrow-right-btn.svg" alt="">
+        <img src="/images/arrow-right-btn.svg" alt="">
       </a>
     </div>
     <div class="marker-popup-footer-info">
@@ -711,7 +711,7 @@ function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, imag
         ${priceStrikeBlock ? `<div class="marker-popup-footer-price-alert">${priceStrikeBlock}</div>` : ''}
         <div class="marker-popup-footer-price-wrapper">
           <div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div>
-          <a href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
+          <a href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="/images/arrow-right-btn.svg" alt=""></a>
         </div>
       </div>
       </a>
@@ -727,7 +727,7 @@ function buildRatingBlock(rating) {
   const roundedRating = Math.round(rating);
 
   for (let i = 0; i < roundedRating; i++) {
-    stars += '<img src="./images/hotels/star-icon.svg" alt="star" class="marker-popup-header-title-star-item">';
+    stars += '<img src="/images/hotels/star-icon.svg" alt="star" class="marker-popup-header-title-star-item">';
   }
 
   return stars;
