@@ -458,8 +458,8 @@ async function initMap(formData, typeRender) {
               <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="/images/arrow-right-btn.svg" alt=""></a>
             </div>
             <div class="marker-popup-footer-info">
-              <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
-              <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div></div>
+              <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.includingTaxes ?? 'Всего (включая налоги и сборы)'}:</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
+              <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">${translationsHub?.forNight ?? 'за ночь'} ${priceNightly} ${currencyName}</div></div>
             </div>
           </div>
         </div>
@@ -592,7 +592,7 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
       <div class="marker-popup-footer-description-wrapper">
         ${priceNetBlock}
         <div class="marker-popup-footer-description">
-          <div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div>
+          <div class="marker-popup-footer-description-main">${translationsHub?.includingTaxes ?? 'Всего (включая налоги и сборы)'}:</div>
           <div class="marker-popup-footer-description-price">${property.priceTotal} ${currencyName}</div>
         </div>
       </div>
@@ -704,13 +704,13 @@ function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, imag
         <div class="marker-popup-footer-description-wrapper">
           ${priceNetBlock}
           <div class="marker-popup-footer-description">
-            <div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div>
+            <div class="marker-popup-footer-description-main">${translationsHub?.includingTaxes ?? 'Всего (включая налоги и сборы)'}:</div>
             <div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div>
           </div>
         </div>
         ${priceStrikeBlock ? `<div class="marker-popup-footer-price-alert">${priceStrikeBlock}</div>` : ''}
         <div class="marker-popup-footer-price-wrapper">
-          <div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div>
+          <div class="marker-popup-footer-price">${translationsHub?.forNight ?? 'за ночь'} ${priceNightly} ${currencyName}</div>
           <a href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="/images/arrow-right-btn.svg" alt=""></a>
         </div>
       </div>
