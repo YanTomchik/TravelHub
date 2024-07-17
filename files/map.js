@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
 
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
@@ -13,6 +8,7 @@ const mapCardsListBottomWrapper = document.querySelector('.map-dashboard-main-wr
 const headerMapCountElement = document.querySelector('.map-dashboard-filter-header-description');
 const leftBlock = document.querySelector('.map-dashboard-cards-list');
 const mobileFilterApplyBtn = document.querySelector('.btn.btn-primary.map-filter-apply-btn-mobile');
+const bodyTag = document.body;
 
 let layoutDev = (typeof implemented === 'undefined');
 
@@ -72,11 +68,11 @@ async function fetchMarkerData(formDataFromRequest) {
       formData = searchParams;
     } else {
       formData = new FormData();
-      formData.append("PropertySearchForm[location]", "4");
-      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[location]", "179892");
+      formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
     }
 
@@ -130,11 +126,11 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       });
     } else {
       // Использование предопределенных значений
-      formData.append("PropertySearchForm[location]", "4");
-      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[location]", "179892");
+      formData.append("PropertySearchForm[checkinDate]", "27.8.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
     }
 
@@ -210,11 +206,11 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
     });
   } else {
     // Использование предопределенных значений
-    formData.append("PropertySearchForm[location]", "4");
-    formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-    formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+    formData.append("PropertySearchForm[location]", "179892");
+    formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
+    formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-    formData.append("PropertySearchForm[partner]", "11115");
+    formData.append("PropertySearchForm[partner]", "11090");
     formData.append("PropertySearchForm[map]", "true");
   }
 
@@ -223,9 +219,6 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
   // console.log(markerIds)
   markerIds.forEach(id => formData.append("PropertySearchForm[propertyId][]", id));
   formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
-
-
-
 
   const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
 
@@ -263,11 +256,11 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
       formData = searchParams;
     } else {
       formData = new FormData();
-      formData.append("PropertySearchForm[location]", "4");
-      formData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-      formData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+      formData.append("PropertySearchForm[location]", "179892");
+      formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
+      formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11115");
+      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
       if (offset !== undefined && limit !== undefined) {
         formData.append("PropertySearchForm[offset]", `${offset}`);
@@ -345,15 +338,16 @@ let map = null;
 let markers = [];
 let animationFrame;
 
-async function initMap(formData, typeRender) {
-  
+async function initMap(formData, typeRender, mapActiverHotel) {
 
-  if (typeRender == 'showFilter') {
+  loaderDiv.style.display = 'block';
+
+  if(typeRender != 'hotel-open'){
+      if (typeRender == 'showFilter') {
     mapDashboardFilterWrapper.classList.toggle('active')
     leftBlock.classList.toggle('hide')
     document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter');
   }
-  loaderDiv.style.display = 'block';
 
   document.querySelectorAll('#filters input[type="checkbox"], #filters input[type="radio"]').forEach(function(element) {
     var className = element.className;
@@ -376,8 +370,8 @@ async function initMap(formData, typeRender) {
     document.querySelector('#map_min-price').textContent = minPriceText;
     const maxPriceText = document.querySelector('#map_max-price').textContent;
     document.querySelector('#map_max-price').textContent = maxPriceText;
+  }
   
-
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const markerData = await fetchMarkerData(formData);
@@ -390,7 +384,13 @@ async function initMap(formData, typeRender) {
 
   const leftBlockData = await fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData);
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = leftBlockData;
-  headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
+
+  if(countHotels == 0 || countHotels == undefined){
+    closeMap() 
+  }else{
+    headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
+  }
+  
 
   const center = { lat: parseFloat(latC), lng: parseFloat(lngC) };
   const zoomInitMap = 11;
@@ -421,6 +421,71 @@ async function initMap(formData, typeRender) {
       content: buildContent(price, currencyName),
       title: `${id}`,
     });
+
+    if(typeRender == 'hotel-open'){
+        if(id == mapActiverHotel){
+            (async () => {
+              try {
+                const propertyData = await fetchPropertyData(id, formData, marker);
+                const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
+      
+                const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
+                const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
+                const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
+                const priceStrikeBlock = priceStrike ? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
+                const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
+                const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+      
+                const contentInfoWindow = `
+                  <div class="details">
+                    <div class="marker-popup-wrapper">
+                      <div class="marker-popup-header-wrapper">
+                      <a href="/hotels/${id}/${url}" class=map-dashboard-card-item-href>
+                        <div class="market-popup-header-img-wrapper" style="background-image:url(${image});"></div>
+                        </a>
+                        <div class="marker-popup-header-info">
+                        <a href="/hotels/${id}/${url}" class=map-dashboard-card-item-href>
+                          <div class="marker-popup-header-title-wrapper">
+                            <div class="marker-popup-header-title">${name}</div>
+                            <div class="marker-popup-header-title-stars-list">${buildRatingBlock(stars)}</div>
+                          </div>
+                          </a>
+                          <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
+                          <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+                          ${availableRoomsBlock}
+                          ${quiQuoBlock}
+                        </div>
+                        <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
+                      </div>
+                      <div class="marker-popup-footer-info">
+                        <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
+                        <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div></div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+      
+                // Создание InfoWindow
+                infoWindow.setContent(contentInfoWindow);
+                infoWindow.open(map, marker);
+    
+                // Центрирование карты на маркере и установка зума
+              map.setCenter(marker.position);
+              map.setZoom(15);
+    
+                toggleContentVisibility();
+                buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+                marker.element.querySelector('.property').classList.add("highlight");
+    
+    
+              } catch (error) {
+                console.error('Ошибка:', error);
+              }
+            })();
+          }
+    }
+
+
 
     marker.addListener("click", async () => {
       const propertyId = marker.title;
@@ -733,15 +798,20 @@ function buildRatingBlock(rating) {
   return stars;
 }
 
-const bodyTag = document.body;
-
 //Открытие карты и генерация ее
-const mapShowSearch = document.querySelector('.result-amount-map-search-wrapper')
-const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-fade')
+const mapShowSearch = document.querySelector('.result-amount-map-search-wrapper');
+const hotelInfoBlock = document.querySelector('.hotel-info-block')
+const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-fade');
+let mapHotelId = undefined;
+
 mapShowSearch.addEventListener('click', function () {
+  if(hotelInfoBlock){
+    mapHotelId =  hotelInfoBlock.dataset.propertyId;
+  }
+   const renderType =  mapShowSearch.dataset.rendertype;
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'hidden';
-  initMap()
+  initMap(undefined,renderType,mapHotelId)
 
   loaderDiv.style.display = 'block';
 })
@@ -750,32 +820,39 @@ mapShowSearch.addEventListener('click', function () {
 const mapDashboardFilterWrapper = document.querySelector('.map-dashboard-filter-wrapper');
 const mapDashboardFilterBtn = document.querySelector('.map-dashboard-filter-header-btn');
 
-mapDashboardFilterBtn.addEventListener('click', function () {
-  mapDashboardFilterWrapper.classList.toggle('active')
-  leftBlock.classList.toggle('hide')
-  document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
-  togglerMobileStyleFilterBlock()
-
-})
+if (mapDashboardFilterBtn) {
+    mapDashboardFilterBtn.addEventListener('click', function () {
+      mapDashboardFilterWrapper.classList.toggle('active');
+      leftBlock.classList.toggle('hide');
+      document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter');
+      togglerMobileStyleFilterBlock();
+    });
+  }
 
 //Закрытие фильтра
 const closeFilterBlockbtn = document.getElementById('filters-block-submenus-header-btn');
-closeFilterBlockbtn.addEventListener('click', function () {
-  mapDashboardFilterWrapper.classList.toggle('active');
-  leftBlock.classList.toggle('hide')
-  mapCardsListBottomWrapper.classList.toggle('hide');
-  document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
-  togglerMobileStyleFilterBlock()
-})
+if(closeFilterBlockbtn){
+    closeFilterBlockbtn.addEventListener('click', function () {
+        mapDashboardFilterWrapper.classList.toggle('active');
+        leftBlock.classList.toggle('hide')
+        mapCardsListBottomWrapper.classList.toggle('hide');
+        document.querySelector('.map-dashboard-filter-main-wrapper').classList.toggle('active-filter')
+        togglerMobileStyleFilterBlock()
+      })
+}
 
 //Закрытие карты
 const closeMapDashboardMainWrapperBtn = document.getElementById('map-dashboard-close-btn');
 closeMapDashboardMainWrapperBtn.addEventListener('click', function () {
-  mapDashboardWrapper.classList.toggle('active');
+    closeMap()
+})
+
+function closeMap(){
+    mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'scroll';
   leftSectionWrapper.classList.toggle('active');
   clearMap()
-})
+}
 
 $(document).ready(function () {
   $('#map_filters input[type="checkbox"], #map_filters input[type="radio"]').on('change', function () {
@@ -827,14 +904,13 @@ $(document).ready(function () {
 
 });
 
-
-
 //Нажатие на кнопку фильтра
+if(mobileFilterApplyBtn){
+    mobileFilterApplyBtn.addEventListener('click', () => {
 
-mobileFilterApplyBtn.addEventListener('click', () => {
-
-  reInitMap()
-})
+        reInitMap()
+      })
+}
 
 function reInitMap() {
 
@@ -870,9 +946,9 @@ function reInitMap() {
   } else {
 
     let newformData = new FormData();
-    newformData.append("PropertySearchForm[location]", "602433");
-    newformData.append("PropertySearchForm[checkinDate]", "27.06.2024");
-    newformData.append("PropertySearchForm[checkoutDate]", "30.06.2024");
+    newformData.append("PropertySearchForm[location]", "179892");
+    newformData.append("PropertySearchForm[checkinDate]", "27.08.2024");
+    newformData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");

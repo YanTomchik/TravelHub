@@ -299,6 +299,12 @@
   cursor: pointer;
 }
 
+.result-amount-map-search-wrapper.hotel-open{
+  background-color: transparent;
+  color: #3968BF;
+  cursor: pointer;
+}
+
 .result-amount-map-search-description{
   font-size: 14px;
   font-weight: 600;
