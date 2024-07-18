@@ -18,7 +18,10 @@ let dataService;
 let dataFlightId;
 let dataOrderId;
 let dataOrderServiceId;
-const grossMultiplier = 1.2;
+let nextButtonText;
+let prevButtonText;
+let submitButtonText;
+let grossMultiplier;
 const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
 let currentTraveler = 1; // Initialize the current traveler
@@ -184,7 +187,7 @@ function renderFlight() {
     // Add a "Previous Flight" button
     const previousFlightBtn = document.createElement('button');
     previousFlightBtn.id = 'previous-flight-btn';
-    previousFlightBtn.textContent = 'Previous Flight';
+    previousFlightBtn.textContent = this.prevButtonText;
     previousFlightBtn.disabled = currentFlightIndex === 0;
     previousFlightBtn.classList.add('btn', 'btn-primary', 'font-weight-bolder', 'mb-5', 'submit-seatmap-data-btn');
 
@@ -205,7 +208,7 @@ function renderFlight() {
     // Add a "Next Flight" button
     const nextFlightBtn = document.createElement('button');
     nextFlightBtn.id = 'next-flight-btn';
-    nextFlightBtn.textContent = currentFlightIndex < flightsData.result.length - 1 ? 'Next Flight' : 'Submit Data';
+    nextFlightBtn.textContent = currentFlightIndex < flightsData.result.length - 1 ? this.nextButtonText : this.submitButtonText;
     nextFlightBtn.disabled = true;
     // Add the classes
     nextFlightBtn.classList.add('btn', 'btn-primary', 'font-weight-bolder', 'mb-5', 'submit-seatmap-data-btn', 'submit');
@@ -247,7 +250,7 @@ function renderFlight() {
     }
 
     // Update button text if it's the last flight
-    document.getElementById('next-flight-btn').textContent = currentFlightIndex < flightsData.result.length - 1 ? 'Next Flight' : 'Submit Data';
+    document.getElementById('next-flight-btn').textContent = currentFlightIndex < flightsData.result.length - 1 ? this.nextButtonText : this.submitButtonText;
 
 }
 
@@ -276,7 +279,7 @@ function displaySeats(seatList, travelerIds) {
         const style = `left: ${seat.coordinates.y * 4 + 2}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
 
         return `<div class="seat ${classType}" style="${style}" data-seat-number="${seat.number}" data-seat-id="${seat.coordinates.x}-${seat.coordinates.y}" data-flight-index="${currentFlightIndex}" data-total="${seat.travelerPricing[0].price.total}" data-currency="${seat.travelerPricing[0].price.currency}"> ${seat.number} 
-        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${roundValue(seat.travelerPricing[0].price.total * grossMultiplier, seat.travelerPricing[0].price.currency)} ${seat.travelerPricing[0].price.currency}</div></div>
+        <div class="seat-popup"><div class="seat-popup-number">${seat.number}</div><div class="seat-popup-price">${roundValue(seat.travelerPricing[0].price.total * this.grossMultiplier, seat.travelerPricing[0].price.currency)} ${seat.travelerPricing[0].price.currency}</div></div>
         </div>`;
     }).join('');
 }
@@ -342,6 +345,10 @@ chooseSeatMapBtns.forEach(btn => {
         const dataFlightId = elem.target.dataset.flightid;
         const dataOrderId = elem.target.dataset.orderid;
         const dataOrderServiceId = elem.target.dataset.orderserviceid;
+        this.nextButtonText = elem.target.dataset.nextFlightText;
+        this.prevButtonText = elem.target.dataset.prevFlightText;
+        this.submitButtonText = elem.target.dataset.submitDataText;
+        this.grossMultiplier = Number(elem.target.dataset.grossMultiplier);
         modalSeatmap.classList.toggle('active');
         bodyTag.style.overflow = 'hidden';
         loaderDiv.style.display = 'block';
@@ -435,7 +442,7 @@ app.addEventListener('click', (e) => {
                 selectedSeats[travelerId][flightIndex] = {
                     seat: seatNumber,
                     total: seatPrice,
-                    totalGross: roundValue(seatPrice * grossMultiplier, seatCurrency),
+                    totalGross: roundValue(seatPrice * this.grossMultiplier, seatCurrency),
                     currency: seatCurrency
                 };
                 e.target.classList.add('active');
