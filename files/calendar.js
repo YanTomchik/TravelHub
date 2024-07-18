@@ -25,7 +25,7 @@ const localeRu = {
     timeFormat: 'HH:mm',
     firstDay: 1
 }
-
+ 
 // Переводим даты в строки
 let todayString = formatDateToString(today);
 let typeRequest = 'start';
@@ -456,6 +456,7 @@ const displayPrices = (prices, type) => {
 
 function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
     let selectedDate = null; // Переменная для хранения выбранной даты
+    let typeRequest = 'start'; // Изначальное значение typeRequest
 
     const locale = MAIN_LANGUAGE === 'ru' ? localeRu : localeEn;
 
@@ -465,11 +466,13 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
         const button = dp.$datepicker.querySelector('.trip-btn');
         if (button) {
-            datepickerInputTo.value = ''
-            if (datepicker.selectedDates.length != 0) {
-                datepicker.clear();
-            }
             button.classList.toggle('active', !isRange);
+        }
+
+        if (!isRange && selectedDate) {
+            datepickerInputTo.value = '';
+            typeRequest = 'start'; // Возвращаем typeRequest в 'start'
+            dp.hide(); // Закрываем календарь только если дата выбрана
         }
 
         const viewDate = dp.viewDate;
