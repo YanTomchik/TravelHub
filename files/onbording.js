@@ -57,9 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 options.headers["Authorization"] = "Token " + token;
                 options.body = JSON.stringify({query: taxId});
                 break;
-            default:
-                apiUrl = `https://api.opencorporates.com/v0.4/companies/${country.toLowerCase()}/${taxId}?api_token=${openCorporatesApiToken}`;
-                break;
         }
 
         return fetch(apiUrl, options)
