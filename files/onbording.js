@@ -156,6 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#stateField').show();
             $('#routingnumber').show();
             $('#accountnumber').show();
+
+            $('#bank-swift').hide();
+            $('#bank-iban').hide();
+            $('#bank-name').hide();
             // $('#bank-info-state-change').classList
             // document.getElementById('bank-info-state-change').classList.remove('two');
             document.getElementById('bank-info-state-change').classList.add('inputs-boarding-wrapper')
@@ -164,6 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#stateField').hide();
             $('#routingnumber').hide();
             $('#accountnumber').hide();
+
+            $('#bank-swift').show();
+            $('#bank-iban').show();
+            $('#bank-name').show();
             document.getElementById('bank-info-state-change').classList.remove('inputs-boarding-wrapper');
             document.getElementById('bank-info-state-change').classList.remove('two');
             // document.getElementById('bank-info-state-change').classList.add('two')

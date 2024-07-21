@@ -199,21 +199,21 @@ window.select2_4f18f65f = {"allowClear":false,"theme":"krajee-bs3","width":"100%
                     <div class=" onboarding-form-bank-info-wrapper onboarding-form-block">
                         <h3 class="card-label font-weight-bolder">Bank Details</h3>
                     
-                        <div class="form-group field-useragencyupdateform-bankidentificationcode">
+                        <div class="form-group field-useragencyupdateform-bankidentificationcode" id="bank-swift">
                             <label for="useragencyupdateform-bankidentificationcode">SWIFT/BIC</label>
                             <input type="text" id="useragencyupdateform-bankidentificationcode"
                                 class="form-control main-edit-profile-input touragency-adaptive"
                                 name="UserAgencyUpdateForm[bankIdentificationCode]" autocomplete="off" placeholder="SWIFT/BIC">
                             <div class="invalid-feedback"></div>
                         </div>
-                        <div class="form-group field-useragencyupdateform-bankname required">
+                        <div class="form-group field-useragencyupdateform-bankname required" id="bank-name">
                             <label for="useragencyupdateform-bankname">Bank name</label>
                             <input type="text" id="useragencyupdateform-bankname"
                                 class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[bankName]"
                                 autocomplete="off" placeholder="Bank name" aria-required="true">
                             <div class="invalid-feedback"></div>
                         </div>
-                        <div class="form-group field-useragencyupdateform-bankaccount">
+                        <div class="form-group field-useragencyupdateform-bankaccount" id="bank-iban">
                             <label for="useragencyupdateform-bankaccount">Bank Account Number (IBAN)</label>
                             <input type="text" id="useragencyupdateform-bankaccount"
                                 class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[bankAccount]"
