@@ -1,5 +1,7 @@
 const today = new Date();
-let countNightsArr = []
+let countNightsArr = [];
+let lastSelectedDate = null; // Для хранения последней выбранной даты
+let lastVisibleDate = null;  // Для хранения последней видимой даты
 
 const localeEn = {
     days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -29,11 +31,9 @@ const localeRu = {
 
 const datepickerTourInput = document.getElementById('tours-calendar');
 const clearDatepickerBtn = document.querySelector('.remove-datepicker-date.tour');
-// console.log(datepickerTourInput)
 
 const cityId = $('#cities').val();
 const countryId = $('#country-id').val();
-
 
 let isMobileFlag = window.matchMedia("only screen and (max-width: 760px)").matches;
 
@@ -80,13 +80,13 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
     countNightsArr = [];
     const countNights = document.querySelectorAll('.select2-selection__choice');
     countNights.forEach(elem => {
-        countNightsArr.push(elem.title)
+        countNightsArr.push(elem.title);
     });
 
     let adultCounter = document.getElementById('adult-counter').innerHTML;
     let childrenCounter = document.getElementById('children-counter').innerHTML;
 
-    const apiUrl = 'https://api.travelhub.by/tour/dates'
+    const apiUrl = 'https://api.travelhub.by/tour/dates';
 
     const queryParams = new URLSearchParams({
         cityId: `${cityId}`,
@@ -101,7 +101,6 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
 
     const cachedData = getCachedDataToursFlights(cityId, countryId);
     if (cachedData) {
-
         return cachedData;
     }
 
@@ -116,18 +115,16 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         if (data.dates.length != 0) {
             setLocalStorageToursFlights(data, cityId, countryId);
         }
         return data;
     } catch (error) {
-        hideLoader()
+        hideLoader();
         throw new Error(error);
     }
 }
-
-// getFlightToursCalendar()
 
 let datepickerTour = new AirDatepicker(datepickerTourInput, {
     locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
@@ -140,7 +137,11 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     multipleDatesSeparator: ' - ',
     showOtherMonths: false,
     onSelect: function (formattedDate, date, inst) {
-    }, 
+        if (formattedDate.date && formattedDate.date.length > 0) {
+            lastSelectedDate = formattedDate.date[0]; // Сохраняем первую выбранную дату
+            lastVisibleDate = datepickerTour.viewDate; // Сохраняем последнюю видимую дату
+        }
+    },
     onShow: function (inst) {
         if (inst) {
             getFlightToursCalendar()
@@ -151,11 +152,11 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
                     datepickerTour.update({
                         onRenderCell: ({ date, cellType }) => {
                             dates.forEach(elem => {
-                                datepickerTour.enableDate(new Date(elem))
-                            })
+                                datepickerTour.enableDate(new Date(elem));
+                            });
                         }
+                    });
 
-                    })
                     datepickerTour.update({
                         onRenderCell: ({ date, cellType }) => {
                             if (cellType === 'day') {
@@ -178,7 +179,12 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
                             }
                         }
                     });
-                    datepickerTour.setViewDate(earliestDate)
+
+                    if (lastVisibleDate) {
+                        datepickerTour.setViewDate(lastVisibleDate); // Устанавливаем видимую дату на последнюю видимую
+                    } else {
+                        datepickerTour.setViewDate(earliestDate);
+                    }
 
                     hideLoader();
                 });
@@ -186,19 +192,18 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     }
 });
 
-
 function showLoader() {
     const loader = document.querySelector('.loader-calendar-wrapper.calendar');
     if (loader) {
-        loader.remove()
+        loader.remove();
     }
     const airDatepickerContent = document.querySelector('.air-datepicker--content');
-    airDatepickerContent.style.position = 'relative'
+    airDatepickerContent.style.position = 'relative';
     const div = document.createElement('div');
     div.classList.add('loader-calendar-wrapper');
-    div.classList.add('calendar')
-    div.innerHTML = `<div class="loader-calendar" id="loader-calendar"></div>`
-    airDatepickerContent.appendChild(div)
+    div.classList.add('calendar');
+    div.innerHTML = `<div class="loader-calendar" id="loader-calendar"></div>`;
+    airDatepickerContent.appendChild(div);
 }
 
 function hideLoader() {
@@ -209,7 +214,7 @@ function hideLoader() {
 }
 
 clearDatepickerBtn.addEventListener('click', (elem) => {
-
-    datepickerTour.clear()
-    // elem.target.parentElement.classList.remove('tour')
-})
+    datepickerTour.clear();
+    lastSelectedDate = null; // Очищаем последнюю выбранную дату
+    lastVisibleDate = null;  // Очищаем последнюю видимую дату
+});
