@@ -1,0 +1,172 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+} */
+
+/* form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="url"], select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+} */
+
+.onboarding-container {
+    background-color: #F4F6F9;
+    width: 1200px;
+    height: 100%;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 40px 0px;
+}
+
+.onboarding-row-info-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+}
+
+.onboarding-main-form {
+    max-width: 800px;
+    padding: 24px;
+    /* height: 600px; */
+    background-color: #fff;
+    border-radius: 24px;
+}
+
+.onboarding-container .card-label {
+    margin-bottom: 16px;
+}
+
+.onboarding-main-form .card-toolbar button {
+    width: 100%;
+}
+
+.inputs-boarding-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+}
+
+.inputs-boarding-wrapper.two .form-group {
+    width: 50%;
+}
+
+.inputs-boarding-wrapper.three .form-group {
+    width: 33%;
+}
+
+.agreement-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: #5B5D6C;
+    margin-top: 32px;
+}
+
+.onboarding-benefits-wrapper {
+    padding: 24px;
+    max-width: 430px;
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 24px;
+}
+
+.benefits-info-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.benefits-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.benefit-description p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    color: #585858;
+}
+
+.onboarding-header{
+
+/* padding: 40px; */
+display: flex;
+flex-direction: column;
+gap: 30px;
+margin-bottom: 20px;
+}
+
+.onboarding-header .text{
+    font-size: 32px;
+font-weight: 700;
+line-height: 42px;
+text-align: left;
+color: #19191E;
+}
+
+select.form-control{
+    /* height: calc(3.3em + 5px); */
+}
+
+.onboarding-form-block{
+margin-top: 30px;
+}
+
+.onboarding-main-form .select2-container--default .select2-selection--single{
+    border: 1px solid #E4E6EE;
+}
+
+.onboarding-main-form .select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 10px;
+}
