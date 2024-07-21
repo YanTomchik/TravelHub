@@ -59,6 +59,7 @@ p {
     justify-content: center;
     margin: 0 auto;
     padding: 40px 0px;
+    margin-top: 20px;
 }
 
 .onboarding-row-info-wrapper{
@@ -120,7 +121,7 @@ p {
 .benefits-info-item {
     display: flex;
     gap: 12px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .benefits-info-list {

@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             feedback.textContent = 'SWIFT code is invalid.';
             feedback.style.color = 'red';
-            feedback.style.display = 'none';
+            feedback.style.display = 'block';
         }
     }
 
@@ -281,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             feedback.textContent = 'IBAN is invalid.';
             feedback.style.color = 'red';
+            feedback.style.display = 'block';
         }
     }
 
