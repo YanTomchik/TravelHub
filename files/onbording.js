@@ -40,19 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch (country) {
             case 'BY':
-                apiUrl = `http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_by`;
+                apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_by`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + token;
                 options.body = JSON.stringify({query: taxId});
                 break;
             case 'KZ':
-                apiUrl = `http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_kz`;
+                apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_kz`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + token;
                 options.body = JSON.stringify({query: taxId});
                 break;
             case 'RU':
-                apiUrl = `http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party`;
+                apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + token;
                 options.body = JSON.stringify({query: taxId});
