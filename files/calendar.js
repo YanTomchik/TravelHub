@@ -469,16 +469,41 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             button.classList.toggle('active', !isRange);
         }
 
-        if (!isRange && selectedDate) {
-            datepickerInputTo.value = '';
-            typeRequest = 'start'; // Возвращаем typeRequest в 'start'
-            dp.hide(); // Закрываем календарь только если дата выбрана
-        }
+        // Проверка на две выбранные даты
+        if (!isRange && dp.selectedDates.length === 2) {
+            // Сброс выбранных дат
+            dp.clear();
 
-        const viewDate = dp.viewDate;
-        const formattedViewDate = formatDateToString(viewDate);
-        updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+            // Обновление полей ввода
+            datepickerInputFrom.value = '';
+            datepickerInputTo.value = '';
+            selectedDate = null;
+
+            // Обновление типа запроса
+            typeRequest = 'start';
+
+            // Обновление календаря с новой датой
+            const viewDate = dp.viewDate;
+            const formattedViewDate = formatDateToString(viewDate);
+            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+        }else if(dp.selectedDates.length === 0){
+            const viewDate = dp.viewDate;
+            const formattedViewDate = formatDateToString(viewDate);
+            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+        }else if(dp.selectedDates.length === 1){
+            // Обновление типа запроса
+            typeRequest = 'return';
+            const viewDate = dp.viewDate;
+            const formattedViewDate = formatDateToString(viewDate);
+            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+        } else if (!isRange && selectedDate) {
+            datepickerInputTo.value = '';
+            typeRequest = 'start';
+            
+        }
     };
+
+    
 
     const handleSelect = (formattedDate, date, inst) => {
         if (formattedDate.date[0] !== undefined) {
@@ -520,6 +545,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
                     button.classList.toggle('active');
                 }
             }
+            
 
             const dateToSend = selectedDate ? selectedDate : formatDateToString(today);
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
@@ -584,6 +610,156 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
     return datepickerBothWay;
 }
+
+// function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
+//     let selectedDate = null; // Переменная для хранения выбранной даты
+//     let typeRequest = 'start'; // Изначальное значение typeRequest
+//     let isRange = true; // Изначально устанавливаем, что диапазон включен
+
+//     const locale = MAIN_LANGUAGE === 'ru' ? localeRu : localeEn;
+
+//     const handleTripButtonClick = (dp) => {
+//         if (isRange && selectedDate) {
+//             // Сброс только второй даты, если есть
+//             if (datepickerInputTo.value) {
+//                 dp.clear();
+//                 datepickerInputFrom.value = selectedDate;
+//                 datepickerInputTo.value = '';
+//             } else {
+//                 // Сброс всех дат, если вторая дата не выбрана
+//                 dp.clear();
+//                 datepickerInputFrom.value = '';
+//                 selectedDate = null;
+//                 typeRequest = 'start'; // Возвращаем typeRequest в 'start'
+                
+//                 // Обновляем календарь, чтобы отобразить цены в ячейках
+//                 const today = new Date();
+//                 const formattedToday = formatDateToString(today);
+//                 updateCalendarDates(dp, formattedToday, undefined, codeIataFrom, codeIataTo);
+//             }
+//         }
+
+//         isRange = !isRange;
+//         dp.update({ range: isRange });
+
+//         const button = dp.$datepicker.querySelector('.trip-btn');
+//         if (button) {
+//             button.classList.toggle('active', !isRange);
+//         }
+
+//         if (!isRange && selectedDate) {
+//             const viewDate = dp.viewDate;
+//             const formattedViewDate = formatDateToString(viewDate);
+//             updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+//         }
+//     };
+
+//     const handleSelect = (formattedDate, date, inst) => {
+//         if (formattedDate.date[0] !== undefined) {
+//             selectedDate = formatDateToString(formattedDate.date[0]);
+//         }
+
+//         if (formattedDate.date[1] !== undefined) {
+//             handleSecondDateSelect(formattedDate);
+//         } else if (formattedDate.date[0] !== undefined) {
+//             handleFirstDateSelect(formattedDate);
+//         }
+//     };
+
+//     const handleFirstDateSelect = (formattedDate) => {
+//         datepickerInputTo.focus();
+//         datepicker.show();
+//         datepickerInputFrom.value = formattedDate.formattedDate[0];
+
+//         const firstDateToSend = formatDateToString(formattedDate.date[0]);
+//         const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
+//         typeRequest = 'return';
+//         updateCalendarDates(datepicker, firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo);
+//     };
+
+//     const handleSecondDateSelect = (formattedDate) => {
+//         const firstDateToSend = formatDateToString(formattedDate.date[0]);
+//         const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
+//         updateCalendarDates(datepicker, firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo);
+
+//         datepickerInputFrom.value = formattedDate.formattedDate[0];
+//         datepickerInputTo.value = formattedDate.formattedDate[1];
+//     };
+
+//     const handleShow = (inst) => {
+//         if (inst) {
+//             if (!isRange) {
+//                 const button = datepicker.$datepicker.querySelector('.trip-btn');
+//                 if (button) {
+//                     button.classList.toggle('active');
+//                 }
+//             }
+
+//             const dateToSend = selectedDate ? selectedDate : formatDateToString(today);
+//             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
+//             datepicker.setViewDate(viewDate);
+//             updateCalendarDates(datepicker, dateToSend, undefined, codeIataFrom, codeIataTo);
+//         }
+//     };
+
+//     const handleChangeViewDate = ({ month, year }) => {
+//         month = month < 10 ? '0' + month : month.toString();
+//         const firstDateToSend = new Date(year, month, '01');
+//         const formattedFirstDate = formatDateToString(new Date(firstDateToSend));
+//         const daysAfterToSend = calculateDaysAfter(new Date(firstDateToSend));
+//         updateCalendarDates(datepicker, formattedFirstDate, daysAfterToSend, codeIataFrom, codeIataTo);
+//     };
+
+//     const updateCalendarDates = (dp, firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo) => {
+//         getFlightCalendar(firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo, typeRequest)
+//             .then(response => {
+//                 if (response.status === 'error') {
+//                     hideLoader();
+//                     return;
+//                 }
+//                 const dates = response.result.map(entry => ({
+//                     date: entry.date,
+//                     price: entry.price
+//                 }));
+//                 displayPrices(dates, daysAfterToSend ? 'reRender' : '');
+//                 hideLoader();
+//             });
+//     };
+
+//     let datepickerBothWay = new AirDatepicker(datepickerInputFrom, {
+//         locale,
+//         inline: false,
+//         minDate: new Date(),
+//         isMobile: isMobileFlag,
+//         autoClose: true,
+//         multipleDatesSeparator: ' - ',
+//         range: isRange,
+//         numberOfMonths: 2,
+//         showOtherMonths: false,
+//         buttons: [
+//             {
+//                 content: 'Обратный билет не нужен',
+//                 className: 'trip-btn',
+//                 onClick: function (dp) {
+//                     handleTripButtonClick(dp);
+//                 }
+//             }
+//         ],
+//         onSelect: function (formattedDate, date, inst) {
+//             handleSelect(formattedDate, date, inst);
+//         },
+//         onShow: function (inst) {
+//             handleShow(inst);
+//         },
+//         onChangeViewDate: function ({ month, year }) {
+//             handleChangeViewDate({ month, year });
+//         }
+//     });
+
+//     return datepickerBothWay;
+// }
+
+
 
 function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
     if (isRange === true) {
