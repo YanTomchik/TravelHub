@@ -393,7 +393,10 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         }
 
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
+        // console.log(firstDate)
+        // console.log('daysAfter'+' '+daysAfter)
+        // console.log('daysAfterToSend'+' '+ daysAfterToSend)
         return data;
     } catch (error) {
         hideLoader();
@@ -465,6 +468,10 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         isRange = !isRange;
         dp.update({ range: isRange });
 
+        const daysAfterToSend = calculateDaysAfter(dp.viewDate);
+
+        // console.log(dp.viewDate)
+
         const button = dp.$datepicker.querySelector('.trip-btn');
         if (button) {
             button.classList.toggle('active', !isRange);
@@ -486,17 +493,17 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             // Обновление календаря с новой датой
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
-            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+            updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
         }else if(dp.selectedDates.length === 0){
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
-            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+            updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
         }else if(dp.selectedDates.length === 1){
             // Обновление типа запроса
             typeRequest = 'return';
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
-            updateCalendarDates(dp, formattedViewDate, undefined, codeIataFrom, codeIataTo);
+            updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
         } else if (!isRange && selectedDate) {
             datepickerInputTo.value = '';
             typeRequest = 'start';
