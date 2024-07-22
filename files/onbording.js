@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log(data);
                 const countryCode = data.country;
-                console.log("Страна: " + countryCode);
 
                 if (countryCode) {
                     const $countrySelect = $('#country-id');
@@ -289,5 +288,69 @@ document.addEventListener('DOMContentLoaded', () => {
             feedback.style.display = 'block';
         }
     }
+
+    function initAutocomplete() {
+        var addressInput = document.getElementById('useragencyupdateform-legaladdress');
+        var countrySelect = document.getElementById('country-id');
+        var autocomplete = new google.maps.places.Autocomplete(addressInput);
+
+        function setCountryRestriction() {
+            var country = countrySelect.value;
+            if (country) {
+                autocomplete.setComponentRestrictions({'country': [country]});
+            } else {
+                autocomplete.setComponentRestrictions({'country': []});
+            }
+        }
+
+        countrySelect.addEventListener('change', setCountryRestriction);
+        setCountryRestriction();
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            var addressComponents = place.address_components;
+            console.log(addressComponents)
+
+            var street_number = '';
+            var city = '';
+            var state = '';
+            var zip = '';
+            var street_name = '';
+
+            for (var i = 0; i < addressComponents.length; i++) {
+                var component = addressComponents[i];
+                var types = component.types;
+
+                if (types.includes('street_number')) {
+                    street_number = component.long_name;
+                }
+
+                if (types.includes('route')) {
+                    street_name = component.long_name;
+                }
+
+                if (types.includes('locality')) {
+                    city = component.long_name;
+                }
+
+                if (types.includes('administrative_area_level_1')) {
+                    state = component.short_name;
+                }
+
+                if (types.includes('postal_code')) {
+                    zip = component.long_name;
+                }
+            }
+
+            document.getElementById('useragencyupdateform-legaladdress').value = street_name;
+            document.getElementById('useragencyupdateform-suit').value = street_number;
+            
+            document.getElementById('useragencyupdateform-cityname').value = city;
+            document.getElementById('useragencyupdateform-state').value = state;
+            document.getElementById('useragencyupdateform-zipcode').value = zip;
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 });
