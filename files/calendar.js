@@ -645,7 +645,6 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
             const renderCellDate = `${year}-${month}-${day}`;
-
             if (dates.includes(renderCellDate)) {
                 return {
                     html: `<span class="available-date">${date.getDate()}</span>`,
@@ -684,6 +683,8 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
                 datepickerInputTo.value = ''
                 button.classList.toggle('active', !isRange);
             }
+
+            
         }, 0);
 
         getFlightCharterCalendar(typeWay)
