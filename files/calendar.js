@@ -501,7 +501,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
         }else if(isRange == false && dp.selectedDates.length === 1){
             
-            // dp.hide()
+            dp.hide()
         }else if(isRange == true && dp.selectedDates.length === 1){
             // // Обновление типа запроса
             
@@ -533,7 +533,9 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
     };
 
     const handleFirstDateSelect = (formattedDate) => {
-        // datepickerInputTo.focus();
+        if(isMobileFlag == false){
+            datepickerInputTo.focus()
+        }
         datepicker.show();
         datepickerInputFrom.value = formattedDate.formattedDate[0];
 
@@ -710,7 +712,9 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
             console.log(isRange)
             if (formattedDate.date[0] !== undefined) {
                 if (formattedDate.date[1] == undefined) {
-                    // datepickerInputTo.focus();
+                    if(isMobileFlag == false){
+                        datepickerInputTo.focus()
+                    }
                     datepicker.show();
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                 } else if (formattedDate.date[1] !== undefined) {
@@ -1040,7 +1044,7 @@ if (isMobileFlag == true) {
     // Добавляем обработчик события scroll
     window.addEventListener('scroll', () => {
         if (datepicker.visible) {
-            // datepicker.hide()
+            datepicker.hide()
         }
     });
 }
@@ -1071,7 +1075,9 @@ document.querySelector('.remove-datepicker-date').addEventListener('click', () =
 })
 
 document.querySelector('.search-btn-block.col-search-button').addEventListener('click',()=>{
-    // datepicker.hide()
+    if(isMobileFlag == false){
+        datepicker.hide();
+    }
 })
 
 function clearDatepickerValue(){
@@ -1087,13 +1093,19 @@ function clearDatepickerValue(){
 datepickerInputFrom.addEventListener('click', () => {
     
     datepicker.show();
-    // datepickerInputFrom.focus()
+    
+    if(isMobileFlag == false){
+        datepickerInputFrom.focus()
+    }
 });
 
 datepickerInputTo.addEventListener('click', () => {
     if (datepickerInputFrom.value) {
         datepicker.show();
-        // datepickerInputTo.focus()
+
+        if(isMobileFlag == false){
+            datepickerInputTo.focus()
+        }
     }
     
 });
@@ -1103,6 +1115,9 @@ document.addEventListener('click', function(event) {
     if (!datepicker.$datepicker.contains(event.target) && 
         !datepickerInputFrom.contains(event.target) && 
         !datepickerInputTo.contains(event.target)) {
-        // datepicker.hide();
+            if(isMobileFlag == false){
+                datepicker.hide();
+            }
+        
     }
 });
