@@ -64,15 +64,29 @@ async function fetchMarkerData(formDataFromRequest) {
       for (const pair of formData) {
         searchParams.append(pair[0], pair[1]);
       }
+
+      if (!searchParams.has('location') && typeof locationInfo != undefined) {
+        searchParams.append('location', locationInfo);
+      }
+    
+      if (!searchParams.has('partner') && typeof partnerinfo != undefined) {
+        searchParams.append('partner', partnerinfo);
+      }
+
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
       formData = searchParams;
     } else {
       formData = new FormData();
-      formData.append("PropertySearchForm[location]", "179892");
+      if(locationInfo != undefined && partnerinfo != undefined){
+        formData.append("PropertySearchForm[location]", `${locationInfo}`);
+        formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
+      }else{
+        formData.append("PropertySearchForm[location]", "179892");
+        formData.append("PropertySearchForm[partner]", "11090");
+      }
       formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
     }
 
@@ -124,13 +138,27 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       tempFormData.forEach((value, key) => {
         formData.append(key, value);
       });
+
+      if (!formData.has('location') && typeof locationInfo != undefined) {
+        formData.append('location', locationInfo);
+      }
+    
+      if (!formData.has('partner') && typeof partnerinfo != undefined) {
+        formData.append('partner', partnerinfo);
+      }
+
     } else {
       // Использование предопределенных значений
-      formData.append("PropertySearchForm[location]", "179892");
+      if(locationInfo != undefined && partnerinfo != undefined){
+        formData.append("PropertySearchForm[location]", `${locationInfo}`);
+        formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
+      }else{
+        formData.append("PropertySearchForm[location]", "179892");
+        formData.append("PropertySearchForm[partner]", "11090");
+      }
       formData.append("PropertySearchForm[checkinDate]", "27.8.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
     }
 
@@ -204,13 +232,27 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
     tempFormData.forEach((value, key) => {
       formData.append(key, value);
     });
+    if (!formData.has('location') && typeof locationInfo != undefined) {
+      formData.append('location', locationInfo);
+    }
+  
+    if (!formData.has('partner') && typeof partnerinfo != undefined) {
+      formData.append('partner', partnerinfo);
+    }
+
   } else {
+
+    if(locationInfo != undefined && partnerinfo != undefined){
+      formData.append("PropertySearchForm[location]", `${locationInfo}`);
+      formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
+    }else{
+      formData.append("PropertySearchForm[location]", "179892");
+      formData.append("PropertySearchForm[partner]", "11090");
+    }
     // Использование предопределенных значений
-    formData.append("PropertySearchForm[location]", "179892");
     formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
     formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-    formData.append("PropertySearchForm[partner]", "11090");
     formData.append("PropertySearchForm[map]", "true");
   }
 
@@ -252,15 +294,29 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
         searchParams.append("PropertySearchForm[offset]", `${offset}`);
         searchParams.append("PropertySearchForm[limit]", `${limit}`);
       }
+
+      if (!searchParams.has('location') && typeof locationInfo != undefined) {
+        searchParams.append('location', locationInfo);
+      }
+    
+      if (!searchParams.has('partner') && typeof partnerinfo != undefined) {
+        searchParams.append('partner', partnerinfo);
+      }
+
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
       formData = searchParams;
     } else {
       formData = new FormData();
-      formData.append("PropertySearchForm[location]", "179892");
+      if(locationInfo != undefined && partnerinfo != undefined){
+        formData.append("PropertySearchForm[location]", `${locationInfo}`);
+        formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
+      }else{
+        formData.append("PropertySearchForm[location]", "179892");
+        formData.append("PropertySearchForm[partner]", "11090");
+      }
       formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
-      formData.append("PropertySearchForm[partner]", "11090");
       formData.append("PropertySearchForm[map]", "true");
       if (offset !== undefined && limit !== undefined) {
         formData.append("PropertySearchForm[offset]", `${offset}`);
@@ -803,10 +859,16 @@ const mapShowSearch = document.querySelector('.result-amount-map-search-wrapper'
 const hotelInfoBlock = document.querySelector('.hotel-info-block')
 const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-fade');
 let mapHotelId = undefined;
+let locationInfo = undefined;
+let partnerinfo = undefined;
 
 mapShowSearch.addEventListener('click', function () {
   if(hotelInfoBlock){
     mapHotelId =  hotelInfoBlock.dataset.propertyId;
+    locationInfo =  mapShowSearch.dataset.location;
+    partnerinfo =  mapShowSearch.dataset.partner;
+    console.log(locationInfo)
+    console.log(partnerinfo)
   }
    const renderType =  mapShowSearch.dataset.rendertype;
   mapDashboardWrapper.classList.toggle('active');
@@ -946,11 +1008,16 @@ function reInitMap() {
   } else {
 
     let newformData = new FormData();
-    newformData.append("PropertySearchForm[location]", "179892");
+    if(locationInfo != undefined && partnerinfo != undefined){
+      formData.append("PropertySearchForm[location]", `${locationInfo}`);
+      formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
+    }else{
+      formData.append("PropertySearchForm[location]", "179892");
+      formData.append("PropertySearchForm[partner]", "11090");
+    }
     newformData.append("PropertySearchForm[checkinDate]", "27.08.2024");
     newformData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
-    newformData.append("PropertySearchForm[partner]", "11090");
     newformData.append("PropertySearchForm[map]", "true");
     initMap(newformData, typeRender)
 
