@@ -1043,9 +1043,9 @@ function clearAllCache() {
 if (isMobileFlag == true) {
     // Добавляем обработчик события scroll
     window.addEventListener('scroll', () => {
-        // if (datepicker.visible) {
-        //     datepicker.hide()
-        // }
+        if (datepicker.visible) {
+            datepicker.hide()
+        }
     });
 }
 
@@ -1092,11 +1092,10 @@ function clearDatepickerValue(){
 
 datepickerInputFrom.addEventListener('click', () => {
     
-    
+    datepicker.show();
     
     if(isMobileFlag == false){
-        datepickerInputFrom.focus();
-        datepicker.show();
+        datepickerInputFrom.focus()
     }
 });
 
