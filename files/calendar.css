@@ -1367,4 +1367,14 @@ position: relative;
   grid-template-columns: repeat(3, 1fr);
 }
 
+#flights-search-form .row.mb-5.ml-0{
+  position: relative;
+  top: -40px;
+}
+
+#flights-search-form .search-btn-block.col-search-button{
+  position: relative;
+  top: 40px;
+}
+
 }

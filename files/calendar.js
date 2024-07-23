@@ -35,7 +35,7 @@ let isRange = true;
 let charterFlightCache = null;
 let charterDirectionsCache = null;
 
-const dateInputsWrapper = document.querySelector('.date-inputs-wrapper')
+const dateInputsWrapper = document.querySelector('.date-inputs-wrapper');
 const datepickerInputFrom = document.querySelector('.datepicker-avia-from');
 datepickerInputFrom.setAttribute('autocomplete', 'off');
 
@@ -498,13 +498,19 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
-        }else if(dp.selectedDates.length === 1){
-            // Обновление типа запроса
+        }else if(isRange == false && dp.selectedDates.length === 1){
+            
+            dp.hide()
+        }else if(isRange == true && dp.selectedDates.length === 1){
+            // // Обновление типа запроса
+            
             typeRequest = 'return';
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
-        } else if (!isRange && selectedDate) {
+            
+        }
+        else if (!isRange && selectedDate) {
             datepickerInputTo.value = '';
             typeRequest = 'start';
             
@@ -553,8 +559,8 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
                     button.classList.toggle('active');
                 }
             }
-            
-
+            //Check how it work
+            typeRequest = 'start'
             const dateToSend = selectedDate ? selectedDate : formatDateToString(today);
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
             datepicker.setViewDate(viewDate);
@@ -618,7 +624,6 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
     return datepickerBothWay;
 }
-
 
 function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
     if (isRange === true) {
@@ -1062,6 +1067,10 @@ document.querySelector('.remove-datepicker-date').addEventListener('click', () =
     clearDatepickerValue()
 })
 
+document.querySelector('.search-btn-block.col-search-button').addEventListener('click',()=>{
+    datepicker.hide()
+})
+
 function clearDatepickerValue(){
     datepickerInputFrom.value = "";
     datepickerInputTo.value = "";
@@ -1072,3 +1081,23 @@ function clearDatepickerValue(){
     datepicker.clear();
 }
 
+datepickerInputFrom.addEventListener('click', () => {
+    datepicker.show();
+    datepickerInputFrom.focus()
+});
+datepickerInputTo.addEventListener('click', () => {
+    if (datepickerInputFrom.value) {
+        datepicker.show();
+        datepickerInputTo.focus()
+    }
+    
+});
+
+
+document.addEventListener('click', function(event) {
+    if (!datepicker.$datepicker.contains(event.target) && 
+        !datepickerInputFrom.contains(event.target) && 
+        !datepickerInputTo.contains(event.target)) {
+        datepicker.hide();
+    }
+});
