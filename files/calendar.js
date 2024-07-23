@@ -278,7 +278,7 @@ async function getFlightCharterCalendar(typeWay, codeIataFrom, codeIataTo) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         if (typeWay == 'trip') {
             if (data.from.length != 0 && data.back.length != 0) {
                 setLocalStorageCharterFlights(data, codeIataFrom, codeIataTo);
@@ -683,7 +683,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
                 datepickerInputTo.value = ''
                 button.classList.toggle('active', !isRange);
             }
-
+            dp.show()
             
         }, 0);
 
@@ -710,7 +710,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
             }
         ],
         onSelect: function (formattedDate, date, inst) {
-            console.log(isRange)
+            // console.log(isRange)
             if (formattedDate.date[0] !== undefined) {
                 if (formattedDate.date[1] == undefined) {
                     if(isMobileFlag == false){
