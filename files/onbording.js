@@ -289,68 +289,108 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function initAutocomplete() {
-        var addressInput = document.getElementById('useragencyupdateform-legaladdress');
-        var countrySelect = document.getElementById('country-id');
-        var autocomplete = new google.maps.places.Autocomplete(addressInput);
+const resultsContainer = document.getElementById('autocomplete-results');
 
-        function setCountryRestriction() {
-            var country = countrySelect.value;
-            if (country) {
-                autocomplete.setComponentRestrictions({'country': [country]});
-            } else {
-                autocomplete.setComponentRestrictions({'country': []});
-            }
+async function fetchAutocomplete(input, sessionToken) {
+    const response = await fetch(`https://travelhub.by/locations-autocomplete?q=${input}&sessionToken=${sessionToken}&raw=1`);
+    const data = await response.json();
+    return data;
+}
+
+async function fetchPlaceDetails(sessionToken, placeId) {
+    const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+    const data = await response.json();
+    
+    return data;
+}
+
+function createAutocompleteItem(prediction) {
+    const div = document.createElement('div');
+    div.className = 'autocomplete-result';
+    div.textContent = prediction.description;
+    div.dataset.placeId = prediction.place_id;
+    div.addEventListener('click', async function() {
+        document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
+        console.log('Selected place_id:', prediction.place_id);
+        resultsContainer.classList.remove('active')
+        
+        const sessionToken = document.getElementById('location-from-token').value;
+        const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id);
+        
+        
+        
+        fillFormFields(placeDetails);
+
+        clearAutocompleteResults();
+        
+    });
+    return div;
+}
+
+function fillFormFields(details) {
+    let addressComponents = details.address;
+    let street_number = '';
+    let city = '';
+    let state = '';
+    let zip = '';
+    let street_name = '';
+
+    for (let i = 0; i < addressComponents.length; i++) {
+        let component = addressComponents[i];
+        let types = component.types;
+
+        if (types.includes('street_number')) {
+            street_number = component.long_name;
         }
 
-        countrySelect.addEventListener('change', setCountryRestriction);
-        setCountryRestriction();
+        if (types.includes('route')) {
+            street_name = component.long_name;
+        }
 
-        autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            var addressComponents = place.address_components;
-            console.log(addressComponents)
+        if (types.includes('locality')) {
+            city = component.long_name;
+        }
 
-            var street_number = '';
-            var city = '';
-            var state = '';
-            var zip = '';
-            var street_name = '';
+        if (types.includes('administrative_area_level_1')) {
+            state = component.short_name;
+        }
 
-            for (var i = 0; i < addressComponents.length; i++) {
-                var component = addressComponents[i];
-                var types = component.types;
-
-                if (types.includes('street_number')) {
-                    street_number = component.long_name;
-                }
-
-                if (types.includes('route')) {
-                    street_name = component.long_name;
-                }
-
-                if (types.includes('locality')) {
-                    city = component.long_name;
-                }
-
-                if (types.includes('administrative_area_level_1')) {
-                    state = component.short_name;
-                }
-
-                if (types.includes('postal_code')) {
-                    zip = component.long_name;
-                }
-            }
-
-            document.getElementById('useragencyupdateform-legaladdress').value = street_name;
-            document.getElementById('useragencyupdateform-suit').value = street_number;
-            
-            document.getElementById('useragencyupdateform-cityname').value = city;
-            document.getElementById('useragencyupdateform-state').value = state;
-            document.getElementById('useragencyupdateform-zipcode').value = zip;
-        });
+        if (types.includes('postal_code')) {
+            zip = component.long_name;
+        }
     }
 
-    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    document.getElementById('useragencyupdateform-legaladdress').value = street_name;
+    document.getElementById('useragencyupdateform-suit').value = street_number;
+
+    document.getElementById('useragencyupdateform-cityname').value = city;
+    document.getElementById('useragencyupdateform-state').value = state;
+    document.getElementById('useragencyupdateform-zipcode').value = zip;
+}
+
+function clearAutocompleteResults() {
+    const resultsContainer = document.getElementById('autocomplete-results');
+    resultsContainer.innerHTML = '';
+}
+
+document.getElementById('useragencyupdateform-legaladdress').addEventListener('input', async function() {
+    const input = this.value;
+    if (input.length > 2) {
+        let sessionToken = document.getElementById('location-from-token').value;
+        const data = await fetchAutocomplete(input, sessionToken);
+        
+        resultsContainer.classList.add('active')
+        clearAutocompleteResults();
+        if (data.predictions.length > 0) {
+            data.predictions.forEach(prediction => {
+                const item = createAutocompleteItem(prediction);
+                resultsContainer.appendChild(item);
+            });
+        }
+    } else {
+        clearAutocompleteResults();
+    }
+});
+
 
 });

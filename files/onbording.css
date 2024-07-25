@@ -172,6 +172,37 @@ margin-top: 30px;
     top: 10px;
 }
 
+.autocomplete-results {
+    position: absolute;
+    border: 1px solid #E4E6EF;
+    border-top: none;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    top: 71px;
+}
+
+.autocomplete-results.active{
+    display: block;
+}
+
+.autocomplete-result {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-result:hover {
+    background-color: #5879fb;
+    color: #fff;
+}
+
+.form-group.field-useragencyupdateform-legaladdress{
+    position: relative;
+}
+
+
 @media (max-width: 770px) {
     .onboarding-row-info-wrapper{
         flex-direction: column;
