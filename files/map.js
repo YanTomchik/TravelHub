@@ -11,6 +11,7 @@ const mobileFilterApplyBtn = document.querySelector('.btn.btn-primary.map-filter
 const bodyTag = document.body;
 
 let layoutDev = (typeof implemented === 'undefined');
+let timesFlag = false;
 
 function triggerInputEvent(element) {
   let event = new Event('input', {
@@ -511,7 +512,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                           ${availableRoomsBlock}
                           ${quiQuoBlock}
                         </div>
-                        <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="./images/arrow-right-btn.svg" alt=""></a>
+                        <a target="_blank" href="/hotels/${id}/${url}" class="marker-popup-header-btn"><img src="/images/arrow-right-btn.svg" alt=""></a>
                       </div>
                       <div class="marker-popup-footer-info">
                         <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
@@ -1087,6 +1088,11 @@ function clearLeftBlockCache(prefix) {
   keysToRemove.forEach(key => localStorage.removeItem(key));
 }
 
+if(!timesFlag){
+  clearMap()
+  clearCachedData()
+  timesFlag = true
+}
 
 // Найти форму с action /hotels/search
 const form = document.querySelector('form[action="/hotels/search"]');
