@@ -2,11 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализация select2
     $('#country-id').select2();
 
-    const token = "dad0ce47c0043f8e93e60bfccf2170303f5a5c3b";
-    const openCorporatesApiToken = "YOUR_OPENCORPORATES_API_KEY"; // Замените на ваш ключ API OpenCorporates
+    //Заменить на рабочие ключи
+    const tokenDaData = "dad0ce47c0043f8e93e60bfccf2170303f5a5c3b";
+    const tokenIpInfo = '0c80f44623564d'
+    const apiKeySwiftIban = '90f49a0aedmsha80e2a2ae15e579p19e4aejsn88e68c780782';
 
     const setCountryByIP = () => {
-        fetch('https://ipinfo.io/json?token=0c80f44623564d')
+        fetch(`https://ipinfo.io/json?token=${tokenIpInfo}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -41,19 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'BY':
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_by`;
                 options.method = "POST";
-                options.headers["Authorization"] = "Token " + token;
+                options.headers["Authorization"] = "Token " + tokenDaData;
                 options.body = JSON.stringify({query: taxId});
                 break;
             case 'KZ':
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_kz`;
                 options.method = "POST";
-                options.headers["Authorization"] = "Token " + token;
+                options.headers["Authorization"] = "Token " + tokenDaData;
                 options.body = JSON.stringify({query: taxId});
                 break;
             case 'RU':
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party`;
                 options.method = "POST";
-                options.headers["Authorization"] = "Token " + token;
+                options.headers["Authorization"] = "Token " + tokenDaData;
                 options.body = JSON.stringify({query: taxId});
                 break;
         }
@@ -180,8 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const swiftInput = document.getElementById('useragencyupdateform-bankidentificationcode');
     const ibanInput = document.getElementById('useragencyupdateform-bankaccount');
     const bankNameInput = document.getElementById('useragencyupdateform-bankname');
-    
-    const apiKey = '90f49a0aedmsha80e2a2ae15e579p19e4aejsn88e68c780782';
 
     swiftInput.addEventListener('blur', () => validateSwift(swiftInput.value));
     swiftInput.addEventListener('blur', () => swiftInfo(swiftInput.value));
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': apiKey,
+                    'X-RapidAPI-Key': apiKeySwiftIban,
                     'X-RapidAPI-Host': 'iban-and-swift-details.p.rapidapi.com'
                 }
             };
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': apiKey,
+                    'X-RapidAPI-Key': apiKeySwiftIban,
                     'X-RapidAPI-Host': 'iban-and-swift-details.p.rapidapi.com'
                 }
             };
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': apiKey,
+                    'X-RapidAPI-Key': apiKeySwiftIban,
                     'X-RapidAPI-Host': 'iban-and-swift-details.p.rapidapi.com'
                 }
             };
