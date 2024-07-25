@@ -58,288 +58,327 @@ window.select2_4f18f65f = {"allowClear":false,"theme":"krajee-bs3","width":"100%
 
 <div class="d-flex flex-column flex-root">
     <div class="d-flex flex-row flex-column-fluid page">
+        <!-- NEW -->
         <div class="top__banner variant-2 hidden-xs">
-            <a href="https://travel-code.com/user/update-information" class="top__banner__link" target="_blank">To continue, fill in all the required information</a>
-        </div>          
-          <div class="onboarding-container">
+            <a href="https://travel-code.com/user/update-information" class="top__banner__link" target="_blank">To continue,
+                fill in all the required information</a>
+        </div>
+        <div class="onboarding-container">
             <div class="onboarding-header">
                 <div class="onboarding-logo">
                     <img src="./files/travelhub-logo-onboarding.svg" alt="">
                 </div>
                 <div class="text">Set Up a company account</div>
-            
+    
             </div>
-
-              <div class="onboarding-row-info-wrapper">
+    
+            <div class="onboarding-row-info-wrapper">
                 <div class="onboarding-form-wrapper">
                     <form action="" class="onboarding-main-form">
-                      <div class="onboarding-form-company-info-wrapper ">
-                          <h3 class="card-label font-weight-bolder">Company info</h3>
-                      
-                      <div class="form-group field-country-id required">
-                          <label for="country-id">Country</label>
-                        <select id="country-id" class="form-control form-control-solid form-control-lg select2-hidden-accessible"
-                            name="UserAgencyUpdateForm[countryId]" aria-required="true" data-s2-options="s2options_3267a624"
-                            data-krajee-select2="select2_65a72135" style="width: 100%; height: 1px; visibility: hidden;"
-                            data-select2-id="country-id" tabindex="-1" aria-hidden="true">
-                          <option value="" data-select2-id="2">Select country</option>
-                          <option value="BY">Belarus</option>
-                          <option value="RU">Russia</option>
-                          <option value="US">USA</option>
-                          <option value="KZ">Kazakhstan</option>
-                          <option value="NL">Netherlands</option>
-                          
-                        </select>
-                        <!-- <span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
-                            style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
-                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-                                    aria-labelledby="select2-country-id-container"><span class="select2-selection__rendered"
-                                        id="select2-country-id-container" role="textbox" aria-readonly="true"><span
-                                            class="select2-selection__placeholder">Select country</span></span><span
-                                        class="select2-selection__arrow" role="presentation"><b
-                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                aria-hidden="true"></span></span> -->
-                          
-                          <div class="invalid-feedback"></div>
-                      </div>
-                      
-                      <div class="form-group field-useragencyupdateform-taxidentificationnumber required">
-                          <label for="useragencyupdateform-taxidentificationnumber">Registration number (UNP / INN / BIN / EIN)</label>
-                          <input type="text" id="useragencyupdateform-taxidentificationnumber"
-                              class="form-control main-edit-profile-input touragency-adaptive"
-                              name="UserAgencyUpdateForm[taxIdentificationNumber]" autocomplete="off"
-                              placeholder="Registration number (UNP / INN / BIN / EIN)" aria-required="true">
-                      
-                          <div class="invalid-feedback"></div>
-                      </div>
-                      <div class="form-group field-useragencyupdateform-legalname required">
-                        <label for="useragencyupdateform-legalname">Company legal name</label>
-                        <input type="text" id="useragencyupdateform-legalname" class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[legalName]" autocomplete="off" placeholder="Name" aria-required="true">
-                        
-                        <div class="invalid-feedback"></div>
-                    </div>
-                      <div class="form-group field-useragencyupdateform-supervisorname required">
-                          <label for="useragencyupdateform-supervisorname">Full name of the manager</label>
-                          <input type="text" id="useragencyupdateform-supervisorname"
-                              class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[supervisorName]"
-                              autocomplete="off" placeholder="Full name of the manager" aria-required="true">
-                      
-                          <div class="invalid-feedback"></div>
-                      </div>
-                      <div class="form-group field-useragencyupdateform-supervisorjobtitle required">
-                          <label for="useragencyupdateform-supervisorjobtitle">Position of the manager</label>
-                          <input type="text" id="useragencyupdateform-supervisorjobtitle"
-                              class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[supervisorJobTitle]"
-                              autocomplete="off" placeholder="Position of the manager" aria-required="true">
-                      
-                          <div class="invalid-feedback"></div>
-                      </div>
-                      </div>
-                      <div class="onboarding-form-address-wrapper onboarding-form-block">
-                          <h3 class="card-label font-weight-bolder">Company Address</h3>
-      
-                          <div class="form-group field-useragencyupdateform-legaladdress required">
-                              <label for="useragencyupdateform-legaladdress">Company street address</label>
-                              <input type="text" id="useragencyupdateform-legaladdress"
-                                  class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[legalAddress]"
-                                  autocomplete="off" placeholder="Adress" aria-required="true">
-                                  <div id="autocomplete-results" class="autocomplete-results"></div>
-                              <div class="invalid-feedback"></div>
-                          </div>
-                          <!-- NEW FORMS -->
-                          <div class="inputs-boarding-wrapper two">
-                              <div class="form-group field-useragencyupdateform-suit required">
-                                  <label for="useragencyupdateform-suit">Suite, unit, apt</label>
-                                  <input type="text" id="useragencyupdateform-suit"
-                                      class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[suit]"
-                                      autocomplete="off" placeholder="Legal address" aria-required="true">
-                              
-                                  <div class="invalid-feedback"></div>
-                              </div>
-                              <div class="form-group field-useragencyupdateform-cityname required">
-                                <label for="useragencyupdateform-cityname">City</label>
-                                <input type="text" id="useragencyupdateform-cityname"
-                                    class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[cityname]"
-                                    autocomplete="off" placeholder="City" aria-required="true">
-                            
+                        <div class="onboarding-form-company-info-wrapper ">
+                            <h3 class="card-label font-weight-bolder">Company info</h3>
+    
+                            <div class="form-group field-country-id required">
+                                <label for="country-id">Country</label>
+                                <select id="country-id"
+                                    class="form-control form-control-solid form-control-lg select2-hidden-accessible"
+                                    name="UserAgencyUpdateForm[countryId]" aria-required="true"
+                                    data-s2-options="s2options_3267a624" data-krajee-select2="select2_65a72135"
+                                    style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="country-id"
+                                    tabindex="-1" aria-hidden="true">
+                                    <option value="" data-select2-id="2">Select country</option>
+                                    <option value="BY">Belarus</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="US">USA</option>
+                                    <option value="KZ">Kazakhstan</option>
+                                    <option value="NL">Netherlands</option>
+    
+                                </select>
+                                <!-- <span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
+                                style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
+                                        role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
+                                        aria-labelledby="select2-country-id-container"><span class="select2-selection__rendered"
+                                            id="select2-country-id-container" role="textbox" aria-readonly="true"><span
+                                                class="select2-selection__placeholder">Select country</span></span><span
+                                            class="select2-selection__arrow" role="presentation"><b
+                                                role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                    aria-hidden="true"></span></span> -->
+    
                                 <div class="invalid-feedback"></div>
                             </div>
-                          </div> 
-                          <div class="" id="bank-info-state-change">
-                            <div class="form-group field-useragencyupdateform-state" id="stateField" style="display: none;">
-                                <label for="useragencyupdateform-state">State</label>
-                                <input type="text" id="useragencyupdateform-state" class="form-control main-edit-profile-input touragency-adaptive"
-                                    name="UserAgencyUpdateForm[state]" autocomplete="off" placeholder="State">
+    
+                            <div class="form-group field-useragencyupdateform-taxidentificationnumber required">
+                                <label for="useragencyupdateform-taxidentificationnumber">Registration number (UNP / INN /
+                                    BIN / EIN)</label>
+                                <input type="text" id="useragencyupdateform-taxidentificationnumber"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[taxIdentificationNumber]" autocomplete="off"
+                                    placeholder="Registration number (UNP / INN / BIN / EIN)" aria-required="true">
+    
                                 <div class="invalid-feedback"></div>
                             </div>
-                              <div class="form-group field-useragencyupdateform-zipcode required">
-                                  <label for="useragencyupdateform-zipcode">ZIP / Postal code</label>
-                                  <input type="text" id="useragencyupdateform-zipcode"
-                                      class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[zipcode]"
-                                      autocomplete="off" placeholder="Zip code" aria-required="true">
-                              
-                                  <div class="invalid-feedback"></div>
-                              </div>
-                          </div>
-                              
-                           
-                          
-                          <!-- NEW FORMS -->
-                      </div>
-                    <div class=" onboarding-form-bank-info-wrapper onboarding-form-block">
-                        <h3 class="card-label font-weight-bolder">Bank Details</h3>
-                    
-                        <div class="form-group field-useragencyupdateform-bankidentificationcode" id="bank-swift">
-                            <label for="useragencyupdateform-bankidentificationcode">SWIFT/BIC</label>
-                            <input type="text" id="useragencyupdateform-bankidentificationcode"
-                                class="form-control main-edit-profile-input touragency-adaptive"
-                                name="UserAgencyUpdateForm[bankIdentificationCode]" autocomplete="off" placeholder="SWIFT/BIC">
-                            <div class="invalid-feedback"></div>
+                            <div class="form-group field-useragencyupdateform-legalname required">
+                                <label for="useragencyupdateform-legalname">Company legal name</label>
+                                <input type="text" id="useragencyupdateform-legalname"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[legalName]" autocomplete="off" placeholder="Name"
+                                    aria-required="true">
+    
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-supervisorname required">
+                                <label for="useragencyupdateform-supervisorname">Full name of the manager</label>
+                                <input type="text" id="useragencyupdateform-supervisorname"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[supervisorName]" autocomplete="off"
+                                    placeholder="Full name of the manager" aria-required="true">
+    
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-supervisorjobtitle required">
+                                <label for="useragencyupdateform-supervisorjobtitle">Position of the manager</label>
+                                <input type="text" id="useragencyupdateform-supervisorjobtitle"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[supervisorJobTitle]" autocomplete="off"
+                                    placeholder="Position of the manager" aria-required="true">
+    
+                                <div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="form-group field-useragencyupdateform-bankname required" id="bank-name">
-                            <label for="useragencyupdateform-bankname">Bank name</label>
-                            <input type="text" id="useragencyupdateform-bankname"
-                                class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[bankName]"
-                                autocomplete="off" placeholder="Bank name" aria-required="true">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <div class="form-group field-useragencyupdateform-bankaccount" id="bank-iban">
-                            <label for="useragencyupdateform-bankaccount">Bank Account Number (IBAN)</label>
-                            <input type="text" id="useragencyupdateform-bankaccount"
-                                class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[bankAccount]"
-                                autocomplete="off" placeholder="Bank Account Number (IBAN)">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <div class="form-group field-useragencyupdateform-routingnumber" id="routingnumber" style="display: none;">
-                            <label for="useragencyupdateform-routingnumber">Routing number</label>
-                            <input type="text" id="useragencyupdateform-routingnumber"
-                                class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[routingNumber]"
-                                autocomplete="off" placeholder="Routing Number">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <div class="form-group field-useragencyupdateform-accountnumber" id="accountnumber" style="display: none;">
-                            <label for="useragencyupdateform-accountnumber">Account number</label>
-                            <input type="text" id="useragencyupdateform-accountnumber"
-                                class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[accountNumber]"
-                                autocomplete="off" placeholder="Account Number">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                      <div class="onboarding-about-company-wrapper onboarding-form-block">
-                          <h3 class="card-label font-weight-bolder">About Company</h3>
-      
-                          <div class="form-group field-useragencyupdateform-website required">
-                              <label for="useragencyupdateform-website">Website</label>
-                              <input type="text" id="useragencyupdateform-website" class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[legalName]" autocomplete="off" placeholder="Name" aria-required="true">
-                              
-                              <div class="invalid-feedback"></div>
-                              </div>
-                              <div class="inputs-boarding-wrapper two">
-                                <div class="form-group field-country-id required">
-                                    <label for="howmany-employees">How many employees</label>
-                                  <select id="howmany-employees" class="form-control form-control-lg"
-                                      name="UserAgencyUpdateForm[howmanyEmployees]"
-                                      data-select2-id="country-id" tabindex="-1" aria-hidden="true">
-                                    <option value="1-10">1-10</option>
-                                    <option value="10-50">10-50</option>
-                                    <option value="50-250">50-250</option>
-                                    <option value="250+">250+</option>
-                                    
-                                  </select>
-                                  
-                                    
+                        <div class="onboarding-form-address-wrapper onboarding-form-block">
+                            <h3 class="card-label font-weight-bolder">Company Address</h3>
+    
+                            <div class="form-group field-useragencyupdateform-legaladdress required">
+                                <label for="useragencyupdateform-legaladdress">Company street address</label>
+                                <input type="text" id="useragencyupdateform-legaladdress"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[legalAddress]" autocomplete="off" placeholder="Adress"
+                                    aria-required="true">
+                                <div id="autocomplete-results" class="autocomplete-results"></div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <!-- NEW FORMS -->
+                            <div class="inputs-boarding-wrapper two">
+                                <div class="form-group field-useragencyupdateform-suit required">
+                                    <label for="useragencyupdateform-suit">Suite, unit, apt</label>
+                                    <input type="text" id="useragencyupdateform-suit"
+                                        class="form-control main-edit-profile-input touragency-adaptive"
+                                        name="UserAgencyUpdateForm[suit]" autocomplete="off" placeholder="Legal address"
+                                        aria-required="true">
+    
                                     <div class="invalid-feedback"></div>
                                 </div>
-                                      <div class="form-group field-useragencyupdateform-travelbudget required">
-                                          <label for="useragencyupdateform-travelbudget">Annual travel budget</label>
-                                          <input type="text" id="useragencyupdateform-travelbudget" class="form-control main-edit-profile-input touragency-adaptive" name="UserAgencyUpdateForm[travelBudget]" autocomplete="off" placeholder="Budget" aria-required="true">
-                                          
-                                          <div class="invalid-feedback"></div>
-                                          </div>
-                              </div>
-                      </div> 
-      
-                      <div class="card-toolbar">
-                          <button type="submit" id="user_update_submit" class="btn btn-primary button-next posts"
-                              name="user-agency-update-button">Create account</button>
-                      </div>
-      
-                      <p class="agreement-text">
-                          By clicking "Create account" The company I identified agrees to <a href="https://travelhub.by/privacy" target="_blank">Travelhub Terms of Service, Privacy Policy</a> and <a href="https://travelhub.by/terms" target="_blank">Data Processing Addendum</a>, including the incorporated EU SCCs and UK IDTA, and I certify that I have the legal authority to enter into this agreement on behalf of the
-                      </p>
+                                <div class="form-group field-useragencyupdateform-cityname required">
+                                    <label for="useragencyupdateform-cityname">City</label>
+                                    <input type="text" id="useragencyupdateform-cityname"
+                                        class="form-control main-edit-profile-input touragency-adaptive"
+                                        name="UserAgencyUpdateForm[cityname]" autocomplete="off" placeholder="City"
+                                        aria-required="true">
+    
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="" id="bank-info-state-change">
+                                <div class="form-group field-useragencyupdateform-state" id="stateField"
+                                    style="display: none;">
+                                    <label for="useragencyupdateform-state">State</label>
+                                    <input type="text" id="useragencyupdateform-state"
+                                        class="form-control main-edit-profile-input touragency-adaptive"
+                                        name="UserAgencyUpdateForm[state]" autocomplete="off" placeholder="State">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group field-useragencyupdateform-zipcode required">
+                                    <label for="useragencyupdateform-zipcode">ZIP / Postal code</label>
+                                    <input type="text" id="useragencyupdateform-zipcode"
+                                        class="form-control main-edit-profile-input touragency-adaptive"
+                                        name="UserAgencyUpdateForm[zipcode]" autocomplete="off" placeholder="Zip code"
+                                        aria-required="true">
+    
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+    
+    
+    
+                            <!-- NEW FORMS -->
+                        </div>
+                        <div class=" onboarding-form-bank-info-wrapper onboarding-form-block">
+                            <h3 class="card-label font-weight-bolder">Bank Details</h3>
+    
+                            <div class="form-group field-useragencyupdateform-bankidentificationcode" id="bank-swift">
+                                <label for="useragencyupdateform-bankidentificationcode">SWIFT/BIC</label>
+                                <input type="text" id="useragencyupdateform-bankidentificationcode"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[bankIdentificationCode]" autocomplete="off"
+                                    placeholder="SWIFT/BIC">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-bankname required" id="bank-name">
+                                <label for="useragencyupdateform-bankname">Bank name</label>
+                                <input type="text" id="useragencyupdateform-bankname"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[bankName]" autocomplete="off" placeholder="Bank name"
+                                    aria-required="true">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-bankaccount" id="bank-iban">
+                                <label for="useragencyupdateform-bankaccount">Bank Account Number (IBAN)</label>
+                                <input type="text" id="useragencyupdateform-bankaccount"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[bankAccount]" autocomplete="off"
+                                    placeholder="Bank Account Number (IBAN)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-routingnumber" id="routingnumber"
+                                style="display: none;">
+                                <label for="useragencyupdateform-routingnumber">Routing number</label>
+                                <input type="text" id="useragencyupdateform-routingnumber"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[routingNumber]" autocomplete="off"
+                                    placeholder="Routing Number">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group field-useragencyupdateform-accountnumber" id="accountnumber"
+                                style="display: none;">
+                                <label for="useragencyupdateform-accountnumber">Account number</label>
+                                <input type="text" id="useragencyupdateform-accountnumber"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[accountNumber]" autocomplete="off"
+                                    placeholder="Account Number">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="onboarding-about-company-wrapper onboarding-form-block">
+                            <h3 class="card-label font-weight-bolder">About Company</h3>
+    
+                            <div class="form-group field-useragencyupdateform-website required">
+                                <label for="useragencyupdateform-website">Website</label>
+                                <input type="text" id="useragencyupdateform-website"
+                                    class="form-control main-edit-profile-input touragency-adaptive"
+                                    name="UserAgencyUpdateForm[legalName]" autocomplete="off" placeholder="Name"
+                                    aria-required="true">
+    
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="inputs-boarding-wrapper two">
+                                <div class="form-group field-country-id required">
+                                    <label for="howmany-employees">How many employees</label>
+                                    <select id="howmany-employees" class="form-control form-control-lg"
+                                        name="UserAgencyUpdateForm[howmanyEmployees]" data-select2-id="country-id"
+                                        tabindex="-1" aria-hidden="true">
+                                        <option value="1-10">1-10</option>
+                                        <option value="10-50">10-50</option>
+                                        <option value="50-250">50-250</option>
+                                        <option value="250+">250+</option>
+    
+                                    </select>
+    
+    
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group field-useragencyupdateform-travelbudget required">
+                                    <label for="useragencyupdateform-travelbudget">Annual travel budget</label>
+                                    <input type="text" id="useragencyupdateform-travelbudget"
+                                        class="form-control main-edit-profile-input touragency-adaptive"
+                                        name="UserAgencyUpdateForm[travelBudget]" autocomplete="off" placeholder="Budget"
+                                        aria-required="true">
+    
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card-toolbar">
+                            <button type="submit" id="user_update_submit" class="btn btn-primary button-next posts"
+                                name="user-agency-update-button">Create account</button>
+                        </div>
+    
+                        <p class="agreement-text">
+                            By clicking "Create account" The company I identified agrees to <a
+                                href="https://travelhub.by/privacy" target="_blank">Travelhub Terms of Service, Privacy
+                                Policy</a> and <a href="https://travelhub.by/terms" target="_blank">Data Processing
+                                Addendum</a>, including the incorporated EU SCCs and UK IDTA, and I certify that I have the
+                            legal authority to enter into this agreement on behalf of the
+                        </p>
                     </form>
-                  </div>
-                  <div class="onboarding-benefits-wrapper">
-                      <h3 class="card-label font-weight-bolder">Key benefits of having a company account</h3>
-      
-                      <div class="benefits-info-list">
-                          <div class="benefits-info-item">
-                              <div class="benefit-icon">
-                                  <img src="./files/-Layout-arrange.svg" alt="">
-                              </div>
-                              <div class="benefit-description">
-                                  <p>
-                                      Dashboard: Get an overview of spend, card transactions, policy violations, and much more.
-                                  </p>
-                              </div>
-                          </div>
-      
-                          <div class="benefits-info-item">
-                              <div class="benefit-icon">
-                                  <img src="./files/-Search.svg" alt="">
-                              </div>
-                              <div class="benefit-description">
-                                  <p>
-                                      Analysis dashboard: Analyze booking, card spend and trip information.
-                                  </p>
-                              </div>
-                          </div>
-      
-                          <div class="benefits-info-item">
-                              <div class="benefit-icon">
-                                  <img src="./files/-Clipboard.svg" alt="">
-                              </div>
-                              <div class="benefit-description">
-                                  <p>
-                                      Reports features: Create and download customized reports.
-                                  </p>
-                              </div>
-                          </div>
-      
-                          <div class="benefits-info-item">
-                              <div class="benefit-icon">
-                                  <img src="./files/-Like.svg" alt="">
-                              </div>
-                              <div class="benefit-description">
-                                  <p>
-                                      Approvals dashboard: Review and take action on out-of-policy card transactions, bookings, and trip proposals.
-                                  </p>
-                              </div>
-                          </div>
-      
-                          <div class="benefits-info-item">
-                              <div class="benefit-icon">
-                                  <img src="./files/-Shield-check.svg" alt="">
-                              </div>
-                              <div class="benefit-description">
-                                  <p>
-                                      Policy configuration: Set a customized policy on your corporate cards and travel bookings to balance cost-control and traveler flexibility.
-                                  </p>
-                              </div>
-                          </div>
-      
-      
-                      </div>
-                  </div>
-              </div>
-            
+                </div>
+                <div class="onboarding-benefits-wrapper">
+                    <h3 class="card-label font-weight-bolder">Key benefits of having a company account</h3>
+    
+                    <div class="benefits-info-list">
+                        <div class="benefits-info-item">
+                            <div class="benefit-icon">
+                                <img src="./files/-Layout-arrange.svg" alt="">
+                            </div>
+                            <div class="benefit-description">
+                                <p>
+                                    Dashboard: Get an overview of spend, card transactions, policy violations, and much
+                                    more.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="benefits-info-item">
+                            <div class="benefit-icon">
+                                <img src="./files/-Search.svg" alt="">
+                            </div>
+                            <div class="benefit-description">
+                                <p>
+                                    Analysis dashboard: Analyze booking, card spend and trip information.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="benefits-info-item">
+                            <div class="benefit-icon">
+                                <img src="./files/-Clipboard.svg" alt="">
+                            </div>
+                            <div class="benefit-description">
+                                <p>
+                                    Reports features: Create and download customized reports.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="benefits-info-item">
+                            <div class="benefit-icon">
+                                <img src="./files/-Like.svg" alt="">
+                            </div>
+                            <div class="benefit-description">
+                                <p>
+                                    Approvals dashboard: Review and take action on out-of-policy card transactions,
+                                    bookings, and trip proposals.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="benefits-info-item">
+                            <div class="benefit-icon">
+                                <img src="./files/-Shield-check.svg" alt="">
+                            </div>
+                            <div class="benefit-description">
+                                <p>
+                                    Policy configuration: Set a customized policy on your corporate cards and travel
+                                    bookings to balance cost-control and traveler flexibility.
+                                </p>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+    
         </div>
         <div class="field-location-from-token required" style="display:none">
-
-            <input type="hidden" id="location-from-token" class="form-control" name="GetTransferSearchForm[locationFromToken]" value="lyx1i1t913vi4a37ht1f">
-            
+    
+            <input type="hidden" id="location-from-token" class="form-control"
+                name="GetTransferSearchForm[locationFromToken]" value="lyx1i1t913vi4a37ht1f">
+    
             <div class="help-block"></div>
-            </div>
+        </div>
+    
+        <!-- NEW -->
     </div>
 </div>
 
