@@ -11,14 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`https://ipinfo.io/json?token=${tokenIpInfo}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 const countryCode = data.country;
 
                 if (countryCode) {
                     const $countrySelect = $('#country-id');
                     if ($countrySelect.find(`option[value="${countryCode}"]`).length > 0) {
                         $countrySelect.val(countryCode).trigger('change.select2');
-                        console.log("Country set to:", countryCode);
                     } else {
                         console.log("Country code not found in select options.");
                     }
@@ -44,19 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_by`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + tokenDaData;
-                options.body = JSON.stringify({query: taxId});
+                options.body = JSON.stringify({ query: taxId });
                 break;
             case 'KZ':
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party_kz`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + tokenDaData;
-                options.body = JSON.stringify({query: taxId});
+                options.body = JSON.stringify({ query: taxId });
                 break;
             case 'RU':
                 apiUrl = `https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party`;
                 options.method = "POST";
                 options.headers["Authorization"] = "Token " + tokenDaData;
-                options.body = JSON.stringify({query: taxId});
+                options.body = JSON.stringify({ query: taxId });
                 break;
         }
 
@@ -68,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const autofillCompanyInfo = (data) => {
         if (data) {
-            console.log(data);
             const country = $('#country-id').val();
             let dataCompany;
 
@@ -144,15 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setCountryByIP();
 
     document.getElementById('useragencyupdateform-taxidentificationnumber').addEventListener('change', (event) => {
-        console.log(event.target.value);
         const taxId = event.target.value;
         const country = $('#country-id').val();
         fetchCompanyInfo(country, taxId).then(autofillCompanyInfo);
     });
 
-    $('#country-id').on('change', function() {
-        var selectedValue = $(this).val();
-        console.log(selectedValue);
+    $('#country-id').on('change', function () {
+        let selectedValue = $(this).val();
         if (selectedValue === 'US') {
             $('#stateField').show();
             $('#routingnumber').show();
@@ -190,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function validateSwift(swift) {
         if (swift) {
             const url = `https://iban-and-swift-details.p.rapidapi.com/api/v1/swift/validate?swift_code=${swift}`;
-            
+
             const options = {
                 method: 'GET',
                 headers: {
@@ -202,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch(url, options);
                 const data = await response.json();
-                console.log(data)
                 handleSwiftValidation(data);
             } catch (error) {
                 console.error('Error validating SWIFT:', error);
@@ -213,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function swiftInfo(swift) {
         if (swift) {
             const url = `https://iban-and-swift-details.p.rapidapi.com/api/v1/swift?swift_code=${swift}`;
-            
+
             const options = {
                 method: 'GET',
                 headers: {
@@ -225,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch(url, options);
                 const data = await response.json();
-                console.log(data)
                 insertSwiftInfo(data);
             } catch (error) {
                 console.error('Error validating SWIFT:', error);
@@ -255,15 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function insertSwiftInfo(data) {
-        if(data.bank_name!=null){
-            bankNameInput.value = data.bank_name    
+        if (data.bank_name != null) {
+            bankNameInput.value = data.bank_name
         }
     }
 
     function handleSwiftValidation(data) {
         const feedback = swiftInput.nextElementSibling;
-        console.log(feedback)
-        console.log(data)
         if (data.Status == 'Valid') {
             feedback.textContent = 'SWIFT code is valid.';
             feedback.style.color = 'green';
@@ -276,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleIbanValidation(data) {
-        console.log(data)
         const feedback = ibanInput.nextElementSibling;
         if (data.Status == 'Valid') {
             feedback.textContent = 'IBAN is valid.';
@@ -289,108 +279,105 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-const resultsContainer = document.getElementById('autocomplete-results');
-
-async function fetchAutocomplete(input, sessionToken) {
-    const response = await fetch(`https://travelhub.by/locations-autocomplete?q=${input}&sessionToken=${sessionToken}&raw=1`);
-    const data = await response.json();
-    return data;
-}
-
-async function fetchPlaceDetails(sessionToken, placeId) {
-    const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
-    const data = await response.json();
-    
-    return data;
-}
-
-function createAutocompleteItem(prediction) {
-    const div = document.createElement('div');
-    div.className = 'autocomplete-result';
-    div.textContent = prediction.description;
-    div.dataset.placeId = prediction.place_id;
-    div.addEventListener('click', async function() {
-        document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
-        console.log('Selected place_id:', prediction.place_id);
-        resultsContainer.classList.remove('active')
-        
-        const sessionToken = document.getElementById('location-from-token').value;
-        const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id);
-        
-        
-        
-        fillFormFields(placeDetails);
-
-        clearAutocompleteResults();
-        
-    });
-    return div;
-}
-
-function fillFormFields(details) {
-    let addressComponents = details.address;
-    let street_number = '';
-    let city = '';
-    let state = '';
-    let zip = '';
-    let street_name = '';
-
-    for (let i = 0; i < addressComponents.length; i++) {
-        let component = addressComponents[i];
-        let types = component.types;
-
-        if (types.includes('street_number')) {
-            street_number = component.long_name;
-        }
-
-        if (types.includes('route')) {
-            street_name = component.long_name;
-        }
-
-        if (types.includes('locality')) {
-            city = component.long_name;
-        }
-
-        if (types.includes('administrative_area_level_1')) {
-            state = component.short_name;
-        }
-
-        if (types.includes('postal_code')) {
-            zip = component.long_name;
-        }
-    }
-
-    document.getElementById('useragencyupdateform-legaladdress').value = street_name;
-    document.getElementById('useragencyupdateform-suit').value = street_number;
-
-    document.getElementById('useragencyupdateform-cityname').value = city;
-    document.getElementById('useragencyupdateform-state').value = state;
-    document.getElementById('useragencyupdateform-zipcode').value = zip;
-}
-
-function clearAutocompleteResults() {
     const resultsContainer = document.getElementById('autocomplete-results');
-    resultsContainer.innerHTML = '';
-}
 
-document.getElementById('useragencyupdateform-legaladdress').addEventListener('input', async function() {
-    const input = this.value;
-    if (input.length > 2) {
-        let sessionToken = document.getElementById('location-from-token').value;
-        const data = await fetchAutocomplete(input, sessionToken);
-        
-        resultsContainer.classList.add('active')
-        clearAutocompleteResults();
-        if (data.predictions.length > 0) {
-            data.predictions.forEach(prediction => {
-                const item = createAutocompleteItem(prediction);
-                resultsContainer.appendChild(item);
-            });
-        }
-    } else {
-        clearAutocompleteResults();
+    async function fetchAutocomplete(input, sessionToken) {
+        const response = await fetch(`https://travelhub.by/locations-autocomplete?q=${input}&sessionToken=${sessionToken}&raw=1`);
+        const data = await response.json();
+        return data;
     }
-});
+
+    async function fetchPlaceDetails(sessionToken, placeId) {
+        const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+        const data = await response.json();
+
+        return data;
+    }
+
+    function createAutocompleteItem(prediction) {
+        const div = document.createElement('div');
+        div.className = 'autocomplete-result';
+        div.textContent = prediction.description;
+        div.dataset.placeId = prediction.place_id;
+        div.addEventListener('click', async function () {
+            document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
+            resultsContainer.classList.remove('active')
+
+            const sessionToken = document.getElementById('location-from-token').value;
+            const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id);
+
+            fillFormFields(placeDetails);
+
+            clearAutocompleteResults();
+
+        });
+        return div;
+    }
+
+    function fillFormFields(details) {
+        let addressComponents = details.address;
+        let street_number = '';
+        let city = '';
+        let state = '';
+        let zip = '';
+        let street_name = '';
+
+        for (let i = 0; i < addressComponents.length; i++) {
+            let component = addressComponents[i];
+            let types = component.types;
+
+            if (types.includes('street_number')) {
+                street_number = component.long_name;
+            }
+
+            if (types.includes('route')) {
+                street_name = component.long_name;
+            }
+
+            if (types.includes('locality')) {
+                city = component.long_name;
+            }
+
+            if (types.includes('administrative_area_level_1')) {
+                state = component.short_name;
+            }
+
+            if (types.includes('postal_code')) {
+                zip = component.long_name;
+            }
+        }
+
+        document.getElementById('useragencyupdateform-legaladdress').value = street_name;
+        document.getElementById('useragencyupdateform-suit').value = street_number;
+
+        document.getElementById('useragencyupdateform-cityname').value = city;
+        document.getElementById('useragencyupdateform-state').value = state;
+        document.getElementById('useragencyupdateform-zipcode').value = zip;
+    }
+
+    function clearAutocompleteResults() {
+        const resultsContainer = document.getElementById('autocomplete-results');
+        resultsContainer.innerHTML = '';
+    }
+
+    document.getElementById('useragencyupdateform-legaladdress').addEventListener('input', async function () {
+        const input = this.value;
+        if (input.length > 2) {
+            let sessionToken = document.getElementById('location-from-token').value;
+            const data = await fetchAutocomplete(input, sessionToken);
+
+            resultsContainer.classList.add('active')
+            clearAutocompleteResults();
+            if (data.predictions.length > 0) {
+                data.predictions.forEach(prediction => {
+                    const item = createAutocompleteItem(prediction);
+                    resultsContainer.appendChild(item);
+                });
+            }
+        } else {
+            clearAutocompleteResults();
+        }
+    });
 
 
 });
