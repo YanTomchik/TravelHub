@@ -407,55 +407,58 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
 const displayPrices = (prices, type) => {
     const allDayPrices = document.querySelectorAll('.day-price');
     allDayPrices.forEach(elem => elem.remove());
+
     // Find the minimum price
     const minPrice = Math.min(...prices.map(priceObj => priceObj.price));
     const cells = document.querySelectorAll('.air-datepicker-cell');
+
     cells.forEach(element => {
         const cellDateDay = element.getAttribute('data-date').padStart(2, '0');
         const cellDateMonth = String(Number(element.getAttribute('data-month')) + 1).padStart(2, '0');
         const cellDateYear = element.getAttribute('data-year');
-        const cellDate = `${cellDateDay}.${cellDateMonth}.${cellDateYear}`;
+        const cellDate = `${cellDateDay}.${cellDateMonth}.${cellDateYear}`
 
-        if (type === 'reRender') {
-            prices.forEach(elem => {
-                if (elem.date === cellDate) {
-                    const divR = document.createElement('div');
-                    divR.className = 'day-price';
-                    if (elem.price === minPrice) {
-                        divR.classList.add('green')
+        if(!element.classList.contains('-other-month-')){
+            if (type === 'reRender') {
+                prices.forEach(elem => {
+                    if (elem.date === cellDate) {
+                        const divR = document.createElement('div');
+                        divR.className = 'day-price';
+                        if (elem.price === minPrice) {
+                            divR.classList.add('green');
+                        }
+                        divR.innerHTML = `${elem.price}`;
+    
+                        // Check if elem.price has more than 6 characters
+                        if (elem.price.length > 6) {
+                            divR.style.fontSize = '9px';
+                        }
+    
+                        element.append(divR);
                     }
-                    divR.innerHTML = `${elem.price}`;
-        
-                    // Check if elem.price has more than 6 characters
-                    if (elem.price.length > 6) {
-                        divR.style.fontSize = '9px';
+                });
+            } else {
+                prices.forEach(elem => {
+                    if (elem.date === cellDate) {
+                        const div = document.createElement('div');
+                        div.className = 'day-price';
+                        if (elem.price === minPrice) {
+                            div.classList.add('green');
+                        }
+                        div.innerHTML = `${elem.price}`;
+    
+                        // Check if elem.price has more than 6 characters
+                        if (elem.price.length > 6) {
+                            div.style.fontSize = '9px';
+                        }
+    
+                        element.append(div);
                     }
-        
-                    element.append(divR);
-                }
-            });
-        } else {
-            prices.forEach(elem => {
-                if (elem.date === cellDate) {
-                    const div = document.createElement('div');
-                    div.className = 'day-price';
-                    if (elem.price === minPrice) {
-                        div.classList.add('green')
-                    }
-                    div.innerHTML = `${elem.price}`;
-        
-                    // Check if elem.price has more than 6 characters
-                    if (elem.price.length > 6) {
-                        div.style.fontSize = '9px';
-                    }
-        
-                    element.append(div);
-                }
-            });
+                });
+            }
         }
         
     });
-
 };
 
 function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
@@ -468,58 +471,50 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
     const handleTripButtonClick = (dp) => {
         isRange = !isRange;
         dp.update({ range: isRange });
-
+    
         const daysAfterToSend = calculateDaysAfter(dp.viewDate);
-
-        // console.log(dp.viewDate)
-
+    
         const button = dp.$datepicker.querySelector('.trip-btn');
         if (button) {
             button.classList.toggle('active', !isRange);
         }
-
-        // Проверка на две выбранные даты
+    
+        // Проверка на две выбранные даты и фокус на поле обратного билета
         if (!isRange && dp.selectedDates.length === 2) {
-            // Сброс выбранных дат
+            // Сброс только даты возврата
+            const firstDate = dp.selectedDates[0]; // Сохраняем первую выбранную дату
             dp.clear();
-
-            // Обновление полей ввода
-            datepickerInputFrom.value = '';
+            dp.selectDate(firstDate); // Снова выбираем первую дату
             datepickerInputTo.value = '';
-            selectedDate = null;
-
+    
+            // Обновление поля ввода для даты отправления
+            datepickerInputFrom.value = formatDateToString(firstDate);
+    
             // Обновление типа запроса
             typeRequest = 'start';
-
+            
             // Обновление календаря с новой датой
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
-        }else if(dp.selectedDates.length === 0){
+        } else if (dp.selectedDates.length === 0) {
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
-        }else if(isRange == false && dp.selectedDates.length === 1){
-            
-            dp.hide()
-        }else if(isRange == true && dp.selectedDates.length === 1){
-            // // Обновление типа запроса
-            
+        } else if (isRange === false && dp.selectedDates.length === 1) {
+            dp.hide();
+        } else if (isRange === true && dp.selectedDates.length === 1) {
             typeRequest = 'return';
             const viewDate = dp.viewDate;
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
-            
-        }
-        else if (!isRange && selectedDate) {
+        } else if (!isRange && selectedDate) {
             datepickerInputTo.value = '';
             typeRequest = 'start';
-            
         }
     };
-
     
-
+    
     const handleSelect = (formattedDate, date, inst) => {
         if (formattedDate.date[0] !== undefined) {
             selectedDate = formatDateToString(formattedDate.date[0]);
@@ -565,7 +560,13 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
                 }
             }
             //Check how it work
-            typeRequest = 'start'
+
+            if(document.activeElement == datepickerInputTo){
+                typeRequest = 'return'
+            }else{
+                typeRequest = 'start'
+            }
+
             const dateToSend = selectedDate ? selectedDate : formatDateToString(today);
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
             datepicker.setViewDate(viewDate);
@@ -637,6 +638,8 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         typeWay = 'one';
     }
 
+    let selectedDate = null; // Переменная для хранения выбранной даты
+
     const locale = MAIN_LANGUAGE === 'ru' ? localeRu : localeEn;
 
     const renderCell = (dates, date, cellType) => {
@@ -671,6 +674,8 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
     };
 
     const onTripButtonClick = (dp) => {
+
+        selectedDate = dp.selectedDates;
         dp.clear();
         isRange = !isRange;
         dp.update({
@@ -684,8 +689,11 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
                 button.classList.toggle('active', !isRange);
             }
             dp.show()
+
+            dp.selectDate(selectedDate)
             
         }, 0);
+        
 
         getFlightCharterCalendar(typeWay)
             .then(response => updateCalendar(dp, response.from));
@@ -1034,7 +1042,6 @@ searchBtnFlight.addEventListener('click', () => {
     clearFlightCache('flightCache_');
 })
 
-
 function clearAllCache() {
     // console.log('clearCache')
     clearFlightCache('flightCache_');
@@ -1085,10 +1092,11 @@ function clearDatepickerValue(){
     datepickerInputFrom.value = "";
     datepickerInputTo.value = "";
     isRange = true;
+    datepicker.clear();
     datepicker.update({
         range: isRange
     });
-    datepicker.clear();
+    
 }
 
 datepickerInputFrom.addEventListener('click', () => {
@@ -1107,6 +1115,18 @@ datepickerInputTo.addEventListener('click', () => {
         if(isMobileFlag == false){
             datepickerInputTo.focus()
         }
+    }
+
+    // console.log('click input to')
+    // console.log(isRange)
+    if(!isRange){
+        datepicker.update({ range: true });
+
+        const button = datepicker.$datepicker.querySelector('.trip-btn');
+        if (button) {
+            button.classList.toggle('active', !isRange);
+        }
+
     }
     
 });
