@@ -62,7 +62,7 @@
 
 .price-table th:first-child,
 .price-table td:first-child {
-    border-left: none;
+    /* border-left: none; */
 }
 
 .price-table th {
@@ -173,6 +173,7 @@
     display: flex;
     align-items: center;
     padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .compare-table-avia-container {
@@ -308,5 +309,11 @@
 
     .compare-table-avia-container{
         display: none;
+    }
+}
+
+@media (max-width: 1300px) {
+    .price-table td {
+        font-size: 14px;
     }
 }
