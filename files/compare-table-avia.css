@@ -300,3 +300,13 @@
 .plane-icon.return{
     transform: rotate(180deg);
 }
+
+@media (max-width: 770px) {
+    .compare-table-tickets{
+        display: none;
+    }
+
+    .compare-table-avia-container{
+        display: none;
+    }
+}
