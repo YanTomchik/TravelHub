@@ -528,7 +528,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
     
                 // Центрирование карты на маркере и установка зума
               map.setCenter(marker.position);
-              map.setZoom(15);
+              map.setZoom(17);
     
                 toggleContentVisibility();
                 buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
