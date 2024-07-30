@@ -267,13 +267,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         return new Date(year, month - 1, day);
     }
 
-    $('#flightsearchform-locationfrom').on('change', function () {
-        fetchDataMatrix();
+    $('#flightsearchform-locationfrom').on('change', async function () {
+        await fetchDataMatrix();
     
     })
     
-    $('#flightsearchform-locationto').on('change', function () {
-        fetchDataMatrix();
+    $('#flightsearchform-locationto').on('change', async function () {
+        await fetchDataMatrix();
     })
 
 });
