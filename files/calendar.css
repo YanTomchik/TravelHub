@@ -1251,7 +1251,7 @@ position: relative;
     border-right: 1px solid #E4E6EE;
 }
 
-.date-inputs-wrapper .date-inputs-item.left:focus{
+.date-inputs-wrapper .date-inputs-item.left.active{
   border-radius: 6px 0px 0px 6px;
   border-left: 1px solid #3968BF;
     border-top: 1px solid #3968BF;
@@ -1267,7 +1267,7 @@ position: relative;
     border-right: 1px solid #E4E6EE;
 }
 
-.date-inputs-wrapper .date-inputs-item.right:focus{
+.date-inputs-wrapper .date-inputs-item.right.active{
   border-radius:0px 6px 6px 0px;
   border-left: 1px solid #3968BF;
     border-top: 1px solid #3968BF;

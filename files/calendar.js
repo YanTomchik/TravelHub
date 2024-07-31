@@ -525,11 +525,13 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         } else if (formattedDate.date[0] !== undefined) {
             handleFirstDateSelect(formattedDate);
         }
+        
     };
 
     const handleFirstDateSelect = (formattedDate) => {
         if(isMobileFlag == false){
-            datepickerInputTo.focus()
+            // datepickerInputTo.focus()
+            setActiveInput(datepickerInputTo)
         }
         datepicker.show();
         datepickerInputFrom.value = formattedDate.formattedDate[0];
@@ -625,6 +627,9 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         },
         onChangeViewDate: function ({ month, year }) {
             handleChangeViewDate({ month, year });
+        },
+        onHide: function(inst) {
+            setActiveInput()
         }
     });
 
@@ -722,7 +727,8 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
             if (formattedDate.date[0] !== undefined) {
                 if (formattedDate.date[1] == undefined) {
                     if(isMobileFlag == false){
-                        datepickerInputTo.focus()
+                        // datepickerInputTo.focus()
+                        setActiveInput(datepickerInputTo)
                     }
                     datepicker.show();
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
@@ -1099,21 +1105,21 @@ function clearDatepickerValue(){
     
 }
 
-datepickerInputFrom.addEventListener('click', () => {
-    
-    datepicker.show();
+datepickerInputFrom.addEventListener('click', (event) => {
     
     if(isMobileFlag == false){
-        datepickerInputFrom.focus()
+        // datepickerInputFrom.focus()
+        setActiveInput(datepickerInputFrom)
     }
 });
 
-datepickerInputTo.addEventListener('click', () => {
+datepickerInputTo.addEventListener('click', (event) => {
     if (datepickerInputFrom.value) {
         datepicker.show();
 
         if(isMobileFlag == false){
-            datepickerInputTo.focus()
+            // datepickerInputTo.focus()
+            setActiveInput(datepickerInputTo)
         }
     }
 
@@ -1142,3 +1148,13 @@ document.addEventListener('click', function(event) {
         
     }
 });
+
+
+function setActiveInput(elem) {
+    datepickerInputFrom.classList.remove('active');
+    datepickerInputTo.classList.remove('active');
+    if(elem != undefined){
+        elem.classList.add('active');
+    }
+    
+}
