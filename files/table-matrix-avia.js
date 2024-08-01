@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
     
-
     const todayDate = new Date(); // Current date
     const extratextSearchMatrix = document.getElementById('extratextSearchMatrix')
 
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let selectedDepartureDate = null;
     let selectedReturnDate = null;
 
-    await fetchDataMatrix();
+    // await fetchDataMatrix();
 
     async function fetchDataMatrix() {
 
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // console.log(dateFromFetch)
         // console.log(dateToFetch)
         const apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${USER_CURRENCY}`;
-        // console.log('Fetching data from:', apiUrl); // Debug log
+        console.log('Fetching data from:', apiUrl); // Debug log
 
         const response = await fetch(apiUrl, {
             headers: {
@@ -267,12 +266,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return new Date(year, month - 1, day);
     }
 
-    $('#flightsearchform-locationfrom').on('change', async function () {
-        await fetchDataMatrix();
-    
-    })
-    
-    $('#flightsearchform-locationto').on('change', async function () {
+    document.querySelector('.btn.btn-primary.search-btn').addEventListener('click',async ()=>{
         await fetchDataMatrix();
     })
 
