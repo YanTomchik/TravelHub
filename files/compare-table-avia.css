@@ -8,6 +8,21 @@
     color: #585858;
 }
 
+.price-table a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.price-table a:hover,
+.price-table a:focus {
+    color: #fff!important; 
+    text-decoration: none; 
+}
+
+.price-table td.cheap a:hover{
+    color: #3D7B50!important;
+}
+
 .highlighted-top {
     background-color: blue !important;
     color: white !important;
@@ -43,6 +58,7 @@
     line-height: 24px;
     letter-spacing: 0.0025em;
     text-align: left;
+    display: none;
 }
 
 .price-table {
@@ -108,6 +124,7 @@
     background-color: #ebf8ee;
     box-shadow: 0 0 5px 0 rgba(13, 25, 43, 0.16);
 }
+
 
 .price-table td.cheap.highlight-column.highlight-row.highlight-cell {
     color: #3D7B50;
@@ -201,9 +218,10 @@
 .compare-table-avia-header-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 32px 32px 24px 32px;
     border-bottom: 1px solid #E4E6EE;
+
 }
 
 /* New styles added */

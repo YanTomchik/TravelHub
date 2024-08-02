@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    
-
     const todayDate = new Date(); // Current date
-    const extratextSearchMatrix = document.getElementById('extratextSearchMatrix')
+    const extratextSearchMatrix = document.getElementById('extratextSearchMatrix');
 
     let tableData, departureDates, returnDates;
     const maxColumns = 7; // Number of columns to display at once
@@ -16,21 +14,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentStartDate = null;
     let currentEndDate = null;
 
-    // await fetchDataMatrix();
-
     async function fetchDataMatrix() {
-
         document.getElementById('loader-compare-table').style.display = 'block';
         
         let locationFrom = $('#flightsearchform-locationfrom').val();
-        let locationTo = $('#flightsearchform-locationto').val()
-        const dateFromFetch = formatDate(currentStartDate)
-        const dateToFetch = formatDate(currentEndDate)
+        let locationTo = $('#flightsearchform-locationto').val();
+        const dateFromFetch = formatDate(currentStartDate);
+        const dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
 
-        // console.log(dateFromFetch)
-        // console.log(dateToFetch)
-        const apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${USER_CURRENCY}`;
-        // console.log('Fetching data from:', apiUrl); // Debug log
+        let apiUrl;
+        if (dateToFetch) {
+            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${USER_CURRENCY}`;
+        } else {
+            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&currency=${USER_CURRENCY}&date=${dateFromFetch}`;
+        }
 
         const response = await fetch(apiUrl, {
             headers: {
@@ -40,60 +37,68 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const data = await response.json();
         tableData = data.result;
-        // console.log(tableData);
 
-        departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
-        returnDates = [...new Set(tableData.map(item => item.to))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
+        if (dateToFetch) {
+            departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
+            returnDates = [...new Set(tableData.map(item => item.to))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
 
-        // Add missing dates to make sure there are at least maxColumns dates
-        while (departureDates.length < maxColumns) {
-            const lastDate = new Date(departureDates[departureDates.length - 1].split('.').reverse().join('-'));
-            lastDate.setDate(lastDate.getDate() + 1);
-            departureDates.push(formatDate(lastDate));
-        }
-        while (returnDates.length < maxColumns) {
-            const lastDate = new Date(returnDates[returnDates.length - 1].split('.').reverse().join('-'));
-            lastDate.setDate(lastDate.getDate() + 1);
-            returnDates.push(formatDate(lastDate));
+            // Add missing dates to make sure there are at least maxColumns dates
+            while (departureDates.length < maxColumns) {
+                const lastDate = new Date(departureDates[departureDates.length - 1].split('.').reverse().join('-'));
+                lastDate.setDate(lastDate.getDate() + 1);
+                departureDates.push(formatDate(lastDate));
+            }
+            while (returnDates.length < maxColumns) {
+                const lastDate = new Date(returnDates[returnDates.length - 1].split('.').reverse().join('-'));
+                lastDate.setDate(lastDate.getDate() + 1);
+                returnDates.push(formatDate(lastDate));
+            }
+        } else {
+            departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
         }
 
         renderTable();
         document.getElementById('loader-compare-table').style.display = 'none';
     }
 
+    function getGuests() {
+        return document.getElementById('guests').value;
+    }
+
     function renderTable() {
         theadRow.innerHTML = '';
         tbody.innerHTML = '';
+
+        let locationFrom = $('#flightsearchform-locationfrom').val();
+        let locationTo = $('#flightsearchform-locationto').val();
 
         // Insert Departure Dates into the table header
         const visibleDepartureDates = departureDates.slice(0, maxColumns);
         visibleDepartureDates.forEach(date => {
             const th = document.createElement('th');
-            const formatedDateToDisplay = formatDisplayDate(date);
+            const formattedDateToDisplay = formatDisplayDate(date);
 
-            if (['Sat', 'Sun', 'сб', 'вс'].includes(formatedDateToDisplay.split(',')[0])) {
-                th.innerHTML = `<div><span class='red'>${formatedDateToDisplay.split(',')[0]}</span>${formatedDateToDisplay.split(',')[1]}</div>`;
+            if (['Sat', 'Sun', 'сб', 'вс'].includes(formattedDateToDisplay.split(',')[0])) {
+                th.innerHTML = `<div><span class='red'>${formattedDateToDisplay.split(',')[0]}</span>${formattedDateToDisplay.split(',')[1]}</div>`;
             } else {
-                th.innerHTML = `<div><span>${formatedDateToDisplay.split(',')[0]}</span>${formatedDateToDisplay.split(',')[1]}</div>`;
+                th.innerHTML = `<div><span>${formattedDateToDisplay.split(',')[0]}</span>${formattedDateToDisplay.split(',')[1]}</div>`;
             }
 
             theadRow.appendChild(th);
         });
 
-        // Insert Return Dates and corresponding Prices
-        const visibleReturnDates = returnDates.slice(0, maxColumns);
-        let minPrice = Infinity;
-        let minPriceCell = null;
-
-        visibleReturnDates.forEach(retDate => {
-            const tr = document.createElement('tr');
+        if (!currentEndDate) { // One-way flight case
+            const priceRow = document.createElement('tr');
+            let minPrice = Infinity;
+            let minPriceCell = null;
 
             visibleDepartureDates.forEach(depDate => {
                 const td = document.createElement('td');
-                const priceData = tableData.find(item => item.from === depDate && item.to === retDate);
+                const priceData = tableData.find(item => item.from === depDate && item.to === null);
 
                 if (priceData) {
-                    td.textContent = `${priceData.price.toFixed(2)} ${priceData.currency}`;
+                    const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=null&guests=${getGuests()}&run=1`;
+                    td.innerHTML = `<a href="${priceUrl}" target="_blank" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${priceData.currency}</a>`;
                     td.classList.add('price');
 
                     if (priceData.price < minPrice) {
@@ -104,37 +109,81 @@ document.addEventListener('DOMContentLoaded', async () => {
                     td.textContent = '-';
                 }
 
-                // Add click event listener to each cell
                 td.addEventListener('click', () => {
                     selectedDepartureDate = depDate;
-                    selectedReturnDate = retDate;
 
-                    datepicker.selectDate([parseDate(selectedDepartureDate), parseDate(selectedReturnDate)]);
-                    extratextSearchMatrix.classList.add('active')
-
-                    // console.log(`Selected Departure Date: ${parseDate(selectedDepartureDate)}`);
-                    // console.log(`Selected Return Date: ${parseDate(selectedReturnDate)}`);
+                    datepicker.selectDate([parseDate(selectedDepartureDate)]);
+                    extratextSearchMatrix.classList.add('active');
                 });
 
-                tr.appendChild(td);
+                priceRow.appendChild(td);
             });
 
-            const th = document.createElement('th');
-            const formatedDateRetToDisplay = formatDisplayDate(retDate);
+            tbody.appendChild(priceRow);
 
-            if (['Sat', 'Sun', 'сб', 'вс'].includes(formatedDateRetToDisplay.split(',')[0])) {
-                th.innerHTML = `<div><span class='red'>${formatedDateRetToDisplay.split(',')[0]}</span>${formatedDateRetToDisplay.split(',')[1]}</div>`;
-            } else {
-                th.innerHTML = `<div><span>${formatedDateRetToDisplay.split(',')[0]}</span>${formatedDateRetToDisplay.split(',')[1]}</div>`;
+            // Highlight the cell with the minimum price
+            if (minPriceCell) {
+                minPriceCell.classList.add('cheap');
+            }
+            document.querySelector('.vertical-controls').style.opacity = '0';
+        } else {
+            // Insert Return Dates and corresponding Prices
+            const visibleReturnDates = returnDates.slice(0, maxColumns);
+            let minPrice = Infinity;
+            let minPriceCell = null;
+
+            visibleReturnDates.forEach(retDate => {
+                const tr = document.createElement('tr');
+
+                visibleDepartureDates.forEach(depDate => {
+                    
+                    const td = document.createElement('td');
+                    const priceData = tableData.find(item => item.from === depDate && item.to === retDate);
+
+                    if (priceData) {
+                        const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;
+                        td.innerHTML = `<a href="${priceUrl}" target="_blank">${priceData.price.toFixed(2)} ${priceData.currency}</a>`;
+                        td.classList.add('price');
+
+                        if (priceData.price < minPrice) {
+                            minPrice = priceData.price;
+                            minPriceCell = td;
+                        }
+                    } else {
+                        td.textContent = '-';
+                    }
+
+                    // Add click event listener to each cell
+                    td.addEventListener('click', () => {
+                        selectedDepartureDate = depDate;
+                        selectedReturnDate = retDate;
+
+                        datepicker.selectDate([parseDate(selectedDepartureDate), parseDate(selectedReturnDate)]);
+                        extratextSearchMatrix.classList.add('active');
+                    });
+
+                    tr.appendChild(td);
+                });
+
+                const th = document.createElement('th');
+                const formattedDateRetToDisplay = formatDisplayDate(retDate);
+
+                if (['Sat', 'Sun', 'сб', 'вс'].includes(formattedDateRetToDisplay.split(',')[0])) {
+                    th.innerHTML = `<div><span class='red'>${formattedDateRetToDisplay.split(',')[0]}</span>${formattedDateRetToDisplay.split(',')[1]}</div>`;
+                } else {
+                    th.innerHTML = `<div><span>${formattedDateRetToDisplay.split(',')[0]}</span>${formattedDateRetToDisplay.split(',')[1]}</div>`;
+                }
+
+                tr.appendChild(th);
+                tbody.appendChild(tr);
+            });
+
+            // Highlight the cell with the minimum price
+            if (minPriceCell) {
+                minPriceCell.classList.add('cheap');
             }
 
-            tr.appendChild(th);
-            tbody.appendChild(tr);
-        });
-
-        // Highlight the cell with the minimum price
-        if (minPriceCell) {
-            minPriceCell.classList.add('cheap');
+            document.querySelector('.vertical-controls').style.opacity = '100';
         }
 
         // Add hover effect
@@ -234,14 +283,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     function formatDisplayDate(dateString) {
         const [day, month, year] = dateString.split('.').map(Number);
         const date = new Date(year, month - 1, day);
-        let formatedDate = date.toLocaleDateString('ru-RU', { weekday: 'short', month: 'short', day: 'numeric' });
+        let formattedDate = date.toLocaleDateString('ru-RU', { weekday: 'short', month: 'short', day: 'numeric' });
         if (MAIN_LANGUAGE == 'ru') {
-            formatedDate = date.toLocaleDateString('ru-RU', { weekday: 'short', month: 'short', day: 'numeric' });
+            formattedDate = date.toLocaleDateString('ru-RU', { weekday: 'short', month: 'short', day: 'numeric' });
         } else if (MAIN_LANGUAGE == 'en') {
-            formatedDate = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+            formattedDate = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
         }
 
-        return formatedDate;
+        return formattedDate;
     }
 
     const topControlsHeader = document.getElementById('topControlsHeader');
@@ -267,10 +316,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         return new Date(year, month - 1, day);
     }
 
-    document.querySelector('.btn.btn-primary.search-btn').addEventListener('click',async ()=>{
+    document.querySelector('.btn.btn-primary.search-btn').addEventListener('click', async () => {
         currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Example start date
-        currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
+        if (datepickerInputTo.value != '') {
+            currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
+        } else {
+            currentEndDate = null;
+        }
         await fetchDataMatrix();
     })
-
 });
