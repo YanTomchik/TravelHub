@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const priceData = tableData.find(item => item.from === depDate && item.to === null);
 
                 if (priceData) {
-                    const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=null&guests=${getGuests()}&run=1`;
+                    const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&run=1`;
                     td.innerHTML = `<a href="${priceUrl}" target="_blank" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${priceData.currency}</a>`;
                     td.classList.add('price');
 
