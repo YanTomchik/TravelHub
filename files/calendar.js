@@ -25,7 +25,12 @@ const localeRu = {
     timeFormat: 'HH:mm',
     firstDay: 1
 }
- 
+
+let userCurrencyTofetch = USER_CURRENCY;
+if(userCurrencyTofetch == 'KZT'){
+    userCurrencyTofetch = 'USD'
+}
+
 // Переводим даты в строки
 let todayString = formatDateToString(today);
 let typeRequest = 'start';
@@ -170,7 +175,7 @@ const setLocalStorageFlightData = (key, data) => {
 
 // Функция для генерации уникального ключа для кэширования на основе параметров запроса
 const generateCacheKey = (firstDate, codeIataFrom, codeIataTo, typeRequest, cabinClassContainer, adultCounter, childrenCounter, infantCounter) =>
-    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${USER_CURRENCY}_${cabinClassContainer}_${adultCounter}_${childrenCounter}_${infantCounter}`;
+    `flightCache_${firstDate}_${codeIataFrom}_${codeIataTo}_${typeRequest}_${userCurrencyTofetch}_${cabinClassContainer}_${adultCounter}_${childrenCounter}_${infantCounter}`;
 
 // Функция для получения кэшированных данных из локального хранилища с проверкой срока действия
 const getCachedDataCharterFlights = (codeIataFrom, codeIataTo) => {
@@ -375,7 +380,7 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
         cabinClass: `${cabinClassContainer}`,
         daysBefore: `${daysBefore}`,
         daysAfter: `${daysAfter}`,
-        currency: `${USER_CURRENCY}`
+        currency: `${userCurrencyTofetch}`
     });
 
     const headers = new Headers();

@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentStartDate = null;
     let currentEndDate = null;
 
+    let tableDataTocheck = null;
+    let userCurrencyTofetch = USER_CURRENCY;
+
     async function fetchDataMatrix() {
         document.getElementById('loader-compare-table').style.display = 'block';
         
@@ -22,12 +25,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const dateFromFetch = formatDate(currentStartDate);
         const dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
 
+        if(userCurrencyTofetch == 'KZT'){
+            userCurrencyTofetch = 'USD'
+        }
+
         let apiUrl;
         if (dateToFetch) {
-            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${USER_CURRENCY}`;
+            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${userCurrencyTofetch}`;
         } else {
-            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&currency=${USER_CURRENCY}&date=${dateFromFetch}`;
+            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&currency=${userCurrencyTofetch}&date=${dateFromFetch}`;
         }
+        // console.log(apiUrl)
 
         const response = await fetch(apiUrl, {
             headers: {
@@ -37,6 +45,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const data = await response.json();
         tableData = data.result;
+        tableDataTocheck = tableData;
+        // console.log(tableData)
 
         if (dateToFetch) {
             departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
@@ -91,14 +101,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             const priceRow = document.createElement('tr');
             let minPrice = Infinity;
             let minPriceCell = null;
+            
 
             visibleDepartureDates.forEach(depDate => {
                 const td = document.createElement('td');
                 const priceData = tableData.find(item => item.from === depDate && item.to === null);
 
                 if (priceData) {
+                    let currencySymbol = priceData.currency;
+                    if(currencySymbol == 'USD'){
+                        currencySymbol = '$'
+                    }
                     const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&run=1`;
-                    td.innerHTML = `<a href="${priceUrl}" target="_blank" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${priceData.currency}</a>`;
+                    td.innerHTML = `<a href="${priceUrl}" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
                     td.classList.add('price');
 
                     if (priceData.price < minPrice) {
@@ -141,8 +156,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const priceData = tableData.find(item => item.from === depDate && item.to === retDate);
 
                     if (priceData) {
+                        let currencySymbol = priceData.currency;
+                        if(currencySymbol == 'USD'){
+                            currencySymbol = '$'
+                        }
                         const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;
-                        td.innerHTML = `<a href="${priceUrl}" target="_blank">${priceData.price.toFixed(2)} ${priceData.currency}</a>`;
+                        td.innerHTML = `<a href="${priceUrl}">${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
                         td.classList.add('price');
 
                         if (priceData.price < minPrice) {
@@ -303,8 +322,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         rightControlsHeader.textContent = 'Return';
     }
 
-    document.querySelector('.compare-table-tickets').addEventListener('click', () => {
+    document.querySelector('.compare-table-tickets').addEventListener('click', async () => {
         document.getElementById('compare-table-avia-container').classList.toggle('active');
+
+        if(tableDataTocheck == null){
+            currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Example start date
+            if (datepickerInputTo.value != '') {
+                currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
+            } else {
+                currentEndDate = null;
+            }
+            await fetchDataMatrix();
+        }
+
     });
 
     document.querySelector('.compare-table-avia-header-wrapper .close-btn').addEventListener('click', () => {
