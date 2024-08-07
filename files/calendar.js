@@ -414,7 +414,9 @@ const displayPrices = (prices) => {
 
 };
 
-
+let lastSelectDateCheck = null;
+let sameDateSelectFlag = false;
+let formatSameDate = null;
 
 function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
@@ -471,6 +473,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
     const handleSelect = (formattedDate, date, inst) => {
         allDates = []
+        console.log(formattedDate)
         if (formattedDate.date[0] !== undefined) {
             selectedDate = formatDateToString(formattedDate.date[0]);
         }
@@ -480,9 +483,12 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         } else if (formattedDate.date[0] !== undefined) {
             handleFirstDateSelect(formattedDate);
         }
+
+        
     };
 
     const handleSecondDateSelect = (formattedDate) => {
+        
         const firstDateToSend = formatDateToString(formattedDate.date[0]);
         const daysAfterToSend = calculateDaysAfter(formattedDate.date[0]);
         updateCalendarDates(datepicker, firstDateToSend, daysAfterToSend, codeIataFrom, codeIataTo);
@@ -516,6 +522,26 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
             datepicker.setViewDate(viewDate);
+            
+            document.querySelectorAll('.air-datepicker-cell.-day-').forEach(elem =>{
+                elem.addEventListener('click', (cell)=>{
+                    // console.log(cell)
+                    // console.log(lastSelectDateCheck)
+                    // console.log(datepicker.selectedDates.length)
+                    if(lastSelectDateCheck == cell.target.dataset && datepicker.selectedDates.length < 2){
+                        // console.log(cell.target.dataset)
+                        // console.log(new Date(`${cell.target.dataset.month}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
+                        sameDateSelectFlag = true;
+                        formatSameDate = formatDateToString(new Date(`${Number(cell.target.dataset.month)+1}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
+                        // console.log(formatSameDate)
+                        datepicker.hide()
+                        
+                    }
+                    lastSelectDateCheck = cell.target.dataset;
+                })
+            })
+            
+            
         }
     };
 
@@ -532,6 +558,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             setActiveInput(datepickerInputTo);
         }
         datepicker.show();
+        
         datepickerInputFrom.value = formattedDate.formattedDate[0];
 
         const firstDateToSend = formatDateToString(formattedDate.date[0]);
@@ -540,6 +567,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         typeRequest = 'return';  // Set request type to 'return'
 
         currentWeek = 0; // Reset the current week
+        
         await loadNextWeek(formattedDate.date[0].getMonth() + 1, formattedDate.date[0].getFullYear(), typeRequest, true, firstDateToSend); // Load data for the first week and clear previous prices
         startWeeklyLoading(formattedDate.date[0].getMonth() + 1, formattedDate.date[0].getFullYear(), typeRequest, firstDateToSend); // Start weekly data loading
     };
@@ -665,7 +693,10 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             handleSelect(formattedDate, date, inst);
         },
         onShow: function (inst) {
+            sameDateSelectFlag = false
             handleShow(inst);
+
+            
         },
         onChangeViewDate: function ({ month, year }) {
             handleChangeViewDate({ month, year });
@@ -673,6 +704,12 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         onHide: function (inst) {
             setActiveInput();
             // allDates = []
+            if(sameDateSelectFlag == true){
+                datepickerInputFrom.value = formatSameDate
+                datepickerInputTo.value = formatSameDate
+            }
+
+            
         }
     });
 

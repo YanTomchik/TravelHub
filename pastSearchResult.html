@@ -47,7 +47,7 @@
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.2/air-datepicker.min.js"></script>
 
 <!-- NEW -->
-<link rel="stylesheet" href="./files/compare-table-avia.css">
+<link rel="stylesheet" href="./files/past-search.css">
 <!-- NEW -->
 
 <script src="./files/moment.min.js"></script>
@@ -1908,8 +1908,8 @@ button.disabled {
                                                 <div class="form-group field-hotel-book-checkin-date">
                                                     <label class="control-label" for="hotel-book-checkin-date">Когда</label>
                                                     <div class="date-inputs-wrapper twoway" id="hotel-book-checkin-date-kvdate">
-                                                        <input type="text" class="date-inputs-item left datepicker-avia-from" placeholder="Туда" autocomplete="off" value="02.08.2024">
-                                                        <input type="text" class="date-inputs-item right datepicker-avia-to" placeholder="Обратно" autocomplete="off" value="09.08.2024">
+                                                        <input type="text" class="date-inputs-item left datepicker-avia-from" placeholder="Туда" autocomplete="off" value="10.08.2024">
+                                                        <input type="text" class="date-inputs-item right datepicker-avia-to" placeholder="Обратно" autocomplete="off" value="17.08.2024">
                                                         <span class="remove-datepicker-date" id="remove-datepicker-date">
                                                             <img src="./images/cross-icon.svg" alt="Cross-btn">
                                                         </span>
@@ -2024,7 +2024,7 @@ button.disabled {
                                         </div>
                                     </div>
                                     <div class="search-btn-block col-search-button">
-                                        <button type="submit" class="btn btn-primary search-btn">Поиск</button>
+                                        <div type="submit" class="btn btn-primary search-btn">Поиск</div>
                                     </div>
                                     <!-- NEW -->
                                     <div class="extratext-search-matrix-wrapper" id="extratextSearchMatrix">
@@ -2043,6 +2043,7 @@ button.disabled {
                                     </div>
                                 </div>
                             </form>
+                            <input type="hidden" id="guests" value="W3siYWR1bHRzIjoxLCJjaGlsZHJlbiI6MCwiaW5mYW50cyI6MH1d">
                         </div>
                     </div>
                 </div>
@@ -2418,6 +2419,7 @@ button.disabled {
                                 </thead>
                                 <tbody id="price-table-body">
                                     <!-- Return Dates and Prices will be inserted here dynamically -->
+                                     <div class="check"></div>
                                 </tbody>
                             </table>
                         </div>
@@ -14731,7 +14733,7 @@ input:checked + span.qq-slider:after {
 </a>
 <script>const HOST_URL = "https://travelhub.by/";</script>
 <script>const MAIN_LANGUAGE = "ru";</script>
-<script>const USER_CURRENCY = "BYN";</script>
+<script>const USER_CURRENCY = "KZT";</script>
 <script>
     var KTAppSettings = {
         "breakpoints": {
