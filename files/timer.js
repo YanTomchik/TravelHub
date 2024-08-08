@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const delay = 20 * 60 * 1000; // Таймер на 20 минут
-    // const delay = 1000; 
+    const delay = 1000; 
     const overlay = document.getElementById('overlayTimer');
     const popup = document.getElementById('popupTimer');
     const refreshButton = document.getElementById('refreshTimer');
     const closeButton = document.getElementById('closeTimer');
 
     let timer;
-
 
     const texts = {
         en: {
@@ -65,8 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
         startTimer();
     });
 
-
-    startTimer();
+    
+    document.querySelector('.btn.btn-primary.search-btn').addEventListener('click', function() {
+        startTimer();  
+    });
 });
 
 function getGuests() {
