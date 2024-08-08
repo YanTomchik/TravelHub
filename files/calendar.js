@@ -514,6 +514,20 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
                 typeRequest = 'start'
             }
 
+            document.querySelectorAll('.air-datepicker-cell.-day-').forEach(elem =>{
+                elem.addEventListener('click', (cell)=>{
+                    console.log(lastSelectDateCheck)
+                    console.log(datepicker.selectedDates.length)
+                    // && datepicker.selectedDates.length < 2
+                    if(lastSelectDateCheck == cell.target.dataset ){
+                        sameDateSelectFlag = true;
+                        formatSameDate = formatDateToString(new Date(`${Number(cell.target.dataset.month)+1}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
+                        datepicker.hide()
+                    }
+                    lastSelectDateCheck = cell.target.dataset;
+                })
+            })
+
             const month = inst.viewDate ? inst.viewDate.getMonth() + 1 : new Date().getMonth() + 1;
             const year = inst.viewDate ? inst.viewDate.getFullYear() : new Date().getFullYear();
             currentWeek = 0; // Сбрасываем текущую неделю при открытии календаря
@@ -523,23 +537,6 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
             datepicker.setViewDate(viewDate);
             
-            document.querySelectorAll('.air-datepicker-cell.-day-').forEach(elem =>{
-                elem.addEventListener('click', (cell)=>{
-                    // console.log(cell)
-                    // console.log(lastSelectDateCheck)
-                    // console.log(datepicker.selectedDates.length)
-                    if(lastSelectDateCheck == cell.target.dataset && datepicker.selectedDates.length < 2){
-                        // console.log(cell.target.dataset)
-                        // console.log(new Date(`${cell.target.dataset.month}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
-                        sameDateSelectFlag = true;
-                        formatSameDate = formatDateToString(new Date(`${Number(cell.target.dataset.month)+1}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
-                        // console.log(formatSameDate)
-                        datepicker.hide()
-                        
-                    }
-                    lastSelectDateCheck = cell.target.dataset;
-                })
-            })
             
             
         }
@@ -694,8 +691,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
         },
         onShow: function (inst) {
             sameDateSelectFlag = false
-            handleShow(inst);
-
+            handleShow(inst);            
             
         },
         onChangeViewDate: function ({ month, year }) {
