@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const delay = 1000; 
+    // const delay = 1000; 
+    const delay = 20 * 60 * 1000;
     const overlay = document.getElementById('overlayTimer');
     const popup = document.getElementById('popupTimer');
     const refreshButton = document.getElementById('refreshTimer');
