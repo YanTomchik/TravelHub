@@ -24,3 +24,4 @@ $(document).on('click', '.filter-apply-btn-mobile', function () {
     $.fancybox.close();
     $('.filters-block').appendTo('.filters-block-container');
 });
+

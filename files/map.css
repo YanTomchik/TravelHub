@@ -292,11 +292,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #E7EDF8;
-  color: #3968BF;
-  padding: 8px 16px;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 12px;
+  height: 40px;
   border-radius: 12px;
   cursor: pointer;
+  min-width: fit-content;
 }
 
 .result-amount-map-search-wrapper.hotel-open{
@@ -307,7 +309,7 @@
 
 .result-amount-map-search-description{
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 18px;
 
 }
@@ -609,6 +611,22 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     height: calc(3.1em + 2px);
   }
 
+  .navbar-filters-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filters-btn-mobile{
+    display: none;
+  }
+
+  .search-result-block.air-tickets .filter-select-block .select-button{
+    border: none;
+    height: 40px;
+    padding: 0px;
+  }
+
   @keyframes rotation {
   0% {
       transform: rotate(0deg);
@@ -621,9 +639,20 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   @media (max-width: 1200px){
   .map-dashboard-filter-wrapper .filters-block {
       width: 322px;
-  }  }
+  }
+
+  #filter-select-block{
+    margin-top: 0px;
+  }
+
+
+}
 
 @media (max-width: 770px) {
+
+  #filters{
+    display: none!important;
+  }
 
   button.btn.btn-primary.map-filter-apply-btn-mobile {
     display: block;
@@ -659,7 +688,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .result-amount-map-search-wrapper{
-    max-width: 200px;
+    min-width: fit-content;
   }
 
   .map-dashboard-cards-list{
@@ -765,8 +794,18 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     height: 100%;
   }
 
-  /* .gmnoprint{
-    top: 360px!important;
-  } */
+  .filters-block.filters-block-mobile{
+    display: none!important;
+  }
+
+  .navbar-filters-wrapper{
+    max-width: 100%;
+    overflow: auto;
+    /* overflow: hidden; */
+  }
+
+  .filters-btn-mobile{
+    display: flex;
+  }
 
 }

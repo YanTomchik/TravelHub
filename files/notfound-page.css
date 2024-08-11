@@ -1,0 +1,42 @@
+
+.container-notfound-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.error-message-notfound-page {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.error-image-notfound-page {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.text-notfound-page h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.button-notfound-page {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3968BF;
+    color: #fff!important;
+    text-decoration: none;
+    border-radius: 20px;
+    min-height: 40px;
+}
+
+a.button-notfound-page:not(.btn):hover{
+    background-color: #4674C8;
+    color: #fff!important;
+    cursor: pointer;
+}
