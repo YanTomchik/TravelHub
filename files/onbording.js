@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     $('#country-id').select2();
+    let selectElement = document.getElementById('country-id');
+    
 
     const tokenDaData = "dad0ce47c0043f8e93e60bfccf2170303f5a5c3b";
     const tokenIpInfo = '0c80f44623564d';
@@ -10,11 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`https://ipinfo.io/json?token=${tokenIpInfo}`);
             const data = await response.json();
             const countryCode = data.country;
-
+    
             if (countryCode) {
                 const $countrySelect = $('#country-id');
-                if ($countrySelect.find(`option[value="${countryCode}"]`).length > 0) {
-                    $countrySelect.val(countryCode).trigger('change.select2');
+                const $matchingOption = $countrySelect.find(`option[data-country-code="${countryCode}"]`);
+    
+                if ($matchingOption.length > 0) {
+                    // Устанавливаем значение option, соответствующего атрибуту data-country-code
+                    $countrySelect.val($matchingOption.val()).trigger('change.select2');
                 } else {
                     console.log("Country code not found in select options.");
                 }
@@ -22,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Ошибка:', error);
         }
-    };
+    };    
 
     const fetchCompanyInfo = async (country, taxId) => {
         let apiUrl, options = {
@@ -57,7 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const autofillCompanyInfo = (data) => {
         if (data) {
-            const country = $('#country-id').val();
+            // const country = $('#country-id').val();
+            let selectedOption = selectElement.options[selectElement.selectedIndex];
+            let country = selectedOption.getAttribute('data-country-code');
             const dataCompany = (country === 'BY' || country === 'RU' || country === 'KZ') ? data.suggestions[0].data : data.results.company;
 
             const fieldsMapping = {
@@ -125,9 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleTaxIdChange = async (event) => {
+        
         const taxId = event.target.value;
-        const country = $('#country-id').val();
-        const data = await fetchCompanyInfo(country, taxId);
+        let selectedOption = selectElement.options[selectElement.selectedIndex];
+        let countryCode = selectedOption.getAttribute('data-country-code');
+        const data = await fetchCompanyInfo(countryCode, taxId);
         console.log(data)
         autofillCompanyInfo(data);
     };
@@ -135,17 +144,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('useragencyupdateform-taxidentificationnumber').addEventListener('change', handleTaxIdChange);
 
     $('#country-id').on('change', function () {
-        const selectedValue = $(this).val();
+        let selectedOption = selectElement.options[selectElement.selectedIndex];
+        let countryCode = selectedOption.getAttribute('data-country-code');
+
+        // const selectedValue = $(this).val();
         const elementsToToggle = {
             US: ['#stateField', '#routingnumber', '#accountnumber'],
             others: ['#bank-swift', '#bank-iban', '#bank-name']
         };
 
-        elementsToToggle.US.forEach(el => $(el).toggle(selectedValue === 'US'));
-        elementsToToggle.others.forEach(el => $(el).toggle(selectedValue !== 'US'));
+        elementsToToggle.US.forEach(el => $(el).toggle(countryCode === 'US'));
+        elementsToToggle.others.forEach(el => $(el).toggle(countryCode !== 'US'));
 
         const bankInfoClassList = document.getElementById('bank-info-state-change').classList;
-        if (selectedValue === 'US') {
+        if (countryCode === 'US') {
             bankInfoClassList.add('inputs-boarding-wrapper', 'two');
         } else {
             bankInfoClassList.remove('inputs-boarding-wrapper', 'two');
@@ -257,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchPlaceDetails = async (sessionToken, placeId) => {
         const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+        console.log(response)
         return await response.json();
     };
 
@@ -279,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fillFormFields = (details) => {
+        console.log(details)
         const addressComponents = details.address;
         const addressMapping = {
             street_number: '',
