@@ -151,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let countryCode = selectedOption.getAttribute('data-country-code');
 
         const elementsToToggle = {
-            US: ['#stateField', '#routingnumber', '#accountnumber'],
-            others: ['#bank-swift', '#bank-iban', '#bank-name']
+            US: ['.field-useragencyupdateform-state', '.field-useragencyupdateform-routingnumber', '.field-useragencyupdateform-accountnumber'],
+            others: ['.field-useragencyupdateform-bankidentificationcode', '.field-useragencyupdateform-bankaccount', '.field-useragencyupdateform-bankname']
         };
 
         elementsToToggle.US.forEach(el => $(el).toggle(countryCode === 'US'));
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bankInfoClassList.add('inputs-boarding-wrapper', 'two');
         }
     }
-
+  
     $('#country-id').on('change', updateFieldsBasedOnCountry);
 
     const validateAndFetch = async (input, type) => {
