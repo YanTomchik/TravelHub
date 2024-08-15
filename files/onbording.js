@@ -206,15 +206,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     const handleValidation = (data, input) => {
-        const feedback = input.nextElementSibling;
         if (data.Status === 'Valid') {
-            feedback.textContent = `Is valid.`;
-            feedback.style.color = 'green';
+            input.classList.remove('is-invalid')
+            input.classList.add('is-valid')
         } else {
-            feedback.textContent = `Is invalid.`;
-            feedback.style.color = 'red';
+            input.classList.add('is-invalid')
+            input.classList.remove('is-valid')
         }
-        feedback.style.display = 'block';
+        
     };
 
     const insertSwiftInfo = (data) => {
@@ -285,6 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const sessionToken = document.getElementById('location-from-token').value;
             const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id);
 
+            console.log(placeDetails)
+
             fillFormFields(placeDetails);
             clearAutocompleteResults();
         });
@@ -308,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 addressMapping[type] = component.long_name;
             }
         });
+        console.log(addressMapping)
 
         document.getElementById('useragencyupdateform-legaladdress').value = addressMapping.route;
         document.getElementById('useragencyupdateform-suit').value = addressMapping.street_number;
