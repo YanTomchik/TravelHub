@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("Country code not found in select options.");
                 }
             }
+
+            updateFieldsBasedOnCountry();
         } catch (error) {
             console.error('Ошибка:', error);
         }
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('useragencyupdateform-legaladdress').value = addressComponents[mapping.streetName] || '';
             document.getElementById('useragencyupdateform-zipcode').value = addressComponents[mapping.zipCode] || '';
             document.getElementById('useragencyupdateform-suit').value = addressComponents[mapping.streetNumber] || '';
-            document.getElementById('useragencyupdateform-cityname').value = addressComponents[mapping.cityName] || '';
+            document.getElementById('useragencyupdateform-city').value = addressComponents[mapping.cityName] || '';
         }
     };
 
@@ -143,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('useragencyupdateform-taxidentificationnumber').addEventListener('change', handleTaxIdChange);
 
-    $('#country-id').on('change', function () {
+    function updateFieldsBasedOnCountry() {
+        const selectElement = document.getElementById('country-id');
         let selectedOption = selectElement.options[selectElement.selectedIndex];
         let countryCode = selectedOption.getAttribute('data-country-code');
 
-        // const selectedValue = $(this).val();
         const elementsToToggle = {
             US: ['#stateField', '#routingnumber', '#accountnumber'],
             others: ['#bank-swift', '#bank-iban', '#bank-name']
@@ -156,13 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
         elementsToToggle.US.forEach(el => $(el).toggle(countryCode === 'US'));
         elementsToToggle.others.forEach(el => $(el).toggle(countryCode !== 'US'));
 
-        const bankInfoClassList = document.getElementById('bank-info-state-change').classList;
+        const bankInfoClassList = $('#bank-info-state-change').removeClass('inputs-boarding-wrapper two');
         if (countryCode === 'US') {
             bankInfoClassList.add('inputs-boarding-wrapper', 'two');
-        } else {
-            bankInfoClassList.remove('inputs-boarding-wrapper', 'two');
         }
-    });
+    }
+
+    $('#country-id').on('change', updateFieldsBasedOnCountry);
 
     const validateAndFetch = async (input, type) => {
         if (!input) return;
@@ -267,6 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fetchPlaceDetails = async (sessionToken, placeId) => {
+        console.log(placeId)
+        console.log(sessionToken)
         const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
         console.log(response)
         return await response.json();
@@ -278,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         div.textContent = prediction.description;
         div.dataset.placeId = prediction.place_id;
         div.addEventListener('click', async () => {
+            console.log(prediction)
             document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
             resultsContainer.classList.remove('active');
 
@@ -342,5 +347,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     setCountryByIP();
+
+    const fieldIds = [
+        'useragencyupdateform-taxidentificationnumber',
+        'useragencyupdateform-legalname',
+        'useragencyupdateform-supervisorname',
+        'useragencyupdateform-supervisorjobtitle',
+        'useragencyupdateform-legaladdress',
+        'useragencyupdateform-suit',
+        'useragencyupdateform-city',
+        'useragencyupdateform-state',
+        'useragencyupdateform-zipcode',
+        'useragencyupdateform-bankidentificationcode',
+        'useragencyupdateform-bankname',
+        'useragencyupdateform-bankaccount',
+        'useragencyupdateform-routingnumber',
+        'useragencyupdateform-accountnumber',
+        'useragencyupdateform-website',
+        'useragencyupdateform-travelbudget'
+    ];
+
+    function isVisible(element) {
+        return window.getComputedStyle(element).display !== 'none';
+    }
+
+    function areFieldsFilled() {
+
+        for (let id of fieldIds) {
+            const field = document.getElementById(id);
+            if (field) {
+
+                if (isVisible(field.parentElement)) {
+                    if (field.value.trim() === '') {
+                        return false;
+                    }
+                }
+
+
+            }
+        }
+        return true;
+    }
+
+    function toggleSubmitButton() {
+        const submitButton = document.getElementById('user_update_submit');
+        if (submitButton) {
+            if (areFieldsFilled()) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+    }
+
+    fieldIds.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            field.addEventListener('input', toggleSubmitButton);
+        }
+    });
+
+    toggleSubmitButton();
 
 });
