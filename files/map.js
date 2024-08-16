@@ -19,7 +19,6 @@ function triggerInputEvent(element) {
     cancelable: true
   });
   element.dispatchEvent(event);
-  // console.log(element);
 }
 
 const CACHE_EXPIRY_MS = 3600000; // 1 hour cache expiry
@@ -82,8 +81,8 @@ async function fetchMarkerData(formDataFromRequest) {
         formData.append("PropertySearchForm[location]", `${locationInfo}`);
         formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
       }else{
-        formData.append("PropertySearchForm[location]", "179892");
-        formData.append("PropertySearchForm[partner]", "11090");
+        formData.append("PropertySearchForm[location]", "48");
+        formData.append("PropertySearchForm[partner]", "11115");
       }
       formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
@@ -118,7 +117,7 @@ async function fetchMarkerData(formDataFromRequest) {
 }
 
 async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
-  // console.log(propertyId);
+
   marker.element.querySelector('.map-marker-description').classList.add('white-marker-text');
   marker.element.querySelector('.loader-icon-marker').style.display = 'inline-block';
 
@@ -154,8 +153,8 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
         formData.append("PropertySearchForm[location]", `${locationInfo}`);
         formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
       }else{
-        formData.append("PropertySearchForm[location]", "179892");
-        formData.append("PropertySearchForm[partner]", "11090");
+        formData.append("PropertySearchForm[location]", "48");
+        formData.append("PropertySearchForm[partner]", "11115");
       }
       formData.append("PropertySearchForm[checkinDate]", "27.8.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
@@ -170,10 +169,6 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
   const cacheKey = generateCacheKey(`property_${propertyId}`);
   const cachedData = getCachedData(cacheKey);
 
-  // formData.forEach((value, key) => {
-  //   console.log(`${key}: ${value}`);
-  // });
-
   if (cachedData) {
     marker.element.querySelector('.loader-icon-marker').style.display = 'none';
     return cachedData;
@@ -186,7 +181,6 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       method: 'POST',
       body: formData
     });
-    // console.log(response);
     const data = await response.json();
     setCachedData(cacheKey, data);
     marker.element.querySelector('.loader-icon-marker').style.display = 'none';
@@ -217,11 +211,9 @@ function updateLeftBlockWithMarkerData(markerData) {
     const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
     // leftBlock.innerHTML = ''
     buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
-    // console.log(markerInfo)
     leftBlock.scrollTop = 0;
   });
 }
-
 
 async function fetchMarkerDataWithinBounds(existingMarkers) {
   const formData = new FormData();
@@ -247,8 +239,8 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
       formData.append("PropertySearchForm[location]", `${locationInfo}`);
       formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
     }else{
-      formData.append("PropertySearchForm[location]", "179892");
-      formData.append("PropertySearchForm[partner]", "11090");
+      formData.append("PropertySearchForm[location]", "48");
+      formData.append("PropertySearchForm[partner]", "11115");
     }
     // Использование предопределенных значений
     formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
@@ -258,8 +250,7 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
   }
 
   // Добавляем первые 30 идентификаторов маркеров в параметр PropertySearchForm[propertyId][]
-  const markerIds = existingMarkers.slice(0, 30);
-  // console.log(markerIds)
+  const markerIds = existingMarkers.slice(0, 30);\
   markerIds.forEach(id => formData.append("PropertySearchForm[propertyId][]", id));
   formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
 
@@ -271,7 +262,6 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
       body: formData
     });
     const data = await response.json();
-    // console.log(data)
     return data; // Предполагается, что данные маркеров находятся в поле `data` ответа
   } catch (error) {
     console.error('Error fetching marker data within bounds:', error);
@@ -312,8 +302,8 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
         formData.append("PropertySearchForm[location]", `${locationInfo}`);
         formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
       }else{
-        formData.append("PropertySearchForm[location]", "179892");
-        formData.append("PropertySearchForm[partner]", "11090");
+        formData.append("PropertySearchForm[location]", "48");
+        formData.append("PropertySearchForm[partner]", "11115");
       }
       formData.append("PropertySearchForm[checkinDate]", "27.08.2024");
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
@@ -353,7 +343,6 @@ let offset = 31;
 const limit = 30;
 
 async function lazyLoadLeftBlock() {
-  // console.log(loaderDiv.style.display)
   //if (loaderDivCardsList.style.display !== 'none') return; // Не загружать данные, если уже идет загрузка
   loaderDivCardsList.style.display = 'block';
 
@@ -382,8 +371,6 @@ async function lazyLoadLeftBlock() {
 leftBlock.addEventListener('scroll', () => {
   if (leftBlock.scrollTop + leftBlock.clientHeight >= leftBlock.scrollHeight) {
     const countOfHotelsHeader = Number(headerMapCountElement.textContent.split(' ')[0]);
-    // console.log(offset)
-    // console.log(countOfHotelsHeader)
 
     if (offset < countOfHotelsHeader) {
       lazyLoadLeftBlock();
@@ -432,7 +419,6 @@ async function initMap(formData, typeRender, mapActiverHotel) {
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const markerData = await fetchMarkerData(formData);
-  // console.log(markerData)
 
   const { data: markerDataObj, latitude_с: latC, longitude_с: lngC, currency: markerDataCurrencyName, count: markerDataCountHotels } = markerData;
 
@@ -542,22 +528,17 @@ async function initMap(formData, typeRender, mapActiverHotel) {
           }
     }
 
-
-
     marker.addListener("click", async () => {
       const propertyId = marker.title;
-
       const propertyData = await fetchPropertyData(propertyId, formData, marker);
-      // console.log(propertyData)
-      const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
-
+      const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly, id } = propertyData.data[0];
+      
       const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
       const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
       const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
       const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
       const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
       const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
-
       const contentInfoWindow = `
         <div class="details">
           <div class="marker-popup-wrapper">
@@ -613,11 +594,8 @@ async function initMap(formData, typeRender, mapActiverHotel) {
         let offset = window.innerWidth > 1024 ? -90 : (window.innerWidth <= 1024 && window.innerWidth >= 770) ? -130 : 0;
         centerMapZoom(offset, map, marker);
 
-        // console.log(target)
         const markerPopupHeaderWrapper = target.querySelector('.marker-popup-header-wrapper').outerHTML;
         const markerPopupFooterInfo = target.querySelector('.marker-popup-footer-info').outerHTML;
-        // console.log(markerPopupHeaderWrapper)
-        // console.log(markerPopupFooterInfo)
         const contentInfoWindow = `
         <div class="details">
           <div class="marker-popup-wrapper">
@@ -868,8 +846,6 @@ mapShowSearch.addEventListener('click', function () {
     mapHotelId =  hotelInfoBlock.dataset.propertyId;
     locationInfo =  mapShowSearch.dataset.location;
     partnerinfo =  mapShowSearch.dataset.partner;
-    console.log(locationInfo)
-    console.log(partnerinfo)
   }
    const renderType =  mapShowSearch.dataset.rendertype;
   mapDashboardWrapper.classList.toggle('active');
@@ -1001,7 +977,6 @@ function reInitMap() {
 
     for (const pair of newformData) {
       newSearchParams.append(pair[0], pair[1]);
-      // console.log(pair[0], pair[1])
     }
     newSearchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
     initMap(newSearchParams, typeRender)
@@ -1013,8 +988,8 @@ function reInitMap() {
       formData.append("PropertySearchForm[location]", `${locationInfo}`);
       formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
     }else{
-      formData.append("PropertySearchForm[location]", "179892");
-      formData.append("PropertySearchForm[partner]", "11090");
+      formData.append("PropertySearchForm[location]", "48");
+      formData.append("PropertySearchForm[partner]", "11115");
     }
     newformData.append("PropertySearchForm[checkinDate]", "27.08.2024");
     newformData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
