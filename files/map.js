@@ -250,7 +250,7 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
   }
 
   // Добавляем первые 30 идентификаторов маркеров в параметр PropertySearchForm[propertyId][]
-  const markerIds = existingMarkers.slice(0, 30);\
+  const markerIds = existingMarkers.slice(0, 30);
   markerIds.forEach(id => formData.append("PropertySearchForm[propertyId][]", id));
   formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
 
