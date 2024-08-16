@@ -8,6 +8,8 @@ const mapCardsListBottomWrapper = document.querySelector('.map-dashboard-main-wr
 const headerMapCountElement = document.querySelector('.map-dashboard-filter-header-description');
 const leftBlock = document.querySelector('.map-dashboard-cards-list');
 const mobileFilterApplyBtn = document.querySelector('.btn.btn-primary.map-filter-apply-btn-mobile');
+const nationalityField = document.querySelector('.field-propertysearchform-nationality');
+
 const bodyTag = document.body;
 
 let layoutDev = (typeof implemented === 'undefined');
@@ -54,7 +56,6 @@ async function fetchMarkerData(formDataFromRequest) {
 
   } else {
 
-
     if (!layoutDev) {
       // get search params
       const form = document.getElementById('properties-search-form');
@@ -73,11 +74,15 @@ async function fetchMarkerData(formDataFromRequest) {
         searchParams.append('partner', partnerinfo);
       }
 
+      if (!searchParams.has('nationality') && typeof selectedNationality != undefined) {
+        searchParams.append('nationality', selectedNationality);
+      }
+
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
       formData = searchParams;
     } else {
       formData = new FormData();
-      if(locationInfo != undefined && partnerinfo != undefined){
+      if(locationInfo != undefined && partnerinfo != undefined ){
         formData.append("PropertySearchForm[location]", `${locationInfo}`);
         formData.append("PropertySearchForm[partner]", `${partnerinfo}`);
       }else{
@@ -88,6 +93,7 @@ async function fetchMarkerData(formDataFromRequest) {
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
       formData.append("PropertySearchForm[map]", "true");
+      formData.append("PropertySearchForm[nationality]", "AU");
     }
 
   }
@@ -147,6 +153,10 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
         formData.append('partner', partnerinfo);
       }
 
+      if (!formData.has('nationality') && typeof selectedNationality != undefined) {
+        formData.append('nationality', selectedNationality);
+      }
+
     } else {
       // Использование предопределенных значений
       if(locationInfo != undefined && partnerinfo != undefined){
@@ -160,6 +170,7 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
       formData.append("PropertySearchForm[map]", "true");
+      formData.append("PropertySearchForm[nationality]", "AU");
     }
 
     formData.append("PropertySearchForm[propertyId]", `${propertyId}`);
@@ -201,7 +212,7 @@ function updateLeftBlockWithMarkerData(markerData) {
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = markerData;
 
   dataHotelsObj.forEach(property => {
-    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly } = property;
+    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly, partnerName } = property;
 
     const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
     const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
@@ -210,7 +221,7 @@ function updateLeftBlockWithMarkerData(markerData) {
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
     const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
     // leftBlock.innerHTML = ''
-    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
     leftBlock.scrollTop = 0;
   });
 }
@@ -233,6 +244,10 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
       formData.append('partner', partnerinfo);
     }
 
+    if (!formData.has('nationality') && typeof selectedNationality != undefined) {
+      formData.append('nationality', selectedNationality);
+    }
+
   } else {
 
     if(locationInfo != undefined && partnerinfo != undefined){
@@ -247,6 +262,7 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
     formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
     formData.append("PropertySearchForm[map]", "true");
+    formData.append("PropertySearchForm[nationality]", "AU");
   }
 
   // Добавляем первые 30 идентификаторов маркеров в параметр PropertySearchForm[propertyId][]
@@ -294,6 +310,10 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
         searchParams.append('partner', partnerinfo);
       }
 
+      if (!searchParams.has('nationality') && typeof selectedNationality != undefined) {
+        searchParams.append('nationality', selectedNationality);
+      }
+
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
       formData = searchParams;
     } else {
@@ -309,6 +329,7 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
       formData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
       formData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 2 }]));
       formData.append("PropertySearchForm[map]", "true");
+      formData.append("PropertySearchForm[nationality]", "AU");
       if (offset !== undefined && limit !== undefined) {
         formData.append("PropertySearchForm[offset]", `${offset}`);
         formData.append("PropertySearchForm[limit]", `${limit}`);
@@ -350,7 +371,7 @@ async function lazyLoadLeftBlock() {
   const { data: dataHotelsObj, currency: currencyName, count: countHotels } = newItems;
 
   dataHotelsObj.forEach((property) => {
-    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly } = property;
+    const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, id, url, stars, priceTotal, priceNightly, partnerName } = property;
 
     const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
     const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
@@ -359,7 +380,7 @@ async function lazyLoadLeftBlock() {
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
     const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
 
-    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+    buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
   });
 
   offset += limit;
@@ -470,7 +491,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
             (async () => {
               try {
                 const propertyData = await fetchPropertyData(id, formData, marker);
-                const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly } = propertyData.data[0];
+                const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly, partnerName} = propertyData.data[0];
       
                 const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
                 const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
@@ -495,6 +516,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                           </a>
                           <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
                           <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+                          <div class="marker-popup-partnername-description">${partnerName}</div>
                           ${availableRoomsBlock}
                           ${quiQuoBlock}
                         </div>
@@ -517,7 +539,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
               map.setZoom(17);
     
                 toggleContentVisibility();
-                buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+                buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
                 marker.element.querySelector('.property').classList.add("highlight");
     
     
@@ -531,7 +553,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
     marker.addListener("click", async () => {
       const propertyId = marker.title;
       const propertyData = await fetchPropertyData(propertyId, formData, marker);
-      const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly, id } = propertyData.data[0];
+      const { name, latitude, longitude, refundable, rating, priceNet, priceStrike, availableRooms, quiQuo, image, url, stars, priceTotal, priceNightly, id, partnerName } = propertyData.data[0];
       
       const flagRefundableText = refundable ? (translationsHub?.fullRefund ?? 'Полный возврат') : '';
       const ratingBlock = rating > 0 ? `<div class="marker-popup-header-description-rate">${rating}</div><div class="marker-popup-header-description">${translationsHub?.guestRating ?? 'Рейтинг гостей'}</div>` : '';
@@ -555,6 +577,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                 </a>
                 <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
                 <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+                <div class="marker-popup-partnername-description">${partnerName}</div>
                 ${availableRoomsBlock}
                 ${quiQuoBlock}
               </div>
@@ -575,7 +598,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
       infoWindow.open(map, marker);
 
       toggleContentVisibility();
-      buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock);
+      buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
       marker.element.querySelector('.property').classList.add("highlight");
     });
 
@@ -659,7 +682,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
 }
 /////
 
-function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+function buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName) {
 
   const content = document.createElement("div");
   content.classList.add("map-dashboard-card-item");
@@ -681,6 +704,7 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
         </a>
         <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
         <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+        <div class="marker-popup-partnername-description">${partnerName}</div>
         ${availableRoomsBlock}
         ${quiQuoBlock}
       </div>
@@ -780,7 +804,7 @@ function buildContent(price, currencyName) {
   return content;
 }
 
-function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock) {
+function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, image, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName) {
   headerMapCountElement.innerHTML = `${countHotels} ${translationsHub?.numberOfHotels ?? 'отеля в этой области'}`;
 
   mapCardsListBottomWrapper.innerHTML = `
@@ -796,6 +820,7 @@ function buildBottomContent(name, stars, priceTotal, priceNightly, id, url, imag
           </div>
           <div class="marker-popup-header-description-wrapper">${ratingBlock}</div>
           <div class="marker-popup-refundable-description">${flagRefundableText}</div>
+          <div class="marker-popup-partnername-description">${partnerName}</div>
           ${availableRoomsBlock}
           ${quiQuoBlock}
         </div>
@@ -840,6 +865,7 @@ const mapDashboardWrapper = document.querySelector('.map-dashboard-main-wrapper-
 let mapHotelId = undefined;
 let locationInfo = undefined;
 let partnerinfo = undefined;
+let selectedNationality = undefined;
 
 mapShowSearch.addEventListener('click', function () {
   if(hotelInfoBlock){
@@ -847,7 +873,11 @@ mapShowSearch.addEventListener('click', function () {
     locationInfo =  mapShowSearch.dataset.location;
     partnerinfo =  mapShowSearch.dataset.partner;
   }
-   const renderType =  mapShowSearch.dataset.rendertype;
+  if(nationalityField){
+    selectedNationality = $('#propertysearchform-nationality').val();
+  }
+
+  const renderType =  mapShowSearch.dataset.rendertype;
   mapDashboardWrapper.classList.toggle('active');
   bodyTag.style.overflow = 'hidden';
   initMap(undefined,renderType,mapHotelId)
@@ -995,6 +1025,7 @@ function reInitMap() {
     newformData.append("PropertySearchForm[checkoutDate]", "30.08.2024");
     newformData.append("PropertySearchForm[guests]", JSON.stringify([{ "adults": 3 }]));
     newformData.append("PropertySearchForm[map]", "true");
+    formData.append("PropertySearchForm[nationality]", "AU");
     initMap(newformData, typeRender)
 
   }
