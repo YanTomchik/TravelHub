@@ -269,12 +269,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fetchPlaceDetails = async (sessionToken, placeId) => {
-        console.log(placeId)
-        console.log(sessionToken)
-        const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
-        console.log(response)
-        return await response.json();
+        try {
+            const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+        }
     };
+    
 
     const createAutocompleteItem = (prediction) => {
         const div = document.createElement('div');
@@ -282,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         div.textContent = prediction.description;
         div.dataset.placeId = prediction.place_id;
         div.addEventListener('click', async () => {
-            console.log(prediction)
             document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
             resultsContainer.classList.remove('active');
 
@@ -318,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('useragencyupdateform-legaladdress').value = addressMapping.route;
         document.getElementById('useragencyupdateform-suit').value = addressMapping.street_number;
-        document.getElementById('useragencyupdateform-cityname').value = addressMapping.locality;
+        document.getElementById('useragencyupdateform-city').value = addressMapping.locality;
         document.getElementById('useragencyupdateform-state').value = addressMapping.administrative_area_level_1;
         document.getElementById('useragencyupdateform-zipcode').value = addressMapping.postal_code;
     };
