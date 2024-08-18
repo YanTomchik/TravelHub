@@ -153,6 +153,7 @@ function showResult(result) {
       const clientBirthday = document.getElementById('client-birthday');
       const clientLastnameEn = document.getElementById('client-lastnameen');
       const clientFirstnameEn = document.getElementById('client-firstnameen');
+      let index = 1
       // Динамически формируем id для элементов
       const clientDocsExpireAt = document.getElementById(`client-docs-${index}-expireat`);
       const clientDocsNumber = document.getElementById(`client-docs-${index}-number`);

@@ -2602,17 +2602,11 @@
                                                                     </div>
                                                         
                                                                     <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
+                                                                    <input type="file" hidden id="cameraInput" accept="image/*" capture="environment" />
                                                                 </div>
                                                                 <div class="output-wrapper">
                                                                     <div id="parsed"></div>
                                                                     <div id="detected"></div>
-                                                                    <!-- Video element for live camera preview -->
-                                                                    <video id="video" width="320" height="240" autoplay style="display: none;"></video>
-                                                                    <!-- Button to capture the photo -->
-                                                                    <button id="capture" style="display: none;" class="scanner-btn">Capture</button>
-                                                                    <!-- Canvas element for taking the snapshot -->
-                                                                    <canvas id="canvas" style="display: none;" class="scanner-btn"></canvas>
-                                                        
                                                                 </div>
                                                             </div>
                                                             <!-- NEW -->
