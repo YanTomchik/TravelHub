@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сделать фото с камеры</title>
+</head>
+<body>
+  <h1>Сделай фото с камеры</h1>
+  
+  <form>
+    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+    <button type="button" onclick="openCamera()">Сделать фото</button>
+  </form>
+  
+  <div id="photoContainer"></div>
+
+  <script>
+    function openCamera() {
+      document.getElementById('cameraInput').click();
+    }
+
+    document.getElementById('cameraInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '100%';
+          document.getElementById('photoContainer').innerHTML = '';
+          document.getElementById('photoContainer').appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
