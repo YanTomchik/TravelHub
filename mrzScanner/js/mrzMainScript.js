@@ -410,7 +410,10 @@ function initWorker(type, index) {
         break;
 
       case 'error':
-        document.querySelector('.progress').classList.remove('visible');
+        // document.querySelectorAll('.progress').classList.remove('visible');
+        document.querySelectorAll('.progress').forEach(elem=>{
+          elem.classList.remove('visible');
+        })
         console.log(data);
         setTimeout(function () {
           window.alert(data.error);
@@ -418,7 +421,9 @@ function initWorker(type, index) {
         break;
 
       case 'result':
-        document.querySelector('.progress').classList.remove('visible');
+        document.querySelectorAll('.progress').forEach(elem=>{
+          elem.classList.remove('visible');
+        })
         showResult(data.result, type, index);
         break;
 
@@ -498,6 +503,7 @@ function showResult(result, type, index) {
       </div>
       <pre>${escape(info)}</pre>
     `;
+    document.querySelector('#parsed').innerHTML = html;
   } else {
     if (result.parsed.valid) {
       nationalityTourist = result.parsed.fields.nationality;
@@ -514,7 +520,6 @@ function showResult(result, type, index) {
       nationalityTourist = convertCountryCode(nationalityTourist);
 
       if (type === 'mainInfo') {
-        alert()
         const clientBirthday = document.getElementById('client-birthday');
         const clientLastnameEn = document.getElementById('client-lastnameen');
         const clientFirstnameEn = document.getElementById('client-firstnameen');
@@ -557,11 +562,6 @@ function showResult(result, type, index) {
           clientDocsNumber.value = documentNumberTourist;
         }
       }
-
-      html = `
-        <pre>${escape(JSON.stringify(result.parsed.fields, false, 4))}</pre>
-        <pre>${escape(info)}</pre>
-      `;
     } else {
       if (result.parsed.details) {
         var details = [];
@@ -575,14 +575,16 @@ function showResult(result, type, index) {
           <pre>${JSON.stringify(details, false, 4)}</pre>
         `;
       }
+
       html = `
         <pre>Could not parse ocrized text:</pre>
         <pre>${escape(info)}</pre>
       `;
+      document.querySelector('#parsed').innerHTML = html;
     }
   }
 
-  document.querySelector('#parsed').innerHTML = html;
+  
 }
 
 function convertMRZDate(mrzDate) {
