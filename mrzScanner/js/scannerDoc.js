@@ -1,15 +1,17 @@
 const dropArea = document.querySelector(".drag-area"),
       dragText = dropArea.querySelector("header"),
-      browseButton = document.querySelector("#browseBtn"),
-      takePictureButton = document.querySelector("#takePictureBtn"),
+      browseButton = document.querySelectorAll(".browse-btn"),
+      takePictureButton = document.querySelectorAll("#takePictureBtn"),
       input = document.querySelector("#photo"),
       cameraInput = document.querySelector("#cameraInput");
 
 let file; // глобальная переменная для хранения файла
 
-browseButton.onclick = () => {
-  input.click(); // клик по input при нажатии на "Browse File"
-}
+browseButton.forEach(elem=>{
+  elem.onclick = () => {
+    input.click(); // клик по input при нажатии на "Browse File"
+  }
+})
 
 input.addEventListener("change", function(){
   file = this.files[0];
@@ -92,7 +94,24 @@ openScannerBtns.forEach(elem=>{
   elem.addEventListener('click',()=>{
     elem.nextElementSibling.classList.toggle('active')
     elem.querySelector('.arrow-icon').classList.toggle('active');
-    
-    startScannerMrzScript(elem)
+    // console.log(elem.parentElement.parentElement.parentElement)
+    let type = undefined;
+    const dataIndex = elem.parentElement.parentElement.parentElement.dataset.index;
+    const dataId = elem.parentElement.parentElement.parentElement.getAttribute('id');
+    console.log(elem.parentElement.parentElement.parentElement)
+    console.log(dataIndex)
+
+    if(dataIndex !=undefined){
+      data = dataId;
+      
+      type = 'multipleInfo'
+    }
+    if(dataId == 'main-info-scanner'){
+      data = dataIndex;
+      type = 'mainInfo'
+    }
+    console.log(type)
+    console.log(data)
+    startScannerMrzScript(type,data)
   })
 });

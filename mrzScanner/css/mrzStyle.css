@@ -12,8 +12,8 @@ div.progress.visible {
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   position: absolute;
-  top: 45%;
-  left: 50%;
+  top: 40%;
+  left: 47%;
   z-index: 9999;
 }
 
@@ -259,6 +259,10 @@ canvas{
 
 #detected{
   margin-top: 20px;
+}
+
+.scannerdoc-wrapper{
+  /* width: 100%; */
 }
 
 /* .map-dashoard-wrapper{

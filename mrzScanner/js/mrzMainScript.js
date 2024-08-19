@@ -13,7 +13,7 @@ let birthDateTourist;
 
 var worker;
 
-function initWorker() {
+function initWorker(type,data) {
 	var blob = new Blob(
     [mrz_worker.toString().replace(/^function .+\{?|\}$/g, '')],
     { type:'text/javascript' }
@@ -48,7 +48,7 @@ function initWorker() {
         if(mainInfoScanner){
           
         }
-        showResult(data.result);
+        showResult(data.result, type, data);
         break;
 
       default:
@@ -72,10 +72,9 @@ function initWorker() {
 }
 
 
-function startScannerMrzScript(elem){
-  console.log(elem)
+function startScannerMrzScript(type,data){
   try {
-    worker = initWorker();
+    worker = initWorker(type,data);
   } catch (err) {
     $('html').text(err.message);
   }
@@ -99,13 +98,15 @@ function startScannerMrzScript(elem){
 }
 
 
-function showResult(result) {
+function showResult(result, type,data) {
   var html;
   var info;
 
   function escape(t) {
     return t.replace(/</g, '&lt;');
   }
+
+  console.log(result)
 
   if (result.parsed && result.parsed.modified) {
     info = result.parsed.modified;
@@ -137,69 +138,63 @@ function showResult(result) {
       expirationDateTourist = result.parsed.fields.expirationDate;
       personalNumberTourist = result.parsed.fields.personalNumber;
 
-      console.log(nationalityTourist)
-      console.log(sexTourist)
-      console.log(lastNameTourist)
-      console.log(firstNameTourist)
-      console.log(documentNumberTourist)
-      console.log(expirationDateTourist)
-      console.log(personalNumberTourist)
-      console.log(birthDateTourist)
-
       expirationDateTourist = convertMRZDate(expirationDateTourist)
       birthDateTourist = convertMRZDate(birthDateTourist)
       nationalityTourist = convertCountryCode(nationalityTourist);
-      console.log(nationalityTourist)
+      console.log(type)
 
-      // Получаем ссылки на элементы DOM
-      const clientBirthday = document.getElementById('client-birthday');
-      const clientLastnameEn = document.getElementById('client-lastnameen');
-      const clientFirstnameEn = document.getElementById('client-firstnameen');
-      let index = 1
-      // Динамически формируем id для элементов
-      const clientDocsExpireAt = document.getElementById(`client-docs-${index}-expireat`);
-      const clientDocsNumber = document.getElementById(`client-docs-${index}-number`);
-      const clientNationalitySelect = document.getElementById('client-nationality');
-      const clientSexSelect = document.getElementById('client-sex');
+      if(type == 'mainInfo'){
+        // Получаем ссылки на элементы DOM
+        const clientBirthday = document.getElementById('client-birthday');
+        const clientLastnameEn = document.getElementById('client-lastnameen');
+        const clientFirstnameEn = document.getElementById('client-firstnameen');
+        const clientNationalitySelect = document.getElementById('client-nationality');
+        const clientSexSelect = document.getElementById('client-sex');
 
-      // Проверка наличия и присвоение значений
-      if (clientBirthday) {
-        clientBirthday.value = birthDateTourist;
+        // Проверка наличия и присвоение значений
+        if (clientBirthday) {
+          clientBirthday.value = birthDateTourist;
+        }
+
+        if (clientLastnameEn) {
+          clientLastnameEn.value = lastNameTourist;
+        }
+
+        if (clientFirstnameEn) {
+          clientFirstnameEn.value = firstNameTourist;
+        }
+
+        // Проверка наличия элемента и установка значения для nationalityTourist
+        if (clientNationalitySelect) {
+          $('#client-nationality option').each(function () {
+            if ($(this).data('country-code') === nationalityTourist) {
+              // Устанавливаем выбранное значение селекта
+              $(this).prop('selected', true);
+            }
+          });
+
+          // Обновляем селект с учетом использования Select2
+          $('#client-nationality').trigger('change.select2');
+        }
+
+        // Проверка наличия элемента и установка значения для sexTourist
+        if (clientSexSelect) {
+          $(clientSexSelect).val(sexTourist).trigger('change.select2');
+        }
+      }else{
+        // Динамически формируем id для элементов
+        const clientDocsExpireAt = document.getElementById(`client-docs-${data}-expireat`);
+        const clientDocsNumber = document.getElementById(`client-docs-${data}-number`);
+
+        if (clientDocsExpireAt) {
+          clientDocsExpireAt.value = expirationDateTourist;
+        }
+
+        if (clientDocsNumber) {
+          clientDocsNumber.value = documentNumberTourist;
+        }
       }
-
-      if (clientLastnameEn) {
-        clientLastnameEn.value = lastNameTourist;
-      }
-
-      if (clientFirstnameEn) {
-        clientFirstnameEn.value = firstNameTourist;
-      }
-
-      if (clientDocsExpireAt) {
-        clientDocsExpireAt.value = expirationDateTourist;
-      }
-
-      if (clientDocsNumber) {
-        clientDocsNumber.value = documentNumberTourist;
-      }
-
-      // Проверка наличия элемента и установка значения для nationalityTourist
-      if (clientNationalitySelect) {
-        $('#client-nationality option').each(function () {
-          if ($(this).data('country-code') === nationalityTourist) {
-            // Устанавливаем выбранное значение селекта
-            $(this).prop('selected', true);
-          }
-        });
-
-        // Обновляем селект с учетом использования Select2
-        $('#client-nationality').trigger('change.select2');
-      }
-
-      // Проверка наличия элемента и установка значения для sexTourist
-      if (clientSexSelect) {
-        $(clientSexSelect).val(sexTourist).trigger('change.select2');
-      }     
+      
 
       html = [
         '<pre>',
