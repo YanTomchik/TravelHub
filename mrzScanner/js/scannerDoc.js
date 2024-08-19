@@ -44,7 +44,10 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
 
       // Эмулируем событие change, чтобы обработчик считал, что файл был добавлен через интерфейс
       const eventChange = new CustomEvent('change', { bubbles: true });
-      input.dispatchEvent(eventChange);
+      setTimeout(() => {
+        input.dispatchEvent(eventChange);
+      }, 100); // задержка в 100 миллисекунд
+      
 
     });
   }
