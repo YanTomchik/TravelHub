@@ -16,9 +16,19 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
   if (input) {
     input.addEventListener("change", function(){
       file = this.files[0];
-      dropArea.classList.add("active");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          console.log("Файл успешно прочитан:", event.target.result);
+          dropArea.classList.add("active");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        console.log("Файл не прикреплен");
+      }
     });
   }
+  
 
 
   if (dropArea) {
