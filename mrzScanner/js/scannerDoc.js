@@ -43,8 +43,9 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
       input.files = dataTransfer.files; // Устанавливаем файл в input[type="file"]
 
       // Эмулируем событие change, чтобы обработчик считал, что файл был добавлен через интерфейс
-      const eventChange = new Event('change', { bubbles: true });
+      const eventChange = new CustomEvent('change', { bubbles: true });
       input.dispatchEvent(eventChange);
+
     });
   }
 });
