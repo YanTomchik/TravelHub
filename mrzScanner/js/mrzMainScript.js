@@ -503,7 +503,7 @@ function showResult(result, type, index) {
       </div>
       <pre>${escape(info)}</pre>
     `;
-    document.querySelector('#parsed').innerHTML = html;
+    // document.querySelector('#parsed').innerHTML = html;
   } else {
     if (result.parsed.valid) {
       nationalityTourist = result.parsed.fields.nationality;
@@ -580,7 +580,7 @@ function showResult(result, type, index) {
         <pre>Could not parse ocrized text:</pre>
         <pre>${escape(info)}</pre>
       `;
-      document.querySelector('#parsed').innerHTML = html;
+      // document.querySelector('#parsed').innerHTML = html;
     }
   }
 
