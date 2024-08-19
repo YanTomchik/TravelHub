@@ -91,6 +91,6 @@ openScannerBtns.forEach(elem=>{
     }
     console.log(type)
     console.log(dataX)
-    startScannerMrzScript(type,dataX)
+    // startScannerMrzScript(type,dataX)
   })
 });
