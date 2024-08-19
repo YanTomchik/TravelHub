@@ -501,6 +501,7 @@ function showResult(result) {
       </div>
       <pre>${escape(info)}</pre>
     `;
+    document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px;">Что-то пошло не так</h2>`;
     // document.querySelector('#parsed').innerHTML = html;
   } else {
     if (result.parsed.valid) {
@@ -523,18 +524,20 @@ function showResult(result) {
         const clientFirstnameEn = document.getElementById('client-firstnameen');
         const clientNationalitySelect = document.getElementById('client-nationality');
         const clientSexSelect = document.getElementById('client-sex');
-
         if (clientBirthday) {
           clientBirthday.value = birthDateTourist;
-        }
-
-        if (clientLastnameEn) {
+          $(clientBirthday).addClass('animated-field active'); // Добавляем класс для анимации
+      }
+  
+      if (clientLastnameEn) {
           clientLastnameEn.value = lastNameTourist;
-        }
-
-        if (clientFirstnameEn) {
+          $(clientLastnameEn).addClass('animated-field active'); // Добавляем класс для анимации
+      }
+  
+      if (clientFirstnameEn) {
           clientFirstnameEn.value = firstNameTourist;
-        }
+          $(clientFirstnameEn).addClass('animated-field active'); // Добавляем класс для анимации
+      }
 
         if (clientNationalitySelect) {
           $('#client-nationality option').each(function () {
@@ -542,23 +545,37 @@ function showResult(result) {
               $(this).prop('selected', true);
             }
           });
-          $('#client-nationality').trigger('change.select2');
+          $('#client-nationality').next().find('.selection').children().addClass('animated-field active');
+
+          $('#client-nationality').trigger('change.select2')
+          
         }
 
-        if (clientSexSelect) {
-          $(clientSexSelect).val(sexTourist).trigger('change.select2');
-        }
-      
         const clientDocsExpireAt = document.getElementById(`client-docs-0-expireat`);
         const clientDocsNumber = document.getElementById(`client-docs-0-number`);
 
-        if (clientDocsExpireAt) {
+        if (clientSexSelect) {
+          $(clientSexSelect).next().find('.selection').children().addClass('animated-field active');
+          $(clientSexSelect).val(sexTourist).trigger('change.select2')
+      }
+  
+      if (clientDocsExpireAt) {
           clientDocsExpireAt.value = expirationDateTourist;
-        }
-
-        if (clientDocsNumber) {
+          $(clientDocsExpireAt).addClass('animated-field active'); // Добавляем класс для анимации
+      }
+  
+      if (clientDocsNumber) {
           clientDocsNumber.value = documentNumberTourist;
-        }
+          $(clientDocsNumber).addClass('animated-field active'); // Добавляем класс для анимации
+      }
+
+
+  // $('.animated-field').addClass('active');
+  document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px;">Документ успешно отсканирован</h2>`;
+        // Убираем класс "active" через некоторое время, чтобы анимация могла повторяться
+    setTimeout(() => {
+      $('.animated-field').removeClass('active');
+  }, 1000); // Через 1 секунду класс убирается
       
     } else {
       if (result.parsed.details) {
@@ -578,7 +595,7 @@ function showResult(result) {
         <pre>Could not parse ocrized text:</pre>
         <pre>${escape(info)}</pre>
       `;
-      // document.querySelector('#parsed').innerHTML = html;
+      
     }
   }
 

@@ -272,6 +272,16 @@ canvas{
   border-radius: 12px;
 } */
 
+.animated-field {
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.animated-field.active {
+  background-color: #d4edda; /* светло-зеленый фон для индикации заполнения */
+  transform: scale(1.05); /* лёгкое увеличение */
+}
+
+
 
 
 @media (max-width: 770px) {

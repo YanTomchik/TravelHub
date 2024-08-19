@@ -2405,8 +2405,9 @@
                                             <!-- NEW -->
                                             <div class="scannerdoc-wrapper" data-type="mainInfo">
                                                 <div class="scannerdoc-btn-wrapper">
-                                                    <p>Сканер документов</p>
                                                     <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
+                                                    <p>Сканер документов</p>
+                                                    <img src="./files/File Folder.svg" alt="" style="width: 20px; height: 20px;">
                                                 </div>
                                         
                                                 <div class="main-scanner-container">
@@ -2470,6 +2471,7 @@
                                                                 style="width: 100%; height: 1px; visibility: hidden;"
                                                                 data-select2-id="client-nationality" tabindex="-1"
                                                                 aria-hidden="true">
+                                                                <!-- Добавить data-country-code -->
                                                                 <option value="" data-select2-id="6">Выберите
                                                                     гражданство</option>
                                                                     <option value="22" data-country-code = 'BY'>Belarus</option>
@@ -2486,7 +2488,7 @@
                                                         <div class="form-group field-client-sex">
                                                             <label class="control-label" for="client-sex">Пол</label>
                                                             <select id="client-sex"
-                                                                class="form-control form-control-solid form-control-lg select2-hidden-accessible"
+                                                                class="form-control form-control-solid form-control-lg select2-hidden-accessible "
                                                                 name="Client[sex]" data-s2-options="s2options_3267a624"
                                                                 data-krajee-select2="select2_7c8f2e63"
                                                                 style="width: 100%; height: 1px; visibility: hidden;"
@@ -2506,7 +2508,7 @@
                                                             <label class="control-label" for="client-birthday">Дата
                                                                 рождения *</label>
                                                             <input type="text" id="client-birthday"
-                                                                class="datepicker-inputmask form-control krajee-datepicker"
+                                                                class="datepicker-inputmask form-control krajee-datepicker "
                                                                 name="Client[birthDay]" autocomplete="off"
                                                                 aria-required="true"
                                                                 data-datepicker-source="client-birthday"
@@ -2537,7 +2539,7 @@
                                                             <label class="control-label"
                                                                 for="client-lastname">Фамилия</label>
                                                             <input type="text" id="client-lastname"
-                                                                class="uppercase form-control" name="Client[lastName]">
+                                                                class="uppercase form-control " name="Client[lastName]">
 
                                                             <div class="help-block"></div>
                                                         </div>
@@ -2565,7 +2567,9 @@
                                                     </div>
                                                 </div>
 
+                                                
                                                 <div class="row">
+                                                    
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="form-group field-client-lastnameen required">
                                                             <label class="control-label" for="client-lastnameen">Фамилия
@@ -2577,6 +2581,7 @@
                                                             <div class="help-block"></div>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="form-group field-client-firstnameen required">
                                                             <label class="control-label" for="client-firstnameen">Имя
