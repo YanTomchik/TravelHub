@@ -264,13 +264,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('autocomplete-results');
 
     const fetchAutocomplete = async (input, sessionToken) => {
-        const response = await fetch(`https://travelhub.by/locations-autocomplete?q=${input}&sessionToken=${sessionToken}&raw=1`);
+        const response = await fetch(`/locations-autocomplete?q=${input}&sessionToken=${sessionToken}&raw=1`);
         return await response.json();
     };
 
     const fetchPlaceDetails = async (sessionToken, placeId) => {
         try {
-            const response = await fetch(`https://travel-code.com/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+            const response = await fetch(`/place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -321,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 addressMapping[type] = component.long_name;
             }
         });
-        console.log(addressMapping)
 
         document.getElementById('useragencyupdateform-legaladdress').value = addressMapping.route;
         document.getElementById('useragencyupdateform-suit').value = addressMapping.street_number;

@@ -2608,6 +2608,9 @@
                                                                     <div id="parsed"></div>
                                                                     <div id="detected"></div>
                                                                 </div>
+                                                                <div class="progress">
+                                                                    <div class="loader-scanner"></div>
+                                                                  </div>
                                                             </div>
                                                             <!-- NEW -->
                                                         </div>
@@ -2618,42 +2621,43 @@
                                                     <div class="col-xl-12">
                                                         <h6><b>Документы</b></h6>
                                                         <div class="form-group field-client-docs">
-                                                            <div class="scannerdoc-wrapper">
-                                                                <div class="scannerdoc-btn-wrapper">
-                                                                    <p>Сканер документов</p>
-                                                                    <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
-                                                                </div>
-                                                                <!-- NEW -->
-                                                                <div class="main-scanner-container">
-                                                                    <div class="drag-area">
-                                                                        <header>Drag & Drop to Upload File OR</header>
-                                                                        <div class="scanner-btns-wrapper">
-                                                                            <div id="browseBtn" class="scanner-btn">Browse File</div>
-                                                                            <div id="takePictureBtn" class="scanner-btn">Take Picture</div>
-                                                                        </div>
                                                             
-                                                                        <div class="extra-info-description">
-                                                                            Supports: JPEG, JPG, PNG
-                                                                        </div>
-                                                            
-                                                                        <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
-                                                                    </div>
-                                                                    <div class="output-wrapper">
-                                                                        <div id="parsed"></div>
-                                                                        <div id="detected"></div>
-                                                                        <!-- Video element for live camera preview -->
-                                                                        <video id="video" width="320" height="240" autoplay style="display: none;"></video>
-                                                                        <!-- Button to capture the photo -->
-                                                                        <button id="capture" style="display: none;" class="scanner-btn">Capture</button>
-                                                                        <!-- Canvas element for taking the snapshot -->
-                                                                        <canvas id="canvas" style="display: none;" class="scanner-btn"></canvas>
-                                                            
-                                                                    </div>
-                                                                </div>
-                                                                <!-- NEW -->
-                                                            </div>
                                                             <input type="hidden" name="Client[docs]">
                                                             <div id="client-docs" class="multiple-input">
+                                                                <div class="scannerdoc-wrapper">
+                                                                    <div class="scannerdoc-btn-wrapper">
+                                                                        <p>Сканер документов</p>
+                                                                        <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
+                                                                    </div>
+                                                                    <!-- NEW -->
+                                                                    <div class="main-scanner-container">
+                                                                        <div class="drag-area">
+                                                                            <header>Drag & Drop to Upload File OR</header>
+                                                                            <div class="scanner-btns-wrapper">
+                                                                                <div id="browseBtn" class="scanner-btn">Browse File</div>
+                                                                                <div id="takePictureBtn" class="scanner-btn">Take Picture</div>
+                                                                            </div>
+                                                                
+                                                                            <div class="extra-info-description">
+                                                                                Supports: JPEG, JPG, PNG
+                                                                            </div>
+                                                                
+                                                                            <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
+                                                                        </div>
+                                                                        <div class="output-wrapper">
+                                                                            <div id="parsed"></div>
+                                                                            <div id="detected"></div>
+                                                                            <!-- Video element for live camera preview -->
+                                                                            <video id="video" width="320" height="240" autoplay style="display: none;"></video>
+                                                                            <!-- Button to capture the photo -->
+                                                                            <button id="capture" style="display: none;" class="scanner-btn">Capture</button>
+                                                                            <!-- Canvas element for taking the snapshot -->
+                                                                            <canvas id="canvas" style="display: none;" class="scanner-btn"></canvas>
+                                                                
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- NEW -->
+                                                                </div>
                                                                 <table class="multiple-input-list list-renderer table form-horizontal">
                                                                     <tbody>
                                                                         <tr class="multiple-input-list__item" data-index="1" style="">

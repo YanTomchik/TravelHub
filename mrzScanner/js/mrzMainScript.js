@@ -71,7 +71,9 @@ function initWorker() {
   return worker;
 }
 
-$(document).ready(function () {
+
+function startScannerMrzScript(elem){
+  console.log(elem)
   try {
     worker = initWorker();
   } catch (err) {
@@ -94,7 +96,7 @@ $(document).ready(function () {
       reader.readAsDataURL(e.target.files[0]);
     }
   });
-});
+}
 
 
 function showResult(result) {
@@ -269,7 +271,6 @@ function showImages(images, callback, index) {
     random: random
   });
 }
-
 
 function convertMRZDate(mrzDate) {
   // Разбиваем строку на компоненты даты

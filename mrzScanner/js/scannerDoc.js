@@ -91,6 +91,8 @@ const openScannerBtns = document.querySelectorAll('.scannerdoc-btn-wrapper')
 openScannerBtns.forEach(elem=>{
   elem.addEventListener('click',()=>{
     elem.nextElementSibling.classList.toggle('active')
-    elem.querySelector('.arrow-icon').classList.toggle('active')
+    elem.querySelector('.arrow-icon').classList.toggle('active');
+    
+    startScannerMrzScript(elem)
   })
 });
