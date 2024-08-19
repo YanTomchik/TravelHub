@@ -1,9 +1,9 @@
 const dropArea = document.querySelector(".drag-area"),
       dragText = dropArea.querySelector("header"),
       browseButton = document.querySelectorAll(".browse-btn"),
-      takePictureButton = document.querySelectorAll("#takePictureBtn"),
-      input = document.querySelector("#photo"),
-      cameraInput = document.querySelector("#cameraInput");
+      // takePictureButton = document.querySelectorAll("#takePictureBtn"),
+      input = document.querySelector("#photo");
+      // cameraInput = document.querySelector("#cameraInput");
 
 let file; // глобальная переменная для хранения файла
 
@@ -19,26 +19,26 @@ input.addEventListener("change", function(){
   // showFile(); // вызов функции показа файла
 });
 
-// Активируем камеру при нажатии на кнопку "Take Picture"
-takePictureButton.onclick = () => {
-  cameraInput.click(); // открываем камеру на мобильном устройстве
-}
+// // Активируем камеру при нажатии на кнопку "Take Picture"
+// takePictureButton.onclick = () => {
+//   cameraInput.click(); // открываем камеру на мобильном устройстве
+// }
 
-cameraInput.addEventListener("change", function() {
-  file = this.files[0];
-  dropArea.classList.add("active");
+// cameraInput.addEventListener("change", function() {
+//   file = this.files[0];
+//   dropArea.classList.add("active");
 
-  // Создаем объект DataTransfer для манипуляции с input[type="file"]
-  const dataTransfer = new DataTransfer();
-  dataTransfer.items.add(file);
-  input.files = dataTransfer.files; // Устанавливаем файл в input[type="file"]
+//   // Создаем объект DataTransfer для манипуляции с input[type="file"]
+//   const dataTransfer = new DataTransfer();
+//   dataTransfer.items.add(file);
+//   input.files = dataTransfer.files; // Устанавливаем файл в input[type="file"]
 
-  // Эмулируем событие change, чтобы обработчик считал, что файл был добавлен через интерфейс
-  const event = new Event('change', { bubbles: true });
-  input.dispatchEvent(event);
+//   // Эмулируем событие change, чтобы обработчик считал, что файл был добавлен через интерфейс
+//   const event = new Event('change', { bubbles: true });
+//   input.dispatchEvent(event);
 
-  // showFile(); // Вызываем функцию показа файла
-});
+//   // showFile(); // Вызываем функцию показа файла
+// });
 
 // Функция для отображения файла
 function showFile() {
