@@ -13,7 +13,7 @@ let birthDateTourist;
 
 var worker;
 
-function initWorker(type,data) {
+function initWorker(type,index) {
 	var blob = new Blob(
     [mrz_worker.toString().replace(/^function .+\{?|\}$/g, '')],
     { type:'text/javascript' }
@@ -48,7 +48,9 @@ function initWorker(type,data) {
         if(mainInfoScanner){
           
         }
-        showResult(data.result, type, data);
+        showResult(data.result, type, index);
+        console.log(index)
+        console.log(type)
         break;
 
       default:
@@ -72,9 +74,9 @@ function initWorker(type,data) {
 }
 
 
-function startScannerMrzScript(type,data){
+function startScannerMrzScript(type,index){
   try {
-    worker = initWorker(type,data);
+    worker = initWorker(type,index);
   } catch (err) {
     $('html').text(err.message);
   }
@@ -98,7 +100,7 @@ function startScannerMrzScript(type,data){
 }
 
 
-function showResult(result, type,data) {
+function showResult(result, type, index) {
   var html;
   var info;
 
@@ -181,10 +183,14 @@ function showResult(result, type,data) {
         if (clientSexSelect) {
           $(clientSexSelect).val(sexTourist).trigger('change.select2');
         }
-      }else{
+      }else if(type == 'multipleInfo'){
+        
         // Динамически формируем id для элементов
-        const clientDocsExpireAt = document.getElementById(`client-docs-${data}-expireat`);
-        const clientDocsNumber = document.getElementById(`client-docs-${data}-number`);
+        const clientDocsExpireAt = document.getElementById(`client-docs-${index}-expireat`);
+        const clientDocsNumber = document.getElementById(`client-docs-${index}-number`);
+
+        console.log(index)
+        console.log(clientDocsNumber)
 
         if (clientDocsExpireAt) {
           clientDocsExpireAt.value = expirationDateTourist;
