@@ -388,7 +388,7 @@ let birthDateTourist;
 
 var worker;
 
-function initWorker(type, index) {
+function initWorker(type) {
   var blob = new Blob(
     [mrz_worker.toString().replace(/^function .+\{?|\}$/g, '')],
     { type: 'text/javascript' }
@@ -424,7 +424,7 @@ function initWorker(type, index) {
         document.querySelectorAll('.progress').forEach(elem=>{
           elem.classList.remove('visible');
         })
-        showResult(data.result, type, index);
+        showResult(data.result);
         break;
 
       default:
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.attach-file').forEach((inputFile, index) => {
     inputFile.addEventListener('change', function (e) {
       const scannerWrapper = inputFile.closest('.scannerdoc-wrapper');
-      const type = scannerWrapper.dataset.type || 'default';
+      
       console.log(scannerWrapper)
       if (scannerWrapper) {
         scannerWrapper.querySelector('.detected').innerHTML = '';
@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var reader = new FileReader();
         reader.onload = function (e) {
           scannerWrapper.querySelector('.progress').classList.add('visible');
-          worker = initWorker(type, index);  // Инициализируем Worker с type и index
+          worker = initWorker();  // Инициализируем Worker с type и index
           worker.postMessage({
             cmd: 'process',
             image: e.target.result
@@ -475,11 +475,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-function showResult(result, type, index) {
+function showResult(result) {
   var html;
   var info;
-
-  console.log(type)
 
   function escape(t) {
     return t.replace(/</g, '&lt;');
@@ -519,7 +517,7 @@ function showResult(result, type, index) {
       birthDateTourist = convertMRZDate(birthDateTourist);
       nationalityTourist = convertCountryCode(nationalityTourist);
 
-      if (type === 'mainInfo') {
+      
         const clientBirthday = document.getElementById('client-birthday');
         const clientLastnameEn = document.getElementById('client-lastnameen');
         const clientFirstnameEn = document.getElementById('client-firstnameen');
@@ -550,9 +548,9 @@ function showResult(result, type, index) {
         if (clientSexSelect) {
           $(clientSexSelect).val(sexTourist).trigger('change.select2');
         }
-      } else if (type === 'multipleInfo') {
-        const clientDocsExpireAt = document.getElementById(`client-docs-${index}-expireat`);
-        const clientDocsNumber = document.getElementById(`client-docs-${index}-number`);
+      
+        const clientDocsExpireAt = document.getElementById(`client-docs-0-expireat`);
+        const clientDocsNumber = document.getElementById(`client-docs-0-number`);
 
         if (clientDocsExpireAt) {
           clientDocsExpireAt.value = expirationDateTourist;
@@ -561,7 +559,7 @@ function showResult(result, type, index) {
         if (clientDocsNumber) {
           clientDocsNumber.value = documentNumberTourist;
         }
-      }
+      
     } else {
       if (result.parsed.details) {
         var details = [];

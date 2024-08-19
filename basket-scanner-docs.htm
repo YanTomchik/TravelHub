@@ -2400,6 +2400,45 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <!-- NEW -->
+                                            <div class="scannerdoc-wrapper" data-type="mainInfo">
+                                                <div class="scannerdoc-btn-wrapper">
+                                                    <p>Сканер документов</p>
+                                                    <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
+                                                </div>
+                                        
+                                                <div class="main-scanner-container">
+                                                    <div class="drag-area">
+                                                        <header>Drag & Drop to Upload File OR</header>
+                                                        <div class="scanner-btns-wrapper">
+                                                            <div id="browseBtn" class="scanner-btn browse-btn">Browse File</div>
+                                                            <!-- <div id="takePictureBtn" class="scanner-btn picture-btn">Take Picture</div> -->
+                                                            <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg"
+                                                                class="attach-file" />
+                                                        </div>
+                                        
+                                                        <div class="extra-info-description">
+                                                            Supports: JPEG, JPG, PNG
+                                                        </div>
+                                        
+                                                    </div>
+                                                    <div class="output-wrapper">
+                                                        <div id="parsed" class="parsed"></div>
+                                                        <div id="detected" class="detected"></div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="loader-scanner"></div>
+                                                    </div>
+                                                </div>
+                                        
+                                            </div>
+                                            <!-- NEW -->
+                                        
+                                        </div>
+                                    </div>
+                                    
                                     <div class="row" style="margin-bottom: 20px">
                                         <div class="col-xl-12">
                                             <select id="kt_datatable_select_client"
@@ -2581,49 +2620,7 @@
                                                             <div class="help-block"></div>
                                                         </div>
                                                     </div>
-                                                    <!-- Для основной инфы надо чтобы был этот айди id="main-info-scanner"-->
-                                                    <div class="col-xl-12" >
-                                                        <table>
-                                                            <tr id="main-info-scanner">
-                                                                <td>
-                                                                    <!-- NEW -->
-                                                                    <div class="scannerdoc-wrapper" data-type="mainInfo">
-                                                                        <div class="scannerdoc-btn-wrapper">
-                                                                            <p>Сканер документов</p>
-                                                                            <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
-                                                                        </div>
-                                                                
-                                                                        <div class="main-scanner-container">
-                                                                            <div class="drag-area">
-                                                                                <header>Drag & Drop to Upload File OR</header>
-                                                                                <div class="scanner-btns-wrapper">
-                                                                                    <div id="browseBtn" class="scanner-btn browse-btn">Browse File</div>
-                                                                                    <!-- <div id="takePictureBtn" class="scanner-btn picture-btn">Take Picture</div> -->
-                                                                                    <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" class="attach-file"/>
-                                                                                </div>
-                                                                
-                                                                                <div class="extra-info-description">
-                                                                                    Supports: JPEG, JPG, PNG
-                                                                                </div>
-                                                                
-                                                                            </div>
-                                                                            <div class="output-wrapper">
-                                                                                <div id="parsed" class="parsed"></div>
-                                                                                <div id="detected" class="detected"></div>
-                                                                            </div>
-                                                                            <div class="progress">
-                                                                                <div class="loader-scanner"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                
-                                                                    </div>
-                                                                    <!-- NEW -->
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        
-                                                    </div>
-
+                                                    
                                                     <div class="col-xl-12">
                                                         <h6><b>Документы</b></h6>
                                                         <div class="form-group field-client-docs">
@@ -2633,7 +2630,7 @@
                                                                 
                                                                 <table class="multiple-input-list list-renderer table form-horizontal">
                                                                     <tbody>
-                                                                        <tr class="multiple-input-list__item" data-index="1" style="">
+                                                                        <tr class="multiple-input-list__item" data-index="0" style="">
                                                                             <td>
                                                                                 <div class="field-client-docs-1-kind list-cell__kind form-group"><label
                                                                                         class="col-sm-12 control-label" for="client-docs-1-kind">Тип документа *</label>
@@ -2660,13 +2657,13 @@
                                                                                                 class="dropdown-wrapper" aria-hidden="true"></span></span></div>
                                                                                 </div>
                                                                                 <div class="field-client-docs-1-number list-cell__number form-group"><label
-                                                                                        class="col-sm-12 control-label" for="client-docs-1-number">Серия и номер *</label>
-                                                                                    <div class="col-sm-12"><input type="text" id="client-docs-1-number" class="form-control"
+                                                                                        class="col-sm-12 control-label" for="client-docs-0-number">Серия и номер *</label>
+                                                                                    <div class="col-sm-12"><input type="text" id="client-docs-0-number" class="form-control"
                                                                                             name="Client[docs][1][number]"></div>
                                                                                 </div>
-                                                                                <input type="hidden" id="client-docs-1-id" class="document-id" name="Client[docs][1][id]">
+                                                                                <input type="hidden" id="client-docs-1-id" class="document-id" name="Client[docs][0][id]">
                                                                                 <div class="field-client-docs-1-issuedat list-cell__issuedAt form-group"><label
-                                                                                        class="col-sm-12 control-label" for="client-docs-1-issuedat">Выдан</label>
+                                                                                        class="col-sm-12 control-label" for="client-docs-0-issuedat">Выдан</label>
                                                                                     <div class="col-sm-12">
                                                                                         <div id="client-docs-1-issuedat-kvdate" class="input-group date"><span
                                                                                                 class="input-group-addon kv-date-picker" title="Выбрать дату"><i
@@ -2681,14 +2678,14 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="field-client-docs-1-expireat list-cell__expireAt form-group"><label
-                                                                                        class="col-sm-12 control-label" for="client-docs-1-expireat">Действителен, до *</label>
+                                                                                        class="col-sm-12 control-label" for="client-docs-0-expireat">Действителен, до *</label>
                                                                                     <div class="col-sm-12">
-                                                                                        <div id="client-docs-1-expireat-kvdate" class="input-group date"><span
+                                                                                        <div id="client-docs-0-expireat-kvdate" class="input-group date"><span
                                                                                                 class="input-group-addon kv-date-picker" title="Выбрать дату"><i
                                                                                                     class="glyphicon glyphicon-calendar kv-dp-icon"></i></span><span
                                                                                                 class="input-group-addon kv-date-remove" title="Очистить поле"><i
                                                                                                     class="glyphicon glyphicon-remove kv-dp-icon"></i></span><input type="text"
-                                                                                                id="client-docs-1-expireat"
+                                                                                                id="client-docs-0-expireat"
                                                                                                 class="datepicker-inputmask form-control krajee-datepicker"
                                                                                                 name="Client[docs][1][expireAt]" autocomplete="off"
                                                                                                 data-datepicker-source="client-docs-1-expireat-kvdate" data-datepicker-type="2"
@@ -2712,42 +2709,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>
-                                                                                <!-- NEW -->
-                                                                                <div class="scannerdoc-wrapper" data-type="multipleInfo">
-                                                                                    <div class="scannerdoc-btn-wrapper">
-                                                                                        <p>Сканер документов</p>
-                                                                                        <img src="./images/chevron-open-header.svg" alt="arrow-icon" class="arrow-icon">
-                                                                                    </div>
-                                                                                
-                                                                                    <div class="main-scanner-container">
-                                                                                        <div class="drag-area">
-                                                                                            <header>Drag & Drop to Upload File OR</header>
-                                                                                            <div class="scanner-btns-wrapper">
-                                                                                                <div id="browseBtn" class="scanner-btn browse-btn">Browse File</div>
-                                                                                                <input type="file" hidden id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" class="attach-file"/>
-                                                                                                
-                                                                                            </div>
-                                                                                
-                                                                                            <div class="extra-info-description">
-                                                                                                Supports: JPEG, JPG, PNG
-                                                                                            </div>
-                                                                                
-                                                                                            
-                                                                                            
-                                                                                        </div>
-                                                                                        <div class="output-wrapper">
-                                                                                            <div id="parsed" class="parsed"></div>
-                                                                                            <div id="detected" class="detected"></div>
-                                                                                        </div>
-                                                                                        <div class="progress">
-                                                                                            <div class="loader-scanner"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                
-                                                                                </div>
-                                                                                <!-- NEW -->
-                                                                            </td>
+                                                                            
                                                                             <td class="list-cell__button">
                                                                                 <div class="multiple-input-list__btn js-input-remove btn btn-danger"><i class="fa fa-times"></i>
                                                                                 </div>

@@ -70,27 +70,5 @@ openScannerBtns.forEach(elem=>{
   elem.addEventListener('click',()=>{
     elem.nextElementSibling.classList.toggle('active')
     elem.querySelector('.arrow-icon').classList.toggle('active');
-
-    document.getElementById('detected').innerHTML = ''
-    // console.log(elem.parentElement.parentElement.parentElement)
-    let type = undefined;
-    let dataX = undefined;
-    const dataIndex = elem.parentElement.parentElement.parentElement.dataset.index;
-    const dataId = elem.parentElement.parentElement.parentElement.getAttribute('id');
-    console.log(elem.parentElement.parentElement.parentElement)
-    console.log(dataIndex)
-
-    if(dataIndex !=undefined){
-      dataX = dataIndex;
-      
-      type = 'multipleInfo'
-    }
-    if(dataId == 'main-info-scanner'){
-      dataX = dataId;
-      type = 'mainInfo'
-    }
-    console.log(type)
-    console.log(dataX)
-    // startScannerMrzScript(type,dataX)
   })
 });
