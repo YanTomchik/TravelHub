@@ -80,23 +80,51 @@ function startScannerMrzScript(type,index){
   } catch (err) {
     $('html').text(err.message);
   }
-  $('#photo').on('change', function (e) {
-    $('#detected, #parsed').empty();
-//    $('#image').attr('src', '');
-    var reader = new FileReader();
-    reader.onload = function (e) {
-//      $('#image').attr('src', e.target.result);
-      $('.progress').addClass('visible');
-      $('.progress-text').text('Processing...');
-      worker.postMessage({
-        cmd: 'process',
-        image: e.target.result
-      });
-    };
-    if (e.target.files.length) {
-      reader.readAsDataURL(e.target.files[0]);
-    }
+
+  // $('#photo').on('change', function (e) {
+  //   $('#detected, #parsed').empty();
+  //   var reader = new FileReader();
+  //   reader.onload = function (e) {
+  //     $('.progress').addClass('visible');
+  //     worker.postMessage({
+  //       cmd: 'process',
+  //       image: e.target.result
+  //     });
+  //   };
+  //   if (e.target.files.length) {
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // });
+
+
+  document.querySelectorAll('.attach-file').forEach((inputFile, index) => {
+    inputFile.addEventListener('change', function (e) {
+      console.log(inputFile)
+      const scannerWrapper = inputFile.closest('.scannerdoc-wrapper');
+      console.log(scannerWrapper)
+      // Очистка результатов для конкретного сканера
+      scannerWrapper.querySelector('.detected').innerHTML = '';
+      scannerWrapper.querySelector('.parsed').innerHTML = '';
+  
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        // Отображение прогресса для конкретного сканера
+        scannerWrapper.querySelector('.progress').classList.add('visible');
+  
+        // Отправка файла в Web Worker
+        worker.postMessage({
+          cmd: 'process',
+          image: e.target.result
+        });
+      };
+  
+      if (e.target.files.length) {
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
   });
+  
+
 }
 
 
@@ -236,42 +264,42 @@ function showResult(result, type, index) {
   }
   
   // $('#parsed').html(html.join('\n'));
-  showImages(['painted']/*result.images*/);
+  // showImages(['painted']/*result.images*/);
 }
 
-function showImages(images, callback, index) {
-  if (!index) index = 0;
+// function showImages(images, callback, index) {
+//   if (!index) index = 0;
 
-  if (index >= images.length) {
-    if (callback) callback()
-    return;
-  }
+//   if (index >= images.length) {
+//     if (callback) callback()
+//     return;
+//   }
 
-  var random = Math.random();
-  worker.addEventListener('message', function showImage(e) {
-    var data = e.data;
-    if (data.type == 'image' && data.random == random) {
-      worker.removeEventListener('message', showImage);
-      var imageData = new ImageData(data.rgba, data.width, data.height);
-      var canvas = document.createElement('canvas');
-      canvas.width = data.width;
-      canvas.height = data.height;
-      var ctx = canvas.getContext('2d');
-      ctx.putImageData(imageData, 0, 0);
-      $(canvas).attr('title', data.name);
-      $('#detected').append(canvas);
-      setTimeout(function () {
-        showImages(images, callback, index + 1);
-      });
-    }
-  }, false);
+//   var random = Math.random();
+//   worker.addEventListener('message', function showImage(e) {
+//     var data = e.data;
+//     if (data.type == 'image' && data.random == random) {
+//       worker.removeEventListener('message', showImage);
+//       var imageData = new ImageData(data.rgba, data.width, data.height);
+//       var canvas = document.createElement('canvas');
+//       canvas.width = data.width;
+//       canvas.height = data.height;
+//       var ctx = canvas.getContext('2d');
+//       ctx.putImageData(imageData, 0, 0);
+//       $(canvas).attr('title', data.name);
+//       $('#detected').append(canvas);
+//       setTimeout(function () {
+//         showImages(images, callback, index + 1);
+//       });
+//     }
+//   }, false);
 
-  worker.postMessage({
-    cmd: 'get-image',
-    image: images[index],
-    random: random
-  });
-}
+//   worker.postMessage({
+//     cmd: 'get-image',
+//     image: images[index],
+//     random: random
+//   });
+// }
 
 function convertMRZDate(mrzDate) {
   // Разбиваем строку на компоненты даты
@@ -345,4 +373,3 @@ const countryCodes = {
 function convertCountryCode(alpha3Code) {
   return countryCodes[alpha3Code] || alpha3Code; // Если нет соответствия, возвращаем исходный код
 }
-

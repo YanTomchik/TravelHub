@@ -272,6 +272,8 @@ canvas{
   border-radius: 12px;
 } */
 
+
+
 @media (max-width: 770px) {
   .main-scanner-container {
     width: 100%;
@@ -284,5 +286,14 @@ canvas{
 
   #takePictureBtn {
     display: flex;
+  }
+
+  #touristChangeModal tbody .multiple-input-list__item .list-cell__button{
+    top: -50px;
+    right: -50px;
+  }
+
+  tfoot tr td:first-child{
+    display: none;
   }
 }
