@@ -281,7 +281,10 @@ canvas{
   transform: scale(1.05); /* лёгкое увеличение */
 }
 
-
+.scanner-btn-icon{
+  width: 20px;
+  height: 20px;
+}
 
 
 @media (max-width: 770px) {

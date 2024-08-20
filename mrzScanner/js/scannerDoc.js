@@ -4,12 +4,11 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
         browseButton = scannerWrapper.querySelector(".browse-btn"),
         input = scannerWrapper.querySelector(".attach-file");
 
-  let file; // локальная переменная для хранения файла в контексте одного сканера
+  let file;
 
-  // Проверяем наличие элементов перед добавлением обработчиков
   if (browseButton && input) {
     browseButton.onclick = () => {
-      input.click(); // клик по input при нажатии на "Browse File"
+      input.click(); 
     };
   }
 
@@ -29,11 +28,9 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
     });
   }
   
-
-
   if (dropArea) {
     dropArea.addEventListener("dragover", (event) => {
-      event.preventDefault(); // Предотвращение стандартного поведения
+      event.preventDefault();
       dropArea.classList.add("active");
       dragText.textContent = "Release to Upload File";
     });
@@ -44,25 +41,22 @@ document.querySelectorAll(".scannerdoc-wrapper").forEach((scannerWrapper) => {
     });
 
     dropArea.addEventListener("drop", (event) => {
-      event.preventDefault(); // Предотвращение стандартного поведения
+      event.preventDefault();
       file = event.dataTransfer.files[0];
 
-      // Создаем объект DataTransfer для манипуляции с input[type="file"]
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
-      input.files = dataTransfer.files; // Устанавливаем файл в input[type="file"]
+      input.files = dataTransfer.files; 
 
-      // Эмулируем событие change, чтобы обработчик считал, что файл был добавлен через интерфейс
       const eventChange = new CustomEvent('change', { bubbles: true });
       setTimeout(() => {
         input.dispatchEvent(eventChange);
-      }, 100); // задержка в 100 миллисекунд
+      }, 100);
       
 
     });
   }
 });
-
 
 const openScannerBtns = document.querySelectorAll('.scannerdoc-btn-wrapper')
 
