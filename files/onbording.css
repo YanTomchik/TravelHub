@@ -45,6 +45,10 @@
     width: 50%;
 }
 
+.inputs-boarding-wrapper .form-group{
+    width: 100%;
+}
+
 .inputs-boarding-wrapper.three .form-group {
     width: 33%;
 }
