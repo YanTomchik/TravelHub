@@ -173,23 +173,33 @@ function showResult(result) {
 
       }
 
-      const clientDocsExpireAt = document.getElementById(`client-docs-0-expireat`);
-      const clientDocsNumber = document.getElementById(`client-docs-0-number`);
+      const multipleListElem = document.querySelector('.multiple-input-list');
+      if(multipleListElem){
+        let firstItem = multipleListElem.querySelector('.multiple-input-list__item');
+        let dataIndex = firstItem.getAttribute('data-index');
+
+        const clientDocsExpireAt = document.getElementById(`client-docs-${dataIndex}-expireat`);
+        const clientDocsNumber = document.getElementById(`client-docs-${dataIndex}-number`);
+
+        if (clientDocsExpireAt) {
+          clientDocsExpireAt.value = expirationDateTourist;
+          $(clientDocsExpireAt).addClass('animated-field active');
+        }
+  
+        if (clientDocsNumber) {
+          clientDocsNumber.value = documentNumberTourist;
+          $(clientDocsNumber).addClass('animated-field active');
+        }
+      }
+
+      
 
       if (clientSexSelect) {
         $(clientSexSelect).next().find('.selection').children().addClass('animated-field active');
         $(clientSexSelect).val(sexTourist).trigger('change.select2')
       }
 
-      if (clientDocsExpireAt) {
-        clientDocsExpireAt.value = expirationDateTourist;
-        $(clientDocsExpireAt).addClass('animated-field active');
-      }
-
-      if (clientDocsNumber) {
-        clientDocsNumber.value = documentNumberTourist;
-        $(clientDocsNumber).addClass('animated-field active');
-      }
+      
 
       document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px;">Документ успешно отсканирован</h2>`;
       setTimeout(() => {

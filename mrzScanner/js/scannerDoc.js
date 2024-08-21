@@ -66,3 +66,7 @@ openScannerBtns.forEach(elem=>{
     elem.querySelector('.arrow-icon').classList.toggle('active');
   })
 });
+
+document.querySelector('#touristChangeModal .close').addEventListener('click',()=>{
+  document.querySelector('#parsed').innerHTML = ''
+})
