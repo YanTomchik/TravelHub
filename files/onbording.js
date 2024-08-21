@@ -364,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setCountryByIP();
 
+
     const fieldIds = [
         'useragencyupdateform-taxidentificationnumber',
         'useragencyupdateform-legalname',
@@ -382,47 +383,58 @@ document.addEventListener('DOMContentLoaded', () => {
         'useragencyupdateform-website',
         'useragencyupdateform-travelbudget'
     ];
-
+    
     function isVisible(element) {
         return window.getComputedStyle(element).display !== 'none';
     }
-
-    function areFieldsFilled() {
-
+    
+    function validateFields() {
+        let allFieldsFilled = true;
+    
         for (let id of fieldIds) {
             const field = document.getElementById(id);
-            if (field) {
-
-                if (isVisible(field.parentElement)) {
-                    if (field.value.trim() === '') {
-                        return false;
-                    }
+            if (field && isVisible(field.parentElement)) {
+                if (field.value.trim() === '') {
+                    allFieldsFilled = false;
+                    field.classList.add('is_invalid_item'); 
+                } else {
+                    field.classList.remove('is_invalid_item'); 
                 }
-
-
             }
         }
-        return true;
+        return allFieldsFilled;
     }
-
-    function toggleSubmitButton() {
-        const submitButton = document.getElementById('user_update_submit');
-        if (submitButton) {
-            if (areFieldsFilled()) {
-                submitButton.disabled = false;
-            } else {
-                submitButton.disabled = true;
-            }
+    
+    function hasInvalidFields() {
+        return document.querySelectorAll('.is_invalid_item').length > 0;
+    }
+    
+    document.getElementById('user_update_submit').addEventListener('click', function(event) {
+        
+        validateFields();
+        if (hasInvalidFields()) {
+            event.preventDefault();
         }
-    }
-
+    });
+    
+    
     fieldIds.forEach(id => {
         const field = document.getElementById(id);
         if (field) {
-            field.addEventListener('input', toggleSubmitButton);
+            field.addEventListener('input', function() {
+                if (field.value.trim() !== '') {
+                    field.classList.remove('is_invalid_item');
+                }
+            });
         }
     });
-
-    toggleSubmitButton();
-
+    
+    
+        fieldIds.forEach(id => {
+            const field = document.getElementById(id);
+            if (field) {
+                field.classList.remove('is_invalid_item'); 
+            }
+        });
+    
 });
