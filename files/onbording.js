@@ -381,7 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'useragencyupdateform-routingnumber',
         'useragencyupdateform-accountnumber',
         'useragencyupdateform-website',
-        'useragencyupdateform-travelbudget'
+        'useragencyupdateform-travelbudget',
+        'useragencyupdateform-employees',
     ];
     
     function isVisible(element) {
@@ -396,9 +397,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (field && isVisible(field.parentElement)) {
                 if (field.value.trim() === '') {
                     allFieldsFilled = false;
-                    field.classList.add('is_invalid_item'); 
+                    field.classList.add('is_invalid_item');
+    
+                    
+                    if (id === 'useragencyupdateform-employees') {
+                        const select2Field = field.nextElementSibling.querySelector('.select2-selection.select2-selection--single');
+                        if (select2Field) {
+                            select2Field.classList.add('is_invalid_item');
+                        }
+                    }
                 } else {
                     field.classList.remove('is_invalid_item'); 
+    
+                    
+                    if (id === 'useragencyupdateform-employees') {
+                        const select2Field = field.nextElementSibling.querySelector('.select2-selection.select2-selection--single');
+                        if (select2Field) {
+                            select2Field.classList.remove('is_invalid_item');
+                        }
+                    }
                 }
             }
         }
@@ -424,17 +441,32 @@ document.addEventListener('DOMContentLoaded', () => {
             field.addEventListener('input', function() {
                 if (field.value.trim() !== '') {
                     field.classList.remove('is_invalid_item');
+    
+                    if (id === 'useragencyupdateform-employees') {
+                        const select2Field = field.nextElementSibling.querySelector('.select2-selection.select2-selection--single');
+                        if (select2Field) {
+                            select2Field.classList.remove('is_invalid_item');
+                        }
+                    }
                 }
             });
         }
     });
     
     
-        fieldIds.forEach(id => {
-            const field = document.getElementById(id);
-            if (field) {
-                field.classList.remove('is_invalid_item'); 
+    fieldIds.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            field.classList.remove('is_invalid_item'); 
+
+            
+            if (id === 'useragencyupdateform-employees') {
+                const select2Field = field.nextElementSibling.querySelector('.select2-selection.select2-selection--single');
+                if (select2Field) {
+                    select2Field.classList.remove('is_invalid_item');
+                }
             }
-        });
+        }
+    });
     
 });
