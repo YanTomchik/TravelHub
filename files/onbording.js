@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Устанавливаем значение option, соответствующего атрибуту data-country-code
                     $countrySelect.val($matchingOption.val()).trigger('change.select2');
                 } else {
-                    console.log("Country code not found in select options.");
+                    // console.log("Country code not found in select options.");
                 }
             }
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let selectedOption = selectElement.options[selectElement.selectedIndex];
         let countryCode = selectedOption.getAttribute('data-country-code');
         const data = await fetchCompanyInfo(countryCode, taxId);
-        console.log(data)
+        // console.log(data)
         autofillCompanyInfo(data);
     };
 
@@ -268,9 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return await response.json();
     };
 
-    const fetchPlaceDetails = async (sessionToken, placeId) => {
+    const fetchPlaceDetails = async (sessionToken, placeId,lang) => {
         try {
-            const response = await fetch(`${HOST_URL}place-details?sessionToken=${sessionToken}&placeId=${placeId}`);
+            const response = await fetch(`${HOST_URL}place-details?sessionToken=${sessionToken}&placeId=${placeId}&lang=${lang}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -291,12 +291,21 @@ document.addEventListener('DOMContentLoaded', () => {
         div.dataset.placeId = prediction.place_id;
         div.addEventListener('click', async () => {
             document.getElementById('useragencyupdateform-legaladdress').value = prediction.description;
+            let lang = 'ru'
+            if (/[\u0400-\u04FF]/.test(prediction.description)) {
+                lang = 'ru'
+                // console.log('ru')
+                
+            } else if (/[a-zA-Z]/.test(prediction.description)) {
+                lang = 'en'
+                // console.log('en')
+            }
             resultsContainer.classList.remove('active');
 
             const sessionToken = document.getElementById('location-from-token').value;
-            const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id);
+            const placeDetails = await fetchPlaceDetails(sessionToken, prediction.place_id,lang);
 
-            console.log(placeDetails)
+            // console.log(placeDetails)
 
             fillFormFields(placeDetails);
             clearAutocompleteResults();
@@ -305,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fillFormFields = (details) => {
-        console.log(details)
+        // console.log(details)
         const addressComponents = details.address;
         const addressMapping = {
             street_number: '',
@@ -335,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('useragencyupdateform-legaladdress').addEventListener('input', async function () {
         const input = this.value;
+        
         if (input.length > 2) {
             const sessionToken = document.getElementById('location-from-token').value;
             const data = await fetchAutocomplete(input, sessionToken);
