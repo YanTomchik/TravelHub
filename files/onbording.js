@@ -209,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const handleValidation = (data, input) => {
         if (data.Status === 'Valid') {
-            input.classList.remove('is-invalid')
-            input.classList.add('is-valid')
+            input.classList.remove('is_invalid_item')
+            // input.classList.add('is-valid')
         } else {
-            input.classList.add('is-invalid')
-            input.classList.remove('is-valid')
+            input.classList.add('is_invalid_item')
+            // input.classList.remove('is_valid_item')
         }
         
     };
