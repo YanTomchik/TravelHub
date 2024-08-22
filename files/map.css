@@ -656,12 +656,17 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
 
   .navbar-filters-wrapper{
     max-width: 100%;
-    overflow: auto;
+    margin-top: 15px;
+    /* overflow: auto; */
     /* overflow: hidden; */
   }
 
   #filter-select-block{
     margin-top: 0px;
+  }
+
+  .filters-btn-mobile{
+    display: flex;
   }
 
 
@@ -821,8 +826,6 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     display: none!important;
   }
 
-  .filters-btn-mobile{
-    display: flex;
-  }
+
 
 }
