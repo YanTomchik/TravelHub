@@ -487,6 +487,10 @@
   border-radius: 12px;
 }
 
+.filter-modal-content.filters-block.show{
+  display: flex;
+}
+
 .filters-block-submenus-header-wrapper{
   display: flex;
     align-items: center;
@@ -618,6 +622,14 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     gap: 8px;
   }
 
+  .navbar-filters-wrapper .search-result-block.air-tickets .filter-select-block{
+    position: static;
+  }
+
+  .navbar-filters-wrapper .search-result-block.air-tickets .filter-select-block.opened .filters-modal{
+    width: 160px;
+  }
+
   .filters-btn-mobile{
     display: none;
   }
@@ -693,7 +705,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .result-amount-map-search-wrapper{
-    min-width: fit-content;
+    width: fit-content;
   }
 
   .map-dashboard-cards-list{
@@ -806,6 +818,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   .navbar-filters-wrapper{
     max-width: 100%;
     overflow: auto;
+    margin-top: 15px;
     /* overflow: hidden; */
   }
 
