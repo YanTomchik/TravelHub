@@ -66,16 +66,16 @@ async function fetchMarkerData(formDataFromRequest) {
         searchParams.append(pair[0], pair[1]);
       }
 
-      if (!searchParams.has('location') && typeof locationInfo != undefined) {
-        searchParams.append('location', locationInfo);
+      if (!searchParams.has('PropertySearchForm[location]') && typeof locationInfo != undefined) {
+        searchParams.append('PropertySearchForm[location]', locationInfo);
       }
     
-      if (!searchParams.has('partner') && typeof partnerinfo != undefined) {
-        searchParams.append('partner', partnerinfo);
+      if (!searchParams.has('PropertySearchForm[partner]') && typeof partnerinfo != undefined) {
+        searchParams.append('PropertySearchForm[partner]', partnerinfo);
       }
 
-      if (!searchParams.has('nationality') && typeof selectedNationality != undefined) {
-        searchParams.append('nationality', selectedNationality);
+      if (!searchParams.has('PropertySearchForm[nationality]') && typeof selectedNationality != undefined) {
+        searchParams.append('PropertySearchForm[nationality]', selectedNationality);
       }
 
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
@@ -145,16 +145,16 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
         formData.append(key, value);
       });
 
-      if (!formData.has('location') && typeof locationInfo != undefined) {
-        formData.append('location', locationInfo);
+      if (!formData.has('PropertySearchForm[location]') && typeof locationInfo != undefined) {
+        formData.append('PropertySearchForm[location]', locationInfo);
       }
     
-      if (!formData.has('partner') && typeof partnerinfo != undefined) {
-        formData.append('partner', partnerinfo);
+      if (!formData.has('PropertySearchForm[partner]') && typeof partnerinfo != undefined) {
+        formData.append('PropertySearchForm[partner]', partnerinfo);
       }
 
-      if (!formData.has('nationality') && typeof selectedNationality != undefined) {
-        formData.append('nationality', selectedNationality);
+      if (!formData.has('PropertySearchForm[nationality]') && typeof selectedNationality != undefined) {
+        formData.append('PropertySearchForm[nationality]', selectedNationality);
       }
 
     } else {
@@ -236,16 +236,16 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
     tempFormData.forEach((value, key) => {
       formData.append(key, value);
     });
-    if (!formData.has('location') && typeof locationInfo != undefined) {
-      formData.append('location', locationInfo);
+    if (!formData.has('PropertySearchForm[location]') && typeof locationInfo != undefined) {
+      formData.append('PropertySearchForm[location]', locationInfo);
     }
   
-    if (!formData.has('partner') && typeof partnerinfo != undefined) {
-      formData.append('partner', partnerinfo);
+    if (!formData.has('PropertySearchForm[partner]') && typeof partnerinfo != undefined) {
+      formData.append('PropertySearchForm[partner]', partnerinfo);
     }
 
-    if (!formData.has('nationality') && typeof selectedNationality != undefined) {
-      formData.append('nationality', selectedNationality);
+    if (!formData.has('PropertySearchForm[nationality]') && typeof selectedNationality != undefined) {
+      formData.append('PropertySearchForm[nationality]', selectedNationality);
     }
 
   } else {
@@ -302,16 +302,16 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
         searchParams.append("PropertySearchForm[limit]", `${limit}`);
       }
 
-      if (!searchParams.has('location') && typeof locationInfo != undefined) {
-        searchParams.append('location', locationInfo);
+      if (!searchParams.has('PropertySearchForm[location]') && typeof locationInfo != undefined) {
+        searchParams.append('PropertySearchForm[location]', locationInfo);
       }
     
-      if (!searchParams.has('partner') && typeof partnerinfo != undefined) {
-        searchParams.append('partner', partnerinfo);
+      if (!searchParams.has('PropertySearchForm[partner]') && typeof partnerinfo != undefined) {
+        searchParams.append('PropertySearchForm[partner]', partnerinfo);
       }
 
-      if (!searchParams.has('nationality') && typeof selectedNationality != undefined) {
-        searchParams.append('nationality', selectedNationality);
+      if (!searchParams.has('PropertySearchForm[nationality]') && typeof selectedNationality != undefined) {
+        searchParams.append('PropertySearchForm[nationality]', selectedNationality);
       }
 
       searchParams.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
@@ -352,6 +352,7 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
       body: formData
     });
     const data = await response.json();
+    console.log(data)
     setCachedData(cacheKey, data);
     return data;
   } catch (error) {
