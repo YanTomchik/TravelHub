@@ -106,7 +106,7 @@ async function fetchMarkerData(formDataFromRequest) {
   }
 
 
-  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map-points' : 'hotels/search-map-points';
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/search-map-points' : '/hotels/search-map-points';
 
   try {
     const response = await fetch(apiUrl, {
@@ -185,7 +185,7 @@ async function fetchPropertyData(propertyId, formDataFromRequest, marker) {
     return cachedData;
   }
 
-  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : '/hotels/get-map-cards';
 
   try {
     const response = await fetch(apiUrl, {
@@ -270,7 +270,7 @@ async function fetchMarkerDataWithinBounds(existingMarkers) {
   markerIds.forEach(id => formData.append("PropertySearchForm[propertyId][]", id));
   formData.append('PropertySearchForm[parentUrl]', encodeURIComponent(window.location.search));
 
-  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : '/hotels/get-map-cards';
 
   try {
     const response = await fetch(apiUrl, {
@@ -344,7 +344,7 @@ async function fetchLeftBlockData(offset, limit, formDataFromRequest) {
     return cachedData;
   }
 
-  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : 'hotels/get-map-cards';
+  const apiUrl = layoutDev ? 'https://travelhub.by/hotels/get-map-cards' : '/hotels/get-map-cards';
 
   try {
     const response = await fetch(apiUrl, {
