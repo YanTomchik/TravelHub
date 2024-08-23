@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const elementsToToggle = {
             US: ['.field-useragencyupdateform-state', '.field-useragencyupdateform-routingnumber', '.field-useragencyupdateform-accountnumber'],
-            others: ['.field-useragencyupdateform-bankidentificationcode', '.field-useragencyupdateform-bankaccount', '.field-useragencyupdateform-bankname']
+            others: ['.field-useragencyupdateform-bankidentificationcode', '.field-useragencyupdateform-bankaccount', '.field-useragencyupdateform-bankname','field-useragencyupdateform-taxsystem']
         };
 
         elementsToToggle.US.forEach(el => $(el).toggle(countryCode === 'US'));
@@ -383,6 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'useragencyupdateform-website',
         'useragencyupdateform-travelbudget',
         'useragencyupdateform-employees',
+        'useragencyupdateform-agentname',
+        'registered-date',
+        'useragencyupdateform-registeredby',
     ];
     
     function isVisible(element) {
