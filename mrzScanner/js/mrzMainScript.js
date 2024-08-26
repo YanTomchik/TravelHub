@@ -175,9 +175,10 @@ function showResult(result) {
 
       const clientDocs = document.getElementById('client-docs')
       
-      if(clientDocs){
+      
         const multipleListElem = clientDocs.querySelector('.multiple-input-list');
         let firstItem = multipleListElem.querySelector('.multiple-input-list__item');
+        if(firstItem){
         let dataIndex = firstItem.getAttribute('data-index');
 
         const clientDocsExpireAt = document.getElementById(`client-docs-${dataIndex}-expireat`);
