@@ -124,7 +124,7 @@ function showResult(result) {
       </div>
       <pre>${escape(info)}</pre>
     `;
-    document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px;">Что-то пошло не так</h2>`;
+    document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px; color:#F64E60;">Что-то пошло не так</h2>`;
   } else {
     if (result.parsed.valid) {
       nationalityTourist = result.parsed.fields.nationality;
@@ -201,7 +201,7 @@ function showResult(result) {
 
       
 
-      document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px;">Документ успешно отсканирован</h2>`;
+      document.querySelector('#parsed').innerHTML = `<h2 style="margin-top:10px; color:#3E7B50;">Документ успешно отсканирован</h2>`;
       setTimeout(() => {
         $('.animated-field').removeClass('active');
       }, 1000);
