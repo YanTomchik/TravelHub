@@ -173,8 +173,10 @@ function showResult(result) {
 
       }
 
-      const multipleListElem = document.querySelector('.multiple-input-list');
-      if(multipleListElem){
+      const clientDocs = document.getElementById('client-docs')
+      
+      if(clientDocs){
+        const multipleListElem = clientDocs.querySelector('.multiple-input-list');
         let firstItem = multipleListElem.querySelector('.multiple-input-list__item');
         let dataIndex = firstItem.getAttribute('data-index');
 
