@@ -148,7 +148,7 @@
     align-items: center;
 }
 
-.modal-header.balance.notification .modal-description{
+.modal-header.balance.notification .modal-description {
     text-align: center;
 }
 
@@ -166,19 +166,19 @@
     color: #19191E;
 }
 
-.modal-header.balance{
+.modal-header.balance {
     padding: 40px 50px 0px 50px;
 }
 
-.modal-body.balance{
+.modal-body.balance {
     padding: 30px 50px 40px 50px;
 }
 
-.modal-balance-btn{
+.modal-balance-btn {
     width: 100%;
 }
 
-.modal-balance-extra-info{
+.modal-balance-extra-info {
     width: 100%;
     background-color: #F4F6F9;
     border-radius: 8px;
@@ -188,14 +188,14 @@
     gap: 10px;
 }
 
-.topup-balance-dropdown-wrapper{
+.topup-balance-dropdown-wrapper {
     gap: 8px;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
 }
 
-.modal-balance-notification-icon{
+.modal-balance-notification-icon {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -218,11 +218,11 @@
     background-position: center;
 }
 
-.header-links-agent-corpo a{
+.header-links-agent-corpo a {
     white-space: nowrap;
 }
 
-.header-deposit-balance-info{
+.header-deposit-balance-info {
     display: flex;
     gap: 4px;
     align-items: center;
@@ -246,11 +246,11 @@
     fill: #B5B5C2;
 }
 
-.header-deposit-balance-wrapper{
+.header-deposit-balance-wrapper {
     position: relative;
 }
 
-.header-deposit-balance-popup{
+.header-deposit-balance-popup {
     display: none;
     position: absolute;
     top: 100%;
@@ -262,45 +262,45 @@
     box-shadow: 0px 0px 30px 0px rgba(82, 63, 105, 0.05);
 }
 
-.header-deposit-balance-popup p{
+.header-deposit-balance-popup p {
     white-space: nowrap;
 }
 
-.deposit-balance-popup-item{
+.deposit-balance-popup-item {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.deposit-balance-popup-item .title{
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
+.deposit-balance-popup-item .title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
 
 }
 
-.deposit-balance-popup-item .description{
+.deposit-balance-popup-item .description {
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
     margin-top: 0px;
-    }
+}
 
 
-.deposit-balance-popup-item img{
-height: 9px;
-width: 9px;
-}    
+.deposit-balance-popup-item img {
+    height: 9px;
+    width: 9px;
+}
 
-.deposit-balance-popup-item.link{
+.deposit-balance-popup-item.link {
     justify-content: space-between;
 }
 
-.header-deposit-balance-wrapper.red .deposit-balance-popup-item.balance p{
+.header-deposit-balance-wrapper.red .deposit-balance-popup-item.balance p {
     color: #BF3939;
 }
 
-.header-deposit-balance-wrapper:hover .header-deposit-balance-popup{
+.header-deposit-balance-wrapper:hover .header-deposit-balance-popup {
     display: block;
 }
 
@@ -343,7 +343,8 @@ label {
     position: absolute;
     user-select: none;
     height: 40px;
-    width: 100px; /* Ширина выпадающего списка */
+    width: 100px;
+    /* Ширина выпадающего списка */
     right: 0px;
 }
 

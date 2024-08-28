@@ -72,11 +72,11 @@
     color: #19191E;
 }
 
-.deposit-basket-info-wrapper{
+.deposit-basket-info-wrapper {
     margin-bottom: 24px;
 }
 
-.extra-basket-deposit-wrapper{
+.extra-basket-deposit-wrapper {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -87,15 +87,14 @@
     width: 400px;
 }
 
-.extra-basket-deposit-wrapper p{
+.extra-basket-deposit-wrapper p {
     font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-text-align: left;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
 }
 
 
-.deposit-basket-item .title.red{
+.deposit-basket-item .title.red {
     color: #BF3939;
 }
-

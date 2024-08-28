@@ -1,0 +1,472 @@
+.travel-politic-container:first-child{
+    margin-top: 0px!important;
+}
+
+.travel-politics-list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.travel-politics-item {
+    padding: 24px;
+    background-color: #fff;
+    width: 48%;
+    border-radius: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+}
+
+.travel-politics-item.exist {
+    padding: 36px 54px;
+}
+
+.travel-politics-item.exist .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #3968BF;
+}
+
+.travelpolitics-wrapper .semi-h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+    margin-bottom: 0px;
+}
+
+.travelpolitics-wrapper .semi-b1 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: #19191E;
+}
+
+.travelpolitics-wrapper .semi-b2 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    text-align: left;
+
+}
+
+.travelpolitics-wrapper .regular-b3 {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    color: #585858;
+}
+
+.travelpolitics-wrapper .regular-b2 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+
+.travelpolitics-wrapper .regular-b1 {
+    font-size: 16px;
+    font-weight: 400;
+    /* line-height: 24px; */
+    text-align: left;
+    color: #19191E;
+
+}
+
+.recommend-politic-wrapper {
+    background-color: #3968BF33;
+    border-radius: 0px 24px 0px 24px;
+    color: #3968BF;
+    padding: 12px 25px;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recommend-politic-wrapper p {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.0025em;
+}
+
+.header-info-politics-item .header-title img {
+    width: 16px;
+    height: 16px;
+}
+
+.header-info-politics-item .header-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-info-politics-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.info-politics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-politics-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid #E4E6EE;
+    padding-bottom: 20px;
+}
+
+.info-politics-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+
+.group-info-politics-item .description-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label-group-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.label-group-question {
+    height: 14px;
+    width: 14px;
+    background-color: #B5B5C2;
+    color: #191C30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.description-info-stars-wrapper {
+    display: flex;
+    align-items: center;
+
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+.travel-politics-item .btn-full-width {
+    margin-top: 20px;
+}
+
+.politics-extra-bottom-info {
+    text-align: center;
+}
+
+.create-new-politics-wrapper {
+    border-radius: 24px;
+    padding: 24px;
+    background-color: #fff;
+    margin-top: 44px;
+    margin-bottom: 44px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.create-new-politics-wrapper .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.transparent-btn {
+    border: 1px solid #3968BF;
+    color: #3968BF;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+}
+
+.transparent-btn svg {
+    fill: #3968BF;
+}
+
+.transparent-btn:hover {
+    background-color: #3968BF;
+    color: #fff;
+}
+
+.transparent-btn:hover svg {
+    fill: #fff;
+}
+
+.info-two-items-group-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.info-two-items-group-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-two-items-group-item .title {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+    color: #585858;
+    margin: 0px;
+}
+
+.info-two-items-group-item .description {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+    color: #191C30;
+    margin-top: 0px;
+
+}
+
+.politics-edit-btn{
+    cursor: pointer;
+}
+
+.travel-edit-politics-list{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.travel-edit-politics-item{
+    padding: 50px 100px;
+    background-color: #fff;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.travel-edit-politics-item .form-group{
+    margin-bottom: 0px;
+}
+
+.checkbox-group{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox-group-wrapper .input-container{
+    display: flex;
+    align-items: center;
+
+}
+
+.checkbox-group-wrapper .input-container .value{
+    margin-left: 8px;
+}
+
+.checkbox-group-wrapper .header-title{
+    margin-bottom: 16px;
+}
+
+.value-with-input-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.value-with-input-wrapper input[type="text"]{
+    border: 1px solid #B5B5C2;
+    outline: none;
+    color: #B5B5C2;
+    padding: 2px 6px;
+    width: 80px;
+    opacity: 100;
+    height: 22px;
+    border-radius: 6px;
+    margin-top: 0px;
+    margin-left: 8px;
+}
+
+.value-with-input-wrapper select{
+    border: 1px solid #B5B5C2;
+    outline: none;
+    color: #B5B5C2;
+    padding: 2px 6px;
+    width: 80px;
+    opacity: 100;
+    height: 22px;
+    border-radius: 6px;
+    margin-top: 0px;
+    margin-left: 8px;
+    background-color: transparent;
+}
+
+.extra-options-btn{
+    color: #3968BF!important;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* SELECT */
+
+.custom-select-politics {
+    position: relative;
+    /* width: 150px; */
+    cursor: pointer;
+}
+
+.select-box-politics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #B5B5C2;
+    outline: none;
+    color: #B5B5C2;
+    padding: 2px 6px;
+    width: 80px;
+    opacity: 100;
+    height: 22px;
+    border-radius: 6px;
+    margin-top: 0px;
+    margin-left: 8px;
+    background-color: transparent;
+}
+
+.select-label-politics {
+    font-size: 14px;
+    color: #B5B5C2;
+}
+
+.select-arrow-politics {
+    font-size: 14px;
+    color: #999;
+}
+
+.select-options-politics {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 40px;
+    background-color: #F4F6F9;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.option-politics {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-politics:hover {
+    background-color: #e6eaf0;
+    border-radius: 6px;
+}
+
+.icon-politics {
+    font-size: 14px;
+    color: #19191E;
+}
+
+
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease; /* Плавный переход */
+}
+
+
+@media (max-width: 767px) {
+    .travel-politics-item{
+        width: 100%;
+    }
+
+    .transparent-btn{
+        width: 100%;
+    }
+
+    .create-new-politics-wrapper{
+        flex-direction: column;
+    }
+
+    .travel-edit-politics-item{
+     padding: 30px 20px;   
+    }
+
+    .value-with-input-wrapper.add-option{
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
+@media (max-width: 480px) {
+    .travelpolitics-wrapper .semi-h3 {
+        font-size: 18px;
+    }
+    
+    .travelpolitics-wrapper .semi-b1 {
+        font-size: 13px;
+    }
+    
+    .travelpolitics-wrapper .semi-b2 {
+        font-size: 12px;
+    
+    }
+    
+    .travelpolitics-wrapper .regular-b3 {
+        font-size: 10px;
+    }
+    
+    .travelpolitics-wrapper .regular-b2 {
+        font-size: 12px;
+    }
+    
+    .travelpolitics-wrapper .regular-b1 {
+        font-size: 14px;
+    
+    }
+
+    .recommend-politic-wrapper p{
+        font-size: 12px;
+    }
+
+    .recommend-politic-wrapper{
+        padding: 10px 12px;
+    }
+
+    .value-with-input-wrapper{
+        
+    }
+
+    
+}
