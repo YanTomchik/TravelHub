@@ -1,0 +1,101 @@
+.payment-header-btns-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.payment-header-btn {
+    padding: 8px 15px;
+    background-color: #F4F6F9;
+    color: #3E7B50;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.0675em;
+    width: fit-content;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.payment-header-btn.active {
+    color: #fff;
+    background-color: #3E7B50;
+}
+
+.payment-header-btn:hover {
+    color: #fff;
+    background-color: #3E7B50;
+}
+
+.payment-content {
+    display: none;
+}
+
+.payment-content.active {
+    display: block;
+}
+
+.row.payment {
+    flex-direction: column;
+}
+
+.tranfer-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.0025em;
+
+}
+
+.deposit-basket-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.deposit-basket-item .title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: #19191E;
+}
+
+.deposit-basket-item .description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #19191E;
+}
+
+.deposit-basket-info-wrapper{
+    margin-bottom: 24px;
+}
+
+.extra-basket-deposit-wrapper{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 16px;
+    color: #BF3939;
+    border: 1px solid #BF3939;
+    padding: 8px 16px;
+    width: 400px;
+}
+
+.extra-basket-deposit-wrapper p{
+    font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+text-align: left;
+}
+
+
+.deposit-basket-item .title.red{
+    color: #BF3939;
+}
+

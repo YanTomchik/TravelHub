@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket</title>
+    <link href="files/font-awesome.min.css" rel="stylesheet" async="async" />
+    <link href="files/animate.min.css" rel="stylesheet" />
+    <link href="files/whirl.min.css" rel="stylesheet" />
+    <link href="files/slick.css" rel="stylesheet" />
+    <link href="files/fullcalendar.bundle.css" rel="stylesheet" />
+    <link href="files/wizard-1.css" rel="stylesheet" />
+    <link href="files/plugins.bundle.css" rel="stylesheet" />
+    <link href="files/prismjs.bundle.css" rel="stylesheet" />
+    <link href="files/style.bundle.css" rel="stylesheet" />
+    <link href="files/select2-addl.min.css" rel="stylesheet" />
+    <link href="files/select2.min.css" rel="stylesheet" />
+    <link href="files/custom.css" rel="stylesheet" />
+    <link href="files/main.css" rel="stylesheet" />
+    <link href="files/landing.min.css" rel="stylesheet" />
+    <link href="files/header.min.css" rel="stylesheet" />
+    <link href="files/saved_resource" rel="stylesheet" />
+    <link href="files/select2(1).min.css" rel="stylesheet" />
+    <link href="files/select2-addl(1).min.css" rel="stylesheet" />
+    <link href="files/select2-krajee-bs3.min.css" rel="stylesheet" />
+    <link href="files/kv-widgets.min.css" rel="stylesheet" />
+    <link href="files/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="files/datepicker-kv.min.css" rel="stylesheet" />
+    <link href="files/multiple-input.min.css" rel="stylesheet" />
+    <link href="files/tours/tour.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <!-- NEW -->
+     <link rel="stylesheet" href="./files/basketBtns.css">
+    <!-- NEW -->
+
+</head>
+<body>
+    <div class="main-separate-block constructor-green">
+        <div class="col-xl-9-separate-blocks">
+            <div class="card card-custom mb-5  separate-block card-custom-header" id="card-hotel">
+                <div class="divider"></div>
+                <div class="card-header card-header-hide-open opened">
+                  <div class="card-header-info">
+                    <div class="card-header-open-button">
+                      <img src="./images/chevron-open-header.svg" alt="arrow-icon">
+                    </div>
+                    <div class="card-title">
+                      <h3 class="card-label font-weight-bolder">Способ оплаты</h3>
+                      <div class="card-title-icon-wrapper">
+                        <img src="./images/payment.svg" alt="airplane-icon" class="icon-item">
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- <div class="card-header-error">
+                    Введите способ оплаты
+                  </div> -->
+                </div>
+                <div class="card-body card-body-hide-open">
+                  <div class="row payment">
+
+                    <div class="payment-header-btns-wrapper">
+                        <div class="payment-header-btn active pay-card" data-target="card-content">
+                            Оплатить картой
+                        </div>
+                        <div class="payment-header-btn pay-transfer" data-target="transfer-content">
+                            Банковский перевод
+                        </div>
+                        <div class="payment-header-btn pay-deposit" data-target="deposit-content">
+                            Использовать депозит
+                        </div>
+                        <div class="payment-header-btn pay-installment" data-target="installment-content">
+                            Рассрочка
+                        </div>
+                    </div>
+
+                    <div id="card-content" class="payment-content active">
+                    
+                    
+                        <div id="payment-add-new" class="payment-add-new active">
+                            <div class="add-bank-card-form">
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment5"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment5">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Mastercard
+                                            </div>
+                                            <div class="custom-radio-payment-description-separator">
+                                                •
+                                            </div>
+                                            <div class="custom-radio-payment-subdescription">
+                                                1399
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./images/master-card.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                    
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment6"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment6">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Visa
+                                            </div>
+                                            <div class="custom-radio-payment-description-separator">
+                                                •
+                                            </div>
+                                            <div class="custom-radio-payment-subdescription">
+                                                1399 до 01/22
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./images/visa.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment7"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment7">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Visa
+                                            </div>
+                                            <div class="custom-radio-payment-description-separator">
+                                                •
+                                            </div>
+                                            <div class="custom-radio-payment-subdescription">
+                                                1399 до 01/22
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./images/visa.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment8"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment8">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Visa
+                                            </div>
+                                            <div class="custom-radio-payment-description-separator">
+                                                •
+                                            </div>
+                                            <div class="custom-radio-payment-subdescription">
+                                                1399 до 01/22
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./images/visa.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                    
+                            </div>
+                            <!-- <div class="row">
+                                            <div class="col-12 mt-2">
+                                                <div class="form-check custom-form-check">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    name="ServiceBasketForm[paymentMethodSave]"
+                                                    id="saveCard"
+                                                    checked=""
+                                                />
+                                                <label class="form-check-label" for="saveCard"
+                                                    >Сохранить карту</label
+                                                >
+                                                </div>
+                                            </div>
+                                            </div> -->
+                        </div>
+                        <div class="separator-block-payment mb-4">
+                            <div class="separator-block-payment-line"></div>
+                            <div class="separator-block-payment-description">
+                                или
+                            </div>
+                            <div class="separator-block-payment-line"></div>
+                        </div>
+                        <div id="show-form-new-card" class="payment-select-add-new" style="display: flex">
+                            <div class="payment-select-add-new-info">
+                                <div class="add-new-icon-wrapper">
+                                    <img src="./images/add-card-icon.svg" alt="">
+                                </div>
+                                <div class="payment-select-add-new-description">
+                                    Новая карта
+                                </div>
+                            </div>
+                    
+                            <div class="payment-select-add-new-wrapper">
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/visa.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/master-card.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/amex-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/stripe-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/bepaid-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/pci-icon.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="transfer-content" class="payment-content">
+                    
+                        <p class="tranfer-description">После подтверждения заказа, вам будет доступен счет </p>
+                    
+                    </div>
+                    <div id="deposit-content" class="payment-content">
+                        <div class="deposit-basket-info-wrapper">
+                            <div class="deposit-basket-item">
+                                <p class="title">Баланс:</p>
+                                <p class="title red">- 128$</p>
+                              </div>
+                              <div class="deposit-basket-item">
+                                <p class="description">Кредитный лимит:</p>
+                                <p class="description">1028$</p>
+                              </div>  
+                        </div>
+                        
+
+                          <div class="custom-radio mb-4 payment-select">
+                            <input type="radio" class="custom-control-input" checked="" id="payment15"
+                                name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                            <label class="custom-control-label" for="payment15">
+                                <div class="custom-radio-payment-description-wrapper">
+                                    <div class="custom-radio-payment-description">
+                                        Оплатить с депозита
+                                    </div>
+                                </div>
+                                
+                            </label>
+                        </div>
+
+                        <div class="extra-basket-deposit-wrapper">
+                            <img src="./files/basket-alert-icon.svg" alt="">
+                            <p>Недостаточно средств на депозите. Пополните баланс, чтобы пользоваться депозитом.</p>
+                        </div>
+                        
+                    </div>
+                    <div id="installment-content" class="payment-content">
+                        <div id="payment-add-new" class="payment-add-new active">
+                            <div class="add-bank-card-form">
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment10"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment10">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Халва
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./files/halva-logo.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                    
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment11"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment11">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Карта покупок
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./files/card-pay-logo.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment12"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment12">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                КартаFUN
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./files/fun-logo.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="custom-radio mb-4 payment-select">
+                                    <input type="radio" class="custom-control-input" checked="" id="payment13"
+                                        name="ServiceBasketForm[paymentMethod]" value="new-1" required="">
+                                    <label class="custom-control-label" for="payment13">
+                                        <div class="custom-radio-payment-description-wrapper">
+                                            <div class="custom-radio-payment-description">
+                                                Черепаха
+                                            </div>
+                                        </div>
+                                        <div class="custom-radio-payment-icon">
+                                            <img src="./files/turtle-logo.svg" alt="">
+                                        </div>
+                                    </label>
+                                </div>
+                    
+                            </div>
+                        </div>
+                        <div class="separator-block-payment mb-4">
+                            <div class="separator-block-payment-line"></div>
+                            <div class="separator-block-payment-description">
+                                или
+                            </div>
+                            <div class="separator-block-payment-line"></div>
+                        </div>
+                        <div id="show-form-new-card" class="payment-select-add-new" style="display: flex">
+                            <div class="payment-select-add-new-info">
+                                <div class="add-new-icon-wrapper">
+                                    <img src="./images/add-card-icon.svg" alt="">
+                                </div>
+                                <div class="payment-select-add-new-description">
+                                    Новая карта
+                                </div>
+                            </div>
+                    
+                            <div class="payment-select-add-new-wrapper">
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/visa.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/master-card.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/amex-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/stripe-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/bepaid-icon.svg" alt="">
+                                </div>
+                                <div class="custom-radio-payment-icon">
+                                    <img src="./images/pci-icon.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    
+    <script src="./files/basketPaymentScript.js"></script>
+</body>
+</html>
