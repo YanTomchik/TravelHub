@@ -18,6 +18,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .payment-header-btn.active {
@@ -97,4 +98,20 @@
 
 .deposit-basket-item .title.red {
     color: #BF3939;
+}
+
+@media (max-width: 767px) {
+    .payment-header-btns-wrapper{
+        gap: 10px;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .tranfer-description{
+        font-size: 14px;
+    }
+
+    .extra-basket-deposit-wrapper{
+        width: 100%;
+    }
 }

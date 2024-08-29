@@ -488,3 +488,56 @@ input[type="text"]:focus {
     background-color: #3968BF;
     color: #ffffff;
 }
+
+@media (max-width: 767px) {
+    .card.card-custom.balance{
+        padding: 12px 20px;
+    }
+
+    .balance-header.balance{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .balance-header-wrapper .title{
+        font-size: 20px;
+    }
+
+    .balance-header-wrapper .extra-description{
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .balance-header-wrapper .description{
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .balance-header.balance .btn{
+        width: 100%;
+    }
+
+    .balance-wallet-icon-wrapper{
+        min-width: 40px;
+        min-height: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .balance-wallet-icon-wrapper img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .balance-body .balance-header-wrapper .title{
+        font-size: 16px;
+    }
+
+    .balance-header-wrapper .sub-description{
+        font-size: 14px;
+    }
+
+    .balance-item .balance-header-wrapper{
+        gap: 4px;
+    }
+}
