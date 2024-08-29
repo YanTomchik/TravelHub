@@ -423,17 +423,20 @@
 
 /* Стили для контента попапа */
 .popup-blue-content {
-    width: 80%;
+    /* width: 70%; */
     height: 95%;
+    /* margin-top: 100px; */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     text-align: center;
+    position: relative;
+    max-width: 1000px;
 }
 
 /* Кнопка закрытия попапа */
 .popup-blue-close {
     position: absolute;
-    top: 5%;
-    right: 12%;
+    top: 0%;
+    right: -5%;
     font-size: 24px;
     cursor: pointer;
     color: #333;
@@ -441,6 +444,13 @@
 
 .popup-blue-content .travel-politics-list{
     /* max-height: 700px; */
+    gap: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-blue-content .travel-politics-list .travel-politics-item{
+max-width: 500px;
 }
 
 .popup-blue-content.travelpolitics-wrapper .semi-h3 {
@@ -490,6 +500,19 @@
     .value-with-input-wrapper.add-option{
         flex-direction: column;
         align-items: start;
+    }
+
+    .popup-blue-content{
+        padding: 20px;
+    }
+
+    .popup-blue-content .travel-politics-list{
+        gap: 10px;
+    }
+
+    .popup-blue-close{
+        top: -20px;
+        right: 30px;
     }
 }
 

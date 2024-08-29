@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // Находим все элементы с классом .info-politics-item
     document.querySelectorAll('.info-politics-item').forEach(infoItem => {
         // Находим заголовок и иконку внутри каждого элемента
         const header = infoItem.querySelector('.header-info-politics-item');
@@ -53,12 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Скрываем блоки и сбрасываем вращение в других .info-politics-item
             document.querySelectorAll('.info-politics-item').forEach(otherItem => {
                 if (otherItem !== infoItem) {
-                    // Скрыть все группы в других блоках
-                    otherItem.querySelectorAll('.group-info-politics-item').forEach(group => {
-                        // group.style.display = 'none';
-                    });
 
-                    // Удалить класс вращения с иконки в других заголовках
                     const otherChevron = otherItem.querySelector('.header-title-chevron img');
                     if (otherChevron) {
                         otherChevron.classList.remove('rotate-180');
@@ -79,17 +73,15 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
     
-
-    // Закрытие попапа
     closePopupBtn.addEventListener('click', function () {
         popupOverlay.style.display = 'none';
-        bodyTag.style.overflow = '';
+        bodyTag.style.overflow = 'auto';
     });
 
-    // Закрытие попапа при клике на оверлей
     popupOverlay.addEventListener('click', function (e) {
         if (e.target === popupOverlay) {
             popupOverlay.style.display = 'none';
+            bodyTag.style.overflow = 'auto';
         }
     });
 
