@@ -37,6 +37,7 @@
     line-height: 24px;
     letter-spacing: 0.0025em;
     margin-bottom: 0px;
+    text-align: left;
 }
 
 .travelpolitics-wrapper .semi-b1 {
@@ -403,6 +404,69 @@
 .rotate-180 {
     transform: rotate(180deg);
     transition: transform 0.3s ease; /* Плавный переход */
+}
+
+/* Стили для оверлея попапа */
+.popup-blue-overlay {
+    display: none; /* Скрыт по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0B193380;
+    z-index: 1100; /* Поверх всего остального контента */
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* Стили для контента попапа */
+.popup-blue-content {
+    width: 80%;
+    height: 95%;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    text-align: center;
+}
+
+/* Кнопка закрытия попапа */
+.popup-blue-close {
+    position: absolute;
+    top: 5%;
+    right: 12%;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.popup-blue-content .travel-politics-list{
+    /* max-height: 700px; */
+}
+
+.popup-blue-content.travelpolitics-wrapper .semi-h3 {
+    font-size: 18px;
+}
+
+.popup-blue-content.travelpolitics-wrapper .semi-b1 {
+    font-size: 13px;
+}
+
+.popup-blue-content.travelpolitics-wrapper .semi-b2 {
+    font-size: 12px;
+
+}
+
+.popup-blue-content.travelpolitics-wrapper .regular-b3 {
+    font-size: 10px;
+}
+
+.popup-blue-content.travelpolitics-wrapper .regular-b2 {
+    font-size: 12px;
+}
+
+.popup-blue-content.travelpolitics-wrapper .regular-b1 {
+    font-size: 14px;
+
 }
 
 

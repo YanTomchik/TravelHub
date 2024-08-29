@@ -68,4 +68,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const popupOverlay = document.getElementById('popupOverlay');
+    const closePopupBtn = document.getElementById('popupClose');
+    const bodyTag = document.body;
+
+    document.querySelectorAll('.politics-edit-btn').forEach(elem=>{
+        elem.addEventListener('click',()=>{
+            popupOverlay.style.display = 'flex';
+            bodyTag.style.overflow = 'hidden';
+        })
+    })
+    
+
+    // Закрытие попапа
+    closePopupBtn.addEventListener('click', function () {
+        popupOverlay.style.display = 'none';
+        bodyTag.style.overflow = '';
+    });
+
+    // Закрытие попапа при клике на оверлей
+    popupOverlay.addEventListener('click', function (e) {
+        if (e.target === popupOverlay) {
+            popupOverlay.style.display = 'none';
+        }
+    });
+
 });
