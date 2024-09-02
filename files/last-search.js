@@ -140,6 +140,41 @@ const initPage = () => {
                 };
             }
         },
+        '/flights/index-new': {
+            formSelector: '#flights-search-form .btn.btn-primary.search-btn',
+            key: 'search_flights',
+            getSearchObj: () => {
+                const locationFrom = document.getElementById('flightsearchform-locationfrom').value;
+                const locationTo = document.getElementById('flightsearchform-locationto').value;
+                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').title;
+                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').title;
+                const depDate = document.querySelector('.date-inputs-item.datepicker-avia-from').value;
+                const retDate = document.querySelector('.date-inputs-item.datepicker-avia-to').value;
+                const adultCounter = document.getElementById('adult-counter').innerHTML;
+                const childrenCounter = document.getElementById('children-counter').innerHTML;
+                const infantCounter = document.getElementById('infant-counter').innerHTML;
+                let cabinClassContainer = document.getElementById('select2-cabin-class-container').innerHTML;
+
+                if (cabinClassContainer === 'Эконом') {
+                    cabinClassContainer = 'economy';
+                } else if (cabinClassContainer === 'Бизнес') {
+                    cabinClassContainer = 'business';
+                }
+
+                return {
+                    locationFrom,
+                    locationTo,
+                    locationFromTitle,
+                    locationToTitle,
+                    depDate,
+                    retDate,
+                    adultCounter,
+                    childrenCounter,
+                    infantCounter,
+                    cabinClassContainer
+                };
+            }
+        },
         // '/hotels': {
         //     formSelector: '#properties-search-form .btn.btn-primary.search-btn',
         //     key: 'search_hotels',
