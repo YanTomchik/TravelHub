@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // const delay = 1000; 
     const delay = 20 * 60 * 1000;
     const overlay = document.getElementById('overlayTimer');
     const popup = document.getElementById('popupTimer');
@@ -7,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeButton = document.getElementById('closeTimer');
 
     let timer;
+    let isPageVisible = true; 
+    let originalTitle = document.title;
+    let focusInterval; 
 
     const texts = {
         en: {
@@ -32,11 +34,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         overlay.style.display = 'block';
         popup.style.display = 'block';
+
+        if (!isPageVisible) {
+            startFocusInterval();
+        }
     }
 
     function hidePopup() {
         overlay.style.display = 'none';
         popup.style.display = 'none';
+        stopFocusInterval(); 
     }
     
     function startTimer() {
@@ -64,9 +71,31 @@ document.addEventListener("DOMContentLoaded", function() {
         startTimer();
     });
 
-    
     document.querySelector('.btn.btn-primary.search-btn').addEventListener('click', function() {
         startTimer();  
+    });
+
+
+    function startFocusInterval() {
+        focusInterval = setInterval(function() {
+            if (!isPageVisible) {
+                window.focus(); 
+                document.title = "🔄 Обновите поиск для актуальных цен!";
+            }
+        }, 10000); 
+    }
+
+    function stopFocusInterval() {
+        clearInterval(focusInterval);
+        document.title = originalTitle; 
+    }
+
+    document.addEventListener('visibilitychange', function() {
+        isPageVisible = !document.hidden; 
+        
+        if (isPageVisible) {
+            stopFocusInterval(); 
+        }
     });
 });
 
