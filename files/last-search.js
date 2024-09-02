@@ -1,4 +1,5 @@
 const isMobileFlagSearchResult = window.matchMedia("only screen and (max-width: 760px)").matches;
+const container = document.querySelector('.last-search-results-container');
 
 function getGuests() {
     return document.getElementById('guests').value;
@@ -26,7 +27,7 @@ const addSearchToLocalStorage = (searchObj, key) => {
 
 // Функция для создания и обновления last-search-result-item элементов
 const updateLastSearchResults = (key) => {
-    const container = document.querySelector('.last-search-results-container');
+    
     const listContainer = document.querySelector('.last-search-result-list');
     const searches = JSON.parse(localStorage.getItem(key) || '[]');
 
@@ -78,14 +79,17 @@ const updateLastSearchResults = (key) => {
         const descriptionDiv = document.createElement('div');
         descriptionDiv.className = 'description';
         const descriptionParts = [
-            key === 'search_flights' ? `${search.depDate} - ${search.retDate}` :
-                key === 'search_transfers' ? `${search.dateTo} - ${search.dateReturn}` :
-                    key === 'search_hotels' ? `${search.checkin} - ${search.checkout}` :
-                        `${search.dates}`,
-            search.adultCounter > 0 ? `${search.adultCounter} взрослых` : search.adults > 0 ? `${search.adults} взрослых` : '',
-            search.childrenCounter > 0 ? `${search.childrenCounter} детей` : search.children > 0 ? `${search.children} детей` : '',
-            key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} младенцев` : ''
-        ].filter(part => part).join(' | ');
+    key === 'search_flights' ? `${search.depDate} - ${search.retDate}` :
+        key === 'search_transfers' ? `${search.dateTo} - ${search.dateReturn}` :
+            key === 'search_hotels' ? `${search.checkin} - ${search.checkout}` :
+                `${search.dates}`,
+    search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? 'взрослый' : 'взрослых'}` : 
+        (search.adults > 0 ? `${search.adults} ${search.adults == 1 ? 'взрослый' : 'взрослых'}` : ''),
+    search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? 'ребенок' : 'детей'}` : 
+        (search.children > 0 ? `${search.children} ${search.children == 1 ? 'ребенок' : 'детей'}` : ''),
+    key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? 'младенец' : 'младенцев'}` : ''
+].filter(part => part).join(' | ');
+
 
         descriptionDiv.textContent = descriptionParts;
 
@@ -296,5 +300,6 @@ const initPage = () => {
         updateLastSearchResults(searchForm.key);
     }
 };
+
 
 document.addEventListener('DOMContentLoaded', initPage);
