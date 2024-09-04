@@ -900,11 +900,11 @@
     }
 
 
-    .air-datepicker-cell.-in-range-.charter-day{
-      background: #E7EDF8;
+    .air-datepicker-cell.-in-range-.charter-day {
+      background: #3e7b5180;
       border-radius: 0;
-      color: #555;
-    }
+      color: #ffffff;
+  }
   
     .air-datepicker-cell.-in-range-.charter-day:hover {
       background: #3968BF;
@@ -1301,9 +1301,27 @@ position: relative;
 
 .select2-container--krajee-bs3 .select2-selection{
   border-radius: 6px !important;
-  border: 1px solid #E4E6EE;
+  border: 1px solid #E4E6EE !important;
 }
 
+.tour-search-form .select2-container--krajee-bs3 .select2-selection{
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
+
+#flights-search-form .select2-container--krajee-bs3 .select2-selection{
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
+
+#tours-calendar {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.field-toursearchform-fixperiod .help-block.help-block-error{
+  font-size: 12px;
+}
 
 
 @media (max-width: 770px){

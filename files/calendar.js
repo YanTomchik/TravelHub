@@ -36,6 +36,7 @@ let todayString = formatDateToString(today);
 let typeRequest = 'start';
 let datepicker = null;
 let isRange = true;
+let selectedDate = null;
 
 let charterFlightCache = null;
 let charterDirectionsCache = null;
@@ -420,7 +421,7 @@ let formatSameDate = null;
 
 function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
-    let selectedDate = null; // Переменная для хранения выбранной даты
+    // let selectedDate = null; // Переменная для хранения выбранной даты
     let typeRequest = 'start'; // Изначальное значение typeRequest
 
     const locale = MAIN_LANGUAGE === 'ru' ? localeRu : localeEn;
@@ -711,35 +712,78 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
     return datepickerBothWay;
 }
+
 ////////////////////////////////
 
 function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
+
     if (isRange === true) {
         typeWay = 'trip';
     } else {
         typeWay = 'one';
     }
 
-    let selectedDate = null; // Переменная для хранения выбранной даты
+    // let selectedDate = null; // Переменная для хранения выбранной даты
 
     const locale = MAIN_LANGUAGE === 'ru' ? localeRu : localeEn;
 
     const renderCell = (dates, date, cellType) => {
+        
+        if(selectedDate && isRange){
+            datepickerInputFrom.value = selectedDate;
+        }
         if (cellType === 'day') {
             const day = String(date.getDate()).padStart(2, '0');
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
             const renderCellDate = `${year}-${month}-${day}`;
-            if (dates.includes(renderCellDate)) {
-                return {
-                    html: `<span class="available-date">${date.getDate()}</span>`,
-                    classes: 'charter-day'
-                };
-            } else {
-                return {
-                    disabled: true
-                };
+
+            
+            if(selectedDate && isRange && !Array.isArray(selectedDate)){
+
+                const [day, month, year] = selectedDate.split('.'); 
+                const selectedDateFormatted = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+                if (renderCellDate > selectedDateFormatted && dates.includes(renderCellDate)) {
+                    return {
+                        html: `<span class="available-date">${date.getDate()}</span>`,
+                        classes: 'charter-day'
+                    };
+                } else {
+                    return {
+                        disabled: true
+                    };
+                }
+            }else if(isRange && Array.isArray(selectedDate)){
+
+
+                const [day, month, year] = formatDateToString(selectedDate[0]).split('.'); 
+                const selectedDateFormatted = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+                if (renderCellDate > selectedDateFormatted && dates.includes(renderCellDate)) {
+                    return {
+                        html: `<span class="available-date">${date.getDate()}</span>`,
+                        classes: 'charter-day'
+                    };
+                } else {
+                    return {
+                        disabled: true
+                    };
+                }
+            }else{
+                if (dates.includes(renderCellDate)) {
+                    return {
+                        html: `<span class="available-date">${date.getDate()}</span>`,
+                        classes: 'charter-day'
+                    };
+                } else {
+                    return {
+                        disabled: true
+                    };
+                }
             }
+
+            
         }
     };
 
@@ -747,11 +791,17 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         dates.forEach(dateStr => {
             dp.enableDate(new Date(dateStr));
         });
+        
         const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
         dp.update({
             onRenderCell: ({ date, cellType }) => renderCell(dates, date, cellType)
         });
-        dp.setViewDate(earliestDate);
+        if(dp.selectedDates.length == 0){
+            dp.setViewDate(earliestDate);
+        }else{
+            dp.setViewDate(dp.selectedDates[0]);
+        }
+        
         hideLoader();
     };
 
@@ -763,6 +813,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         dp.update({
             range: isRange
         });
+        // dp.selectDate(selectedDate[0])
 
         setTimeout(() => {
             const button = dp.$datepicker.querySelector('.trip-btn');
@@ -772,13 +823,14 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
             }
             dp.show()
 
-            dp.selectDate(selectedDate)
+            // dp.selectDate(selectedDate[0])
+            setActiveInput()
 
         }, 0);
 
-
-        getFlightCharterCalendar(typeWay)
-            .then(response => updateCalendar(dp, response.from));
+        
+        // getFlightCharterCalendar(typeWay)
+        //     .then(response => updateCalendar(dp, response.from));
     };
 
     let datepickerTwoWayCharter = new AirDatepicker(datepickerInputFrom, {
@@ -802,16 +854,20 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         onSelect: function (formattedDate, date, inst) {
             // console.log(isRange)
             if (formattedDate.date[0] !== undefined) {
+                selectedDate = formatDateToString(formattedDate.date[0]);
                 if (formattedDate.date[1] == undefined) {
                     if (isMobileFlag == false) {
                         // datepickerInputTo.focus()
                         setActiveInput(datepickerInputTo)
                     }
                     datepicker.show();
+                    console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                 } else if (formattedDate.date[1] !== undefined) {
+                    console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                     datepickerInputTo.value = formattedDate.formattedDate[1];
+                    setActiveInput()
                 }
 
                 getFlightCharterCalendar(typeWay)
@@ -823,6 +879,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
 
             if (formattedDate.date[1] !== undefined) {
                 setTimeout(() => {
+                    console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                     datepickerInputTo.value = formattedDate.formattedDate[1];
                 }, 0);
@@ -830,7 +887,9 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         },
         onShow: function (inst) {
             if (inst) {
-
+                if(selectedDate){
+                    console.log(selectedDate)
+                }
                 if (!isRange) {
                     setTimeout(() => {
                         const button = datepicker.$datepicker.querySelector('.trip-btn');
@@ -838,7 +897,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
                             button.classList.add('active');
                         }
                     }, 0);
-                }
+                }        
 
                 getFlightCharterCalendar(typeWay)
                     .then(response => updateCalendar(datepickerTwoWayCharter, response.from));
@@ -1015,6 +1074,7 @@ if (inputCharterTo != undefined) {
 
                                 cityDivElementTo.addEventListener('click', (event) => {
                                     clearDatepickerValue()
+                                    
                                     const cityCode = cityCodeMapTo[cityName];
                                     inputCharterTo.setAttribute('iata-to', cityCode);
                                     inputCharterTo.value = cityName;
@@ -1143,7 +1203,8 @@ if (isMobileFlag == true) {
 $('#flightsearchform-locationfrom').on('change', function () {
     clearAllCache()
     if (datepicker != undefined || datepicker != null) {
-        clearDatepickerValue()
+        type = 'changeRoute'
+        clearDatepickerValue(type)
         datepicker.setViewDate(today)
         typeRequest = 'start'
     }
@@ -1154,7 +1215,8 @@ $('#flightsearchform-locationfrom').on('change', function () {
 $('#flightsearchform-locationto').on('change', function () {
     clearAllCache()
     if (datepicker != undefined || datepicker != null) {
-        clearDatepickerValue()
+        type = 'changeRoute'
+        clearDatepickerValue(type)
         datepicker.setViewDate(today)
         typeRequest = 'start'
     }
@@ -1171,10 +1233,14 @@ document.querySelector('.search-btn-block.col-search-button').addEventListener('
     }
 })
 
-function clearDatepickerValue() {
-    datepickerInputFrom.value = "";
-    datepickerInputTo.value = "";
+function clearDatepickerValue(type) {
+
+    if(type != "changeRoute"){
+        datepickerInputFrom.value = "";
+        datepickerInputTo.value = "";
+    }
     isRange = true;
+    selectedDate = null;
     datepicker.clear();
     datepicker.update({
         range: isRange
@@ -1199,9 +1265,6 @@ datepickerInputTo.addEventListener('click', (event) => {
             setActiveInput(datepickerInputTo)
         }
     }
-
-    // console.log('click input to')
-    // console.log(isRange)
     if (!isRange) {
         datepicker.update({ range: true });
 

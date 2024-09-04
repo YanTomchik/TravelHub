@@ -138,8 +138,27 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     showOtherMonths: false,
     onSelect: function (formattedDate, date, inst) {
         if (formattedDate.date && formattedDate.date.length > 0) {
-            lastSelectedDate = formattedDate.date[0]; // Сохраняем первую выбранную дату
-            lastVisibleDate = datepickerTour.viewDate; // Сохраняем последнюю видимую дату
+            const startDate = formattedDate.date[0];
+            const endDate = formattedDate.date[1];
+            
+            if (startDate && endDate) {
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                console.log(diffDays)
+                if (diffDays > 3) {
+                    const errorMessage = MAIN_LANGUAGE === 'ru' 
+                        ? "Вы можете выбрать не более 3 дней" 
+                        : "You can select no more than 3 days";
+                    document.querySelector('.field-toursearchform-fixperiod .help-block.help-block-error').textContent = errorMessage
+                    
+                    return;
+                }else{
+                    document.querySelector('.field-toursearchform-fixperiod .help-block.help-block-error').textContent = ""
+                }
+            }
+
+            lastSelectedDate = startDate; 
+            lastVisibleDate = datepickerTour.viewDate;
         }
     },
     onShow: function (inst) {
@@ -191,6 +210,7 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
         }
     }
 });
+
 
 function showLoader() {
     const loader = document.querySelector('.loader-calendar-wrapper.calendar');
