@@ -145,7 +145,7 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
                 const diffTime = Math.abs(endDate - startDate);
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 console.log(diffDays)
-                if (diffDays > 3) {
+                if (diffDays >= 3) {
                     const errorMessage = MAIN_LANGUAGE === 'ru' 
                         ? "Вы можете выбрать не более 3 дней" 
                         : "You can select no more than 3 days";
