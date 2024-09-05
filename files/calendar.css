@@ -1319,7 +1319,7 @@ position: relative;
   border-bottom-right-radius: 6px;
 }
 
-.field-toursearchform-fixperiod .help-block.help-block-error{
+.field-tours-calendar .help-block.help-block-error{
   font-size: 12px;
   color: #BF3939;
 }

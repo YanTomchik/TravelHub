@@ -149,12 +149,12 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
                     const errorMessage = MAIN_LANGUAGE === 'ru' 
                         ? "Вы можете выбрать не более 3 дней" 
                         : "You can select no more than 3 days";
-                    document.querySelector('.field-toursearchform-fixperiod .help-block.help-block-error').textContent = errorMessage
+                    document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = errorMessage
                     datepickerTour.clear();
                     
                     return;
                 }else{
-                    document.querySelector('.field-toursearchform-fixperiod .help-block.help-block-error').textContent = ""
+                    document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = ""
                 }
             }
 
