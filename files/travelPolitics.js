@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closePopupBtn = document.getElementById('popupClose');
     const bodyTag = document.body;
 
-    document.querySelectorAll('.politics-edit-btn').forEach(elem=>{
+    document.querySelectorAll('.open-popup-blue').forEach(elem=>{
         elem.addEventListener('click',()=>{
             popupOverlay.style.display = 'flex';
             bodyTag.style.overflow = 'hidden';

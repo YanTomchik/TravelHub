@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.getElementById('useragencyupdateform-legaladdress').value = addressMapping.route;
+        // document.getElementById('useragencyupdateform-legaladdress').value = addressMapping.route;
         document.getElementById('useragencyupdateform-suit').value = addressMapping.street_number;
         document.getElementById('useragencyupdateform-city').value = addressMapping.locality;
         document.getElementById('useragencyupdateform-state').value = addressMapping.administrative_area_level_1;

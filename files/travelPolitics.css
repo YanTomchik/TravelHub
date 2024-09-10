@@ -413,23 +413,98 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height: calc(100% + 300px);
     background-color: #0B193380;
     z-index: 1100; /* Поверх всего остального контента */
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     overflow-y: auto;
 }
 
 /* Стили для контента попапа */
 .popup-blue-content {
-    /* width: 70%; */
+    width: 70%;
     height: 95%;
+    border-radius: 16px;
+    margin-top: 0px;
     /* margin-top: 100px; */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
     text-align: center;
     position: relative;
     max-width: 1000px;
+}
+
+.popup-blue-content.travelpolitics-wrapper{
+    width: auto;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+.popup-blue-content.esim-wrapper{
+    padding: 30px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: auto;
+}
+
+.popup-blue-content.esim-wrapper .btn{
+    height: 60px;
+}
+
+.popup-blue-content.esim-wrapper .semi-h2{
+    text-align: left;
+}
+
+.popup-blue-description{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.extra-info-wrapper{
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    padding: 12px 15px;
+    gap: 10px;
+    max-width: 500px;
+}
+
+.extra-info-wrapper.grey{
+    background-color: #F4F6F9;
+}
+
+.extra-info-wrapper.grey .regular-b2{
+    color: #19191E99;
+}
+
+.choose-esim-type-wrapper{
+    width: 100%;
+}
+
+.choose-esim-type-wrapper .payment-select{
+    width: 100%;
+}
+
+.choose-esim-type-wrapper .payment-select .custom-radio-payment-description-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.custom-radio-payment-description-price{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.custom-radio-payment-description-price .semi-h3{
+    color: #58585880;
 }
 
 /* Кнопка закрытия попапа */
@@ -440,6 +515,15 @@
     font-size: 24px;
     cursor: pointer;
     color: #333;
+}
+
+.popup-blue-close svg{
+    fill: #B5B5C2;
+}
+
+.popup-blue-content.esim-wrapper .popup-blue-close{
+    right: 3%;
+    top: 3%;
 }
 
 .popup-blue-content .travel-politics-list{
@@ -555,5 +639,56 @@ max-width: 500px;
         
     }
 
+    .popup-blue-content.esim-wrapper{
+        padding: 20px;
+        width: 95%;
+        height: fit-content;
+        gap: 20px;
+    }
+
+    .popup-blue-content.esim-wrapper .semi-h2{
+        font-size: 16px;
+    }
+
+    .popup-blue-content.esim-wrapper .popup-blue-description .regular-b1{
+        font-size: 14px;
+    }
+
+    .extra-info-wrapper.grey .regular-b2{
+        font-size: 12px;
+    }
+
+    .choose-esim-type-wrapper .payment-select .custom-radio-payment-description-wrapper .regular-b2{
+        font-size: 12px;
+    }
+
+    .custom-radio-payment-description-price{
+        flex-direction: column-reverse;
+    }
+
+    .custom-radio-payment-description-price .custom-radio-payment-description{
+        white-space: nowrap;
+    }
+
+    .custom-radio-payment-description-price .custom-radio-payment-description.crossed{
+        font-size: 14px;
+        gap: 0px;
+    }
+
+    .choose-esim-type-wrapper .payment-select .custom-control-label{
+        padding-right: 15px;
+    }
+
+    .popup-blue-description{
+        gap: 10px;
+    }
+
+    .popup-blue-content.esim-wrapper .popup-blue-close svg{
+        fill: #fff;
+    }
+
+    .popup-blue-content.esim-wrapper .popup-blue-close{
+        top: -6%;
+    }
     
 }
