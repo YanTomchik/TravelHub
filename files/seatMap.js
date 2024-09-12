@@ -18,13 +18,15 @@ let dataService;
 let dataFlightId;
 let dataOrderId;
 let dataOrderServiceId;
+let totalText;
+let seatNotSelectedText;
 let nextButtonText;
 let prevButtonText;
 let submitButtonText;
 let grossMultiplier;
 const bearerToken = 'AmaOk_eyJpZCI6MTYsImVtYWlsIjoibWFuYWdlcnNAaW5maW5pdHkuYnkifQ';
 
-let currentTraveler = 1; // Initialize the current traveler
+let currentTraveler = null; // Initialize the current traveler
 
 function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId) {
     const flightId = dataFlightId;
@@ -61,6 +63,7 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
             flightOfferId = data.result[currentFlightIndex].flightOfferId;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
             numFlights = flightsData.result.length;
+            currentTraveler = data.result[currentFlightIndex].travelers[0].id
 
             // console.log(data)
             renderFlight();
@@ -103,17 +106,20 @@ function renderFlight() {
     flight.decks.forEach(deck => {
         const wingStart = deck.deckConfiguration.startWingsX;
         const wingEnd = deck.deckConfiguration.endWingsX;
+        const hideWings = deck.deckConfiguration.hideWings;
 
         const topPlaneElem = createTopPlane(deck);
         const topPlaneWrapper = document.createElement('div');
         topPlaneWrapper.innerHTML = topPlaneElem;
         app.appendChild(topPlaneWrapper);
 
-        const wings = displayWings(wingStart, wingEnd);
-        const wingsWrapper = document.createElement('div');
-        wingsWrapper.classList.add('wings-wrapper');
-        wings.forEach(wing => wingsWrapper.appendChild(wing));
-        app.appendChild(wingsWrapper);
+        if (!hideWings) {
+            const wings = displayWings(wingStart, wingEnd);
+            const wingsWrapper = document.createElement('div');
+            wingsWrapper.classList.add('wings-wrapper');
+            wings.forEach(wing => wingsWrapper.appendChild(wing));
+            app.appendChild(wingsWrapper);
+        }
 
         const deckElement = document.createElement('div');
         deckElement.innerHTML = renderDeck(deck, travelerIds);
@@ -122,7 +128,6 @@ function renderFlight() {
 
     updateTravelerInfo(); // Обновляем информацию о пассажирах
 
-    // Создаем и добавляем кнопки
     const previousFlightBtn = document.createElement('button');
     previousFlightBtn.id = 'previous-flight-btn';
     previousFlightBtn.textContent = this.prevButtonText || 'Previous Flight';
@@ -137,7 +142,7 @@ function renderFlight() {
         if (currentFlightIndex > 0) {
             currentFlightIndex--;
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
-            currentTraveler = 1;
+            currentTraveler = travelerIds[0].id;
             renderFlight();
         }
     });
@@ -152,7 +157,7 @@ function renderFlight() {
     nextFlightBtn.addEventListener('click', () => {
         if (currentFlightIndex < flightsData.result.length - 1) {
             currentFlightIndex++;
-            currentTraveler = 1;
+            currentTraveler = travelerIds[0];
             numTravelers = flightsData.result[currentFlightIndex].availableSeatsCounters.length;
             renderFlight();
         } else {
@@ -163,7 +168,6 @@ function renderFlight() {
     restoreSelectedSeats(); // Восстанавливаем выбранные места
     updateButtonsStatus(); // Обновляем состояние кнопок
 }
-
 
 function renderDeck(deck, travelerIds) {
     const width = deck.deckConfiguration.width * 4.8;
@@ -184,13 +188,12 @@ function renderDeck(deck, travelerIds) {
 }
 
 function displaySeats(seatList, travelerIds) {
-    const currentTravelerId = travelerIds[currentTraveler - 1];
-
+    const currentTravelerId = travelerIds[travelerIds.indexOf(currentTraveler)];
 
     return seatList.map((seat, seatIndex) => {
-        const travelerPricing = seat.travelerPricing.find(pricing => pricing.travelerId === currentTravelerId);
+        const travelerPricing = seat.travelerPricing.find(pricing => pricing.travelerId == currentTravelerId);
         const isSeatAvailable = travelerPricing && travelerPricing.seatAvailabilityStatus === 'AVAILABLE';
-        
+
         const color = isSeatAvailable ? "#3968BF" : "#d9d9d9";
         const classType = isSeatAvailable ? "available" : "blocked";
         const style = `left: ${seat.coordinates.y * 4 + 2}em; top: ${seat.coordinates.x * 4 + 2.5}em; background-color: ${color}; color: white;`;
@@ -200,7 +203,6 @@ function displaySeats(seatList, travelerIds) {
         </div>`;
     }).join('');
 }
-
 
 function createTopPlane(deck) {
     const width = deck.deckConfiguration.width;
@@ -263,6 +265,8 @@ chooseSeatMapBtns.forEach(btn => {
         const dataFlightId = elem.target.dataset.flightid;
         const dataOrderId = elem.target.dataset.orderid;
         const dataOrderServiceId = elem.target.dataset.orderserviceid;
+        this.totalText = elem.target.dataset.totalText || 'total';
+        this.seatNotSelectedText = elem.target.dataset.seatNotSelectedText || 'Seat not selected';
         this.nextButtonText = elem.target.dataset.nextFlightText;
         this.prevButtonText = elem.target.dataset.prevFlightText;
         this.submitButtonText = elem.target.dataset.submitDataText;
@@ -294,7 +298,9 @@ async function submitData() {
             id: `${parseInt(flightIndex) + 1}`,
             seatNumber: seatData.seat,
             total: seatData.total,
-            currency: seatData.currency
+            currency: seatData.currency,
+            flightId: seatData.flightId,
+            segmentId: seatData.segmentId,
         }))
     }));
 
@@ -333,7 +339,6 @@ async function submitData() {
     }
 }
 
-
 app.addEventListener('click', (e) => {
     if (e.target.classList.contains('seat') && !e.target.classList.contains('blocked')) {
         const seatNumber = e.target.dataset.seatNumber;
@@ -343,10 +348,10 @@ app.addEventListener('click', (e) => {
         const action = e.target.classList.contains('active') ? 'delete' : 'add';
 
         const travelerIds = flightsData.result[currentFlightIndex].travelers.map(traveler => traveler.id);
-        let travelerId = e.target.dataset.travelerId ?? travelerIds[currentTraveler - 1];
+        let travelerId = e.target.dataset.travelerId ?? travelerIds[travelerIds.indexOf(currentTraveler)];
 
         // Проверяем, является ли текущий пассажир активным для удаления места
-        if (action === 'delete' && travelerId !== travelerIds[currentTraveler - 1]) {
+        if (action === 'delete' && travelerId !== travelerIds[travelerIds.indexOf(currentTraveler)]) {
             // console.log('Место может быть удалено только у активного пассажира.');
             return;
         }
@@ -360,14 +365,16 @@ app.addEventListener('click', (e) => {
                 seat: seatNumber,
                 total: seatPrice,
                 totalGross: roundValue(seatPrice * this.grossMultiplier, seatCurrency),
-                currency: seatCurrency
+                currency: seatCurrency,
+                flightId: flightsData.result[currentFlightIndex].id,
+                segmentId: flightsData.result[currentFlightIndex].segmentId,
             };
             e.target.classList.add('active');
             e.target.setAttribute('data-traveler-id', travelerId);
 
             // Переключаемся на следующего пассажира только если есть еще не выбранные пассажиры
-            if ((currentTraveler + 1) <= numTravelers) {
-                currentTraveler++;
+            if ((travelerIds.indexOf(currentTraveler) + 1) <= numTravelers) {
+                currentTraveler = travelerIds[travelerIds.indexOf(currentTraveler) + 1];
             }
             renderFlight();
         } else if (action === 'delete' && selectedSeats[travelerId] && selectedSeats[travelerId][flightIndex]) {
@@ -394,7 +401,7 @@ function updateTravelerInfo() {
         infoDiv = document.createElement('div');
         infoDiv.classList.add('seat-info');
     }
-    
+
     infoDiv.innerHTML = '';
     const travelers = flightsData.result[currentFlightIndex].travelers;
 
@@ -404,13 +411,12 @@ function updateTravelerInfo() {
         const travelerName = `${traveler.firstname} ${traveler.lastname}`; // Формируем имя и фамилию
 
         // Определяем, является ли этот пассажир текущим
-        const isActiveTraveler = currentTraveler === index + 1;
-        
+        const isActiveTraveler = currentTraveler === travelerId;
+
         const wrapperClass = selectedSeat ? 'active' : '';
-        
+
         const currentClass = isActiveTraveler ? 'current-item-passenger' : '';
 
-        
         infoDiv.innerHTML += `
         <div class="passenger-item-wrapper ${wrapperClass} ${currentClass}" data-traveler-index="${index + 1}">
             <div class="passenger-info-wrapper">
@@ -418,7 +424,7 @@ function updateTravelerInfo() {
                 <div class="passenger-description-wrapper">
                     <div class="name">${travelerName}</div>
                     <div class="extra-info">
-                        ${selectedSeat ? `total ${roundValue(selectedSeat.totalGross, selectedSeat.currency)} ${selectedSeat.currency}` : 'seat not selected'}
+                        ${selectedSeat ? `${this.totalText} ${roundValue(selectedSeat.totalGross, selectedSeat.currency)} ${selectedSeat.currency}` : this.seatNotSelectedText}
                     </div>
                 </div>
             </div>
@@ -428,14 +434,15 @@ function updateTravelerInfo() {
         </div>`;
     });
 
-    passengersListWrapper.innerHTML = ''; 
+    passengersListWrapper.innerHTML = '';
     passengersListWrapper.appendChild(infoDiv);
 
-    
+
     document.querySelectorAll('.passenger-item-wrapper').forEach(wrapper => {
-        wrapper.addEventListener('click', function() {
+        wrapper.addEventListener('click', function () {
             const travelerIndex = parseInt(this.dataset.travelerIndex);
-            currentTraveler = travelerIndex; // Обновляем currentTraveler на выбранного пассажира
+            var travelerIdByIndex = flightsData.result[currentFlightIndex].travelers[travelerIndex - 1]?.id;
+            currentTraveler = travelerIdByIndex; // Обновляем currentTraveler на выбранного пассажира
             renderFlight(); // Рендерим карту мест для выбранного пассажира
         });
     });
@@ -459,8 +466,6 @@ function updateButtonsStatus() {
     }
 }
 
-
-
 function restoreSelectedSeats() {
     for (const travelerId in selectedSeats) {
         if (selectedSeats.hasOwnProperty(travelerId)) {
@@ -475,8 +480,6 @@ function restoreSelectedSeats() {
         }
     }
 }
-
-
 
 app.addEventListener('mouseover', (e) => {
     if (e.target.classList.contains('seat') && !e.target.classList.contains('blocked')) {
