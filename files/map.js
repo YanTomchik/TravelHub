@@ -219,7 +219,7 @@ function updateLeftBlockWithMarkerData(markerData) {
     const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
     const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
-    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value='${quiQuo}'></div>` : '';
     // leftBlock.innerHTML = ''
     buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
     leftBlock.scrollTop = 0;
@@ -379,7 +379,7 @@ async function lazyLoadLeftBlock() {
     const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
     const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
     const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
-    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+    const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value='${quiQuo}'></div>` : '';
 
     buildLeftContent(property, currencyName, countHotels, flagRefundableText, ratingBlock, priceNetBlock, availableRoomsBlock, priceStrikeBlock, quiQuoBlock, partnerName);
   });
@@ -499,7 +499,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                 const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
                 const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
                 const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
-                const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+                const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value='${quiQuo}'></div>` : '';
       
                 const contentInfoWindow = `
                   <div class="details">
@@ -525,7 +525,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
                       </div>
                       <div class="marker-popup-footer-info">
                         <div class="marker-popup-footer-description-wrapper">${priceNetBlock}<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">Всего (включая налоги и сборы):</div><div class="marker-popup-footer-description-price">${priceTotal} ${currencyName}</div></div></div>
-                        <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">за ночь ${priceNightly} ${currencyName}</div></div>
+                        <div class="marker-popup-footer-price-wrapper">${priceStrikeBlock}<div class="marker-popup-footer-price">${translationsHub?.forNight ?? 'за ночь'} ${priceNightly} ${currencyName}</div></div>
                       </div>
                     </div>
                   </div>
@@ -561,7 +561,7 @@ async function initMap(formData, typeRender, mapActiverHotel) {
       const priceNetBlock = priceNet ? `<div class="marker-popup-footer-description"><div class="marker-popup-footer-description-main">${translationsHub?.totalNetto ?? 'Всего (нетто цена):'}</div><div class="marker-popup-footer-description-price">${priceNet} ${currencyName}</div></div>` : '';
       const priceStrikeBlock = priceStrike > 0? `<div class="marker-popup-footer-price-alert">${priceStrike} ${currencyName}</div>` : '';
       const availableRoomsBlock = availableRooms === 1 ? `<div class="marker-popup-red-available-description">${translationsHub?.onlyOneRoom ?? 'Остался 1 номер по этой цене'}</div>` : '';
-      const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value="${quiQuo}"></div>` : '';
+      const quiQuoBlock = quiQuo ? `<div class="qq-btn-place" data-value='${quiQuo}'></div>` : '';
       const contentInfoWindow = `
         <div class="details">
           <div class="marker-popup-wrapper">
@@ -724,7 +724,7 @@ function buildLeftContent(property, currencyName, countHotels, flagRefundableTex
       
       <div class="marker-popup-footer-price-wrapper">
       ${priceStrikeBlock}
-        <div class="marker-popup-footer-price">за ночь ${property.priceNightly} ${currencyName}</div>
+        <div class="marker-popup-footer-price">${translationsHub?.forNight ?? 'за ночь'} ${property.priceNightly} ${currencyName}</div>
       </div>
     </div>
   `;
