@@ -927,6 +927,15 @@
     display: none!important;
   }
 
+  .flight-statistic-popup-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: #F4F6F9;
+  }
+
 @media (max-width: 767px) {
 
     .upsale-container .semi-h3 {
@@ -1158,6 +1167,20 @@
 
     .list-sidebar-item-wrapper  .show-more-button-esim {
         display: block;
+    }
+
+    .upsale-container .add-extra-service-banner .card-balance-info-wrapper{
+        align-items: flex-start;
+    }
+    
+    .card.card-custom.add-extra-service-banner .card-header{
+        justify-content: flex-start;
+    }
+
+    .flight-statistic-popup-bottom-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 }
   

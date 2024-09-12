@@ -1383,8 +1383,13 @@
 
 .air-result-block.remaster .flight-more-info-btn{
     cursor: pointer;
+}
+
+.air-result-block.remaster .flight-more-info-btn .semi-b2{
     color: #585858;
 }
+
+
 
 /* TOOLTIP */
 .tooltip-container {
@@ -1442,6 +1447,35 @@
     height: 36px;
 }
 
+.flight-info-block-header-status-list{
+    display: none;
+}
+
+.flight-mobile-popup{
+    display: none;
+    position: fixed;
+    z-index: 1005;
+    top: 100%; /* Изначально скрыт за нижней границей экрана */
+    left: 0;
+    background-color: #F4F6F9;
+    height: 100%;
+    width: 100%;
+    transform: translateY(100%); /* Начальное положение вне экрана */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавная анимация */
+    visibility: hidden; /* Скрыть попап по умолчанию */
+}
+
+.card-additional-info-header-wrapper{
+    display: none;
+}
+
+.baggage-item{
+    display: none;
+}
+
+.flight-mobile-popup-btn-back{
+    cursor: pointer;
+}
 
   @media (max-width: 568px) {
 
@@ -1459,12 +1493,19 @@
         margin-left: 0px!important;
     }
 
+    .air-result-block.remaster .result-list .result-item .card .more-details-block.mobile{
+        border-top: 1px solid #B5B5C2;
+        padding-top: 20px;
+        margin-right: 16px!important;
+        margin-left: 16px!important;
+    }
+
     .air-result-block.remaster .result-list .result-item .card .info-block .time-block {
         flex-wrap: nowrap;
     }
 
     .air-result-block.remaster .result-list .result-item .card .info-block{
-        gap: 20px;
+        gap: 0px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -1483,7 +1524,7 @@
     }
 
     .air-result-block.remaster .result-list .result-item .card .card-main-info{
-        padding: 16px;
+        padding: 16px 16px 30px 16px;
     }
 
     .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block{
@@ -1530,6 +1571,334 @@
     }
 
     .air-result-block.remaster .result-list .result-item .card .card-additional-info{
-        margin: 0px 10px;
+        margin: 0px 16px;
     }
+
+    .card-additional-info-flight-wrapper{
+        background-color: #fff;
+    }
+
+    .air-result-block.remaster .change-transfer-wrapper{
+        background-color: #F4F6F9;
+    }
+
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover{
+        background-color: #fff;
+    }
+
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover{
+        height: 25px;
+    }
+
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .marker{
+        border: 2px solid #585858;
+    }
+
+    .card-additional-info-header-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding-bottom: 20px;
+    }
+
+    .card-additional-info-header-title{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .card-additional-info-header-description .regular-b2{
+        color: #585858;
+    }
+
+    .air-result-block.remaster .flight-tax-info{
+        display: none;
+    }
+
+    .card-additional-info-flight-wrapper{
+        padding: 20px 0px;
+    }
+
+    .air-result-block.remaster .baggage-block .baggage-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .air-result-block.remaster .baggage-block .baggage-item .baggage-item-title{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .air-result-block.remaster .baggage-block{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .flight-info-block-header-status-list{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .flight-info-status-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 45px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 12px;
+    }
+
+    .flight-info-status-item.green{
+        color: #3D7B50;
+        background-color: #EAF5ED;
+    }
+
+    .air-result-block.remaster .result-list .result-item.opened .card.upsale-flight.add-flight .card-additional-info{
+        display: none;
+    }
+
+    /* FLIGHT POPUP */
+
+    
+
+    .flight-mobile-popup.opened{
+        position: fixed;
+        z-index: 1005;
+        top: 0px;
+        left: 0;
+        background-color: #F4F6F9;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        transform: translateY(0); /* Появление с нижней части экрана */
+    visibility: visible; /* Делаем попап видимым */
+    }
+
+    .flight-mobile-popup-content{
+        padding: 20px 16px 20px 16px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
+    }
+
+    .flight-mobile-popup-btn-back{
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .flight-mobile-popup-content .card-additional-info-header-wrapper{
+        padding-bottom: 0px;
+    }
+
+    .flight-mobile-popup-content .card-additional-info-header-wrapper{
+        align-items: flex-start;
+    }
+
+    .flight-mobile-popup-content .flight-mobile-popup-info-card{
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 16px;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .title-block {
+        padding-top: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .title-block .company-name {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24px;
+        color: #19191E;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .timing-info-block {
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list {
+        padding-left: 16px;
+        border-left: 2px solid #B5B5C2;
+        position: relative;
+    }
+
+    .air-result-block .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .line-cover {
+        position: absolute;
+        height: 25px;
+        background-color: #fff;
+        width: 3px;
+        z-index: 1000;
+        left: -2px;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .line-cover {
+        position: absolute;
+        width: 3px;
+        height: 25px;
+        background-color: #fff;
+        z-index: 1000;
+        left: -2px;
+    }
+
+    .air-result-block .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .line-cover.bottom {
+        bottom: 0;
+        height: 33px;
+    }
+    
+    .air-result-block .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .time-line {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-bottom: 16px;
+        padding-left: 20px;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .time-line .marker {
+        background: #f4f6fa;
+        border: 2px solid #585858;
+        z-index: 1000;
+        position: absolute;
+        left: -21px;
+        width: 9px;
+        height: 9px;
+        border-radius: 5px;
+    }
+
+    .air-result-block.remaster .card-additional-info-flight-wrapper .info-block {
+        gap: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-right: 24px;
+        width: 80px;
+        flex: none;
+        margin-left: 0;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+
+    .flight-mobile-popup-content .btn{
+        height: 45px;
+        padding: 14px 20px;
+    }
+
+    .flight-mobile-popup-title-block{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .flight-mobile-popup-info-card.extra-info{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .extra-bottom-popup-overlay{
+        height: 100%;
+        width: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 1101;
+        background-color: #0B193380;
+        transition: opacity 0.3s ease;
+    }
+
+    .extra-bottom-popup-wrapper{
+        height: fit-content;
+        width: 100%;
+        left: 0;
+        border-radius: 16px 16px 0px 0px;
+        position: fixed;
+        bottom: 0;
+        z-index: 1101;
+        background-color: #fff;
+        padding: 20px 20px 40px 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .extra-bottom-popup-content .grey-line{
+        background-color: #B5B5C2;
+        height: 6px;
+        width: 40px;
+        border-radius: 45px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .extra-bottom-popup-content{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .extra-bottom-popup-overlay.hidden {
+        display: none;
+    }
+
+    .extra-bottom-popup-list{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .extra-bottom-popup-list-item{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+
+    .extra-bottom-popup-header{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .progress-bar{
+        height: 40px;
+        border-radius: 8px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .progress-bar.green{
+        background-color: #3CBF57;
+    }
+
+    .progress-bar.green .semi-h4{
+        color: #fff;
+    }
+
+    .progress-bar-status{
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .green-dot{
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #3CBF57;
+    }
+
 }

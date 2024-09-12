@@ -118,4 +118,82 @@ document.querySelectorAll('.list-sidebar-item').forEach(item => {
 
 });
 
+// Добавляем обработчики ко всем элементам с классом .flight-mobile-popup-info-card
+document.querySelectorAll('.extra-bottom-popup-btn').forEach((popupTrigger) => {
+    
+    const popupId = popupTrigger.getAttribute('data-popup-target'); // Получаем id целевого попапа
+    
+    const popup = document.querySelector(popupId); // Находим соответствующий попап
+    const popupContent = popup.querySelector('.extra-bottom-popup-wrapper'); // Находим контент внутри попапа
 
+    // Обработчик для открытия попапа при нажатии на враппер
+    popupTrigger.addEventListener('click', function () {
+        openPopup(popup);
+    });
+
+    // Закрыть по клику на пустую область
+    popup.addEventListener('click', function (e) {
+        if (e.target === popup) {
+            closePopup(popup);
+        }
+    });
+
+    // Переменные для отслеживания свайпа
+    let startY, currentY, isDragging = false;
+
+    popupContent.addEventListener('touchstart', function (e) {
+        startY = e.touches[0].clientY;
+        isDragging = true;
+        popupContent.style.transition = 'none'; // Отключаем анимацию во время свайпа
+    });
+
+    popupContent.addEventListener('touchmove', function (e) {
+        if (!isDragging) return;
+
+        currentY = e.touches[0].clientY;
+        let translateY = Math.max(0, currentY - startY); // Ограничиваем только положительные значения (движение вниз)
+        popupContent.style.transform = `translateY(${translateY}px)`; // Перемещаем элемент вниз
+    });
+
+    popupContent.addEventListener('touchend', function () {
+        isDragging = false;
+        popupContent.style.transition = 'transform 0.3s ease'; // Включаем анимацию для плавного возврата
+
+        if (currentY - startY > 100) { // Если свайп вниз больше 100 пикселей, закрываем попап
+            closePopup(popup);
+        } else {
+            popupContent.style.transform = 'translateY(0)'; // Возвращаем в исходное положение
+        }
+    });
+});
+
+// Функция открытия попапа
+function openPopup(popup) {
+    popup.classList.remove('hidden'); // Убираем класс hidden, чтобы показать попап
+}
+
+// Функция закрытия попапа
+function closePopup(popup) {
+    const popupContent = popup.querySelector('.extra-bottom-popup-wrapper');
+    popupContent.style.transform = 'translateY(100%)'; // Анимация закрытия вниз
+    setTimeout(() => {
+        popup.classList.add('hidden');
+        popupContent.style.transform = 'translateY(0)'; // Сброс позиции
+    }, 300); // Ждем завершения анимации
+}
+
+const backBtnFlightPopup = document.querySelectorAll('.flight-mobile-popup-btn-back')
+
+backBtnFlightPopup.forEach(elem=>{
+    elem.addEventListener('click', ()=>{      
+        elem.parentElement.parentElement.classList.remove('opened')
+    })
+})
+
+const addFlightOpenPopupBtn = document.querySelectorAll('.add-flight');
+
+addFlightOpenPopupBtn.forEach(elem=>{
+    elem.addEventListener('click', ()=>{      
+        elem.nextElementSibling.classList.add('opened')
+    })
+})
