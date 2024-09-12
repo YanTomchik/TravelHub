@@ -1238,13 +1238,14 @@ function clearDatepickerValue(type) {
     if(type != "changeRoute"){
         datepickerInputFrom.value = "";
         datepickerInputTo.value = "";
+        isRange = true;
+        selectedDate = null;
+        datepicker.clear();
+        datepicker.update({
+            range: isRange
+        });
     }
-    isRange = true;
-    selectedDate = null;
-    datepicker.clear();
-    datepicker.update({
-        range: isRange
-    });
+    
 
 }
 
