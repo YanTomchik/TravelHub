@@ -30,7 +30,7 @@ let userCurrencyTofetch = USER_CURRENCY;
 if (userCurrencyTofetch == 'KZT') {
     userCurrencyTofetch = 'USD'
 }
-// console.log(userCurrencyTofetch)
+
 // Переводим даты в строки
 let todayString = formatDateToString(today);
 let typeRequest = 'start';
@@ -437,6 +437,9 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             button.classList.toggle('active', !isRange);
         }
 
+        // console.log(dp.selectedDates.length)
+        // console.log(isRange)
+
         // Проверка на две выбранные даты и фокус на поле обратного билета
         if (!isRange && dp.selectedDates.length === 2) {
             // Сброс только даты возврата
@@ -460,7 +463,9 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             const formattedViewDate = formatDateToString(viewDate);
             updateCalendarDates(dp, formattedViewDate, daysAfterToSend, codeIataFrom, codeIataTo);
         } else if (isRange === false && dp.selectedDates.length === 1) {
+            datepickerInputTo.value = ''
             dp.hide();
+            
         } else if (isRange === true && dp.selectedDates.length === 1) {
             typeRequest = 'return';
             const viewDate = dp.viewDate;
@@ -473,8 +478,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
     };
 
     const handleSelect = (formattedDate, date, inst) => {
-        allDates = []
-        console.log(formattedDate)
+        allDates = [];
         if (formattedDate.date[0] !== undefined) {
             selectedDate = formatDateToString(formattedDate.date[0]);
         }
@@ -517,8 +521,8 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
             document.querySelectorAll('.air-datepicker-cell.-day-').forEach(elem =>{
                 elem.addEventListener('click', (cell)=>{
-                    console.log(lastSelectDateCheck)
-                    console.log(datepicker.selectedDates.length)
+                    // console.log(lastSelectDateCheck)
+                    // console.log(datepicker.selectedDates.length)
                     // && datepicker.selectedDates.length < 2
                     if(lastSelectDateCheck == cell.target.dataset ){
                         sameDateSelectFlag = true;
@@ -860,10 +864,10 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
                         setActiveInput(datepickerInputTo)
                     }
                     datepicker.show();
-                    console.log(formattedDate.formattedDate[0])
+                    // console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                 } else if (formattedDate.date[1] !== undefined) {
-                    console.log(formattedDate.formattedDate[0])
+                    // console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                     datepickerInputTo.value = formattedDate.formattedDate[1];
                     setActiveInput()
@@ -878,7 +882,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
 
             if (formattedDate.date[1] !== undefined) {
                 setTimeout(() => {
-                    console.log(formattedDate.formattedDate[0])
+                    // console.log(formattedDate.formattedDate[0])
                     datepickerInputFrom.value = formattedDate.formattedDate[0];
                     datepickerInputTo.value = formattedDate.formattedDate[1];
                 }, 0);
@@ -887,7 +891,7 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
         onShow: function (inst) {
             if (inst) {
                 if(selectedDate){
-                    console.log(selectedDate)
+                    // console.log(selectedDate)
                 }
                 if (!isRange) {
                     setTimeout(() => {
@@ -1237,14 +1241,15 @@ function clearDatepickerValue(type) {
     if(type != "changeRoute"){
         datepickerInputFrom.value = "";
         datepickerInputTo.value = "";
-        isRange = true;
         selectedDate = null;
         datepicker.clear();
+        isRange = true;
         datepicker.update({
             range: isRange
         });
+        
+        
     }
-    
 
 }
 
