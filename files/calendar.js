@@ -528,18 +528,14 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
                     lastSelectDateCheck = cell.target.dataset;
                 })
             })
+            const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
+            datepicker.setViewDate(viewDate);
 
             const month = inst.viewDate ? inst.viewDate.getMonth() + 1 : new Date().getMonth() + 1;
             const year = inst.viewDate ? inst.viewDate.getFullYear() : new Date().getFullYear();
             currentWeek = 0; // Сбрасываем текущую неделю при открытии календаря
             await loadNextWeek(month, year, typeRequest, true); // Загрузка данных за первую неделю и очистка предыдущих цен
             startWeeklyLoading(month, year, typeRequest); // Начинаем плавную загрузку данных
-
-            const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
-            datepicker.setViewDate(viewDate);
-            
-            
-            
         }
     };
 
@@ -578,6 +574,9 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             formattedFirstDate = firstDateToSend;
         }
         // console.log('firstDateToSend: ' + firstDateToSend);
+
+        // console.log(startDate)
+        // console.log('curW' + currentWeek)
 
         currentWeek++; // Increment the current week
         await updateCalendarDates(datepicker, formattedFirstDate, codeIataFrom, codeIataTo, typeRequest, clearPreviousPrices);
