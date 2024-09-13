@@ -341,6 +341,16 @@
     transform: translateX(-50%);
 }
 
+.compare-table-tickets {
+    border: none;
+    background: none;
+    color: #3968BF;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.25%;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);

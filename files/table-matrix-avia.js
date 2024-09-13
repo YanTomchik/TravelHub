@@ -17,24 +17,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     let tableDataTocheck = null;
     let userCurrencyTofetch = USER_CURRENCY;
 
+    let toursCalendarDate = document.getElementById('tours-calendar')
+    const isTourSearch = document.querySelector('#toursearchform-locationfrom') !== null; // Проверка, ищем ли туры или авиа
+
     async function fetchDataMatrix() {
         document.getElementById('loader-compare-table').style.display = 'block';
+
+        let locationFrom, locationTo, apiUrl,dateFromFetch,dateToFetch;
+        const adults = document.getElementById('adults').textContent;
+
+        if (isTourSearch) {
+            // Параметры для туров
+            locationFrom = $('#toursearchform-locationfrom').val();
+            locationTo = $('#arrival-airport-code').val(); // Для туров берем значение из #arrival-airport-code
+            dateFromFetch = formatDate(currentStartDate);
+            dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
+            
+            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&period=${dateFromFetch};${dateToFetch}&currency=${userCurrencyTofetch}`;
+            console.log(apiUrl)
+        }else{
+            locationFrom = $('#flightsearchform-locationfrom').val();
+            locationTo = $('#flightsearchform-locationto').val();
+            dateFromFetch = formatDate(currentStartDate);
+            dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
+
+            if(userCurrencyTofetch == 'KZT'){
+                userCurrencyTofetch = 'USD'
+            }
+
+            if (dateToFetch) {
+                apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&period=${dateFromFetch};${dateToFetch}&currency=${userCurrencyTofetch}`;
+            } else {
+                apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&currency=${userCurrencyTofetch}&date=${dateFromFetch}`;
+            }
+        }
         
-        let locationFrom = $('#flightsearchform-locationfrom').val();
-        let locationTo = $('#flightsearchform-locationto').val();
-        const dateFromFetch = formatDate(currentStartDate);
-        const dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
-
-        if(userCurrencyTofetch == 'KZT'){
-            userCurrencyTofetch = 'USD'
-        }
-
-        let apiUrl;
-        if (dateToFetch) {
-            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&period=${dateFromFetch};${dateToFetch}&currency=${userCurrencyTofetch}`;
-        } else {
-            apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=1&currency=${userCurrencyTofetch}&date=${dateFromFetch}`;
-        }
+        
         // console.log(apiUrl)
 
         const response = await fetch(apiUrl, {
@@ -46,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         tableData = data.result;
         tableDataTocheck = tableData;
-        // console.log(tableData)
+        console.log(tableData)
 
         if (dateToFetch) {
             departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
@@ -106,13 +124,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             visibleDepartureDates.forEach(depDate => {
                 const td = document.createElement('td');
                 const priceData = tableData.find(item => item.from === depDate && item.to === null);
+                let priceUrl;
 
                 if (priceData) {
                     let currencySymbol = priceData.currency;
                     if(currencySymbol == 'USD'){
                         currencySymbol = '$'
                     }
-                    const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&run=1`;
+                    if(isTourSearch){
+                        const locationFrom = $('#toursearchform-locationfrom').val();
+                        const countryId = $('#country-id').val();
+                        const fixPeriod = document.getElementById('tours-calendar').value.replace(' - ', ';');
+                        const nightsCounter = Array.from(document.querySelectorAll('#nights option:checked'))
+                            .map(option => option.value)
+                            .join(', ');
+                        const adults = document.getElementById('adults-count').value;
+                        const children = document.getElementById('children-count').value;
+                        const mealCounter = Array.from(document.querySelectorAll('#toursearchform-meal option:checked'))
+                            .map(option => option.value)
+                            .join(', ');
+                        const starsCounter = Array.from(document.querySelectorAll('#toursearchform-category option:checked'))
+                            .map(option => option.value)
+                            .join(', ');
+                        const priceFrom = document.getElementById('toursearchform-pricefrom').value;
+                        const priceTo = document.getElementById('toursearchform-priceto').value;
+                        const hotels = Array.from(document.querySelectorAll('.list-block-content .option-hotel input[type="checkbox"]:checked'))
+                            .map(checkbox => checkbox.value)
+                            .join(', ');
+                        const resorts = Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked'))
+                            .map(checkbox => checkbox.value)
+                            .join(', ');
+
+                        priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${fixPeriod}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
+                    }else{
+                        priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&run=1`;
+                    }
+                    
                     td.innerHTML = `<a href="${priceUrl}" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
                     td.classList.add('price');
 
@@ -154,13 +201,43 @@ document.addEventListener('DOMContentLoaded', async () => {
                     
                     const td = document.createElement('td');
                     const priceData = tableData.find(item => item.from === depDate && item.to === retDate);
+                    let priceUrl;
 
                     if (priceData) {
                         let currencySymbol = priceData.currency;
+
                         if(currencySymbol == 'USD'){
                             currencySymbol = '$'
                         }
-                        const priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;
+                        
+                        if(isTourSearch){
+                            const locationFrom = $('#toursearchform-locationfrom').val();
+                            const countryId = $('#country-id').val();
+                            const fixPeriod = document.getElementById('tours-calendar').value.replace(' - ', ';');
+                            const nightsCounter = Array.from(document.querySelectorAll('#nights option:checked'))
+                                .map(option => option.value)
+                                .join(', ');
+                            const adults = document.getElementById('adults-count').value;
+                            const children = document.getElementById('children-count').value;
+                            const mealCounter = Array.from(document.querySelectorAll('#toursearchform-meal option:checked'))
+                                .map(option => option.value)
+                                .join(', ');
+                            const starsCounter = Array.from(document.querySelectorAll('#toursearchform-category option:checked'))
+                                .map(option => option.value)
+                                .join(', ');
+                            const priceFrom = document.getElementById('toursearchform-pricefrom').value;
+                            const priceTo = document.getElementById('toursearchform-priceto').value;
+                            const hotels = Array.from(document.querySelectorAll('.list-block-content .option-hotel input[type="checkbox"]:checked'))
+                                .map(checkbox => checkbox.value)
+                                .join(', ');
+                            const resorts = Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked'))
+                                .map(checkbox => checkbox.value)
+                                .join(', ');
+                            priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${fixPeriod}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
+                            // console.log(`${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adults}&children=${search.children}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=undefined&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`)
+                        }else{
+                            priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;
+                        }
                         td.innerHTML = `<a href="${priceUrl}">${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
                         td.classList.add('price');
 
@@ -262,33 +339,69 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    document.getElementById('prev-departure').addEventListener('click', async (elem) => {
-        const newStartDate = new Date(currentStartDate);
-        newStartDate.setDate(newStartDate.getDate() - 1);
-
-        if (newStartDate > todayDate) {
-            currentStartDate = newStartDate;
-            await fetchDataMatrix();
+    document.getElementById('prev-departure').addEventListener('click', async () => {
+        if (isTourSearch) {
+            // Если поиск авиа, смещаем только дату вылета
+            const newStartDate = new Date(currentStartDate);
+            newStartDate.setDate(newStartDate.getDate() - 1);
+    
+            if (newStartDate > todayDate) {
+                currentStartDate = newStartDate;
+            }
+            currentEndDate.setDate(currentEndDate.getDate() - 1);
+        } else {
+            // Если поиск авиа, смещаем только дату вылета
+            const newStartDate = new Date(currentStartDate);
+            newStartDate.setDate(newStartDate.getDate() - 1);
+    
+            if (newStartDate > todayDate) {
+                currentStartDate = newStartDate;
+            }
         }
-    });
-
-    document.getElementById('next-departure').addEventListener('click', async () => {
-        currentStartDate.setDate(currentStartDate.getDate() + 1);
         await fetchDataMatrix();
     });
 
-    document.getElementById('prev-return').addEventListener('click', async () => {
-        const newEndDate = new Date(currentEndDate);
-        newEndDate.setDate(newEndDate.getDate() - 1);
-
-        if (newEndDate > todayDate) {
-            currentEndDate = newEndDate;
-            await fetchDataMatrix();
+    document.getElementById('next-departure').addEventListener('click', async () => {
+        
+        
+        if(isTourSearch){
+            currentStartDate.setDate(currentStartDate.getDate() + 1);
+            currentEndDate.setDate(currentEndDate.getDate() + 1);
+        }else{
+            currentStartDate.setDate(currentStartDate.getDate() + 1);
         }
+        await fetchDataMatrix();
+    });
+
+    document.getElementById('prev-departure').addEventListener('click', async () => {
+        if (isTourSearch) {
+            // Если поиск авиа, смещаем только дату вылета
+            const newStartDate = new Date(currentStartDate);
+            newStartDate.setDate(newStartDate.getDate() - 1);
+    
+            if (newStartDate > todayDate) {
+                currentStartDate = newStartDate;
+            }
+            currentEndDate.setDate(currentEndDate.getDate() - 1);
+        } else {
+            // Если поиск авиа, смещаем только дату вылета
+            const newStartDate = new Date(currentStartDate);
+            newStartDate.setDate(newStartDate.getDate() - 1);
+    
+            if (newStartDate > todayDate) {
+                currentStartDate = newStartDate;
+            }
+        }
+        await fetchDataMatrix();
     });
 
     document.getElementById('next-return').addEventListener('click', async () => {
-        currentEndDate.setDate(currentEndDate.getDate() + 1);
+        if(isTourSearch){
+            currentStartDate.setDate(currentStartDate.getDate() + 1);
+            currentEndDate.setDate(currentEndDate.getDate() + 1);
+        }else{
+            currentStartDate.setDate(currentStartDate.getDate() + 1);
+        }
         await fetchDataMatrix();
     });
 
@@ -325,16 +438,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.compare-table-tickets').addEventListener('click', async () => {
         document.getElementById('compare-table-avia-container').classList.toggle('active');
 
-        if(tableDataTocheck == null){
-            currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Example start date
-            if (datepickerInputTo.value != '') {
-                currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
-            } else {
-                currentEndDate = null;
-            }
-            await fetchDataMatrix();
-        }
+        if(isTourSearch){
+            let tourStartDate = toursCalendarDate.value.split('-')[0].trim()
+            let tourEndDate = toursCalendarDate.value.split('-')[1].trim()
+            if(tableDataTocheck == null){
+                currentStartDate = new Date(parseDate(tourStartDate));  // Пример даты начала
+                currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
 
+                console.log(currentStartDate)
+                console.log(currentEndDate)
+                await fetchDataMatrix();
+            }
+        }else{
+            if(tableDataTocheck == null){
+                currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Пример даты начала
+                await fetchDataMatrix();
+            }
+        }
     });
 
     document.querySelector('.compare-table-avia-header-wrapper .close-btn').addEventListener('click', () => {
@@ -347,12 +467,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     document.querySelector('.btn.btn-primary.search-btn').addEventListener('click', async () => {
-        currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Example start date
-        if (datepickerInputTo.value != '') {
-            currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
-        } else {
-            currentEndDate = null;
+        
+        if(isTourSearch){
+            let tourStartDate = toursCalendarDate.value.split('-')[0].trim()
+            let tourEndDate = toursCalendarDate.value.split('-')[1].trim()
+            currentStartDate = new Date(parseDate(tourStartDate));  // Example start date
+            currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
+
+            await fetchDataMatrix();
+
+        }else{
+            currentStartDate = new Date(parseDate(datepickerInputFrom.value));  // Example start date
+            if (datepickerInputTo.value != '') {
+                currentEndDate = new Date(parseDate(datepickerInputTo.value));    // Example end date
+            } else {
+                currentEndDate = null;
+            }
+            await fetchDataMatrix();
         }
-        await fetchDataMatrix();
     })
 });
