@@ -38,17 +38,25 @@ const updateLastSearchResults = (key) => {
 
     container.style.display = 'block';
     listContainer.innerHTML = '';
+    let userCurrencyTofetch = USER_CURRENCY;
+
+    if(userCurrencyTofetch == 'KZT'){
+        userCurrencyTofetch = 'USD'
+    }
 
     const maxResults = isMobileFlagSearchResult ? 3 : searches.length;
 
     searches.slice(-maxResults).forEach(({ search }) => {
         const link = document.createElement('a');
         if (key === 'search_flights') {
-            link.href = `${HOST_URL}flights?departure=${search.locationFrom}&arrival=${search.locationTo}&date=${search.depDate}&dateEnd=${search.retDate}&guests=${getGuests(search.adultCounter, search.childrenCounter, search.infantCounter)}&run=1`;
+            link.href = `${HOST_URL}flights?departure=${search.locationFrom}&arrival=${search.locationTo}&date=${search.depDate}&dateEnd=${search.retDate}&guests=${getGuests(search.adultCounter, search.childrenCounter, search.infantCounter)}&currency=${userCurrencyTofetch}&run=1`;
         } else if (key === 'search_hotels') {
-            link.href = `${HOST_URL}hotels?location=${search.location}&locationName=${search.locationName}&partner=${search.partner}&checkin=${search.checkin}&checkout=${search.checkout}&guests=${search.guests}&run=1`;
+            link.href = `${search.searchLink}`;
         } else if (key === 'search_tours') {
-            link.href = `${HOST_URL}tours?departureCity=${search.departureCity}&country=${search.country}&dates=${search.dates}&nights=${search.nights.join(',')}&adults=${search.adults}&children=${search.children}&run=1`;
+            link.href = `${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adults}&children=${search.children}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=${userCurrencyTofetch}&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`
+            
+        }else if (key === 'search_transfers') {
+            link.href = `${search.searchLink}`;
         }
 
         const item = document.createElement('div');
@@ -57,7 +65,7 @@ const updateLastSearchResults = (key) => {
         const iconDiv = document.createElement('div');
         iconDiv.className = 'last-search-result-item-icon';
         const img = document.createElement('img');
-        img.src = './files/last-search-icon.svg';
+        img.src = HOST_URL + '/images/flight/last-search-icon.svg';
         img.alt = '';
         iconDiv.appendChild(img);
 
@@ -71,24 +79,30 @@ const updateLastSearchResults = (key) => {
         } else if (key === 'search_hotels') {
             titleDiv.textContent = `${search.locationName}`;
         } else if (key === 'search_tours') {
-            titleDiv.textContent = `${search.departureCity} - ${search.country}`;
+            titleDiv.textContent = `${search.locationName} - ${search.countryName}`;
         } else if (key === 'search_transfers') {
-            titleDiv.textContent = `${search.locationName}`;
+            titleDiv.textContent = `${search.locationNameFrom} - ${search.locationNameTo}`;
         }
 
         const descriptionDiv = document.createElement('div');
         descriptionDiv.className = 'description';
         const descriptionParts = [
-    key === 'search_flights' ? `${search.depDate} - ${search.retDate}` :
-        key === 'search_transfers' ? `${search.dateTo} - ${search.dateReturn}` :
+            key === 'search_flights' ? `${search.depDate} - ${search.retDate}` :
+            key === 'search_transfers' ? `${search.dateTo}${search.dateReturn ? ' - ' + search.dateReturn : ''}` : 
             key === 'search_hotels' ? `${search.checkin} - ${search.checkout}` :
-                `${search.dates}`,
-    search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? 'взрослый' : 'взрослых'}` : 
-        (search.adults > 0 ? `${search.adults} ${search.adults == 1 ? 'взрослый' : 'взрослых'}` : ''),
-    search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? 'ребенок' : 'детей'}` : 
-        (search.children > 0 ? `${search.children} ${search.children == 1 ? 'ребенок' : 'детей'}` : ''),
-    key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? 'младенец' : 'младенцев'}` : ''
-].filter(part => part).join(' | ');
+            key === 'search_tours' ? `${search.fixPeriod.split(';')[0].trim()} - ${search.fixPeriod.split(';')[1].trim()}` : 
+            `${search.dates}`,
+            
+            search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? translationsHub.adult : translationsHub.adults}` :
+            (search.adults > 0 ? `${search.adults} ${search.adults == 1 ? translationsHub.adult : translationsHub.adults}` : ''),
+            
+            search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? translationsHub.children : translationsHub.childrens}` :
+            (search.children > 0 ? `${search.children} ${search.children == 1 ? translationsHub.children : translationsHub.childrens}` : ''),
+            
+            key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? translationsHub.infant : translationsHub.infants}` : ''
+        ].filter(part => part).join(' | ');
+        
+        
 
 
         descriptionDiv.textContent = descriptionParts;
@@ -115,8 +129,8 @@ const initPage = () => {
             getSearchObj: () => {
                 const locationFrom = document.getElementById('flightsearchform-locationfrom').value;
                 const locationTo = document.getElementById('flightsearchform-locationto').value;
-                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').title;
-                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').title;
+                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').textContent;
+                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').textContent;
                 const depDate = document.querySelector('.date-inputs-item.datepicker-avia-from').value;
                 const retDate = document.querySelector('.date-inputs-item.datepicker-avia-to').value;
                 const adultCounter = document.getElementById('adult-counter').innerHTML;
@@ -150,8 +164,8 @@ const initPage = () => {
             getSearchObj: () => {
                 const locationFrom = document.getElementById('flightsearchform-locationfrom').value;
                 const locationTo = document.getElementById('flightsearchform-locationto').value;
-                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').title;
-                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').title;
+                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').textContent;
+                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').textContent;
                 const depDate = document.querySelector('.date-inputs-item.datepicker-avia-from').value;
                 const retDate = document.querySelector('.date-inputs-item.datepicker-avia-to').value;
                 const adultCounter = document.getElementById('adult-counter').innerHTML;
@@ -179,111 +193,129 @@ const initPage = () => {
                 };
             }
         },
-        // '/hotels': {
-        //     formSelector: '#properties-search-form .btn.btn-primary.search-btn',
-        //     key: 'search_hotels',
-        //     getSearchObj: () => {
-        //         // const searchParams = new URLSearchParams(window.location.search);
-        //         const location = $('#propertysearchform-location').val();
-        //         const locationName = $('#select2-propertysearchform-location-container').text();
-
-        //         const checkin = document.querySelector('input[name="PropertySearchForm[checkinDate]"]').value;
-        //         const checkout = document.querySelector('input[name="PropertySearchForm[checkoutDate]"]').value;
-        //         const partner = document.querySelector('input[name="PropertySearchForm[partner]"]').value;
-
-        //         const guests = document.querySelector('input[name="PropertySearchForm[guests]"]').value;
-        //         const adultCounter = document.getElementById('adults').textContent;
-        //         const childrenCounter = document.getElementById('children').textContent;
-
-        //         return {
-        //             location,
-        //             locationName,
-        //             checkin,
-        //             checkout,
-        //             guests,
-        //             adultCounter,
-        //             childrenCounter,
-        //             partner
-        //         };
-        //     }
-        // },
-        // '/': {
-        //     formSelector: '#kt_form .search-btn-block .search-btn',
-        //     key: 'search_tours',
-        //     getSearchObj: () => {
-        //         const departureCity = document.getElementById('select2-cities-container').title;
-        //         const country = document.getElementById('select2-country-id-container').title;
-        //         const dates = document.getElementById('tours-calendar').value;
-        //         const nights = Array.from(document.querySelectorAll('#nights option:checked')).map(option => option.value);
-        //         const adults = document.getElementById('adults-count').value;
-        //         const children = document.getElementById('children-count').value;
-
-        //         return {
-        //             departureCity,
-        //             country,
-        //             dates,
-        //             nights,
-        //             adults,
-        //             children
-        //         };
-        //     }
-        // },
-        // '/transfers': {
-        //     formSelector: '.search-btn-block.col-search-button',
-        //     key: 'search_transfers',
-        //     getSearchObj: () => {
-        //         const searchParams = new URLSearchParams(window.location.search);
-        //         const fromId = searchParams.get('location');
-        //         const locationName = $('#select2-location-from-container').text();
-        //         const dateTo = searchParams.get('dateTo');
-        //         const dateReturn = searchParams.get('dateReturn');
-        //         const toId = searchParams.get('toId');
-        //         const adultCounter = document.getElementById('adults');
-        //         const childrenCounter = document.getElementById('children');
-
-        //         return {
-        //             fromId,
-        //             locationName,
-        //             dateTo,
-        //             dateReturn,
-        //             toId,
-        //             adultCounter,
-        //             childrenCounter
-        //         };
-        //     }
-        // },
-        '/TravelHub/pastSearchResult.html': {
-            formSelector: '#flights-search-form .btn.btn-primary.search-btn',
-            key: 'search_flights',
+        '/hotels': {
+            formSelector: '#properties-search-form .btn.btn-primary.search-btn',
+            key: 'search_hotels',
             getSearchObj: () => {
-                const locationFrom = document.getElementById('flightsearchform-locationfrom').value;
-                const locationTo = document.getElementById('flightsearchform-locationto').value;
-                const locationFromTitle = document.getElementById('select2-flightsearchform-locationfrom-container').title;
-                const locationToTitle = document.getElementById('select2-flightsearchform-locationto-container').title;
-                const depDate = document.querySelector('.date-inputs-item.datepicker-avia-from').value;
-                const retDate = document.querySelector('.date-inputs-item.datepicker-avia-to').value;
-                const adultCounter = document.getElementById('adult-counter').innerHTML;
-                const childrenCounter = document.getElementById('children-counter').innerHTML;
-                const infantCounter = document.getElementById('infant-counter').innerHTML;
-                let cabinClassContainer = document.getElementById('select2-cabin-class-container').innerHTML;
+            const searchLink = window.location.href
+            const location = $('#propertysearchform-location').val();
+            const locationName = $('#select2-propertysearchform-location-container').text();
 
-                if (cabinClassContainer === 'Эконом') {
-                    cabinClassContainer = 'economy';
-                } else if (cabinClassContainer === 'Бизнес') {
-                    cabinClassContainer = 'business';
-                }
+            const checkin = document.querySelector('input[name="PropertySearchForm[checkinDate]"]').value;
+            const checkout = document.querySelector('input[name="PropertySearchForm[checkoutDate]"]').value;
+            const partner = document.querySelector('input[name="PropertySearchForm[partner]"]').value;
+
+            const guests = document.querySelector('input[name="PropertySearchForm[guests]"]').value;
+            const adultCounter = document.getElementById('adults').textContent;
+            const childrenCounter = document.getElementById('children').textContent;
+
+            return {
+                location,
+                locationName,
+                checkin,
+                checkout,
+                guests,
+                adultCounter,
+                childrenCounter,
+                partner,
+                searchLink
+            };
+        }
+        },
+        '/': {
+            formSelector: '#kt_form .search-btn-block .search-btn',
+            key: 'search_tours',
+            getSearchObj: () => {
+
+                const locationFrom = $('#toursearchform-locationfrom').val();
+                const countryId = $('#country-id').val();
+                const countryName = $('#select2-country-id-container').text()
+                const locationName = $('#select2-toursearchform-locationfrom-container').text()
+                const fixPeriod = document.getElementById('tours-calendar').value.replace(' - ', ';');
+                const nightsCounter = Array.from(document.querySelectorAll('#nights option:checked'))
+                    .map(option => option.value)
+                    .join(', ');
+                const adults = document.getElementById('adults-count').value;
+                const children = document.getElementById('children-count').value;
+                const mealCounter = Array.from(document.querySelectorAll('#toursearchform-meal option:checked'))
+                    .map(option => option.value)
+                    .join(', ');
+                const starsCounter = Array.from(document.querySelectorAll('#toursearchform-category option:checked'))
+                    .map(option => option.value)
+                    .join(', ');
+                const priceFrom = document.getElementById('toursearchform-pricefrom').value
+                const priceTo = document.getElementById('toursearchform-priceto').value
+                const hotels = Array.from(document.querySelectorAll('.list-block-content .option-hotel input[type="checkbox"]:checked'))
+                    .map(checkbox => checkbox.value)
+                    .join(', ');
+                const resorts = Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked'))
+                    .map(checkbox => checkbox.value)
+                    .join(', ');
+
 
                 return {
+                    adults,
+                    children,
                     locationFrom,
-                    locationTo,
-                    locationFromTitle,
-                    locationToTitle,
-                    depDate,
-                    retDate,
+                    countryId,
+                    fixPeriod,
+                    nightsCounter,
+                    mealCounter,
+                    starsCounter,
+                    priceFrom,
+                    priceTo,
+                    hotels,
+                    resorts,
+                    countryName,
+                    locationName
+
+                };
+            }
+        },
+        '/transfers': {
+            formSelector: '.search-btn-block.col-search-button',
+            key: 'search_transfers',
+            getSearchObj: () => {
+                const searchLink = window.location.href
+                const locationNameFrom = $('#select2-location-from-container').text();
+                const locationNameTo = $('#select2-location-to-container').text();
+                const dateTo = $('#date-to').val();
+                const dateReturn = $('#date-return').val();
+                const adultCounter = document.getElementById('adults').textContent;
+                const childrenCounter = document.getElementById('childrens').textContent;
+
+                return {
+                    locationNameFrom,
+                    locationNameTo,
+                    dateTo,
+                    dateReturn,
                     adultCounter,
                     childrenCounter,
-                    infantCounter,
-                    cabinClassContainer
+                    searchLink
+                };
+            }
+        },
+
+        '/TravelHub/pastSearchResult.html': {
+            formSelector: '.search-btn-block.col-search-button',
+            key: 'search_transfers',
+            getSearchObj: () => {
+                const searchLink = window.location.href
+                const locationNameFrom = $('#select2-location-from-container').text();
+                const locationNameTo = $('#select2-location-to-container').text();
+                const dateTo = $('#date-to').val();
+                const dateReturn = $('#date-return').val();
+                const adultCounter = document.getElementById('adults').textContent;
+                const childrenCounter = document.getElementById('childrens').textContent;
+
+                return {
+                    locationNameFrom,
+                    locationNameTo,
+                    dateTo,
+                    dateReturn,
+                    adultCounter,
+                    childrenCounter,
+                    searchLink
                 };
             }
         }
