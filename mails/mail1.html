@@ -6,6 +6,7 @@
     <title>Письмо 1 Travelhub</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400&display=swap"
         em-class="em-font-Montserrat-Regular">
+    <link rel="stylesheet" href="../files/rewards-user.css">
     <style type="text/css">
         html {
             -webkit-text-size-adjust: none;
@@ -17,6 +18,8 @@
             font-family: Montserrat, sans-serif !important;
             font-weight: 400 !important;
         }
+
+
 
         @media only screen and (max-device-width:660px),
         only screen and (max-width:660px) {
@@ -73,6 +76,310 @@
             }
         }
     </style>
+
+
+    <!-- NEW -->
+    <style>
+        .em-font-Montserrat-Bold {
+            font-family: Montserrat, sans-serif !important;
+            font-weight: 600 !important;
+        }
+
+        .more-btn-img img {
+            width: 15px;
+            height: auto;
+        }
+
+        .bronze {
+            background-color: #B99C7E;
+        }
+
+        .silver {
+            background-color: #858585;
+        }
+
+        .gold {
+            background-color: #B48F31;
+        }
+
+        .default {
+            background-color: #E4E4E4;
+        }
+
+        .rewards-status-wrapper.bronze {
+            background-color: #B99C7E;
+        }
+
+        .rewards-status-wrapper.silver {
+            background-color: #858585;
+        }
+
+        .rewards-status-wrapper.gold {
+            background-color: #B48F31;
+        }
+
+        .rewards-user-middle.bronze {
+            background-color: #B99C7E;
+        }
+
+        .rewards-user-middle.silver {
+            background-color: #858585;
+        }
+
+        .rewards-user-middle.gold {
+            background-color: #B48F31;
+        }
+
+
+
+        .rewards-user-container {
+            width: 95%;
+            height: 180px;
+            background-color: #E4E4E4;
+            padding: 10px 0px;
+            border-radius: 24px;
+            position: relative;
+            margin: 60px auto 15px;
+            /* display: none; */
+        }
+
+        .title-wrapper .title {
+            font-size: 18px;
+            line-height: 16px;
+            font-weight: 500;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        .title-wrapper .subtitle {
+            font-size: 14px;
+            line-height: 16px;
+            color: #fff;
+        }
+
+        .rewards-user-container-center-info {
+            background-color: #fff;
+            border-radius: 16px;
+            /* padding: 0px 18px; */
+            /* margin: 0px 18px; */
+            margin: 0 auto;
+            width: 90%;
+            min-height: 90px;
+            position: absolute;
+            top: 38%;
+            left: 5%;
+        }
+
+        .rewards-status-wrapper {
+            background-color: #B99C7E;
+            border-radius: 5px;
+            padding: 2px 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            font-size: 11px;
+            margin-top: 0px;
+            color: #fff;
+            line-height: 24px;
+            font-weight: 600;
+        }
+
+        .rewards-header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 25px;
+        }
+
+        .reward-description {
+            font-size: 11px;
+            line-height: 24px;
+            color: #000;
+        }
+
+        .reward-progress-bar-wrapper {
+            padding: 0px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .progress-bar-back {
+            background-color: #E4E4E4;
+            border-radius: 13px;
+            width: 90%;
+            height: 14px;
+        }
+
+        .progress-bar-main {
+            background-color: #858585;
+            /* border-color: #E9E9E9; */
+            max-width: 85%;
+            border-radius: 13px;
+            width: 20%;
+            height: 14px;
+            position: absolute;
+            left: auto;
+            top: 0px;
+        }
+
+        .rewards-user-top {
+            background-color: #FBFBFB;
+            height: 65px;
+            width: 100%;
+            position: absolute;
+            padding-bottom: 50px;
+            top: -70px;
+            border-radius: 22px 22px 0px 0px;
+            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rewards-user-middle {
+            background-color: #E4E4E4;
+            height: 70%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            border-radius: 22px 22px 0px 0px;
+            z-index: -1;
+        }
+
+        .rewards-user-bottom {
+            background-color: #F4F6F9;
+            height: 30%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            border-radius: 0px 0px 22px 22px;
+            /* z-index: -1; */
+        }
+
+        .more-btn-description {
+            font-size: 11px;
+            line-height: 24px;
+            color: #3968BF;
+            border-bottom: 1px dotted #3968BF;
+        }
+
+        .rewards-header-more-btn {
+            display: flex;
+            align-items: center;
+        }
+
+        .rewards-header-more-btn {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .more-btn-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rewards-user-top-img {
+            width: 100%;
+            height: 80px;
+        }
+
+        .rewards-user-top-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*DEFAULT NULL STATUS CARDS  */
+
+        .rewards-user-container.default-style .rewards-user-top {
+            display: none;
+        }
+
+        .rewards-user-container.default-style {
+            margin: 10px auto 15px;
+            height: 150px;
+        }
+
+        .rewards-user-container.default-style .title-wrapper .subtitle {
+            display: none;
+        }
+
+        .rewards-user-container.default-style .title-wrapper .title {
+            color: #19191E;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .rewards-user-container.default-style .rewards-user-container-center-info {
+            top: 34%;
+        }
+
+        .description-info-desktop-account-wrapper img {
+            width: 24px;
+            height: auto;
+        }
+
+        .description-info-desktop-account-wrapper {
+            display: none;
+            gap: 4px;
+        }
+
+        .description-info-desktop-account-wrapper .description-info-desktop-account {
+            font-weight: 600;
+        }
+
+        .description-info-desktop-account-wrapper.bronze {
+            background-color: transparent;
+        }
+
+        .description-info-desktop-account-wrapper.silver {
+            background-color: transparent;
+        }
+
+        .description-info-desktop-account-wrapper.gold {
+            background-color: transparent;
+        }
+
+
+        .description-info-desktop-account-wrapper.bronze .description-info-desktop-account {
+            color: #B99C7E;
+        }
+
+        .description-info-desktop-account-wrapper.silver .description-info-desktop-account {
+            color: #858585;
+        }
+
+        .description-info-desktop-account-wrapper.gold .description-info-desktop-account {
+            color: #B48F31;
+        }
+
+        .gold-reward-wrapper {
+            display: none;
+            text-align: center;
+        }
+
+        .gold-reward-wrapper .gold-reward-description {
+            font-weight: 600;
+        }
+
+        .gold-reward-img img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+    <!-- NEW -->
 </head>
 
 <body style="margin: 0; padding: 0;">
@@ -82,8 +389,9 @@
 
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-size: 1px; line-height: normal;">
         <tr em="group">
-            <td align="center" style="background-color: #ffffff; background-repeat: no-repeat; background-image: url('background-mail.png');" bgcolor="#fff"
-                >
+            <td align="center"
+                style="background-color: #ffffff; background-repeat: no-repeat; background-image: url('background-mail.png');"
+                bgcolor="#fff">
                 <!--[if (gte mso 9)|(IE)]>
 				<table cellpadding="0" cellspacing="0" border="0" width="660"><tr><td>
 				<![endif]-->
@@ -99,8 +407,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                             <tr>
                                                 <td>
-                                                    <img src="travelhub-mail-logo.png"
-                                                        width="127" border="0" alt=""
+                                                    <img src="travelhub-mail-logo.png" width="127" border="0" alt=""
                                                         style="display: block; width: 100%; max-width: 127px;">
                                                 </td>
                                             </tr>
@@ -139,8 +446,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                             <tr>
                                                 <td>
-                                                    <img src="travelhub-mail-icon.png"
-                                                        width="50" border="0" alt=""
+                                                    <img src="travelhub-mail-icon.png" width="50" border="0" alt=""
                                                         style="display: block; width: 100%; max-width: 50px;">
                                                 </td>
                                             </tr>
@@ -265,6 +571,316 @@
                                         </table>
                                     </td>
                                 </tr>
+                                <!-- NEW -->
+                                <!-- ДЕФОЛТ -->
+                                <tr em="block" class="em-structure">
+                                    <td align="center"
+                                        style="padding-top: 20px; padding-right: 40px; padding-left: 1px;"
+                                        class="em-mob-padding_left-0 em-mob-padding_right-0">
+                                        <table align="center" border="0" cellspacing="0" cellpadding="0"
+                                            class="em-mob-width-100perc">
+                                            <tr>
+                                                <td width="619" valign="top" class="em-mob-wrap em-mob-width-100perc">
+                                                    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                                        em="atom">
+                                                        <tr>
+                                                            <td>
+                                                                <div id="rewards-user-container"
+                                                                    class="rewards-user-container default-style"
+                                                                    style="display: block;">
+                                                                    <div class="rewards-user-top">
+                                                                        <div class="rewards-user-top-img">
+                                                                            <img id="reward-icon" src="" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="rewards-user-middle"
+                                                                        class="rewards-user-middle"></div>
+                                                                    <div class="rewards-user-bottom"></div>
+                                                                    <div class="title-wrapper">
+                                                                        <div class="subtitle em-font-Montserrat-Regular"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 21px; color: #000000;">
+                                                                            Ваш
+                                                                            статус</div>
+                                                                        <div id="user-status-title "
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 21px; color: #000000;"
+                                                                            class="title em-font-Montserrat-Regular">
+                                                                            Делайте брони в течение года, чтобы
+                                                                            достигнуть первого уровня</div>
+                                                                    </div>
+                                                                    <div class="rewards-user-container-center-info">
+                                                                        <div class="rewards-header-wrapper">
+                                                                            <div id="reward-description"
+                                                                                class="reward-description em-font-Montserrat-Regular"
+                                                                                style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 21px; color: #000000;">
+                                                                                +<b>20,000.00</b> USD до</div>
+                                                                            <div id="rewards-status-wrapper"
+                                                                                class="rewards-status-wrapper em-font-Montserrat-Bold"
+                                                                                style="font-family: Helvetica, Arial, sans-serif;">
+                                                                                Бронзовый</div>
+                                                                            <div class="rewards-header-more-btn">
+                                                                                <a href="/agency"
+                                                                                    style="display: flex; text-decoration: none;">
+                                                                                    <div class="more-btn-description em-font-Montserrat-Regular"
+                                                                                        style="color: #3968BF;font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 21px;">
+                                                                                        Подробнее</div>
+                                                                                    <div class="more-btn-img">
+                                                                                        <img src="../images/reward-arrow-right.svg"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="reward-progress-bar-wrapper">
+                                                                            <div class="progress-bar-back"></div>
+                                                                            <div id="progress-bar-main"
+                                                                                class="progress-bar-main default-style"
+                                                                                style="width: 0%;"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- БРОНЗОВЫЙ -->
+                                <tr em="block" class="em-structure">
+                                    <td align="center"
+                                        style="padding-top: 20px; padding-right: 40px; padding-left: 1px;"
+                                        class="em-mob-padding_left-0 em-mob-padding_right-0">
+                                        <table align="center" border="0" cellspacing="0" cellpadding="0"
+                                            class="em-mob-width-100perc">
+                                            <tr>
+                                                <td width="619" valign="top" class="em-mob-wrap em-mob-width-100perc">
+                                                    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                                        em="atom">
+                                                        <tr>
+                                                            <td>
+                                                                <div id="rewards-user-container"
+                                                                    class="rewards-user-container"
+                                                                    style="display: block;">
+                                                                    <div class="rewards-user-top" style="z-index: 0;">
+                                                                        <div class="rewards-user-top-img">
+                                                                            <img id="reward-icon"
+                                                                                src="../images/bronze-plane-reward.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="rewards-user-middle"
+                                                                        class="rewards-user-middle bronze"
+                                                                        style="z-index: 0;"></div>
+                                                                    <div class="rewards-user-bottom"></div>
+                                                                    <div class="title-wrapper" style="    z-index: 2;
+                                                                    position: relative;
+                                                                    top: 10px;">
+                                                                        <div class="subtitle em-font-Montserrat-Bold"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 21px; color: #fff; font-weight: 600;">
+                                                                            Ваш статус</div>
+                                                                        <div id="user-status-title em-font-Montserrat-Bold"
+                                                                            class="title"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; line-height: 21px; font-weight: 600; color: #fff;">
+                                                                            БРОНЗОВЫЙ</div>
+                                                                    </div>
+                                                                    <div class="rewards-user-container-center-info">
+                                                                        <div class="rewards-header-wrapper">
+                                                                            <div id="reward-description"
+                                                                                class="reward-description em-font-Montserrat-Regular"
+                                                                                style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 21px; color: #000000;">
+                                                                                +<b>20,000.00</b> USD до</div>
+                                                                            <div id="rewards-status-wrapper silver"
+                                                                                class="rewards-status-wrapper em-font-Montserrat-Bold"
+                                                                                style="font-family: Helvetica, Arial, sans-serif; background-color: #858585;">
+                                                                                Серебрянный</div>
+                                                                            <div class="rewards-header-more-btn">
+                                                                                <a href="/agency"
+                                                                                    style="display: flex; text-decoration: none;">
+                                                                                    <div class="more-btn-description em-font-Montserrat-Regular"
+                                                                                        style="color: #3968BF;font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 21px;">
+                                                                                        Подробнее</div>
+                                                                                    <div class="more-btn-img">
+                                                                                        <img src="../images/reward-arrow-right.svg"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="reward-progress-bar-wrapper">
+                                                                            <div class="progress-bar-back"></div>
+                                                                            <div id="progress-bar-main"
+                                                                                class="progress-bar-main bronze"
+                                                                                style="width: 10%; background-color: #B99C7E;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- СЕРЕБРЯННЫЙ -->
+                                <tr em="block" class="em-structure">
+                                    <td align="center"
+                                        style="padding-top: 20px; padding-right: 40px; padding-left: 1px;"
+                                        class="em-mob-padding_left-0 em-mob-padding_right-0">
+                                        <table align="center" border="0" cellspacing="0" cellpadding="0"
+                                            class="em-mob-width-100perc">
+                                            <tr>
+                                                <td width="619" valign="top" class="em-mob-wrap em-mob-width-100perc">
+                                                    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                                        em="atom">
+                                                        <tr>
+                                                            <td>
+                                                                <div id="rewards-user-container"
+                                                                    class="rewards-user-container"
+                                                                    style="display: block;">
+                                                                    <div class="rewards-user-top" style="z-index: 0;">
+                                                                        <div class="rewards-user-top-img">
+                                                                            <img id="reward-icon"
+                                                                                src="../images/silver-plane-reward.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="rewards-user-middle"
+                                                                        class="rewards-user-middle silver"
+                                                                        style="z-index: 0;"></div>
+                                                                    <div class="rewards-user-bottom"></div>
+                                                                    <div class="title-wrapper" style="    z-index: 2;
+                                    position: relative;
+                                    top: 10px;">
+                                                                        <div class="subtitle em-font-Montserrat-Bold"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 21px; color: #fff; font-weight: 600;">
+                                                                            Ваш статус</div>
+                                                                        <div id="user-status-title em-font-Montserrat-Bold"
+                                                                            class="title"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; line-height: 21px; font-weight: 600; color: #fff;">
+                                                                            СЕРЕБРЯННЫЙ</div>
+                                                                    </div>
+                                                                    <div class="rewards-user-container-center-info">
+                                                                        <div class="rewards-header-wrapper">
+                                                                            <div id="reward-description"
+                                                                                class="reward-description em-font-Montserrat-Regular"
+                                                                                style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 21px; color: #000000;">
+                                                                                +<b>20,000.00</b> USD до</div>
+                                                                            <div id="rewards-status-wrapper silver"
+                                                                                class="rewards-status-wrapper em-font-Montserrat-Bold"
+                                                                                style="font-family: Helvetica, Arial, sans-serif; background-color: #B48F31;">
+                                                                                Золотой</div>
+                                                                            <div class="rewards-header-more-btn">
+                                                                                <a href="/agency"
+                                                                                    style="display: flex; text-decoration: none;">
+                                                                                    <div class="more-btn-description em-font-Montserrat-Regular"
+                                                                                        style="color: #3968BF;font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 21px;">
+                                                                                        Подробнее</div>
+                                                                                    <div class="more-btn-img">
+                                                                                        <img src="../images/reward-arrow-right.svg"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="reward-progress-bar-wrapper">
+                                                                            <div class="progress-bar-back"></div>
+                                                                            <div id="progress-bar-main"
+                                                                                class="progress-bar-main bronze"
+                                                                                style="width: 10%; background-color: #858585;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- ЗОЛОТОЙ -->
+                                <tr em="block" class="em-structure">
+                                    <td align="center"
+                                        style="padding-top: 20px; padding-right: 40px; padding-left: 1px;"
+                                        class="em-mob-padding_left-0 em-mob-padding_right-0">
+                                        <table align="center" border="0" cellspacing="0" cellpadding="0"
+                                            class="em-mob-width-100perc">
+                                            <tr>
+                                                <td width="619" valign="top" class="em-mob-wrap em-mob-width-100perc">
+                                                    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                                        em="atom">
+                                                        <tr>
+                                                            <td>
+                                                                <div id="rewards-user-container"
+                                                                    class="rewards-user-container"
+                                                                    style="display: block;">
+                                                                    <div class="rewards-user-top" style="z-index: 0;">
+                                                                        <div class="rewards-user-top-img">
+                                                                            <img id="reward-icon"
+                                                                                src="../images/gold-plane-reward.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="rewards-user-middle"
+                                                                        class="rewards-user-middle gold"
+                                                                        style="z-index: 0;"></div>
+                                                                    <div class="rewards-user-bottom"></div>
+                                                                    <div class="title-wrapper" style="    z-index: 2;
+                                    position: relative;
+                                    top: 10px;">
+                                                                        <div class="subtitle em-font-Montserrat-Bold"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 21px; color: #fff; font-weight: 600;">
+                                                                            Ваш статус</div>
+                                                                        <div id="user-status-title em-font-Montserrat-Bold"
+                                                                            class="title"
+                                                                            style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; line-height: 21px; font-weight: 600; color: #fff;">
+                                                                            ЗОЛОТОЙ</div>
+                                                                    </div>
+                                                                    <div class="rewards-user-container-center-info"
+                                                                        style="padding-bottom: 10px;">
+                                                                        <div class="rewards-header-wrapper"
+                                                                            style="justify-content: space-around;">
+
+                                                                            <div class="gold-reward-wrapper"
+                                                                                style="display: block;">
+                                                                                <div class="gold-reward-img">
+                                                                                    <img src="../images/gold-reward.svg"
+                                                                                        alt="">
+                                                                                </div>
+                                                                                <div class="gold-reward-description">
+                                                                                    ПОЗДРАВЛЯЕМ С ДОСТИЖЕНИЕМ!
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <div class="reward-progress-bar-wrapper">
+                                                                            <div class="progress-bar-back"></div>
+                                                                            <div id="progress-bar-main"
+                                                                                class="progress-bar-main bronze"
+                                                                                style="width: 100%; background-color: #B48F31;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- NEW -->
+
                                 <tr em="block" class="em-structure">
                                     <td align="center" style="padding: 40px 40px 30px;"
                                         class="em-mob-padding_left-20 em-mob-padding_right-20">
@@ -275,8 +891,8 @@
                                                         em="atom">
                                                         <tr>
                                                             <td align="center">
-                                                                <img src="travelhub-mail-footer-img.png"
-                                                                    width="321" border="0" alt=""
+                                                                <img src="travelhub-mail-footer-img.png" width="321"
+                                                                    border="0" alt=""
                                                                     style="display: block; width: 100%; max-width: 321px;">
                                                             </td>
                                                         </tr>
@@ -416,6 +1032,7 @@
                 </table>
             </td>
         </tr>
+        <!-- <script src="../files/rewards-user.js"></script> -->
 </body>
 
 </html>
