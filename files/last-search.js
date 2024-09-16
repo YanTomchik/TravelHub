@@ -102,9 +102,6 @@ const updateLastSearchResults = (key) => {
             key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? translationsHub.infant : translationsHub.infants}` : ''
         ].filter(part => part).join(' | ');
         
-        
-
-
         descriptionDiv.textContent = descriptionParts;
 
         infoDiv.appendChild(titleDiv);
@@ -295,7 +292,6 @@ const initPage = () => {
                 };
             }
         },
-
         '/TravelHub/pastSearchResult.html': {
             formSelector: '.search-btn-block.col-search-button',
             key: 'search_transfers',
