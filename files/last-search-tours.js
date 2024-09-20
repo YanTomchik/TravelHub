@@ -41,7 +41,7 @@ const updateLastSearchResults = (key) => {
 
     searches.slice(-maxResults).forEach(({ search }) => {
         const link = document.createElement('a');
-        link.href = `${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adults}&children=${search.children}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=${userCurrencyTofetch}&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`
+        link.href = `${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adultCounter}&children=${search.childrenCounter}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=${userCurrencyTofetch}&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`
 
         const item = document.createElement('div');
         item.className = 'last-search-result-item';
@@ -97,8 +97,8 @@ const initToursPage = () => {
             locationName: $('#select2-toursearchform-locationfrom-container').text(),
             fixPeriod: document.getElementById('tours-calendar').value.replace(' - ', ';'),
             nightsCounter: Array.from(document.querySelectorAll('#nights option:checked')).map(option => option.value).join(', '),
-            adults: document.getElementById('adults-count').value,
-            children: document.getElementById('children-count').value,
+            adultCounter: document.getElementById('adults-count').value,
+            childrenCounter: document.getElementById('children-count').value,
             mealCounter: Array.from(document.querySelectorAll('#toursearchform-meal option:checked')).map(option => option.value).join(', '),
             starsCounter: Array.from(document.querySelectorAll('#toursearchform-category option:checked')).map(option => option.value).join(', '),
             priceFrom: document.getElementById('toursearchform-pricefrom').value,
