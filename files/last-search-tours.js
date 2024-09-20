@@ -67,10 +67,10 @@ const updateLastSearchResults = (key) => {
             `${search.dates}`,
             
             search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? translationsHub.adult : translationsHub.adults}` :
-            (search.adults > 0 ? `${search.adults} ${search.adults == 1 ? translationsHub.adult : translationsHub.adults}` : ''),
+            (search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? translationsHub.adult : translationsHub.adults}` : ''),
             
             search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? translationsHub.children : translationsHub.childrens}` :
-            (search.children > 0 ? `${search.children} ${search.children == 1 ? translationsHub.children : translationsHub.childrens}` : ''),
+            (search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? translationsHub.children : translationsHub.childrens}` : ''),
             
             key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? translationsHub.infant : translationsHub.infants}` : ''
         ].filter(part => part).join(' | ');

@@ -33,6 +33,7 @@
   <link href="./files/rewards-user.css" rel="stylesheet">
 
   <!-- NEW -->
+  <link rel="stylesheet" href="./files/calendar.css">
   <link rel="stylesheet" href="./files/analytics.css">
   <link rel="stylesheet" href="./files/travelPolitics.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -388,10 +389,34 @@
         <main class="height-auto">
           <div class="filter-title">
             <h1 class="title">Аналитика</h1>
-            <div class="analytics-input-wrapper">
-              <input type="text" name="" id="analyticsInputFrom">
-              <input type="text" name="" id="analyticsInputTo">
+            <div class="col-xl-9 header-row-analytics">
+              <div class="analytics-input-wrapper">
+                <img src="./images/calendar.svg" alt="" class="calendar-icon">
+                <input type="text" value="01.01.2024" id="analyticsInputFrom">
+                <span class="dash">—</span>
+                <img src="./images/calendar.svg" alt="" class="calendar-icon">
+                <input type="text" value="31.12.2024" id="analyticsInputTo">
+            
+                <!-- <div class="dropdown">
+                  <button>
+                    Альфа <img src="./images/polygon-grey-down.svg" alt="">
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="#">Альфа</a>
+                    <a href="#">Бета</a>
+                    <a href="#">Гамма</a>
+                  </div>
+                </div> -->
+                <span class="remove-datepicker-date" id="remove-datepicker-date">
+                  <img src="./images/cross-icon.svg" alt="Cross-btn">
+                </span>
+              </div>
+              <div class="transparent-btn btn download-excel-btn">
+                <div class="semi-b2">Выгрузить в XLSX</div>
+              </div>
             </div>
+            
+            
           </div>
 
           <div class="row">
@@ -494,6 +519,38 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="analytics-table-container">
+                <table class="analytics-table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Количество</th>
+                      <th>Средняя цена</th>
+                      <th>Итого</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Забронировано перелетов</td>
+                      <td>19</td>
+                      <td>16 512,37 ₽</td>
+                      <td>313 735,00 ₽</td>
+                    </tr>
+                    <tr>
+                      <td>— из них с нарушением Travel политик</td>
+                      <td>0</td>
+                      <td>0,00 ₽</td>
+                      <td>0,00 ₽</td>
+                    </tr>
+                    <tr>
+                      <td>Возвраты со штрафом <img src="./images/polygon-blue-down.svg" alt=""></td>
+                      <td>19</td>
+                      <td>16 512,37 ₽</td>
+                      <td>313 735,00 ₽</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
             </div>
@@ -661,8 +718,10 @@
   <script src="./files/cookieconsent.js"></script>
   <script src="./files/employees-table.js"></script>
   <script src="./files/rewards-user.js"></script>
+  
 
   <!-- NEW -->
+  <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.2/air-datepicker.min.js"></script>
   <script src="./files/analytics.js"></script>
   <!-- NEW -->
 
