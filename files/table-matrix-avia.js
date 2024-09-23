@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             const resorts = Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked'))
                                 .map(checkbox => checkbox.value)
                                 .join(', ');
-                            priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${fixPeriod}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
+                            priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${depDate};${retDate}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
                             // console.log(`${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adults}&children=${search.children}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=undefined&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`)
                         }else{
                             priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;

@@ -463,6 +463,24 @@
             </div>
             <!-- NEW -->
             <div class="col-xl-9 analytics-wrapper">
+              <div class="dropdown-filter-container">
+                <div class="dropdown-filter-item">
+                  <div class="dropbtn">Сотрудники <img src="./images/polygon-grey-down.svg" alt=""></div>
+                  <div class="dropdown-content">
+                    <a href="#">Сотрудник 1</a>
+                    <a href="#">Сотрудник 2</a>
+                  </div>
+                </div>
+                <div class="dropdown-filter-item">
+                  <div class="dropbtn">Отделы <img src="./images/polygon-grey-down.svg" alt=""></div>
+                  <div class="dropdown-content">
+                    <a href="#">Отдел 1</a>
+                    <a href="#">Отдел 2</a>
+                  </div>
+                </div>
+                <!-- Добавьте дополнительные элементы по аналогии -->
+              </div>
+            
               <div class="analytic-container">
                 <canvas id="expenseChart"></canvas>
               </div>
@@ -543,12 +561,59 @@
                       <td>0,00 ₽</td>
                       <td>0,00 ₽</td>
                     </tr>
+                    <tbody>
+                      <tr class="expandable">
+                        <td id="caret">Возвраты со штрафом <img src="./images/polygon-blue-down.svg" alt=""></td>
+                        <td>2</td>
+                        <td>5 050,00 ₽</td>
+                        <td>10 100,00 ₽</td>
+                      </tr>
+                      <tr class="hidden-row">
+                        <td>Возврат 1</td>
+                        <td>1</td>
+                        <td>5 050,00 ₽</td>
+                        <td>5 050,00 ₽</td>
+                      </tr>
+                      <tr class="hidden-row">
+                        <td>Возврат 2</td>
+                        <td>1</td>
+                        <td>5 050,00 ₽</td>
+                        <td>5 050,00 ₽</td>
+                      </tr>
+                    </tbody>
                     <tr>
-                      <td>Возвраты со штрафом <img src="./images/polygon-blue-down.svg" alt=""></td>
-                      <td>19</td>
-                      <td>16 512,37 ₽</td>
-                      <td>313 735,00 ₽</td>
+                      <td>Из них с нарушением Travel политик</td>
+                      <td>0</td>
+                      <td>0,00 ₽</td>
+                      <td>0,00 ₽</td>
                     </tr>
+                    <tr>
+                      <td>Из них с нарушением Travel политик</td>
+                      <td>0</td>
+                      <td>0,00 ₽</td>
+                      <td>0,00 ₽</td>
+                    </tr>
+                    <tbody>
+                      <tr class="expandable">
+                        <td id="caret">Возвраты со штрафом <img src="./images/polygon-blue-down.svg" alt=""></td>
+                        <td>2</td>
+                        <td>5 050,00 ₽</td>
+                        <td>10 100,00 ₽</td>
+                      </tr>
+                      <tr class="hidden-row">
+                        <td>Возврат 1</td>
+                        <td>1</td>
+                        <td>5 050,00 ₽</td>
+                        <td>5 050,00 ₽</td>
+                      </tr>
+                      <tr class="hidden-row">
+                        <td>Возврат 2</td>
+                        <td>1</td>
+                        <td>5 050,00 ₽</td>
+                        <td>5 050,00 ₽</td>
+                      </tr>
+                    </tbody>
+                                        
                   </tbody>
                 </table>
               </div>

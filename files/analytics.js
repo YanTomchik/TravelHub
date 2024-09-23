@@ -150,4 +150,27 @@ document.querySelector('.remove-datepicker-date').addEventListener('click', () =
     checkoutDateInput.value = ''
 })
 
+const expandableElems = document.querySelectorAll('.expandable');
+
+expandableElems.forEach(elem => {
+    elem.addEventListener('click', (event) => {
+        // Найдём все строки, которые следуют за кликабельной строкой и имеют класс 'hidden-row'
+        let nextElem = elem.nextElementSibling;
+        const caretImg = elem.querySelector('img');
+
+        // Пока следующий элемент существует и имеет класс 'hidden-row', переключаем его видимость
+        while (nextElem && nextElem.classList.contains('hidden-row')) {
+            if (nextElem.style.display === 'table-row') {
+                nextElem.style.display = 'none';
+            } else {
+                nextElem.style.display = 'table-row';
+            }
+            nextElem = nextElem.nextElementSibling;
+        }
+
+        // caretImg.style.transform = 'rotate(180deg)'
+    });
+});
+
+
 });
