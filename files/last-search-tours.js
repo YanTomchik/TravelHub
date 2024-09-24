@@ -8,10 +8,10 @@ const addSearchToLocalStorage = (searchObj, key) => {
     }
 
     if (searches.length >= 5) {
-        searches.shift();
+        searches.pop(); // удаляем самый старый запрос
     }
 
-    searches.push({ search: searchObj, timestamp: new Date().toISOString() });
+    searches.unshift({ search: searchObj, timestamp: new Date().toISOString() }); // добавляем новый запрос в начало массива
 
     localStorage.setItem(key, JSON.stringify(searches));
 
@@ -34,14 +34,17 @@ const updateLastSearchResults = (key) => {
     let userCurrencyTofetch = USER_CURRENCY;
 
     if(userCurrencyTofetch == 'KZT'){
-        userCurrencyTofetch = 'USD'
+        userCurrencyTofetch = 'USD';
     }
 
-    const maxResults = isMobileFlagSearchResult ? 3 : searches.length;
+    // Сортировка массива по метке времени в обратном порядке
+    const sortedSearches = searches.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    searches.slice(-maxResults).forEach(({ search }) => {
+    const maxResults = isMobileFlagSearchResult ? 3 : sortedSearches.length;
+
+    sortedSearches.slice(0, maxResults).forEach(({ search }) => {
         const link = document.createElement('a');
-        link.href = `${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adultCounter}&children=${search.childrenCounter}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=${userCurrencyTofetch}&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`
+        link.href = `${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adultCounter}&children=${search.childrenCounter}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=${userCurrencyTofetch}&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`;
 
         const item = document.createElement('div');
         item.className = 'last-search-result-item';
@@ -62,18 +65,39 @@ const updateLastSearchResults = (key) => {
 
         const descriptionDiv = document.createElement('div');
         descriptionDiv.className = 'description';
-        const descriptionParts = [
-            key === 'search_tours' ? `${search.fixPeriod.split(';')[0].trim()} - ${search.fixPeriod.split(';')[1].trim()}` : 
-            `${search.dates}`,
-            
-            search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? translationsHub.adult : translationsHub.adults}` :
-            (search.adultCounter > 0 ? `${search.adultCounter} ${search.adultCounter == 1 ? translationsHub.adult : translationsHub.adults}` : ''),
-            
-            search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? translationsHub.children : translationsHub.childrens}` :
-            (search.childrenCounter > 0 ? `${search.childrenCounter} ${search.childrenCounter == 1 ? translationsHub.children : translationsHub.childrens}` : ''),
-            
-            key === 'search_flights' && search.infantCounter > 0 ? `${search.infantCounter} ${search.infantCounter == 1 ? translationsHub.infant : translationsHub.infants}` : ''
-        ].filter(part => part).join(' | ');
+        let descriptionParts = [];
+
+        if (key === 'search_tours') {
+            descriptionParts.push(`${search.fixPeriod.split(';')[0].trim()} - ${search.fixPeriod.split(';')[1].trim()}`);
+        } else {
+            descriptionParts.push(`${search.dates}`);
+        }
+
+        if (search.adultCounter > 0) {
+            if (search.adultCounter == 1) {
+                descriptionParts.push(`${search.adultCounter} ${translationsHub.adult}`);
+            } else {
+                descriptionParts.push(`${search.adultCounter} ${translationsHub.adults}`);
+            }
+        }
+
+        if (search.childrenCounter > 0) {
+            if (search.childrenCounter == 1) {
+                descriptionParts.push(`${search.childrenCounter} ${translationsHub.children}`);
+            } else {
+                descriptionParts.push(`${search.childrenCounter} ${translationsHub.childrens}`);
+            }
+        }
+
+        if (key === 'search_flights' && search.infantCounter > 0) {
+            if (search.infantCounter == 1) {
+                descriptionParts.push(`${search.infantCounter} ${translationsHub.infant}`);
+            } else {
+                descriptionParts.push(`${search.infantCounter} ${translationsHub.infants}`);
+            }
+        }
+
+        descriptionParts = descriptionParts.filter(part => part).join(' | ');
 
         descriptionDiv.textContent = descriptionParts;
 
@@ -108,9 +132,7 @@ const initToursPage = () => {
         };
         addSearchToLocalStorage(searchObj, 'search_tours');
     });
-    updateLastSearchResults('search_tours')
+    updateLastSearchResults('search_tours');
 };
 
 document.addEventListener('DOMContentLoaded', initToursPage);
-
-

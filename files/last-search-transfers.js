@@ -8,10 +8,10 @@ const addSearchToLocalStorage = (searchObj, key) => {
     }
 
     if (searches.length >= 5) {
-        searches.shift();
+        searches.pop(); // удаляем самый старый запрос
     }
 
-    searches.push({ search: searchObj, timestamp: new Date().toISOString() });
+    searches.unshift({ search: searchObj, timestamp: new Date().toISOString() }); // добавляем новый запрос в начало массива
 
     localStorage.setItem(key, JSON.stringify(searches));
 
@@ -34,12 +34,15 @@ const updateLastSearchResults = (key) => {
     let userCurrencyTofetch = USER_CURRENCY;
 
     if(userCurrencyTofetch == 'KZT'){
-        userCurrencyTofetch = 'USD'
+        userCurrencyTofetch = 'USD';
     }
 
-    const maxResults = isMobileFlagSearchResult ? 3 : searches.length;
+    // Сортировка массива по метке времени в обратном порядке
+    const sortedSearches = searches.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    searches.slice(-maxResults).forEach(({ search }) => {
+    const maxResults = isMobileFlagSearchResult ? 3 : sortedSearches.length;
+
+    sortedSearches.slice(0, maxResults).forEach(({ search }) => {
         const link = document.createElement('a');
         link.href = `${search.searchLink}`;
 
