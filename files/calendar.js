@@ -78,9 +78,7 @@ let isMobileFlag = window.matchMedia("only screen and (max-width: 760px)").match
 if (datepickerInputFrom) {
     // datepicker = mainCreateDatepickers(datepickerInputFrom, radioButtonValue, 'startDatepicker');
     datepicker = mainCreateDatepickers(datepickerInputFrom, 'trip', 'startDatepicker');
-
 }
-
 
 function mainCreateDatepickers(datepickerInputFrom, radioButtonValue, typeRenderDatepicker, datepickerInputTo) {
     if (!charterCheckbox.checked) {
@@ -316,13 +314,11 @@ const getFlightCalendar = async (firstDateToSend, daysAfterToSend, codeIataFrom,
     let adultCounter = document.getElementById('adult-counter').innerHTML;
     let childrenCounter = document.getElementById('children-counter').innerHTML;
     let infantCounter = document.getElementById('infant-counter').innerHTML;
-    let cabinClassContainer = document.getElementById('select2-cabin-class-container').innerHTML;
-    if (cabinClassContainer === 'Эконом') {
-        cabinClassContainer = 'economy';
-    } else if (cabinClassContainer === 'Бизнес') {
-        cabinClassContainer = 'business';
-    }
+    let cabinClassContainer;
 
+    const selectedRadioCabinClass = document.querySelector('input[name="cabin-class"]:checked');
+    cabinClassContainer = selectedRadioCabinClass.value;
+    
     let firstDate = todayString;
     let daysAfter = calculateDaysAfter(today);
     let daysBefore = '0';
