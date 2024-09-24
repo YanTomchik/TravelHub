@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             dateFromFetch = formatDate(currentStartDate);
             dateToFetch = currentEndDate ? formatDate(currentEndDate) : null;
             
-            
+            if(userCurrencyTofetch == 'KZT'){
+                userCurrencyTofetch = 'USD'
+            }
             
             if (dateToFetch) {
                 apiUrl = `https://api.travelhub.by/flight/comparison-table?route=trip&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&period=${dateFromFetch};${dateToFetch}&currency=${userCurrencyTofetch}`;
@@ -166,9 +168,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                             .map(checkbox => checkbox.value)
                             .join(', ');
 
-                        priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${depDate}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
+                            if(userCurrencyTofetch == 'KZT'){
+                                userCurrencyTofetch = 'USD'
+                            }
+
+                        priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${depDate}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=${userCurrencyTofetch}&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
                     }else{
-                        priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&run=1`;
+
+                        if(userCurrencyTofetch == 'KZT'){
+                            userCurrencyTofetch = 'USD'
+                        }
+
+                        priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&guests=${getGuests()}&currency=${userCurrencyTofetch}&run=1`;
                     }
                     
                     td.innerHTML = `<a href="${priceUrl}" class='compare-cell-search-link'>${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
@@ -244,10 +255,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                             const resorts = Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked'))
                                 .map(checkbox => checkbox.value)
                                 .join(', ');
-                            priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${depDate};${retDate}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=undefined&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
-                            // console.log(`${HOST_URL}?locationFrom=${search.locationFrom}&countryId=${search.countryId}&nights=${search.nightsCounter}&fixPeriod=${search.fixPeriod}&adults=${search.adults}&children=${search.children}&childAges=&priceFrom=${search.priceFrom}&priceTo=${search.priceTo}&currency=undefined&hotels=${search.hotels}&resorts=${search.resorts}&category=${search.starsCounter}&meal=${search.mealCounter}&run=1`)
+
+                                if(userCurrencyTofetch == 'KZT'){
+                                    userCurrencyTofetch = 'USD'
+                                }
+                            priceUrl = `${HOST_URL}?locationFrom=${locationFrom}&countryId=${countryId}&nights=${nightsCounter}&fixPeriod=${depDate};${retDate}&adults=${adults}&children=${children}&childAges=&priceFrom=${priceFrom}&priceTo=${priceTo}&currency=${userCurrencyTofetch}&hotels=${hotels}&resorts=${resorts}&category=${starsCounter}&meal=${mealCounter}&run=1`;
+                            
                         }else{
-                            priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&run=1`;
+                            if(userCurrencyTofetch == 'KZT'){
+                                userCurrencyTofetch = 'USD'
+                            }
+
+                            priceUrl = `${HOST_URL}flights?departure=${locationFrom}&arrival=${locationTo}&date=${depDate}&dateEnd=${retDate}&guests=${getGuests()}&currency=${userCurrencyTofetch}&run=1`;
                         }
                         td.innerHTML = `<a href="${priceUrl}">${priceData.price.toFixed(2)} ${currencySymbol}</a>`;
                         td.classList.add('price');
@@ -464,15 +483,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if(isTourSearch){
             let tourStartDate = toursCalendarDate.value.split('-')[0].trim()
-            // let tourEndDate = toursCalendarDate.value.split('-')[1].trim()
-            // if(tableDataTocheck == null){
-            //     currentStartDate = new Date(parseDate(tourStartDate));  // Пример даты начала
-            //     currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
-
-            //     console.log(currentStartDate)
-            //     console.log(currentEndDate)
-            //     await fetchDataMatrix();
-            // }
             let tourEndDate = '';
 
             if(toursCalendarDate.value.split('-').length > 1){
@@ -518,9 +528,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(toursCalendarDate.value.split('-').length > 1){
                 tourEndDate = toursCalendarDate.value.split('-')[1].trim()
             }
-            
-            // currentStartDate = new Date(parseDate(tourStartDate));  // Example start date
-            // currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
 
             currentStartDate = new Date(parseDate(tourStartDate));  // Example start date
             if (tourEndDate != '') {
