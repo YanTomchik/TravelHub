@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let toursCalendarDate = document.getElementById('tours-calendar')
     const isTourSearch = document.querySelector('#toursearchform-locationfrom') !== null; // Проверка, ищем ли туры или авиа
+    
 
     async function fetchDataMatrix() {
         document.getElementById('loader-compare-table').style.display = 'block';
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&date=${dateFromFetch}&currency=${userCurrencyTofetch}`;
             }
-            console.log(apiUrl)
+            // console.log(apiUrl)
         }else{
             locationFrom = $('#flightsearchform-locationfrom').val();
             locationTo = $('#flightsearchform-locationto').val();
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 apiUrl = `https://api.travelhub.by/flight/comparison-table?route=one&locationFrom=${locationFrom}&locationTo=${locationTo}&adults=${adults}&currency=${userCurrencyTofetch}&date=${dateFromFetch}`;
             }
-            console.log(apiUrl)
+            // console.log(apiUrl)
         }
         
         
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         tableData = data.result;
         tableDataTocheck = tableData;
-        console.log(tableData)
+        // console.log(tableData)
 
         if (dateToFetch) {
             departureDates = [...new Set(tableData.map(item => item.from))].sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')));
@@ -124,14 +125,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             theadRow.appendChild(th);
         });
 
-        console.log(currentEndDate)
+        // console.log(currentEndDate)
 
         if (!currentEndDate) { // One-way flight case
             const priceRow = document.createElement('tr');
             let minPrice = Infinity;
             let minPriceCell = null;
 
-            console.log('one way')
+            // console.log('one way')
             
 
             visibleDepartureDates.forEach(depDate => {
@@ -370,81 +371,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     document.getElementById('prev-departure').addEventListener('click', async () => {
-        if (isTourSearch) {
-            // Если поиск авиа, смещаем только дату вылета
             const newStartDate = new Date(currentStartDate);
             newStartDate.setDate(newStartDate.getDate() - 1);
     
             if (newStartDate > todayDate) {
                 currentStartDate = newStartDate;
             }
-            
-
-            if(currentEndDate != null){
-                currentEndDate.setDate(currentEndDate.getDate() - 1);
-            }
-        } else {
-            // Если поиск авиа, смещаем только дату вылета
-            const newStartDate = new Date(currentStartDate);
-            newStartDate.setDate(newStartDate.getDate() - 1);
-    
-            if (newStartDate > todayDate) {
-                currentStartDate = newStartDate;
-            }
-
-
-        }
         await fetchDataMatrix();
     });
 
     document.getElementById('prev-return').addEventListener('click', async () => {
 
-        if (isTourSearch) {
             const newEndDate = new Date(currentEndDate);
             newEndDate.setDate(newEndDate.getDate() - 1);
             if (newEndDate > todayDate) {
                 currentEndDate = newEndDate;
             }
-            
-            if(currentStartDate != null){
-                currentStartDate.setDate(currentStartDate.getDate() - 1);
-            }
-
-        } else {
-            const newEndDate = new Date(currentEndDate);
-            newEndDate.setDate(newEndDate.getDate() - 1);
-            if (newEndDate > todayDate) {
-                currentEndDate = newEndDate;
-            }
-
-            console.log(currentEndDate)
-        }
         await fetchDataMatrix();
 
     });
 
     document.getElementById('next-departure').addEventListener('click', async () => {
+
+        currentStartDate.setDate(currentStartDate.getDate() + 1);
         
-        if(isTourSearch){
-            currentStartDate.setDate(currentStartDate.getDate() + 1);
-            
-            if(currentEndDate != null){
-                currentEndDate.setDate(currentEndDate.getDate() + 1);
-            }
-            
-        }else{
-            currentStartDate.setDate(currentStartDate.getDate() + 1);
-        }
         await fetchDataMatrix();
     });
 
     document.getElementById('next-return').addEventListener('click', async () => {
-        if(isTourSearch){
-            currentStartDate.setDate(currentStartDate.getDate() + 1);
-            currentEndDate.setDate(currentEndDate.getDate() + 1);
-        }else{
-            currentEndDate.setDate(currentEndDate.getDate() + 1);
-        }
+        currentEndDate.setDate(currentEndDate.getDate() + 1);
         await fetchDataMatrix();
     });
 
@@ -483,20 +438,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if(isTourSearch){
             let tourStartDate = toursCalendarDate.value.split('-')[0].trim()
-            let tourEndDate = '';
-
-            if(toursCalendarDate.value.split('-').length > 1){
-                tourEndDate = toursCalendarDate.value.split('-')[1].trim()
-            }
+            
 
             if(tableDataTocheck == null){
                 currentStartDate = new Date(parseDate(tourStartDate));  // Пример даты начала
                 
-                if (tourEndDate != '') {
-                    currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
-                } else {
-                    currentEndDate = null;
-                }
+                const numberNights = Number(document.querySelectorAll('#nights option:checked')[0]?.value || 0);
+                
+                currentEndDate = new Date(parseDate(tourStartDate));  // Пример даты начала
+                currentEndDate.setDate(currentEndDate.getDate() + numberNights);
+                
 
                 await fetchDataMatrix();
             }
@@ -521,20 +472,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.btn.btn-primary.search-btn').addEventListener('click', async () => {
         
         if(isTourSearch){
-            let tourStartDate = toursCalendarDate.value.split('-')[0].trim()
-
-            let tourEndDate = '';
-
-            if(toursCalendarDate.value.split('-').length > 1){
-                tourEndDate = toursCalendarDate.value.split('-')[1].trim()
-            }
-
+            let tourStartDate = toursCalendarDate.value.split('-')[0].trim();
             currentStartDate = new Date(parseDate(tourStartDate));  // Example start date
-            if (tourEndDate != '') {
-                currentEndDate = new Date(parseDate(tourEndDate));    // Example end date
-            } else {
-                currentEndDate = null;
-            }
+
+            const numberNights = Number(document.querySelectorAll('#nights option:checked')[0]?.value || 0);
+            
+            currentEndDate = new Date(parseDate(tourStartDate));  // Пример даты начала
+            currentEndDate.setDate(currentEndDate.getDate() + numberNights);
 
             await fetchDataMatrix();
 
