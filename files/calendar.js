@@ -911,6 +911,8 @@ function createTwoWayCharterCalendar(datepickerInputFrom, typeWay) {
 function clearInputs() {
     datepickerInputFrom.innerHTML = '';
     datepickerInputFrom.value = '';
+    datepickerInputTo.innerHTML = '';
+    datepickerInputTo.value = '';
     inputCharterFrom.value = ''
     inputCharterFrom.innerHTML = ''
     inputCharterTo.value = ''
