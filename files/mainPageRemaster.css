@@ -1067,13 +1067,9 @@ span.primary{
         padding: 2px 5px;
     }
 
-    .feedback-section .section-header h1{
-      font-size: 18px;
-    }
-
     .slider-feedback .slick-arrow.slick-prev {
       top: -65px;
-      left: 5px;
+      left: calc(100% - 100px);
     }
 
     .slider-feedback .slick-arrow.slick-next {
@@ -1180,6 +1176,10 @@ span.primary{
 
     .landing-container .feature-item .feature-item-content{
         gap: 8px;
+    }
+
+    .landing-banner-footer h2{
+      font-size: 18px;
     }
 
     .feature-interface{
@@ -1289,16 +1289,43 @@ span.primary{
 
     .register-section .landing-card.type-1 .landing-card-right-block{
         display: none;
+        width: 90%;
+    }
+
+    .register-section .section-header{
+      margin-bottom: 20px;
     }
 
     .register-section .landing-card{
         padding-bottom: 40px;
+        position: relative;
     }
 
     .feedback-item-wrapper{
-        width: 320px!important;
-        margin-right: 0px!important;
+        width: 310px!important;
+        margin-right: 5px!important;
     }
+
+    .landing-banner-footer-logos-list .logo-item{
+      display: none;
+      margin-top: 20px;
+    }
+
+    .slider-feedback{
+      margin-top: 50px;
+    }
+
+    .landing-banner-footer-logos-list .logo-item:nth-child(1){
+     display: flex;
+    }
+
+    .landing-banner-footer-logos-list .logo-item:nth-child(2){
+      display: flex;
+     }
+
+     .landing-banner-footer-logos-list .logo-item:nth-child(3){
+      display: flex;
+     }
 
     .landing-banner-header-wrapper h1{
       text-align: center;
@@ -1311,6 +1338,8 @@ span.primary{
 
     .feedback-item-content{
         gap: 10px;
+        margin-left: 5px;
+        width: 90%;
     }
 
     .feedback-item-content-header {
@@ -1383,22 +1412,38 @@ span.primary{
     }
 
     .landing-banner-sub-img img{
-        max-width: 40%;
+        /* max-width: 40%; */
     }
 
     .landing-banner-sub-img.item-2 {
       left: -20px;
-      top: 100px;
+      top: 90px;
     }
 
     .landing-banner-sub-img.item-3 {
-      right: -240px;
+      right: -15px;
       top: 20px;
     }
 
+    .landing-banner-sub-img.item-1 img{
+      width: 100px;
+    }
+
+    .landing-banner-sub-img.item-2 img{
+      width: 100px;
+    }
+
+    .landing-banner-sub-img.item-3 img{
+      width: 140px;
+    }
+
+    .landing-banner-sub-img.item-4 img{
+      width: 150px;
+    }
+
     .landing-banner-sub-img.item-4 {
-      right: -180px;
-      top: 120px;
+      right: -15px;
+      top: 110px;
     }
 
     .landing-banner-footer-logos-list{
