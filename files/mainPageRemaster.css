@@ -1193,6 +1193,7 @@ span.primary{
     .feature-payment .feature-item-banner-wrapper{
         position: relative;
         right: 0;
+        margin-bottom: -20px;
     }
 
     .feature-item-list-ul li .extra-info{
@@ -1423,6 +1424,7 @@ span.primary{
     .landing-banner-sub-img.item-3 {
       right: -15px;
       top: 20px;
+      width: 150px;
     }
 
     .landing-banner-sub-img.item-1 img{
@@ -1434,16 +1436,17 @@ span.primary{
     }
 
     .landing-banner-sub-img.item-3 img{
-      width: 140px;
+      width: 100%;
     }
 
     .landing-banner-sub-img.item-4 img{
-      width: 150px;
+      width: 100%;
     }
 
     .landing-banner-sub-img.item-4 {
       right: -15px;
       top: 110px;
+      width: 150px;
     }
 
     .landing-banner-footer-logos-list{
