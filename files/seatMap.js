@@ -40,13 +40,10 @@ function initSeatMap(dataService, dataFlightId, dataOrderId, dataOrderServiceId)
     this.dataOrderId = dataOrderId;
     this.dataOrderServiceId = dataOrderServiceId;
     currentTraveler = 1;
+    console.log(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=economy`)
     // https://api.travelhub.by/flight/seatmap?flightId=eJzTd9c3cjIxDvMDAAoKAiU%3D&service=amadeus_us&orderServiceId=12312&orderId=40533&test=true&cabin=economy&case=infant
-    // console.log(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`)
-    // fetch(`http://api.travelhub.local:8085/flight/seatmap?flightId=${flightId}&service=${service}`, {
-    // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}`, {
-    // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=business`, {
+    fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=economy`, {
     // fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=economy&case=infant`, {
-    fetch(`https://api.travelhub.by/flight/seatmap?flightId=${flightId}&service=${service}&orderServiceId=${dataOrderServiceId}&orderId=${dataOrderId}&test=true&cabin=economy&case=infant`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${bearerToken}`,

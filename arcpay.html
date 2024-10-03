@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица с дропдаунами</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown button {
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #007bff;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown button .fa-caret-down {
+            margin-left: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            color: #444;
+            white-space: nowrap;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover button {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Средняя цена</th>
+            <th>Итого</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Забронировано перелетов</td>
+            <td>19</td>
+            <td>16 512,37 ₽</td>
+            <td>313 735,00 ₽</td>
+        </tr>
+        <tr>
+            <td>— из них с нарушением Travel политик</td>
+            <td>0</td>
+            <td>0,00 ₽</td>
+            <td>0,00 ₽</td>
+        </tr>
+        <tr>
+            <td>Изменения</td>
+            <td>2</td>
+            <td>2 398,00 ₽</td>
+            <td>4 796,00 ₽</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="dropdown">
+                    <button>Возвраты со штрафом <i class="fas fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#">Возврат 1</a>
+                        <a href="#">Возврат 2</a>
+                    </div>
+                </div>
+            </td>
+            <td>2</td>
+            <td>5 050,00 ₽</td>
+            <td>10 100,00 ₽</td>
+        </tr>
+        <tr>
+            <td>Возврат 1</td>
+            <td>1</td>
+            <td>5 050,00 ₽</td>
+            <td>5 050,00 ₽</td>
+        </tr>
+        <tr>
+            <td>Возврат 2</td>
+            <td>1</td>
+            <td>5 050,00 ₽</td>
+            <td>5 050,00 ₽</td>
+        </tr>
+        <tr>
+            <td>Справки о перелетах</td>
+            <td>0</td>
+            <td>0,00 ₽</td>
+            <td>0,00 ₽</td>
+        </tr>
+        <tr>
+            <td>Дополнительные услуги</td>
+            <td>0</td>
+            <td>0,00 ₽</td>
+            <td>0,00 ₽</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
