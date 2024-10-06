@@ -226,6 +226,7 @@
     align-items: flex-end;
     justify-content: space-between;
     padding-top: 12px;
+    gap: 20px;
 }
 
 .marker-popup-footer-description-wrapper{
@@ -251,7 +252,7 @@
     font-weight: 700;
     line-height: 24px;
     letter-spacing: 0.0025em;
-    text-align: left;
+    text-align: right;
 
 }
 
