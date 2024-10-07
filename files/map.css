@@ -553,7 +553,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
 }
  
 .loader-map-wrapper{
-  display: block;
+  /* display: block; */
   /* Был до доработок */
   /* display: none; */
   position: relative;
@@ -581,6 +581,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .loader-cards-list-wrapper{
+    display: block;
     width: 92%;
     height: 85%;
     position: absolute;
@@ -588,7 +589,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     left: 16px;
     z-index: 4;
     background-color: #F4F6F990;
-    display: none;
+    /* display: none; */
   }
 
   .loader-cards-list {

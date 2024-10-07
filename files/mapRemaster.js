@@ -248,6 +248,7 @@ function updateLeftBlockWithMarkerData({ data: dataHotelsObj, currency: currency
 
     leftBlock.innerHTML = '';
     leftBlock.appendChild(fragment);
+    
 }
 
 async function fetchMarkerDataWithinBounds(existingMarkers) {
@@ -391,7 +392,7 @@ leftBlock.addEventListener('scroll', () => {
 
 // Функция для инициализации карты
 async function initMap(formData, typeRender, mapActiverHotel) {
-    loaderDiv.style.display = 'block';
+    // loaderDiv.style.display = 'block';
 
     if (typeRender !== 'hotel-open') {
         if (typeRender === 'showFilter') {
@@ -436,9 +437,15 @@ async function initMap(formData, typeRender, mapActiverHotel) {
     const limitForRequestLeftBlock = 30;
     const offsetForRequestLeftBlock = 0;
 
-    if(!isMobileFlag){
-        const leftBlockData = await fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData);
-        updateLeftBlockWithMarkerData(leftBlockData)
+    if (!isMobileFlag) {
+        leftSectionWrapper.classList.add('active');
+        fetchLeftBlockData(offsetForRequestLeftBlock, limitForRequestLeftBlock, formData)
+            .then(leftBlockData => {
+                
+                updateLeftBlockWithMarkerData(leftBlockData);
+                loaderDivCardsList.style.display = 'none';
+                
+            });
     }
 
     if (!markerDataCountHotels) {
@@ -730,60 +737,11 @@ async function initMap(formData, typeRender, mapActiverHotel) {
 
     const markerCluster = new MarkerClusterer({ map, markers });
 
-    // Формула Хаверсина для вычисления расстояния между двумя точками
-function calculateDistance(lat1, lng1, lat2, lng2) {
-    const R = 6371; // Радиус Земли в километрах
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Возвращаем расстояние в километрах
-}
-
-// Ваша функция для расчета уровня зума на основе радиуса
-function calculateZoomLevel(radius) {
-    const zoomLevels = [
-        { radius: 1000, zoom: 2 },
-        { radius: 500, zoom: 4 },
-        { radius: 200, zoom: 6 },
-        { radius: 100, zoom: 8 },
-        { radius: 50, zoom: 9 },
-        { radius: 20, zoom: 10 },
-        { radius: 10, zoom: 12 },
-        { radius: 5, zoom: 13 },
-        { radius: 2, zoom: 14 },
-    ];
-
-    const level = zoomLevels.find(z => radius >= z.radius);
-    return level ? level.zoom : 10;
-}
-
     google.maps.event.addListener(map, 'idle', async () => {
         const bounds = map.getBounds();
 
         if (initialIdle) {
             initialIdle = false; // Пропускаем первое срабатывание 'idle'
-            // // Получаем северо-восточную и юго-западную точки
-            // const ne = bounds.getNorthEast();
-            // const sw = bounds.getSouthWest();
-
-            // // Рассчитываем центр карты
-            // const centerX = {
-            //     lat: (ne.lat() + sw.lat()) / 2,
-            //     lng: (ne.lng() + sw.lng()) / 2
-            // };
-
-            // // Рассчитываем радиус как расстояние от центра до северо-восточной точки
-            // const radius = calculateDistance(centerX.lat, centerX.lng, ne.lat(), ne.lng());
-            // console.log(`Радиус: ${radius} км`);
-
-            // // Рассчитываем уровень зума на основе радиуса
-            // const zoomLevel = calculateZoomLevel(radius);
-            // console.log(`Уровень зума: ${zoomLevel}`);
-
-            // map.setZoom(zoomLevel)
             return;
         }
 
@@ -811,7 +769,6 @@ function calculateZoomLevel(radius) {
 
     google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
         loaderDiv.style.display = 'none';
-        leftSectionWrapper.classList.add('active');
     });
 }
 
@@ -1031,7 +988,6 @@ mapShowSearch.addEventListener('click', () => {
     bodyTag.style.overflow = 'hidden';
     initMap(undefined, renderType, mapHotelId);
 
-    loaderDiv.style.display = 'block';
 });
 
 // Открытие фильтра
