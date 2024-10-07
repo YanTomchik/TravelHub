@@ -243,8 +243,12 @@
 
 .marker-popup-footer-description{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 4px;
+}
+
+.marker-popup-footer-description div{
+  white-space: nowrap;
 }
 
 .marker-popup-footer-price{
@@ -413,7 +417,7 @@
   gap: 16px;
   max-height: 100%;
   overflow-y: auto;
-  
+  width: 512px;
 }
 
 .map-dashboard-cards-list::-webkit-scrollbar {
@@ -467,6 +471,7 @@
   border-radius: 12px;
   max-width: 480px;
   box-shadow: 0px 4px 47px -10px #00000015;
+  min-width: 100%;
 }
 
 .map-dashboard-card-item:hover .marker-popup-header-wrapper .marker-popup-header-btn{
@@ -581,14 +586,17 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .loader-cards-list-wrapper{
-    display: block;
-    width: 92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 8px);
     height: 85%;
     position: absolute;
     top: 72px;
     left: 16px;
     z-index: 4;
     background-color: #F4F6F990;
+    border-radius: 10px;
     /* display: none; */
   }
 
@@ -602,8 +610,6 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     position: absolute;
-    top: 45%;
-    left: 48%;
     z-index: 9999;
     }
 
@@ -748,7 +754,7 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
   }
 
   .marker-popup-footer-info{
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 
@@ -828,6 +834,8 @@ button.btn.btn-primary.map-filter-apply-btn-mobile {
     display: none!important;
   }
 
-
+  .loader-cards-list-wrapper{
+    display: none;
+  }
 
 }
