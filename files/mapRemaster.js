@@ -9,7 +9,7 @@ let initialIdle = true; // Флаг для отслеживания первог
 
 // Использование предопределенных значений
 // const defaultLocation = locationInfo ?? "100327";
-const defaultLocation = locationInfo ?? "760";
+const defaultLocation = locationInfo ?? "82";
 const defaultPartner = partnerinfo ?? "11160";
 
 const defaultLocationReInit = locationInfo ?? "48";
@@ -36,7 +36,6 @@ const defaultDataReInit = {
 };
 
 let isMobileFlag = window.matchMedia("only screen and (max-width: 760px)").matches;
-console.log(isMobileFlag)
 
 const loaderDiv = document.getElementById('loader-map');
 const loaderDivCardsList = document.querySelector('.loader-cards-list-wrapper')
