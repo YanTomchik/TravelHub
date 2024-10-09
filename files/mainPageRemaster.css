@@ -1060,6 +1060,22 @@ span.primary{
     transform: scale(1.1);
 }
 
+.agents-main-banner-section{
+  padding-top: 60px;
+}
+
+.agents-main-banner-section .landing-card-left-block{
+  width: 60%;
+}
+
+.agents-main-banner-section .subtitle{
+  font-size: 18px;
+}
+
+.agents-main-banner-section .title{
+  text-transform: uppercase;
+}
+
 @media (max-width: 770px){
     .bonus-header-wrapper span{
         font-size: 10px;
