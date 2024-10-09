@@ -669,13 +669,13 @@ async function initMap(formData, typeRender, mapActiverHotel) {
             return;
         }
 
-        // const bounds = map.getBounds();
         const visibleMarkers = markers.filter(marker => bounds.contains(marker.position));
         const existingMarkers = visibleMarkers.map(marker => marker.title);
     
         if (visibleMarkers.length < markers.length) {
             const newMarkerData = await fetchMarkerDataWithinBounds(existingMarkers);
             updateLeftBlockWithMarkerData(newMarkerData);
+            loaderDivCardsList.style.display = 'none';
         }
     });
     
@@ -897,43 +897,47 @@ function smoothPanTo(newCenter, map) {
 }
 
 // Открытие карты и генерация ее
-mapShowSearch.addEventListener('click', () => {
-    if (hotelInfoBlock) {
-        ({ propertyId: mapHotelId } = hotelInfoBlock.dataset);
-        ({ location: locationInfo, partner: partnerinfo } = mapShowSearch.dataset);
-    }
-
-    if (nationalityField) {
-        selectedNationality = $('#propertysearchform-nationality').val();
-    }
-
-    const renderType = mapShowSearch.dataset.rendertype;
-    mapDashboardWrapper.classList.toggle('active');
-    bodyTag.style.overflow = 'hidden';
-    initMap(undefined, renderType, mapHotelId);
-
-});
-
-const mapLinksBtn = document.querySelectorAll('.maps-link')
-
-mapLinksBtn.forEach(elem=>{
-    elem.addEventListener('click', ()=>{
-        const partnerValue = document.getElementById('partner').value;
-        const locationValue = document.getElementById('propertysearchform-location').value;
-
-        ({ id: mapHotelId } = elem.dataset);
-        locationInfo = locationValue;
-        partnerinfo = partnerValue;
-
+if (mapShowSearch) {
+    mapShowSearch.addEventListener('click', () => {
+        if (hotelInfoBlock) {
+            ({ propertyId: mapHotelId } = hotelInfoBlock.dataset);
+            ({ location: locationInfo, partner: partnerinfo } = mapShowSearch.dataset);
+        }
+    
+        if (nationalityField) {
+            selectedNationality = $('#propertysearchform-nationality').val();
+        }
+    
+        const renderType = mapShowSearch.dataset.rendertype;
         mapDashboardWrapper.classList.toggle('active');
         bodyTag.style.overflow = 'hidden';
+        initMap(undefined, renderType, mapHotelId);
+    
+    });
+}
 
-        const typeRender = 'hotel-open'
-        
-        initMap(undefined, typeRender, mapHotelId);
+const resultHotelBlock = document.querySelector('.result-block')
 
-    })
-})
+if(resultHotelBlock){
+    resultHotelBlock.addEventListener('click', (event) => {
+        if (event.target.matches('.maps-link')) {
+            const partnerValue = document.getElementById('partner').value;
+            const locationValue = document.getElementById('propertysearchform-location').value;
+    
+            ({ id: mapHotelId } = event.target.dataset);
+            locationInfo = locationValue;
+            partnerinfo = partnerValue;
+    
+            mapDashboardWrapper.classList.toggle('active');
+            bodyTag.style.overflow = 'hidden';
+    
+            const typeRender = 'hotel-open';
+            
+            initMap(undefined, typeRender, mapHotelId);
+        }
+    });
+}
+
 
 // Открытие фильтра
 mapDashboardFilterBtn?.addEventListener('click', () => {
