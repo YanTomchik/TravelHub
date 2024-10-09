@@ -115,7 +115,6 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data);
         if (data.dates.length != 0) {
             setLocalStorageToursFlights(data, cityId, countryId);
         }
@@ -126,6 +125,96 @@ async function getFlightToursCalendar(typeWay, cityId, countryId) {
     }
 }
 
+// let datepickerTour = new AirDatepicker(datepickerTourInput, {
+//     locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
+//     inline: false,
+//     minDate: new Date(),
+//     isMobile: isMobileFlag,
+//     autoClose: true,
+//     range: true,
+//     numberOfMonths: 2,
+//     multipleDatesSeparator: ' - ',
+//     showOtherMonths: false,
+//     onSelect: function (formattedDate, date, inst) {
+//         if (formattedDate.date && formattedDate.date.length > 0) {
+//             const startDate = formattedDate.date[0];
+//             const endDate = formattedDate.date[1];
+            
+//             if (startDate && endDate) {
+//                 const diffTime = Math.abs(endDate - startDate);
+//                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//                 console.log(diffDays)
+//                 if (diffDays >= 3) {
+//                     const errorMessage = MAIN_LANGUAGE === 'ru' 
+//                         ? "Вы можете выбрать не более 3 дней" 
+//                         : "You can select no more than 3 days";
+//                     document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = errorMessage
+//                     datepickerTour.clear();
+                    
+//                     return;
+//                 }else{
+//                     document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = ""
+//                 }
+//             }
+
+//             lastSelectedDate = startDate; 
+//             lastVisibleDate = datepickerTour.viewDate;
+//         }
+//     },
+//     onShow: function (inst) {
+//         if (inst) {
+//             // getFlightToursCalendar()
+//             //     .then(response => {
+//             //         const dates = response.dates;
+//             //         const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
+
+//             //         datepickerTour.update({
+//             //             onRenderCell: ({ date, cellType }) => {
+//             //                 dates.forEach(elem => {
+//             //                     datepickerTour.enableDate(new Date(elem));
+//             //                 });
+//             //             }
+//             //         });
+
+//             //         datepickerTour.update({
+//             //             onRenderCell: ({ date, cellType }) => {
+//             //                 if (cellType === 'day') {
+//             //                     const dateString = date.toISOString().split('T')[0];
+//             //                     const day = String(date.getDate()).padStart(2, '0');
+//             //                     const month = String(date.getMonth() + 1).padStart(2, '0');
+//             //                     const year = date.getFullYear();
+//             //                     const renderCellDate = `${year}-${month}-${day}`;
+//             //                     if (dates.includes(renderCellDate)) {
+//             //                         return {
+//             //                             html: `<span class="available-date">${date.getDate()}</span>`,
+//             //                             classes: 'charter-day'
+//             //                         };
+//             //                     } else {
+//             //                         return {
+//             //                             disabled: true,
+//             //                             start: earliestDate,
+//             //                         };
+//             //                     }
+//             //                 }
+//             //             }
+//             //         });
+
+//             //         if (lastVisibleDate) {
+//             //             datepickerTour.setViewDate(lastVisibleDate); // Устанавливаем видимую дату на последнюю видимую
+//             //         } else {
+//             //             datepickerTour.setViewDate(earliestDate);
+//             //         }
+
+//             //         hideLoader();
+//             //     });
+//         }
+//     }
+// });
+
+let fullRange = false;
+let formatSameDate = null;
+let lastSelectDateCheck = null;
+
 let datepickerTour = new AirDatepicker(datepickerTourInput, {
     locale: MAIN_LANGUAGE === 'ru' ? localeRu : localeEn,
     inline: false,
@@ -134,83 +223,105 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     autoClose: true,
     range: true,
     numberOfMonths: 2,
+    dynamicRange:true,
     multipleDatesSeparator: ' - ',
     showOtherMonths: false,
     onSelect: function (formattedDate, date, inst) {
         if (formattedDate.date && formattedDate.date.length > 0) {
-            const startDate = formattedDate.date[0];
-            const endDate = formattedDate.date[1];
-            
-            if (startDate && endDate) {
-                const diffTime = Math.abs(endDate - startDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                console.log(diffDays)
-                if (diffDays >= 3) {
-                    const errorMessage = MAIN_LANGUAGE === 'ru' 
-                        ? "Вы можете выбрать не более 3 дней" 
-                        : "You can select no more than 3 days";
-                    document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = errorMessage
-                    datepickerTour.clear();
-                    
-                    return;
-                }else{
-                    document.querySelector('.field-tours-calendar .help-block.help-block-error').textContent = ""
-                }
+            const selectedDates = formattedDate.date;
+            let startDate, endDate;
+
+            if (selectedDates.length === 1) {
+                startDate = selectedDates[0];
+            } else {
+                startDate = selectedDates[0];
+                endDate = selectedDates[1];
             }
 
-            lastSelectedDate = startDate; 
+            // Дополнительная логика по блокировке дат
+            if (startDate) {
+                check = true;
+                const maxDate = new Date(startDate.getTime());
+                maxDate.setDate(maxDate.getDate() + 2); // Ограничиваем выбор на 3 дня
+
+                datepickerTour.update({
+                    onRenderCell: function ({ date, cellType }) {
+                        if (cellType === 'day') {
+                            if (date < startDate || date > maxDate) {
+                                return {
+                                    disabled: true,
+                                };
+                            }
+                        }
+                    }
+                });
+            }
+
+            lastSelectedDate = startDate;
+            lastVisibleDate = datepickerTour.viewDate;
+        }
+
+        if(fullRange && formattedDate.date.length == 1){
+            datepickerTour.update({
+                onRenderCell: function ({ date, cellType }) {
+                    datepickerTour.enableDate(date);
+                }
+            });
+
+            const startDate = formattedDate.date[0];
+
+            if (startDate) {
+                const maxDate = new Date(startDate.getTime());
+                maxDate.setDate(maxDate.getDate() + 2); // Ограничиваем выбор до 3 дней
+
+                // Обновляем логику блокировки дат
+                datepickerTour.update({
+                    onRenderCell: function ({ date, cellType }) {
+                        if (cellType === 'day') {
+                            if (date < startDate || date > maxDate) {
+                                return {
+                                    disabled: true,
+                                };
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            lastSelectedDate = startDate;
             lastVisibleDate = datepickerTour.viewDate;
         }
     },
     onShow: function (inst) {
-        if (inst) {
-            getFlightToursCalendar()
-                .then(response => {
-                    const dates = response.dates;
-                    const earliestDate = new Date(Math.min(...dates.map(dateStr => new Date(dateStr))));
-
-                    datepickerTour.update({
-                        onRenderCell: ({ date, cellType }) => {
-                            dates.forEach(elem => {
-                                datepickerTour.enableDate(new Date(elem));
-                            });
-                        }
-                    });
-
-                    datepickerTour.update({
-                        onRenderCell: ({ date, cellType }) => {
-                            if (cellType === 'day') {
-                                const dateString = date.toISOString().split('T')[0];
-                                const day = String(date.getDate()).padStart(2, '0');
-                                const month = String(date.getMonth() + 1).padStart(2, '0');
-                                const year = date.getFullYear();
-                                const renderCellDate = `${year}-${month}-${day}`;
-                                if (dates.includes(renderCellDate)) {
-                                    return {
-                                        html: `<span class="available-date">${date.getDate()}</span>`,
-                                        classes: 'charter-day'
-                                    };
-                                } else {
-                                    return {
-                                        disabled: true,
-                                        start: earliestDate,
-                                    };
-                                }
-                            }
-                        }
-                    });
-
-                    if (lastVisibleDate) {
-                        datepickerTour.setViewDate(lastVisibleDate); // Устанавливаем видимую дату на последнюю видимую
-                    } else {
-                        datepickerTour.setViewDate(earliestDate);
-                    }
-
-                    hideLoader();
-                });
+        if (lastVisibleDate) {
+            datepickerTour.setViewDate(lastVisibleDate); // Устанавливаем видимую дату на последнюю видимую
         }
+
+        if(datepickerTour.selectedDates.length == 2){
+            fullRange = true;
+        }
+    },
+    onHide: function () {
+        lastSelectDateCheck = null;
     }
 });
+
+
+const datepickerGlobalContainer = document.querySelector('.air-datepicker-global-container')
+
+if(datepickerGlobalContainer){
+    datepickerGlobalContainer.addEventListener('click', (cell) => {
+        if (cell.target.matches('.air-datepicker-cell.-day-')) {
+            if(lastSelectDateCheck == `${cell.target.dataset.date}.${cell.target.dataset.month}.${cell.target.dataset.year}`){
+                datepickerTour.hide()
+                formatSameDate = new Date(`${Number(cell.target.dataset.month)+1}.${cell.target.dataset.date}.${cell.target.dataset.year}`)
+                datepickerTour.selectDate(formatSameDate)
+            }
+            lastSelectDateCheck = `${cell.target.dataset.date}.${cell.target.dataset.month}.${cell.target.dataset.year}`
+        }
+    });
+}
 
 
 function showLoader() {
@@ -236,6 +347,13 @@ function hideLoader() {
 
 clearDatepickerBtn.addEventListener('click', (elem) => {
     datepickerTour.clear();
+    datepickerTour.update({
+        onRenderCell: function ({ date, cellType }) {
+            datepickerTour.enableDate(date);
+        }
+    });
     lastSelectedDate = null; // Очищаем последнюю выбранную дату
     lastVisibleDate = null;  // Очищаем последнюю видимую дату
+    lastSelectDateCheck = null;
+    
 });
