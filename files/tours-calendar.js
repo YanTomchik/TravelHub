@@ -32,6 +32,7 @@ const localeRu = {
 const datepickerTourInput = document.getElementById('tours-calendar');
 const clearDatepickerBtn = document.querySelector('.remove-datepicker-date.tour');
 
+
 const cityId = $('#cities').val();
 const countryId = $('#country-id').val();
 
@@ -345,15 +346,19 @@ function hideLoader() {
     }
 }
 
-clearDatepickerBtn.addEventListener('click', (elem) => {
-    datepickerTour.clear();
-    datepickerTour.update({
-        onRenderCell: function ({ date, cellType }) {
-            datepickerTour.enableDate(date);
-        }
+
+if(clearDatepickerBtn){
+    clearDatepickerBtn.addEventListener('click', (elem) => {
+        datepickerTour.clear();
+        datepickerTour.update({
+            onRenderCell: function ({ date, cellType }) {
+                datepickerTour.enableDate(date);
+            }
+        });
+        lastSelectedDate = null; // Очищаем последнюю выбранную дату
+        lastVisibleDate = null;  // Очищаем последнюю видимую дату
+        lastSelectDateCheck = null;
+        
     });
-    lastSelectedDate = null; // Очищаем последнюю выбранную дату
-    lastVisibleDate = null;  // Очищаем последнюю видимую дату
-    lastSelectDateCheck = null;
-    
-});
+}
+
