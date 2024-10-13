@@ -51,7 +51,7 @@
     left: 50%; /* дополнительное выравнивание */
     transform: translateX(-50%); /* центрирование баннера */
     z-index: 1;
-    top: -15px;
+    top: 0;
 }
 
 .landing-banner-header-wrapper h1{
@@ -164,13 +164,17 @@ span.primary{
     align-items: center;
     justify-content: space-between;
     padding: 0px 30px;
-    gap: 30px;
+    /* gap: 30px; */
 }
 
 .landing-banner-footer-logos-list .logo-item img{
-    width: 100%;
+    width: auto;
     height: auto;
     object-fit: cover;
+}
+
+.landing-banner-footer-logos-list .logo-item{
+  margin-right: 30px;
 }
 
 .landing-card{
@@ -183,6 +187,7 @@ span.primary{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .landing-card.type-2{
@@ -220,10 +225,6 @@ span.primary{
     height: 360px;
     border-radius: 12px;
     background-color: #F7FAFF;
-}
-
-.register-section .landing-card.type-1 .landing-card-right-block {
-    
 }
 
 .register-section .landing-card.type-1 .landing-card-left-block {
@@ -298,6 +299,9 @@ span.primary{
     line-height: 20px;
     letter-spacing: 0.25%;
     border-radius: 12px;
+    width: fit-content;
+    padding: 12px 30px;
+    min-height: 48px;
 }
 
 .section-header{
@@ -351,31 +355,37 @@ span.primary{
     position: relative;
     z-index: 1;
   }
+
+  .agents-page .feature-type-1{
+    background-color: #DBF9E7;
+  }
   
-  .feature-price {
+  .feature-type-1 {
     grid-column: span 4;
     background-color: #F5F9D9;
     padding: 20px 30px;
   }
 
-  .feature-price h2{
+  .feature-type-1 h2{
     font-size: 40px;
     font-weight: 500;
     line-height: 48px;
     letter-spacing: -0.0014em;
-    color: #989D79;
+    color: #5F9F7C;
   }
 
-  .feature-price .feature-item-banner-wrapper{
+  .feature-type-1 .feature-item-banner-wrapper{
     display: flex;
     gap: 20px;
   }
 
-  .feature-price .feature-item-banner-wrapper .img2{
-    margin-top: 50px;
+  .feature-type-1 .feature-item-banner-wrapper img{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
   }
   
-  .feature-map {
+  .feature-type-2 {
     grid-column: span 8;
     background-color: #DAECFF;
     padding: 20px 60px;
@@ -383,16 +393,19 @@ span.primary{
     position: relative;
   }
 
-  .feature-map h2{
+  .feature-type-2 h2{
     font-size: 40px;
     font-weight: 500;
     line-height: 48px;
     letter-spacing: -0.0014em;
     color: #3877B5;
-    
   }
 
-  .feature-map .feature-item-banner-wrapper{
+  .agents-page .feature-type-2 h2{
+    width: 55%;
+  }
+
+  .feature-type-2 .feature-item-banner-wrapper{
     display: flex;
     align-items: center;
     justify-content: flex-end;  
@@ -401,7 +414,7 @@ span.primary{
     right: 20px;
   }
   
-  .feature-interface {
+  .feature-type-3 {
     grid-column: span 9;
     background-color: #D9F9EC;
     padding: 30px 60px 50px 60px;
@@ -409,9 +422,32 @@ span.primary{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    position: relative;
   }
 
-  .feature-interface h2{
+  .agents-page .feature-type-3{
+    grid-column: span 8;
+    background-color: #F5F9D9;
+  }
+
+  .agents-page .feature-type-3 h3{
+    color: #675078;
+  }
+
+  .agents-page .feature-type-3 h2{
+    font-size: 100px;
+    color: #675078;
+  }
+
+  .agents-page .feature-type-3 h4{
+    color: #A79DAF;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.0014em;
+    margin-top: 60px;
+  }
+  
+  .feature-type-3 h2{
     font-size: 80px;
     font-weight: 500;
     line-height: 67px;
@@ -419,7 +455,7 @@ span.primary{
     color: #769E8D;
   }
 
-  .feature-interface h3{
+  .feature-type-3 h3{
     font-size: 30px;
     font-weight: 500;
     line-height: 45px;
@@ -427,16 +463,23 @@ span.primary{
     color: #769E8D;
   }
 
-  .feature-interface .feature-item-banner-wrapper{
+  .feature-type-3 .feature-item-banner-wrapper{
     margin-right: -60px;
   }
 
-  .feature-interface .feature-item-banner-wrapper img{
+  .agents-page .feature-type-3 .feature-item-banner-wrapper{
+    margin-right: 0px;
+    position: absolute;
+    right: 40px;
+    bottom: 0;
+  }
+
+  .feature-type-3 .feature-item-banner-wrapper img{
     display: flex;
     align-items: flex-end;
   }
   
-  .feature-speed {
+  .feature-type-4 {
     grid-column: span 3;
     background-color: #DBDCFF;
     padding: 30px;
@@ -445,7 +488,12 @@ span.primary{
     gap: 40px;
   }
 
-  .feature-speed h2{
+  .agents-page .feature-type-4{
+    grid-column: span 4;
+    padding: 50px 70px;
+  }
+
+  .feature-type-4 h2{
     font-size: 24px;
     font-weight: 500;
     line-height: 36px;
@@ -453,7 +501,21 @@ span.primary{
     color: #583F88;
   }
 
-  .feature-speed h5{
+  .landing-container .feature-item.feature-type-4 .feature-item-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .agents-page .feature-type-4 h2{
+    font-size: 32px;
+  }
+
+  .agents-page .feature-type-4 h5{
+    font-size: 18px;
+  }
+
+  .feature-type-4 h5{
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -461,11 +523,7 @@ span.primary{
     color: #8772B0;
   }
 
-  .landing-container .feature-item.feature-speed .feature-item-content{
-    gap: 0px;
-  }
-
-  .landing-container .feature-item.feature-speed .feature-item-content.battery{
+  .landing-container .feature-item.feature-type-4 .feature-item-content.battery{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -518,20 +576,20 @@ span.primary{
     left: 60px;
   }
   
-  .feature-payment {
+  .feature-type-5 {
     grid-column: span 6;
     background-color: #E1EEF6;
     padding: 40px 50px 90px 50px;
     position: relative;
   }
 
-  .feature-payment .feature-item-banner-wrapper{
+  .feature-type-5 .feature-item-banner-wrapper{
     position: absolute;
     bottom: 0;
     right: 20px;
   }
 
-  .feature-payment h2{
+  .feature-type-5 h2{
     font-size: 44px;
     font-weight: 500;
     line-height: 70.95px;
@@ -540,14 +598,14 @@ span.primary{
     margin-bottom: 20px;
   }
   
-  .feature-support {
+  .feature-type-6 {
     grid-column: span 6;
     background-color: #FFE5E5;
     padding: 40px 50px 90px 50px;
     position: relative;
   }
 
-  .feature-support h2{
+  .feature-type-6 h2{
     font-size: 46px;
     font-weight: 500;
     line-height: 60px;
@@ -555,7 +613,7 @@ span.primary{
     color: #814E4E;
   }
 
-  .feature-support h1{
+  .feature-type-6 h1{
     font-size: 100px;
     font-weight: 500;
     line-height: 140px;
@@ -563,7 +621,7 @@ span.primary{
     color: #814E4E;
   }
 
-  .feature-support h5{
+  .feature-type-6 h5{
     font-size: 16px;
     font-weight: 400;
     line-height: 21px;
@@ -571,23 +629,33 @@ span.primary{
     color: #BC9F9F;
   }
 
-  .feature-support .feature-item-banner-wrapper img{
+  .feature-type-6 .feature-item-banner-wrapper img{
     width: 300px;
     height: auto;
   }
 
-  .feature-support .feature-item-banner-wrapper{
+  .agents-page .feature-type-6 .feature-item-banner-wrapper img{
+    width: 100%;
+  }
+
+  .agents-page .feature-type-6 .feature-item-banner-wrapper{
+    position: relative;
+    right: 0px;
+    margin-top: 50px;
+  }
+
+  .feature-type-6 .feature-item-banner-wrapper{
     position: absolute;
     bottom: 0;
     right: 20px;
   }
 
-  .landing-container .feature-item.feature-support .feature-item-content{
+  .landing-container .feature-item.feature-type-6 .feature-item-content{
     width: 45%;
     gap: 0px;
   }
   
-  .feature-travelhub {
+  .feature-type-7 {
     grid-column: span 12;
     background-color: #CDDDFB;
     padding: 80px 50px 0px 50px;
@@ -598,11 +666,11 @@ span.primary{
     gap: 80px;
   }
 
-  .feature-travelhub .feature-item-content{
+  .feature-type-7 .feature-item-content{
     width: 580px;
   }
 
-  .feature-travelhub h3{
+  .feature-type-7 h3{
     font-size: 32px;
     font-weight: 500;
     line-height: 44px;
@@ -630,7 +698,7 @@ span.primary{
     margin-left: 15px;
   }
 
-  .feature-travelhub .wath-vide-button{
+  .feature-type-7 .wath-vide-button{
     display: flex;
     align-items: center;
     gap: 16px;
@@ -748,6 +816,7 @@ span.primary{
     border-radius: 12px;
     padding: 12px 28px;
     cursor: pointer;
+    white-space: nowrap;
   }
   
   .landing-card-tab-item.active{
@@ -757,7 +826,8 @@ span.primary{
 
   .landing-card-tab-item:hover{
     background-color: #306DDE;
-    color: #fff;
+    color: #fff!important;
+    transition: all 0.3s;
   }
 
   .slider-btns-list{
@@ -1060,9 +1130,9 @@ span.primary{
     transform: scale(1.1);
 }
 
-.agents-main-banner-section{
+/* .agents-main-banner-section{
   padding-top: 60px;
-}
+} */
 
 .agents-main-banner-section .landing-card-left-block{
   width: 60%;
@@ -1072,11 +1142,952 @@ span.primary{
   font-size: 18px;
 }
 
-.agents-main-banner-section .title{
+.landing-card.type-1 .title{
   text-transform: uppercase;
 }
 
+.main-banner.section-block{
+  margin-top: 40px;
+}
+
+.main-banner-right{
+  margin-right: -70px;
+}
+
+.control-income-section .landing-card.type-1 .landing-card-content-header{
+  width: 60%;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    /* transform: scale(0.95); */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.highlights-content-item.fade-in {
+  animation: fadeIn 0.3s slidein ;
+}
+
+/* Для плавного изменения активного элемента */
+.highlight-item {
+  transition: background 0.3s ease;
+}
+
+.highlights-content-item {
+  transition: opacity 0.3s ease, transform 0.1s ease;
+}
+
+
+
+.highlights-section .half-sections-wrapper{
+  margin-top: 60px;
+}
+
+.half-sections-wrapper{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.half-sections-wrapper .section-wrapper{
+  flex: 0 0 50%;
+}
+
+.highlights-list{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.highlight-item{
+  width: 90px; /* Размер круга */
+    height: 90px;
+    border-radius: 50%; /* Делает элемент круглым */
+    padding: 4px; /* Отступ внутри рамки для градиентного эффекта */
+    background: #E4E6EE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.highlight-item.active{
+  background: linear-gradient(to bottom, #9E63FF, #306DDE); /* Градиентная рамка */
+}
+
+.highlight-item:hover{
+  background: linear-gradient(to bottom, #9E63FF, #306DDE); /* Градиентная рамка */
+}
+
+.circle-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Круглая картинка */
+  object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+}
+
+.highlights-content-item{
+  background-position: center;
+  background-size: cover;
+  width: 550px;
+  height: 420px;
+  border-radius: 12px;
+  display: none;
+}
+
+.highlights-content-item.active{
+  display: flex;
+  transition: all 0.8s;
+}
+
+.fix-price-section .landing-card.type-1 {
+  min-height: 520px;
+}
+
+.fix-price-section .landing-card.type-1 .landing-card-content-header{
+  width: 40%;
+  gap: 70px;
+}
+
+.ready-to-start-section .landing-card.type-1 .landing-card-section{ 
+  flex: 0 0 46%;
+}
+
+.ready-to-start-section .landing-card.type-1{
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.ready-to-start-section .landing-card.type-1 .landing-card-left-block{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.start-path {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.path-step {
+  display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.step-number {
+  min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    background-color: #F3F5FB;
+    color: #1A1A1A;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.step-number::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background-color: #F4F4FD;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.path-step:last-child .step-number::after {
+  display: none; /* Убираем линию для последнего шага */
+}
+
+.step-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #24223E;
+  text-transform: uppercase;
+}
+
+.step-content p {
+  font-size: 18px;
+  color: #5B596E;
+  margin: 0;
+}
+
+.ready-to-start-btns-wrapper{
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.ready-to-start-btns-wrapper .reg{
+  flex: 0 0 50%;
+}
+
+.ready-to-start-btns-wrapper .login{
+  flex: 0 0 40%;
+}
+
+.login.btn-primary.rm{
+  background-color: #fff;
+  border: 1px solid #306DDE;
+  color: #306DDE;
+}
+
+.loyalty-section .landing-card.type-1{
+  min-height: 600px;
+  align-items: flex-start;
+}
+
+.loyalty-section .landing-card-content-header .title{
+  width: 70%;
+  color: #fff;
+}
+
+.loyalty-cards-list{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.loyalty-card-item{
+  width: 270px;
+  min-height: 320px;
+  border-radius: 20px;
+  background-color: #F8F8FF;
+  padding: 30px 20px;
+  overflow-x: hidden;
+}
+
+.loyalty-card-header-info{
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.loyalty-card-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.loyalty-card-item .loyalty-plane-image{
+  margin-right: -30px;
+
+}
+
+.loyalty-card-header-info .title{
+  font-size: 18px;
+  color: #24223E;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 0;
+}
+
+.loyalty-card-header-info .description{
+  font-size: 18px;
+  color: #24223E;
+  font-weight: 400;
+  line-height: 100%;
+  margin: 0;
+}
+
+.loyalty-line{
+  margin-top: 20px;
+  border-radius: 5px;
+  height: 3px;
+}
+
+.loyalty-line.bronze{
+  background-color: #B99C7E;
+}
+
+.loyalty-line.silver{
+  background-color: #858585;
+}
+
+.loyalty-line.gold{
+  background-color: #B48F31;
+}
+
+.loyalty-card-content{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 35px;
+  width: 80%;
+}
+
+.card-content-item{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-content-item .title{
+  font-size: 13px;
+  color: #24223E;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.card-content-item .description{
+  font-size: 12px;
+  color: #24223E;
+  font-weight: 400;
+  line-height: 100%;
+  margin: 0;
+}
+
+.calculate-profit h3{
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.range-container {
+  margin-top: 60px;
+  position: relative;
+}
+
+.range-slider {
+  width: 100%;
+  margin: 15px 0;
+  z-index: 1;
+  -webkit-appearance: none;
+  background: #D9D9D9;
+  outline: none; /* Убираем контур */
+  transition: background 0.3s ease;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  width: 15px; 
+  height: 15px; 
+  background: #306DDE; 
+  border-radius: 50%; 
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #B5B5B5;
+}
+
+.display-value {
+  font-size: 20px;
+  font-weight: 400;
+  color: #24223E;
+  position: absolute;
+  background-color: #F4F6F9;
+  border-radius: 6px 6px 0px 0px;
+  padding: 16px 30px;
+  width: 100%;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.commission-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.commission-block, .bonus-block {
+  width: fit-content;
+}
+
+.commission-block h3, .bonus-block h3 {
+  font-weight: 700;
+  color: #24223E;
+  
+}
+
+.commission-value, .bonus-value {
+  font-size: 32px;
+  background-color: #F4F6F9;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.plus {
+  font-size: 32px;
+  margin: 0 20px;
+  margin-top: 45px;
+}
+
+p.note {
+  font-size: 14px;
+  color: #ABABC8;
+  margin-top: 25px;
+}
+
+.calculate-profit-result-section{
+  background-color: #F4F6F9;
+  border-radius: 24px;
+  padding: 60px;
+  width: 500px;
+}
+
+.calculate-profit-result-section p {
+  font-size: 18px;
+  color: #5B596E;
+  line-height: 20px;
+  letter-spacing: -0.14%;
+}
+
+.calculate-profit-result-section  .result-section-info{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.calculate-profit-result-section p#commissionResult,
+.calculate-profit-result-section p#bonusResult{
+  font-weight: 700;
+  font-size: 25px;
+  color: #24223E;
+}
+
+.calculate-profit-result-section p#totalResult {
+  font-weight: 700;
+  font-size: 30px;
+  color: #24223E;
+}
+
+.result-section-info-item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.result-section-info-item p{
+  max-width: 60%;
+}
+
+.calculate-profit-section .landing-card.type-1{
+  gap: 50px;
+}
+
+.calculate-profit-section .landing-card.type-1 .landing-card-left-block{
+  width: 50%;
+}
+
+.agents-services-list{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 90px;
+  margin-bottom: 70px;
+}
+
+.agents-services-item{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.agents-services-item img{
+  width: 56px;
+  height: 56px;
+}
+
+.agents-services-item-info{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.agents-services-item-info h3{
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.0014em;
+  color: #24223E;
+  text-transform: uppercase;
+}
+
+.agents-services-item-info p{
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.0014em;
+  color: #8989B4;
+}
+
+.all-services-section .subtitle{
+  color: #8989B4;
+  font-size: 24px;
+}
+
+.upcoming-features {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #F8F8FF;
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 60px;
+}
+
+.upcoming-features p {
+  width: 40%;
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.0014em;
+  text-align: left;
+}
+
+.features-list {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  column-gap: 50px;
+}
+
+.features-list li {
+  flex: 0 0 40%; /* 45% ширины для двух колонок */
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #888EBA;
+  position: relative;
+  padding-left: 20px;
+  white-space: nowrap;
+  min-width: 300px;
+}
+
+.features-list li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  color: #306DDE; /* Цвет маркера */
+  font-size: 20px;
+  line-height: 1;
+}
+
+.all-services-section .btn{
+  margin: 0 auto;
+}
+
+.our-team-section .landing-card-content{
+  width: 100%;
+}
+
+.team-cards-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.team-card-item{
+  display: flex!important;
+  flex-direction: column;
+  gap: 30px;
+  width: 250px;
+}
+
+.team-card-img{
+  background-position: center;
+  background-size: cover;
+  width: 250px;
+  height: 250px;
+  border-radius: 12px;
+}
+
+.team-card-item-info{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-card-item-info h3{
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.0014em;
+  color: #24223E;
+}
+
+.team-card-item-info p{
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.0014em;
+  color: #888EBA;
+}
+
+.section-subheader{
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.section-subheader.justify{
+  justify-content: space-between;
+}
+
+.section-subheader.left{
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.section-subheader h3{
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.0014em;
+}
+
+.section-subheader.justify p{
+  text-align: right;
+}
+
+.section-subheader p{
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.0014em;
+}
+
+.agents-register-section .landing-card{
+  min-height: 620px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.agents-register-section .landing-card-content-header .title{
+  width: 60%;
+}
+
+.agents-register-section .landing-card-content-header .subtitle{
+  width: 50%;
+  color: #8989B4;
+}
+
+.agents-register-section .landing-card.type-1{
+  align-items: flex-start;
+  padding-top: 100px;
+}
+
+.agents-register-section .btn{
+  margin-top: 60px;
+}
+
+.agents-logo-section .landing-card-left-block{
+  width: 100%;
+}
+
+.agents-logo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.logos-slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Оставляем равномерное пространство между логотипами */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.logo-item {
+  margin: 0 10px;
+  flex: 0 0 auto; /* Гарантируем, что элементы не будут растягиваться */
+}
+
+.logo-item img {
+  max-width: 100px; /* Устанавливаем максимальную ширину для логотипов */
+  height: auto;
+  display: block;
+}
+
+.section-block .slick-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.section-block .slick-list {
+  overflow: hidden;
+  padding: 0;
+}
+
+.section-block .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+.team-cards-list .slick-arrow.slick-next{
+  position: absolute;
+  top: -260px;
+  right: 0px;
+  background-image: url('../images/chevron-right.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+.team-cards-list .slick-arrow.slick-prev{
+  position: absolute;
+  top: -260px;
+  left: calc(100% - 90px);
+  background-image: url('../images/chevron-left.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+
+.agents-logo-section .title{
+  text-align: center;
+  font-weight: 500;
+  width: 60%;
+  margin: 0 auto;
+  line-height: 40px;
+}
+
+.agents-logo-section .landing-card{
+  padding: 50px 0px; 
+}
+
+.partnership-section .landing-card-content{
+  width: 100%;
+}
+
+.partnership-section .faq-item{
+  margin-left: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0px;
+  border-radius: 0px;
+  margin-top: 24px;
+}
+
+.partnership-section .faq-item .faq-title{
+  font-weight: 500;
+  color: #24223E;
+  background-color: #F8F8FF;
+  padding: 1rem 3.5rem 1rem 1rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.partnership-section .faq-item .faq-title img{
+  position: absolute;
+  right: 20px;
+}
+
+.partnership-section .faq-item .faq-title:hover img{
+  transform: rotate(180deg);
+  transition: all .2s;
+}
+
+.partnership-section .faq-item .faq-title::after{
+  display: none;
+}
+
+.partnership-section .faq-item .faq-title:hover:hover::after{
+  display: none;
+}
+
+.partnership-section .faq-item .faq-content p{
+  font-weight: 400;
+  color: #5B596E;
+  margin-bottom: 16px;
+}
+
+.partnership-section .faq-item .faq-content p.extra-note{
+  border: 1px solid #5B596E;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+ .landing-container .partnership-section ul li, .landing-container .partnership-section ol li{
+  font-weight: 400;
+  color: #5B596E;
+  list-style: none;
+}
+
+.landing-container .partnership-section ul li:before{
+  content: '—';
+  color: #306DDE;
+  margin-right: 4px;
+}
+
+.partnership-section .faq-item .faq-content{
+  margin-left: 24px;
+}
+
+/* Начальное состояние секции - невидимая и немного сдвинута */
+.section-block {
+  opacity: 0;
+  transform: translateY(50px); /* Смещение по оси Y */
+  transition: all 0.7s ease;   /* Плавная анимация */
+}
+
+/* Класс для секций, которые стали видимыми */
+.section-block.visible {
+  opacity: 1;
+  transform: translateY(0); /* Сбрасываем смещение */
+}
+
+footer.rm .footer-nav h3{
+  font-size: 14px;
+  font-weight: 500;
+  color: #24223E;
+}
+
+footer.rm .footer-contact--item a{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+footer.rm .footer-nav a{
+  color: #8989B4;
+}
+
+footer.rm{
+  padding: 42px 40px 40px 40px;
+}
+
+footer.rm .footer-contact--item span{
+  color: #8989B4;
+}
+
+footer.rm .footer-contact--item{
+  margin-bottom: 24px;
+}
+
+footer.rm .footer-main-logo img{
+  width: 100px;
+}
+
+footer.rm .footer-adress{
+  color: #8989B4;
+}
+
+footer.rm .footer-info{
+  color: #8989B4;
+}
+
+.footer-bottom-info{
+  padding-top: 30px;
+  border-top: 1px solid #ABABC84D;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-bottom-info-logos-list{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-subscribe {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.subscribe-text h2 {
+  font-size: 18px;
+  color: #24223E;
+  margin: 0 0 5px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.subscribe-text p {
+  font-size: 16px;
+  color: #898989;
+  margin: 0;
+}
+
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  background-color: #F4F4FD;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.subscribe-form input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #f3f5fb;
+  font-size: 14px;
+  color: #6F7287;
+  width: 250px;
+  margin-right: 10px;
+}
+
+.subscribe-form input::placeholder{
+  color: #ABABC8;
+  font-size: 16px;
+}
+
 @media (max-width: 770px){
+
+  .footer-bottom-info{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subscribe-form input{
+    width: 100%;
+  }
+
+  .subscribe-form input::placeholder{
+    font-size: 12px;
+  }
+
+  .footer-subscribe{
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+    .feature-type-7 .wath-vide-button{
+      max-width: 100%;
+    }
+
     .bonus-header-wrapper span{
         font-size: 10px;
         line-height: 14px;
@@ -1128,63 +2139,67 @@ span.primary{
         margin-top: 30px;
     }
 
-    .feature-price{
+    .feature-type-1{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-map{
+    .feature-type-2{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-interface{
+    .feature-type-3{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-speed{
+    .feature-type-4{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-payment{
+    .feature-type-5{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-support{
+    .feature-type-6{
         grid-column: span 12;
         padding: 20px;
     }
 
-    .feature-travelhub{
+    .feature-type-7{
         grid-column: span 12;
         padding: 20px;
     }
 
-     .landing-container .feature-price img{
-        max-width: 48%;
+     .landing-container .feature-type-1 img{
+        max-width: 100%;
     }
 
-    .feature-map h2{
+    .feature-type-2 h2{
         font-size: 20px;
         font-weight: 500;
-        line-height: 5px;
+        line-height: 25px;
     }
 
-    .feature-map .feature-item-banner-wrapper{
+    .agents-page .feature-type-2 h2{
+      width: 100%;
+    }
+
+    .feature-type-2 .feature-item-banner-wrapper{
         position: relative;
         right: 0;
         margin-top: 20px;
     }
 
-    .feature-interface h2 {
+    .feature-type-3 h2 {
         font-size: 24px;
         line-height: 26px;
     }
 
-    .feature-interface h3 {
+    .feature-type-3 h3 {
         font-size: 18px;
         font-weight: 500;
         line-height: 25px;
@@ -1198,15 +2213,15 @@ span.primary{
       font-size: 18px;
     }
 
-    .feature-interface{
+    .feature-type-3{
         flex-direction: column;
     }
 
-    .feature-interface .feature-item-banner-wrapper{
+    .feature-type-3 .feature-item-banner-wrapper{
         margin-right: -20px;
     }
 
-    .feature-payment .feature-item-banner-wrapper{
+    .feature-type-5 .feature-item-banner-wrapper{
         position: relative;
         right: 0;
         margin-bottom: -20px;
@@ -1217,55 +2232,55 @@ span.primary{
         margin-left: 0px;
     }
 
-    .feature-price h2 {
+    .feature-type-1 h2 {
         font-size: 24px;
         font-weight: 500;
         line-height: 18px;
     }
 
-    .feature-payment h2 {
+    .feature-type-5 h2 {
         font-size: 24px;
         font-weight: 500;
         line-height: 20.95px;
     }
 
-    .feature-support .feature-item-banner-wrapper{
+    .feature-type-6 .feature-item-banner-wrapper{
         position: relative;
         right: 0;
         margin-bottom: -20px;
     }
 
-    .landing-container .feature-item.feature-support .feature-item-content{
+    .landing-container .feature-item.feature-type-6 .feature-item-content{
         width: 100%;
     }
 
-    .feature-support h2 {
+    .feature-type-6 h2 {
         font-size: 24px;
         font-weight: 500;
         line-height: 10px;
     }
 
-    .feature-support h1 {
+    .feature-type-6 h1 {
         font-size: 60px;
         font-weight: 500;
         line-height: 70px;
     }
 
-    .feature-travelhub{
+    .feature-type-7{
         flex-direction: column-reverse;
     }
 
-    .feature-travelhub .feature-item-banner-wrapper{
+    .feature-type-7 .feature-item-banner-wrapper{
         margin-bottom: -20px;
     }
 
-    .feature-travelhub h3 {
+    .feature-type-7 h3 {
         font-size: 24px;
         font-weight: 500;
         line-height: 35px;
     }
 
-    .feature-travelhub .feature-item-content{
+    .feature-type-7 .feature-item-content{
         width: 100%;
     }
 
@@ -1285,7 +2300,7 @@ span.primary{
     }
 
     .news-card-item{
-        width: 300px!important;
+        width: 100%!important;
     }
 
     .news-section .slick-arrow.slick-next{
@@ -1332,7 +2347,7 @@ span.primary{
       margin-top: 50px;
     }
 
-    .landing-banner-footer-logos-list .logo-item:nth-child(1){
+    /* .landing-banner-footer-logos-list .logo-item:nth-child(1){
      display: flex;
     }
 
@@ -1342,7 +2357,7 @@ span.primary{
 
      .landing-banner-footer-logos-list .logo-item:nth-child(3){
       display: flex;
-     }
+     } */
 
     .landing-banner-header-wrapper h1{
       text-align: center;
@@ -1408,7 +2423,7 @@ span.primary{
 
     .landing-banner-wrapper{
       padding: 20px;
-      height: 784px;
+      height: 700px;
     }
 
     .landing-banner-header-register-form .landing-register-form input[type="email"]{
@@ -1469,5 +2484,283 @@ span.primary{
       gap: 0px;
     }
 
+    .main-banner-right{
+      margin-right: 0px;
+    }
+
+    .main-banner.section-block{
+      margin-top: 0px;
+    }
+
+    .agents-main-banner-section .landing-card-left-block{
+      width: 100%;
+    }
+
+    .landing-card .title{
+      font-size: 24px;
+    }
+
+    .agents-main-banner-section .subtitle{
+      font-size: 16px;
+    }
+
+    .landing-card .subtitle{
+      font-size: 16px;
+    }
+
+    .agents-main-banner-section .btn{
+      width: 100%;
+    }
+
+    .agents-main-banner-section .main-banner-right{
+      margin-right: -20px;
+    }
+
+    .agents-page .feature-type-3{
+      grid-column: span 12;
+        padding: 20px;
+    }
+
+    .agents-page .feature-type-4{
+      grid-column: span 12;
+        padding: 20px;
+    }
+
+    .agents-page .feature-type-3 h2{
+      font-size: 70px;
+    }
+
+    .agents-page .feature-type-3 .feature-item-banner-wrapper{
+      position: relative;
+      bottom: -20px;
+      right: 0px;
+    }
+
+    .agents-page .feature-type-3 h4{
+      margin-top: 30px;
+    }
+
+    .agents-page .feature-type-4 h2{
+      font-size: 24px;
+    }
+
+    .agents-page .feature-type-6 .feature-item-banner-wrapper{
+      margin-top: 30px;
+    }
+
+    .agents-page .feature-type-6 .feature-item-banner-wrapper{
+      margin-bottom: 0px;
+    }
+
+    .control-income-section .landing-card.type-1 .landing-card-content-header{
+      width: 100%;
+    }
+
+    .half-sections-wrapper{
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .half-sections-wrapper .section-wrapper{
+      width: 100%;
+    }
+
+    .highlights-list{
+      justify-content: space-between;
+      gap: 0px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .highlight-item{
+      width: 60px;
+      height: 60px;
+      padding: 3px;
+    }
+
+    .highlights-content-item{
+      width: 330px;
+      height: 200px;
+    }
+
+    .highlights-section .half-sections-wrapper{
+      margin-top: 30px;
+    }
+
+    .fix-price-section .landing-card.type-1 .landing-card-content-header {
+      width: 100%;
+      gap: 30px;
+    }
+
+    .fix-price-section .landing-card.type-1{
+      background-position: center;
+      min-height: 400px;
+    }
+
+    .ready-to-start-btns-wrapper{
+      flex-direction: column;
+    }
+
+    .ready-to-start-btns-wrapper a.rm{
+      width: 100%;
+    }
+
+    .step-content p{
+      font-size: 16px;
+    }
+
+    .step-content h3{
+      font-size: 18px;
+    }
+
+    .step-number::after{
+      height: 140px;
+    }
+
+    .loyalty-section .landing-card-content-header .title{
+      width: 100%;
+    }
+
+    .loyalty-cards-list{
+      flex-direction: column;
+    }
+
+    .loyalty-card-item{
+      width: 100%;
+    }
+
+    .landing-card .loyalty-card-content .title{
+      font-size: 18px;
+    }
+
+    .loyalty-card-content .card-content-item .description{
+      font-size: 14px;
+    }
+
+    .loyalty-section .landing-card.type-1{
+      background-image: none!important;
+      background: linear-gradient(to bottom, #7eacf6, #8c5ae3)!important;
+    }
+
+    .calculate-profit-section .landing-card.type-1 .landing-card-left-block{
+      width: 100%;
+    }
+
+    .calculate-profit-result-section{
+      width: 100%;
+    }
+
+    .calculate-profit h3{
+      font-size: 14px;
+    }
+
+    .calculate-profit-result-section{
+      padding: 20px;
+    }
+
+    .calculate-profit-result-section p{
+      font-size: 16px;
+    }
+
+    .calculate-profit-result-section p#commissionResult, .calculate-profit-result-section p#bonusResult{
+      font-size: 20px;
+    }
+
+    .calculate-profit-result-section p#totalResult{
+      font-size: 24px;
+    }
+
+    .upcoming-features{
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .agents-services-list{
+      margin-top: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .agents-services-item{
+      gap: 14px;
+      width: 45%;
+      min-height: 270px;
+    }
+
+    .agents-services-item-info{
+      gap: 10px;
+    }
+
+    .agents-services-item-info h3{
+      font-size: 18px;
+    }
+
+    .agents-services-item-info p{
+      font-size: 14px;
+    }
+
+    .upcoming-features p{
+      width: 100%;
+    }
+
+     .landing-container ul.features-list{
+      margin: 30px 0px 0px 5px;
+    }
+
+    .features-list{
+      width: 100%;
+    }
+
+    .agents-logo-section .title{
+      width: 100%;
+      font-size: 22px;
+    }
+
+    .team-cards-list .slick-arrow.slick-prev{
+      top: -150px;
+    }
+
+    .team-cards-list .slick-arrow.slick-next{
+      top: -150px;
+    }
+
+    .team-card-img{
+      width: 100%;
+      height: 300px;
+    }
+
+    .partnership-section .landing-card-tabs-list{
+      margin-bottom: 30px;
+    }
+
+    .partnership-section .faq-item .faq-content{
+      margin-left: 10px;
+    }
+
+    .partnership-section .faq-item .faq-title{
+      font-weight: 400;
+    }
+
+    .agents-register-section .landing-card.type-1{
+      background-position: top;
+    }
+
+    .agents-register-section .landing-card.type-1{
+      padding-top: 20px;
+    }
+
+    .agents-register-section .landing-card-content-header .title{
+      width: 100%;
+    }
+
+    .agents-register-section .landing-card-content-header .subtitle{
+      width: 70%;
+    }
+
+    .agents-register-section .btn{
+      margin-top: 10px;
+    }
 
 }
