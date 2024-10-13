@@ -1066,23 +1066,15 @@ span.primary{
 
 @media (min-width: 769px) {
     .header .header-bottom .header-bottom-left a.active {
-        color: #306DDE;
-        font-weight: 700;
+        color: #19191e;
     }
 }
 
 
 @media (min-width: 769px) {
     .header .header-bottom .header-bottom-left a.active::after {
-        content: "";
-        width: 100%;
-        border-radius: 23px;
-        background: transparent;
-        height: 2px;
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        display: block;
+       
+        bottom: -10px;
     }
 }
 
