@@ -2763,4 +2763,8 @@ footer.rm .footer-info{
       margin-top: 10px;
     }
 
+    .calculate-profit-section .landing-card-right-block.landing-card-section{
+      width: 100%;
+    }
+
 }
