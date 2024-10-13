@@ -308,7 +308,6 @@ let datepickerTour = new AirDatepicker(datepickerTourInput, {
     }
 });
 
-
 const datepickerGlobalContainer = document.querySelector('.air-datepicker-global-container')
 
 if(datepickerGlobalContainer){
@@ -323,7 +322,6 @@ if(datepickerGlobalContainer){
         }
     });
 }
-
 
 function showLoader() {
     const loader = document.querySelector('.loader-calendar-wrapper.calendar');
@@ -345,7 +343,6 @@ function hideLoader() {
         loader.style.display = 'none';
     }
 }
-
 
 if(clearDatepickerBtn){
     clearDatepickerBtn.addEventListener('click', (elem) => {
