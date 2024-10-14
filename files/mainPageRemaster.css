@@ -2056,7 +2056,19 @@ footer.rm .footer-info{
   font-size: 16px;
 }
 
+.agents-page .landing-banner-footer{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 40px;
+}
+
 @media (max-width: 770px){
+
+  .agents-page .landing-banner-footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+  }
 
   .footer-bottom-info{
     flex-direction: column;
@@ -2330,10 +2342,10 @@ footer.rm .footer-info{
         margin-right: 5px!important;
     }
 
-    .landing-banner-footer-logos-list .logo-item{
+    /* .landing-banner-footer-logos-list .logo-item{
       display: none;
       margin-top: 20px;
-    }
+    } */
 
     .slider-feedback{
       margin-top: 50px;
