@@ -1003,6 +1003,10 @@ $(document).ready(function () {
         let maxPriceTextMap = document.querySelector('#map_max-price').textContent;
         maxPriceTextMap = document.querySelector('#map_max-price').textContent;
 
+        mapRangeInputSite.forEach(input => {
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+
         if (typeof $.fn.yiiActiveForm === 'function') {
             $('#properties-search-form').yiiActiveForm('validate', true);
             if (window.innerWidth > 770) {
