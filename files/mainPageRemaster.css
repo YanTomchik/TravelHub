@@ -2619,7 +2619,8 @@ footer.rm .footer-info{
     }
 
     .step-number::after{
-      height: 140px;
+      /* height: 140px; */
+      display: none;
     }
 
     .loyalty-section .landing-card-content-header .title{
