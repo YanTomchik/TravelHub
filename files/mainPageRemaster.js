@@ -244,4 +244,14 @@ document.querySelectorAll('.section-block').forEach(section => {
 });
 
 
+const sliderEl = document.querySelector("#bookingAmount")
+
+sliderEl.addEventListener("input", (event) => {
+  const tempSliderValue = event.target.value; 
+  
+  const progress = (tempSliderValue / sliderEl.max) * 100;
+ 
+  sliderEl.style.background = `linear-gradient(to right, #306DDE ${progress}%, #D9D9D9 ${progress}%)`;
+})
+
   
