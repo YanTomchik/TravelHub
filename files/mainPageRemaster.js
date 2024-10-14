@@ -158,6 +158,7 @@ $(document).ready(function(){
     // variableWidth: true, 
     prevArrow: '<button type="button" class="slick-prev">←</button>',
     nextArrow: '<button type="button" class="slick-next">→</button>',
+    variableWidth: true, 
     responsive: [
       {
         breakpoint: 1024,
@@ -242,9 +243,6 @@ if(elements.rangeSlider){
   });
 }
 
-
-
-
 // Функция, которая будет добавлять класс "visible", когда элемент попадет в область видимости
 let observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
@@ -258,6 +256,52 @@ let observer = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.section-block').forEach(section => {
   observer.observe(section);
 });
+
+const tabsTeam = document.querySelectorAll('.landing-card-tab-item.our-team');
+const tabsPartnership = document.querySelectorAll('.landing-card-tab-item.partnership');
+const contentsTeam = document.querySelectorAll('.team-cards-list');
+const contentsPartnership = document.querySelectorAll('.tab-pane');
+
+if(tabsTeam){
+  tabsTeam.forEach(tab => {
+    tab.addEventListener('click', function () {
+      // Убираем активные классы у всех табов и контента
+      tabsTeam.forEach(t => t.classList.remove('active'));
+      contentsTeam.forEach(c => c.classList.remove('active'));
+  
+      // Добавляем активный класс к выбранной вкладке
+      tab.classList.add('active');
+  
+      // Находим соответствующий контент и показываем его
+      const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
+      if (activeTabContent) {
+        activeTabContent.classList.add('active');
+      }
+    });
+  });
+}
+
+if(tabsPartnership){
+  tabsPartnership.forEach(tab => {
+    tab.addEventListener('click', function () {
+      // Убираем активные классы у всех табов и контента
+      tabsPartnership.forEach(t => t.classList.remove('active'));
+      contentsPartnership.forEach(c => c.classList.remove('active'));
+      contentsPartnership.forEach(c => c.classList.remove('show'));
+  
+      // Добавляем активный класс к выбранной вкладке
+      tab.classList.add('active');
+  
+      // Находим соответствующий контент и показываем его
+      const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
+      if (activeTabContent) {
+        activeTabContent.classList.add('active');
+        activeTabContent.classList.add('show');
+      }
+    });
+  });
+}
+
 
 
 

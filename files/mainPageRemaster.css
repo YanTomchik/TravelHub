@@ -174,7 +174,11 @@ span.primary{
 }
 
 .landing-banner-footer-logos-list .logo-item{
-  margin-right: 30px;
+  /* margin-right: 30px; */
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+  /* max-height: 46px; */
 }
 
 .landing-card{
@@ -302,6 +306,29 @@ span.primary{
     width: fit-content;
     padding: 12px 30px;
     min-height: 48px;
+}
+
+.btn-primary.rm.transparent{
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.25%;
+  border-radius: 12px;
+  width: fit-content;
+  padding: 12px 30px;
+  min-height: 48px;
+  border: 1px solid #306DDE;
+  color: #306DDE;
+}
+
+.btn-primary.rm:hover{
+  background-color: #155cde!important;
+}
+
+.btn-primary.rm.transparent:hover{
+  background-color: #306DDE!important;
+  color: #fff;
 }
 
 .section-header{
@@ -1297,7 +1324,7 @@ span.primary{
   content: '';
   position: absolute;
   width: 2px;
-  height: 100px;
+  height: 120px;
   background-color: #F4F4FD;
   top: 50px;
   left: 50%;
@@ -1711,14 +1738,16 @@ p.note {
   display: flex!important;
   flex-direction: column;
   gap: 30px;
+  padding-right: 30px;
   width: 250px;
+  min-height: 500px;
 }
 
 .team-card-img{
   background-position: center;
   background-size: cover;
   width: 250px;
-  height: 250px;
+  height: 280px;
   border-radius: 12px;
 }
 
@@ -1841,6 +1870,15 @@ p.note {
 .section-block .slick-track {
   display: flex;
   align-items: center;
+}
+
+.team-cards-list{
+  display: none;
+}
+
+.team-cards-list.active{
+  display: flex;
+  transition: all 0.5s;
 }
 
 .team-cards-list .slick-arrow.slick-next{
@@ -2062,7 +2100,139 @@ footer.rm .footer-info{
   margin-top: 40px;
 }
 
+.calendar-promo-tours-section .landing-card.type-2{
+  align-items: flex-start;
+}
+
+.calendar-promo-tours-section .landing-card.type-2 .landing-card-left-block{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.calendar-promo-tours-section .subtitle{
+  color: #8989B4;
+}
+
+.promo-tours-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.promo-tours-item-info h3{
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.0014em;
+  color: #24223E;
+}
+
+.promo-tours-item-info p{
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.0014em;
+  color: #888EBA;
+}
+
+.promo-tours-item-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.promo-tours-item{
+  width: 400px;
+  position: relative;
+}
+
+.promo-tours-item-img{
+  width: 400px;
+  height: 220px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 16px;
+}
+
+.promo-status{
+  border-radius: 30px;
+  padding: 5px 15px;
+  color: #24223E;
+  font-weight: 500;
+  font-size: 18px;
+  position: absolute;
+  top: -20px;
+  right: 10px;
+}
+
+.promo-status.yellow{
+  background-color: #FFF973;
+}
+
+.yellow-extra{
+  background-color: #FFF72D;
+  font-size: 12px;
+  font-weight: 400;
+  color: #24223E;
+  padding: 4px;
+}
+
 @media (max-width: 770px){
+
+  .calendar-promo-tours-section .landing-card.type-2 .landing-card-left-block{
+    flex-direction: column;
+  }
+
+  .calendar-promo-tours-section .landing-card.type-2 .landing-card-left-block .btn{
+    width: 100%;
+  }
+
+  .calendar-promo-tours-section .slick-prev{
+    display: none!important;
+  }
+
+  .calendar-promo-tours-section .slick-next{
+    display: none!important;
+  }
+
+  .calendar-promo-tours-section .landing-card-right-block{
+    width: 100%;
+  }
+
+  .promo-tours-list{
+    flex-direction: column;
+  }
+
+  .promo-tours-item{
+    width: 100%;
+  }
+
+  .promo-tours-item-content{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .promo-tours-item-content .btn{
+    width: 100%;
+  }
+
+  .promo-tours-item-img {
+    width: 100%;
+    height: 300px;
+  }
+
+  .login.btn-primary.rm{
+    width: 100%;
+  }
+
+  .team-card-item{
+    padding-right: 20px;
+  }
 
   .agents-page .landing-banner-footer{
     padding-top: 10px;
@@ -2301,6 +2471,10 @@ footer.rm .footer-info{
 
     .landing-card-tabs-list::-webkit-scrollbar{
         visibility: hidden;
+    }
+
+    .partnership-section .landing-card-tabs-list::-webkit-scrollbar, .our-team-section .landing-card-tabs-list::-webkit-scrollbar{
+      visibility: hidden;
     }
 
     .news-card-item{
@@ -2725,10 +2899,12 @@ footer.rm .footer-info{
 
     .team-cards-list .slick-arrow.slick-prev{
       top: -150px;
+      display: none!important;
     }
 
     .team-cards-list .slick-arrow.slick-next{
       top: -150px;
+      display: none!important;
     }
 
     .team-card-img{
@@ -2736,8 +2912,16 @@ footer.rm .footer-info{
       height: 300px;
     }
 
-    .partnership-section .landing-card-tabs-list{
+    .partnership-section .landing-card-tabs-list, .our-team-section .landing-card-tabs-list{
       margin-bottom: 30px;
+    }
+
+    .section-subheader.justify{
+      flex-direction: column;
+    }
+
+    .section-subheader.justify p{
+      text-align: left;
     }
 
     .partnership-section .faq-item .faq-content{
