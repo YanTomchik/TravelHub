@@ -194,38 +194,54 @@ if(highlightsItems){
 });
 }
 
-const rangeSlider = document.getElementById('bookingAmount');
-const bookingDisplay = document.getElementById('bookingDisplay');
-const commissionResult = document.getElementById('commissionResult');
-const bonusResult = document.getElementById('bonusResult');
-const totalResult = document.getElementById('totalResult');
-const commissionRate = document.getElementById('commissionRate');
-const bonusRate = document.getElementById('bonusRate');
+const elements = {
+  rangeSlider: document.getElementById('bookingAmount'),
+  bookingDisplay: document.getElementById('bookingDisplay'),
+  commissionResult: document.getElementById('commissionResult'),
+  bonusResult: document.getElementById('bonusResult'),
+  totalResult: document.getElementById('totalResult'),
+  commissionRate: document.getElementById('commissionRate'),
+  bonusRate: document.getElementById('bonusRate'),
+};
 
-if(rangeSlider){
-  rangeSlider.addEventListener('input', function() {
-    const bookingAmount = parseFloat(this.value);
+if(elements.rangeSlider){
+  elements.rangeSlider.addEventListener('input', function(event) {
+    const bookingAmount = parseFloat(event.target.value);
     const formattedBookingAmount = new Intl.NumberFormat('ru-RU').format(bookingAmount);
-    bookingDisplay.textContent = formattedBookingAmount;
+    elements.bookingDisplay.textContent = formattedBookingAmount;
 
     // Комиссия
-    let commissionPercentage = bookingAmount >= 20000 ? 0.12 : 0.10; // 12% если сумма >= 20000, иначе 10%
+    let commissionPercentage = 0.10; // 12% если сумма >= 20000, иначе 10%
     const commission = bookingAmount * commissionPercentage;
-    commissionResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(commission.toFixed(2))}`;
+    elements.commissionResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(commission.toFixed(2))}`;
 
     // Бонус по программе лояльности
-    const bonusPercentage = 0.0025; // 0.25%
+    let bonusPercentage = 0.0025; // 0.25% по умолчанию
+    if (bookingAmount >= 100000) {
+      bonusPercentage = 0.01; // 1% для суммы >= 100 000
+    } else if (bookingAmount >= 50000) {
+      bonusPercentage = 0.0075; // 0.75% для суммы >= 50 000
+    } else if (bookingAmount >= 20000) {
+      bonusPercentage = 0.0025; // 0.25% для суммы >= 20 000
+    }
+    
     const bonus = bookingAmount * bonusPercentage;
-    bonusResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(bonus.toFixed(2))}`;
+    elements.bonusResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(bonus.toFixed(2))}`;
 
     // Итого
     const total = commission + bonus;
-    totalResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(total.toFixed(2))}`;
+    elements.totalResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(total.toFixed(2))}`;
 
-    // Обновляем ставку комиссии
-    commissionRate.textContent = commissionPercentage * 100 + '%';
-});
+    // Обновляем ставку комиссии и бонуса
+    elements.commissionRate.textContent = commissionPercentage * 100 + '%';
+    elements.bonusRate.textContent = (bonusPercentage * 100).toFixed(2) + '%';
+
+    // Обновляем фон прогрессбара
+    const progress = (bookingAmount / elements.rangeSlider.max) * 100;
+    elements.rangeSlider.style.background = `linear-gradient(to right, #306DDE ${progress}%, #D9D9D9 ${progress}%)`;
+  });
 }
+
 
 
 
@@ -244,14 +260,7 @@ document.querySelectorAll('.section-block').forEach(section => {
 });
 
 
-const sliderEl = document.querySelector("#bookingAmount")
 
-sliderEl.addEventListener("input", (event) => {
-  const tempSliderValue = event.target.value; 
-  
-  const progress = (tempSliderValue / sliderEl.max) * 100;
- 
-  sliderEl.style.background = `linear-gradient(to right, #306DDE ${progress}%, #D9D9D9 ${progress}%)`;
-})
+
 
   
