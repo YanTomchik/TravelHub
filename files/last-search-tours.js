@@ -130,7 +130,10 @@ const initToursPage = () => {
             hotels: Array.from(document.querySelectorAll('.list-block-content .option-hotel input[type="checkbox"]:checked')).map(checkbox => checkbox.value).join(', '),
             resorts: Array.from(document.querySelectorAll('.list-block-content.resorts-list .option-resort input[type="checkbox"]:checked')).map(checkbox => checkbox.value).join(', ')
         };
-        addSearchToLocalStorage(searchObj, 'search_tours');
+        if(searchObj.fixPeriod != ''){
+            addSearchToLocalStorage(searchObj, 'search_tours');
+        }
+        
     });
     updateLastSearchResults('search_tours');
 };

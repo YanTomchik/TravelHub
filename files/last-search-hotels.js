@@ -105,7 +105,9 @@ const initHotelsPage = () => {
             adultCounter: document.getElementById('adults').textContent,
             childrenCounter: document.getElementById('children').textContent
         };
-        addSearchToLocalStorage(searchObj, 'search_hotels');
+        if(searchObj.checkin != ''){
+            addSearchToLocalStorage(searchObj, 'search_hotels');
+        }
     });
     updateLastSearchResults('search_hotels')
 };

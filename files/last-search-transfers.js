@@ -102,7 +102,10 @@ const initTransfersPage = () => {
             adultCounter: document.getElementById('adults').textContent,
             childrenCounter: document.getElementById('childrens').textContent
         };
-        addSearchToLocalStorage(searchObj, 'search_transfers');
+        
+        if(searchObj.dateTo != ''){
+            addSearchToLocalStorage(searchObj, 'search_transfers');
+        }
     });
     updateLastSearchResults('search_transfers');
 };

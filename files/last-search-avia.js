@@ -98,11 +98,11 @@ const initFlightsPage = () => {
             childrenCounter: document.getElementById('children-counter').innerHTML,
             infantCounter: document.getElementById('infant-counter').innerHTML
         };
-        addSearchToLocalStorage(searchObj, 'search_flight');
+        if(searchObj.depDate != ''){
+            addSearchToLocalStorage(searchObj, 'search_flight');
+        }
     });
-
-    updateLastSearchResults('search_flight')
-    
+        updateLastSearchResults('search_flight')        
 };
 
 document.addEventListener('DOMContentLoaded', initFlightsPage);
