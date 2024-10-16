@@ -517,17 +517,17 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
 
             document.querySelectorAll('.air-datepicker-cell.-day-').forEach(elem =>{
                 elem.addEventListener('click', (cell)=>{
-                    // console.log(lastSelectDateCheck)
-                    // console.log(datepicker.selectedDates.length)
-                    // && datepicker.selectedDates.length < 2
                     if(lastSelectDateCheck == cell.target.dataset ){
                         sameDateSelectFlag = true;
-                        formatSameDate = formatDateToString(new Date(`${Number(cell.target.dataset.month)+1}.${cell.target.dataset.date}.${cell.target.dataset.year}`))
+                        formatSameDate = formatDateToString(new Date(`${cell.target.dataset.year}-${Number(cell.target.dataset.month)+1}-${cell.target.dataset.date}`))
+                        
                         datepicker.hide()
+                        
                     }
                     lastSelectDateCheck = cell.target.dataset;
                 })
             })
+            
             const viewDate = selectedDate ? new Date(selectedDate.split('.').reverse().join('-')) : today;
             datepicker.setViewDate(viewDate);
 
@@ -703,9 +703,7 @@ function createBothWayCalendar(datepickerInputFrom, codeIataFrom, codeIataTo) {
             if(sameDateSelectFlag == true){
                 datepickerInputFrom.value = formatSameDate
                 datepickerInputTo.value = formatSameDate
-            }
-
-            
+            }            
         }
     });
 
