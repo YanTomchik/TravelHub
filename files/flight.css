@@ -7,7 +7,7 @@
 }
 
 .air-result-block .result-list .result-item .card .card-main-info {
-    padding: 32px;
+    padding: 20px;
     display: flex;
     flex-direction: row;
 }
@@ -16,6 +16,10 @@
     flex: 1;
     align-items: flex-start;
     max-width: 100%;
+}
+
+.navbar-filters-wrapper {
+    margin-right: 160px;
 }
 
 .air-result-block .result-list .result-item .card .info-block .companies-list {
@@ -40,6 +44,10 @@
 
 .air-result-block .result-list .result-item .card .info-block .time-block.with-transfer .timeline-block .time-info .type {
     color: #BF3939;
+}
+
+.air-result-block .upsale-container {
+    margin-top: 0;
 }
 
 .air-result-block .result-list .result-item .card .info-block .time-block:not(:first-child) {
@@ -511,7 +519,7 @@
     background: #FFF;
     border: 1px solid #E4E6EE;
     border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .search-result-block.air-tickets .filter-select-block.opened .select-button > img {
@@ -801,7 +809,7 @@
 }
 
 .time-info {
-    min-width: 135px;
+    min-width: 100px;
     max-width: 135px;
 }
 
@@ -1062,7 +1070,7 @@
     }
 
     .air-result-block .result-list .result-item .card .card-main-info {
-        padding: 24px 32px;
+        padding: 12px 16px;
         flex-direction: column-reverse;
     }
 
@@ -1139,7 +1147,8 @@
 }
 
 @media (max-width: 568px) {
-    /* .air-result-block .result-list .result-item .card .more-details-block {justify-content: center; margin-left: 0px;} */ .time-info {
+    /* .air-result-block .result-list .result-item .card .more-details-block {justify-content: center; margin-left: 0px;} */
+    .time-info {
         min-width: auto;
     }
 
@@ -1160,23 +1169,23 @@
     padding: 0px 0px 40px 0px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .title-block{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .title-block {
     padding-top: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.air-result-block.remaster .result-list .result-item .card .info-block .time-block>.time-info>.time {
-    font-size: 28px;
+.air-result-block.remaster .result-list .result-item .card .info-block .time-block > .time-info > .time {
+    font-size: 26px;
     font-weight: 600;
     line-height: 32px;
     color: #191C30;
     margin-bottom: 8px
 }
 
-.air-result-block.remaster .result-list .result-item .card .info-block .time-block>.time-info>.info {
-    font-size: 16px;
+.air-result-block.remaster .result-list .result-item .card .info-block .time-block > .time-info > .info {
+    font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     color: #B5B5C2;
@@ -1186,11 +1195,11 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    margin-right: 18px;
+    margin-right: 0;
     color: #B5B5C2;
 }
 
-.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline>.background-line>span {
+.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline > .background-line > span {
     flex: 1;
     height: 6px;
     border-radius: 3px;
@@ -1199,7 +1208,7 @@
     top: -3px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline>.background-line .tooltip-container span{
+.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline > .background-line .tooltip-container span {
     flex: 1;
     height: 6px;
     border-radius: 3px;
@@ -1208,7 +1217,7 @@
     top: -3px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline>.background-line>span.empty {
+.air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .timeline > .background-line > span.empty {
     height: 1px;
     top: 0;
 }
@@ -1231,17 +1240,17 @@
     align-items: center;
 }
 
-.air-result-block.remaster .result-list .result-item .card .price-block .button-block .baggage.green::after{
+.air-result-block.remaster .result-list .result-item .card .price-block .button-block .baggage.green::after {
     background-image: none;
 }
 
-.air-result-block.remaster .result-list .result-item .card .price-block .button-block .baggage.green::before{
+.air-result-block.remaster .result-list .result-item .card .price-block .button-block .baggage.green::before {
     content: '';
     width: 20px;
     height: 20px;
     display: inline-block;
     vertical-align: middle;
-    background-image: url('../images/upsale/baggage-green.svg');
+    background-image: url('../../images/upsale/baggage-green.svg');
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -1249,64 +1258,64 @@
 }
 
 
-.air-result-block.remaster .result-item.show{
+.air-result-block.remaster .result-item.show {
     display: block;
 }
 
-.air-result-block.remaster .result-list .result-item.opened .card .card-additional-info{
+.air-result-block.remaster .result-list .result-item.opened .card .card-additional-info {
     display: flex;
     flex-direction: column;
 }
 
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info {
     border-top: none;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .title-block .company-name{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .title-block .company-name {
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;
     color: #19191E;
 }
 
-.air-result-block.remaster .title-block .title-block-info{
+.air-result-block.remaster .title-block .title-block-info {
     display: flex;
     flex-direction: column;
 }
 
-.air-result-block.remaster .title-block .title-block-info .amount-time{
+.air-result-block.remaster .title-block .title-block-info .amount-time {
     color: #585858;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover {
     background: #f4f6fa;
     height: 17px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .marker{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .marker {
     background: #f4f6fa;
     border: 2px solid #B5B5C2;
     z-index: 1000;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list {
     border-left: 2px solid #B5B5C2;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line {
     padding-left: 20px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .info-block{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .info-block {
     white-space: nowrap;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .info-block .regular-b2{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .info-block .regular-b2 {
     color: #585858;
 }
 
-.air-result-block.remaster .change-transfer-wrapper{
+.air-result-block.remaster .change-transfer-wrapper {
     background-color: #fff;
     padding: 12px 16px;
     border-radius: 16px;
@@ -1315,13 +1324,13 @@
     gap: 20px;
 }
 
-.change-transfer-info-wrapper{
+.change-transfer-info-wrapper {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.change-transfer-extra-info-wrapper{
+.change-transfer-extra-info-wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1330,19 +1339,19 @@
     border-radius: 8px;
 }
 
-.change-transfer-extra-info-wrapper .semi-b1{
+.change-transfer-extra-info-wrapper .semi-b1 {
     color: #fff;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item {
     margin-bottom: 0px;
 }
 
-.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block{
+.air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block {
     padding-left: 15px;
 }
 
-.card-additional-info-flight-wrapper{
+.card-additional-info-flight-wrapper {
     background-color: #F4F6F9;
     border-radius: 16px;
     padding: 20px 16px;
@@ -1352,43 +1361,43 @@
 }
 
 
-.air-result-block.remaster .time-block.with-transfer .time-info{
+.air-result-block.remaster .time-block.with-transfer .time-info {
     display: flex;
     flex-direction: column;
-    min-width: auto;
+    width: 100px;
 }
 
 
-.air-result-block.remaster .time-block.with-transfer .time-info:last-child{
+.air-result-block.remaster .time-block.with-transfer .time-info:last-child {
     align-items: flex-end;
+    text-align: right;
 }
 
 
-.air-result-block.remaster .flight-tax-info{
+.air-result-block.remaster .flight-tax-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
     margin-top: 20px;
 }
 
-.air-result-block.remaster .header-title-block-info{
+.air-result-block.remaster .header-title-block-info {
     display: flex;
     gap: 10px;
 }
 
-.air-result-block.remaster .header-title-block-info img{
-    width: 35px;
+.air-result-block.remaster .header-title-block-info img {
+    width: auto;
     height: 35px;
 }
 
-.air-result-block.remaster .flight-more-info-btn{
+.air-result-block.remaster .flight-more-info-btn {
     cursor: pointer;
 }
 
-.air-result-block.remaster .flight-more-info-btn .semi-b2{
+.air-result-block.remaster .flight-more-info-btn .semi-b2 {
     color: #585858;
 }
-
 
 
 /* TOOLTIP */
@@ -1396,9 +1405,9 @@
     position: relative;
     display: inline-block;
     cursor: pointer;
-  }
-  
-  .tooltip-container .tooltip {
+}
+
+.tooltip-container .tooltip {
     visibility: hidden;
     width: max-content;
     background-color: #4d4d4d;
@@ -1415,9 +1424,9 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 10;
     max-width: 250px;
-  }
-  
-  .tooltip-container .tooltip::after {
+}
+
+.tooltip-container .tooltip::after {
     content: '';
     position: absolute;
     top: 100%;
@@ -1426,175 +1435,180 @@
     border-width: 5px;
     border-style: solid;
     border-color: #4d4d4d transparent transparent transparent;
-  }
-  
-  .tooltip-container:hover .tooltip {
+}
+
+.tooltip-container:hover .tooltip {
     visibility: visible;
     opacity: 1;
-  }
+}
 
-  .flight-extra-info-btns{
+.flight-extra-info-btns {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 16px;
 }
 
-.air-result-block.remaster .more-details-block.mobile{
-    display: none!important;
-}
-.air-result-block.remaster .result-list .result-item .card .info-block .companies-list img{
-    width: 36px;
-    height: 36px;
+.air-result-block.remaster .more-details-block.mobile {
+    display: none !important;
 }
 
-.flight-info-block-header-status-list{
+.air-result-block.remaster .result-list .result-item .card .info-block .companies-list img {
+    width: auto;
+    height: 30px;
+}
+
+.flight-info-block-header-status-list {
     display: none;
 }
 
-.flight-mobile-popup{
+.flight-mobile-popup {
     display: none;
     position: fixed;
     z-index: 1005;
-    top: 100%; /* Изначально скрыт за нижней границей экрана */
+    top: 100%; /* РР·РЅР°С‡Р°Р»СЊРЅРѕ СЃРєСЂС‹С‚ Р·Р° РЅРёР¶РЅРµР№ РіСЂР°РЅРёС†РµР№ СЌРєСЂР°РЅР° */
     left: 0;
     background-color: #F4F6F9;
     height: 100%;
     width: 100%;
-    transform: translateY(100%); /* Начальное положение вне экрана */
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавная анимация */
-    visibility: hidden; /* Скрыть попап по умолчанию */
+    transform: translateY(100%); /* РќР°С‡Р°Р»СЊРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ РІРЅРµ СЌРєСЂР°РЅР° */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* РџР»Р°РІРЅР°СЏ Р°РЅРёРјР°С†РёСЏ */
+    visibility: hidden; /* РЎРєСЂС‹С‚СЊ РїРѕРїР°Рї РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ */
 }
 
-.card-additional-info-header-wrapper{
+.card-additional-info-header-wrapper {
     display: none;
 }
 
-.baggage-item{
+.baggage-item {
     display: none;
 }
 
-.flight-mobile-popup-btn-back{
+.flight-mobile-popup-btn-back {
     cursor: pointer;
 }
 
-  @media (max-width: 568px) {
+@media (max-width: 568px) {
+    .navbar-filters-wrapper {
+        margin-right: 0;
+    }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .companies-list img{
-        width: 30px;
+    .air-result-block.remaster .result-list .result-item .card .info-block .companies-list img {
+        width: auto;
         height: 30px;
     }
 
-    .air-result-block.remaster .card-main-info .more-details-block{
-        display: none!important;
+    .air-result-block.remaster .card-main-info .more-details-block {
+        display: none !important;
     }
 
-    .air-result-block.remaster .more-details-block.mobile{
-        display: flex!important;
-        margin-left: 0px!important;
+    .air-result-block.remaster .more-details-block.mobile {
+        display: flex !important;
+        margin-left: 0px !important;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .more-details-block.mobile{
+    .air-result-block.remaster .result-list .result-item .card .more-details-block.mobile {
         border-top: 1px solid #B5B5C2;
         padding-top: 20px;
-        margin-right: 16px!important;
-        margin-left: 16px!important;
+        margin-right: 16px !important;
+        margin-left: 16px !important;
     }
 
     .air-result-block.remaster .result-list .result-item .card .info-block .time-block {
         flex-wrap: nowrap;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block{
+    .air-result-block.remaster .result-list .result-item .card .info-block {
         gap: 0px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block>.time-info>.time{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block > .time-info > .time {
         font-size: 20px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block>.time-info>.info{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block > .time-info > .info {
         font-size: 12px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block>.time-info{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block > .time-info {
         max-width: 80px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .card-main-info{
+    .air-result-block.remaster .result-list .result-item .card .card-main-info {
         padding: 16px 16px 30px 16px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block {
         padding: 0 12px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card.card.upsale-flight .price-block .button-block .title-description-info-list{
+    .air-result-block.remaster .result-list .result-item .card.card.upsale-flight .price-block .button-block .title-description-info-list {
         display: none;
     }
 
-    .air-result-block.remaster .result-list .result-item .card.card.upsale-flight .price-block .button-block .baggage{
+    .air-result-block.remaster .result-list .result-item .card.card.upsale-flight .price-block .button-block .baggage {
         display: none;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .price-block .button-block .seats{
+    .air-result-block.remaster .result-list .result-item .card .price-block .button-block .seats {
         display: none;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .price-block{
+    .air-result-block.remaster .result-list .result-item .card .price-block {
         margin: 20px 0px 0px 0px;
         display: flex;
         flex-direction: column;
         width: 100%;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .price-block .button-block{
+    .air-result-block.remaster .result-list .result-item .card .price-block .button-block {
         width: 100%;
     }
 
-    .flight-extra-info-btns{
+    .flight-extra-info-btns {
         display: none;
     }
 
-    .time-block-flight-image{
+    .time-block-flight-image {
         display: none;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .time-info{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .time-info {
         margin: 0 auto;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .time-info .time{
+    .air-result-block.remaster .result-list .result-item .card .info-block .time-block .timeline-block .time-info .time {
         margin-right: 0px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .card-additional-info{
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info {
         margin: 0px 16px;
     }
 
-    .card-additional-info-flight-wrapper{
+    .card-additional-info-flight-wrapper {
         background-color: #fff;
     }
 
-    .air-result-block.remaster .change-transfer-wrapper{
+    .air-result-block.remaster .change-transfer-wrapper {
         background-color: #F4F6F9;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover{
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover {
         background-color: #fff;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover{
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .line-cover {
         height: 25px;
     }
 
-    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .marker{
+    .air-result-block.remaster .result-list .result-item .card .card-additional-info .additional-info-item .timing-info-block .timing-list .time-line .marker {
         border: 2px solid #585858;
     }
 
-    .card-additional-info-header-wrapper{
+    .card-additional-info-header-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1602,49 +1616,49 @@
         padding-bottom: 20px;
     }
 
-    .card-additional-info-header-title{
+    .card-additional-info-header-title {
         display: flex;
         align-items: center;
         gap: 12px;
     }
 
-    .card-additional-info-header-description .regular-b2{
+    .card-additional-info-header-description .regular-b2 {
         color: #585858;
     }
 
-    .air-result-block.remaster .flight-tax-info{
+    .air-result-block.remaster .flight-tax-info {
         display: none;
     }
 
-    .card-additional-info-flight-wrapper{
+    .card-additional-info-flight-wrapper {
         padding: 20px 0px;
     }
 
-    .air-result-block.remaster .baggage-block .baggage-item{
+    .air-result-block.remaster .baggage-block .baggage-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    .air-result-block.remaster .baggage-block .baggage-item .baggage-item-title{
+    .air-result-block.remaster .baggage-block .baggage-item .baggage-item-title {
         display: flex;
         align-items: center;
         gap: 12px;
     }
 
-    .air-result-block.remaster .baggage-block{
+    .air-result-block.remaster .baggage-block {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
 
-    .flight-info-block-header-status-list{
+    .flight-info-block-header-status-list {
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    .flight-info-status-item{
+    .flight-info-status-item {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1655,20 +1669,17 @@
         line-height: 12px;
     }
 
-    .flight-info-status-item.green{
+    .flight-info-status-item.green {
         color: #3D7B50;
         background-color: #EAF5ED;
     }
 
-    .air-result-block.remaster .result-list .result-item.opened .card.upsale-flight.add-flight .card-additional-info{
+    .air-result-block.remaster .result-list .result-item.opened .card.upsale-flight.add-flight .card-additional-info {
         display: none;
     }
 
     /* FLIGHT POPUP */
-
-    
-
-    .flight-mobile-popup.opened{
+    .flight-mobile-popup.opened {
         position: fixed;
         z-index: 1005;
         top: 0px;
@@ -1677,11 +1688,11 @@
         height: 100%;
         width: 100%;
         display: flex;
-        transform: translateY(0); /* Появление с нижней части экрана */
-    visibility: visible; /* Делаем попап видимым */
+        transform: translateY(0); /* РџРѕСЏРІР»РµРЅРёРµ СЃ РЅРёР¶РЅРµР№ С‡Р°СЃС‚Рё СЌРєСЂР°РЅР° */
+        visibility: visible; /* Р”РµР»Р°РµРј РїРѕРїР°Рї РІРёРґРёРјС‹Рј */
     }
 
-    .flight-mobile-popup-content{
+    .flight-mobile-popup-content {
         padding: 20px 16px 20px 16px;
         width: 100%;
         display: flex;
@@ -1690,21 +1701,21 @@
         overflow-y: scroll;
     }
 
-    .flight-mobile-popup-btn-back{
+    .flight-mobile-popup-btn-back {
         display: flex;
         align-items: center;
         gap: 4px;
     }
 
-    .flight-mobile-popup-content .card-additional-info-header-wrapper{
+    .flight-mobile-popup-content .card-additional-info-header-wrapper {
         padding-bottom: 0px;
     }
 
-    .flight-mobile-popup-content .card-additional-info-header-wrapper{
+    .flight-mobile-popup-content .card-additional-info-header-wrapper {
         align-items: flex-start;
     }
 
-    .flight-mobile-popup-content .flight-mobile-popup-info-card{
+    .flight-mobile-popup-content .flight-mobile-popup-info-card {
         padding: 20px;
         background-color: #fff;
         border-radius: 16px;
@@ -1730,7 +1741,7 @@
         display: flex;
         align-items: center;
     }
-    
+
     .air-result-block.remaster .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list {
         padding-left: 16px;
         border-left: 2px solid #B5B5C2;
@@ -1759,7 +1770,7 @@
         bottom: 0;
         height: 33px;
     }
-    
+
     .air-result-block .card-additional-info-flight-wrapper .additional-info-item .timing-info-block .timing-list .time-line {
         display: flex;
         align-items: center;
@@ -1792,24 +1803,24 @@
         max-width: 100%;
     }
 
-    .flight-mobile-popup-content .btn{
+    .flight-mobile-popup-content .btn {
         height: 45px;
         padding: 14px 20px;
     }
 
-    .flight-mobile-popup-title-block{
+    .flight-mobile-popup-title-block {
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    .flight-mobile-popup-info-card.extra-info{
+    .flight-mobile-popup-info-card.extra-info {
         display: flex;
         align-items: center;
         cursor: pointer;
     }
 
-    .extra-bottom-popup-overlay{
+    .extra-bottom-popup-overlay {
         height: 100%;
         width: 100%;
         left: 0;
@@ -1820,7 +1831,7 @@
         transition: opacity 0.3s ease;
     }
 
-    .extra-bottom-popup-wrapper{
+    .extra-bottom-popup-wrapper {
         height: fit-content;
         width: 100%;
         left: 0;
@@ -1833,7 +1844,7 @@
         transition: transform 0.3s ease;
     }
 
-    .extra-bottom-popup-content .grey-line{
+    .extra-bottom-popup-content .grey-line {
         background-color: #B5B5C2;
         height: 6px;
         width: 40px;
@@ -1842,7 +1853,7 @@
         display: block;
     }
 
-    .extra-bottom-popup-content{
+    .extra-bottom-popup-content {
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -1852,26 +1863,26 @@
         display: none;
     }
 
-    .extra-bottom-popup-list{
+    .extra-bottom-popup-list {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
 
-    .extra-bottom-popup-list-item{
+    .extra-bottom-popup-list-item {
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
 
-    .extra-bottom-popup-header{
+    .extra-bottom-popup-header {
         display: flex;
         flex-direction: column;
         gap: 4px;
     }
 
-    .progress-bar{
+    .progress-bar {
         height: 40px;
         border-radius: 8px;
         width: 100%;
@@ -1880,21 +1891,21 @@
         justify-content: center;
     }
 
-    .progress-bar.green{
+    .progress-bar.green {
         background-color: #3CBF57;
     }
 
-    .progress-bar.green .semi-h4{
+    .progress-bar.green .semi-h4 {
         color: #fff;
     }
 
-    .progress-bar-status{
+    .progress-bar-status {
         display: flex;
         align-items: center;
         gap: 4px;
     }
 
-    .green-dot{
+    .green-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -1902,3 +1913,40 @@
     }
 
 }
+
+/* NEW */
+.flight-segment.flight {
+    background-color: #D9D9D9;
+
+  }
+
+  .flight-segment {
+    height: 7px;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+  }
+
+  .timeline-avia {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    height: 1px;
+    background-color: #B5B5C2;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .flight-segment.flight:hover{
+    border: 2px solid #306DDE;
+    background: #fff;
+  }
+
+  .places .airport-code:hover{
+    color: #306DDE;
+    font-weight: 600;
+  }
+
+  /* NEW */
