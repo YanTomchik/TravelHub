@@ -2904,6 +2904,10 @@ ul.pagination.rm li{
     min-width: 280px!important;
   }
 
+  .range-values{
+    font-size: 12px;
+  }
+
   .agents-page .landing-banner-footer{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -3063,6 +3067,11 @@ ul.pagination.rm li{
 
     .feature-type-3 .feature-item-banner-wrapper{
         margin-right: -20px;
+        margin-top: 20px;
+    }
+
+    .business-page .feature-type-2 .feature-item-banner-wrapper{
+      margin-bottom: -20px;
     }
 
     .feature-type-5 .feature-item-banner-wrapper{
@@ -3766,8 +3775,13 @@ ul.pagination.rm li{
       order: 2;
     }
 
+    .download-app-section h3{
+      margin-top: 15px;
+    }
+
     .download-center-block{
       width: 100%;
+      gap: 30px;
     }
 
     .cards-useful-list{
