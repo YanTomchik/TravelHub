@@ -18,9 +18,8 @@
     position: relative;
     left: 50%; /* дополнительное выравнивание */
     transform: translateX(-50%); /* центрирование баннера */
-    height: 865px;
+    max-height: 845px;
     padding-top: 60px;
-    background-image: url('../images/main-banner-background.png');
     background-size: cover;
     background-position: center;
 }
@@ -1240,7 +1239,7 @@ span.primary{
 }
 
 .main-banner-right{
-  margin-right: -70px;
+  margin-right: 0px;
 }
 
 .control-income-section .landing-card.type-1 .landing-card-content-header{
@@ -1781,7 +1780,7 @@ p.note {
 }
 
 .features-list li::before {
-  content: '■';
+  content: '•';
   position: absolute;
   left: 0;
   color: #306DDE; /* Цвет маркера */
@@ -2072,6 +2071,10 @@ footer.rm .footer-nav h3{
   color: #24223E;
 }
 
+footer.rm .footer-apps{
+  margin-bottom: 20px;
+}
+
 footer.rm .footer-contact--item a{
   font-weight: 500;
   font-size: 12px;
@@ -2083,7 +2086,6 @@ footer.rm .footer-nav a{
 
 footer.rm{
   padding: 42px 40px 40px 40px;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
 footer.rm .footer-contact--item span{
@@ -2201,7 +2203,7 @@ footer.rm .footer-info{
 
 .promo-tours-item-info h3{
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.0014em;
   color: #24223E;
 }
@@ -2298,7 +2300,9 @@ footer.rm .footer-info{
   list-style-type: none;
   padding: 0;
   margin: 0;
-  width: 100%;
+  max-width: 100%;
+  gap: 10px;
+  overflow-x: auto;
   justify-content: space-between;
 }
 
@@ -2620,6 +2624,7 @@ ul.pagination.rm li{
 
 .download-banner-img{
   margin-bottom: -50px;
+  width: 40%;
 }
 
 .download-center-block-btns{
@@ -2661,8 +2666,9 @@ ul.pagination.rm li{
 }
 
 .book-demo-section .landing-card{
-  margin-bottom: -150px;
+  margin-bottom: -140px;
   align-items: flex-start;
+  padding-bottom: 70px;
 }
 
 .book-demo-section .landing-card .landing-card-left-block{
@@ -2747,8 +2753,8 @@ ul.pagination.rm li{
 }
 
 .business-main-banner-section .landing-banner-wrapper{
-  height: 780px;
-  background-color: #F8F8FF;
+  /* height: 780px;
+  background-color: #F8F8FF; */
   padding-top: 100px;
 }
 
@@ -2895,6 +2901,7 @@ ul.pagination.rm li{
 
   .team-card-item{
     padding-right: 20px;
+    min-width: 280px!important;
   }
 
   .agents-page .landing-banner-footer{
@@ -3140,6 +3147,14 @@ ul.pagination.rm li{
       visibility: hidden;
     }
 
+    .our-team-section .landing-card-tabs-list{
+      flex-direction: column;
+    }
+
+    .our-team-section .landing-card-tabs-list .landing-card-tab-item{
+      width: 100%;
+    }
+
     .news-card-item{
         width: 100%!important;
     }
@@ -3264,7 +3279,7 @@ ul.pagination.rm li{
 
     .landing-banner-wrapper{
       padding: 20px;
-      height: 700px;
+      max-height: 700px;
     }
 
     .landing-banner-header-register-form .landing-register-form input{
@@ -3272,7 +3287,7 @@ ul.pagination.rm li{
     }
 
     .landing-banner-footer{
-        top: -5px;
+        top: 0px;
     }
 
     .bonus-header-wrapper{
@@ -3755,8 +3770,13 @@ ul.pagination.rm li{
       width: 100%;
     }
 
+    .cards-useful-list{
+      padding: 0px 13px;
+    }
+
     .download-banner-img{
       margin-bottom: -20px;
+      width: 100%;
     }
 
     .download-center-block{
@@ -3828,7 +3848,7 @@ ul.pagination.rm li{
     }
 
     .business-main-banner-section .landing-banner-wrapper{
-      height: 570px;
+      /* height: 570px; */
     }
 
     .breadcrumb-wrapper.absolute{
@@ -3837,7 +3857,40 @@ ul.pagination.rm li{
     }
 
     .business-main-banner-section .landing-banner-wrapper{
-      padding-top: 50px;
+      /* padding-top: 50px; */
+    }
+
+    .calendar-dates ul{
+      gap: 10px;
+    }
+
+    .calendar-list-promo-tours-section .section-main-header {
+      text-align: center;
+    }
+
+    .calendar-list-promo-tours-section .section-main-header h1{
+      font-size: 32px;
+    }
+
+    .calendar-list-promo-tours-section{
+      margin-top: 50px;
+    }
+
+    .radio-button-wrapper .checkbox-group{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .control-income-section .main-banner-right {
+      margin-top: 20px;
+    }
+
+    .ready-to-start-section .landing-card-content-header{
+      margin-bottom: 20px;
+    }
+
+    .agents-main-banner-section .landing-card-left-block .btn{
+      margin: 30px 0px;
     }
 
 }
