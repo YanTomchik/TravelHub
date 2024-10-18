@@ -203,6 +203,7 @@ const elements = {
   totalResult: document.getElementById('totalResult'),
   commissionRate: document.getElementById('commissionRate'),
   bonusRate: document.getElementById('bonusRate'),
+  calculatorWrapper: document.querySelector('.calculate-profit'),
 };
 
 if(elements.rangeSlider){
@@ -216,15 +217,30 @@ if(elements.rangeSlider){
     const commission = bookingAmount * commissionPercentage;
     elements.commissionResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(commission.toFixed(2))}`;
 
-    // Бонус по программе лояльности
-    let bonusPercentage = 0.0025; // 0.25% по умолчанию
-    if (bookingAmount >= 100000) {
-      bonusPercentage = 0.01; // 1% для суммы >= 100 000
-    } else if (bookingAmount >= 50000) {
-      bonusPercentage = 0.0075; // 0.75% для суммы >= 50 000
-    } else if (bookingAmount >= 20000) {
-      bonusPercentage = 0.0025; // 0.25% для суммы >= 20 000
+    let bonusPercentage;
+
+    if(elements.calculatorWrapper.classList.contains('business')){
+      // Бонус по программе лояльности
+      bonusPercentage = 0.03; // 0.25% по умолчанию
+      if (bookingAmount >= 100000) {
+        bonusPercentage = 0.07; // 1% для суммы >= 100 000
+      } else if (bookingAmount >= 50000) {
+        bonusPercentage = 0.05; // 0.75% для суммы >= 50 000
+      } else if (bookingAmount >= 20000) {
+        bonusPercentage = 0.03; // 0.25% для суммы >= 20 000
+      }
+    }else{
+      // Бонус по программе лояльности
+      bonusPercentage = 0.0025; // 0.25% по умолчанию
+      if (bookingAmount >= 100000) {
+        bonusPercentage = 0.01; // 1% для суммы >= 100 000
+      } else if (bookingAmount >= 50000) {
+        bonusPercentage = 0.0075; // 0.75% для суммы >= 50 000
+      } else if (bookingAmount >= 20000) {
+        bonusPercentage = 0.0025; // 0.25% для суммы >= 20 000
+      }
     }
+    
     
     const bonus = bookingAmount * bonusPercentage;
     elements.bonusResult.textContent = `$ ${new Intl.NumberFormat('ru-RU').format(bonus.toFixed(2))}`;
@@ -235,8 +251,11 @@ if(elements.rangeSlider){
 
     // Обновляем ставку комиссии и бонуса
     elements.commissionRate.textContent = commissionPercentage * 100 + '%';
-    elements.bonusRate.textContent = (bonusPercentage * 100).toFixed(2) + '%';
-
+    if(elements.calculatorWrapper.classList.contains('business')){
+        elements.bonusRate.textContent = (bonusPercentage * 100).toFixed(0) + '%';
+    }  else{
+      elements.bonusRate.textContent = (bonusPercentage * 100).toFixed(2) + '%';
+    }
     // Обновляем фон прогрессбара
     const progress = (bookingAmount / elements.rangeSlider.max) * 100;
     elements.rangeSlider.style.background = `linear-gradient(to right, #306DDE ${progress}%, #D9D9D9 ${progress}%)`;
@@ -301,6 +320,69 @@ if(tabsPartnership){
     });
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dateList = document.getElementById('date-list');
+  const prevButton = document.querySelector('.calendar-arrow.prev');
+  const nextButton = document.querySelector('.calendar-arrow.next');
+  let currentMonth = 9; // Октябрь (месяцы в JS начинаются с 0)
+  let currentYear = 2024;
+
+  const daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+
+  function generateCalendar(month, year) {
+      const daysInMonth = new Date(year, month + 1, 0).getDate(); // Количество дней в месяце
+      const firstDay = new Date(year, month, 1).getDay(); // День недели первого дня месяца
+      
+      dateList.innerHTML = ''; // Очистка списка перед рендерингом
+
+      for (let i = 1; i <= daysInMonth; i++) {
+          const dayOfWeek = daysOfWeek[new Date(year, month, i).getDay()];
+          const li = document.createElement('li');
+          li.classList.add('calendar-day');
+          if (dayOfWeek === 'Сб' || dayOfWeek === 'Вс') {
+              li.classList.add('weekend'); // Подсветка выходных
+          }
+
+          li.innerHTML = `<span class="date-of-week">${i < 10 ? '0' + i : i}</span><span class="day-of-week">${dayOfWeek}</span>`;
+          dateList.appendChild(li);
+      }
+  }
+
+  function updateCalendarTitle(month, year) {
+      const calendarTitle = document.querySelector('.calendar-header h2');
+      const months = [
+          'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+      ];
+      calendarTitle.textContent = `${months[month]}, ${year}`;
+  }
+
+  prevButton.addEventListener('click', function() {
+      currentMonth--;
+      if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+      }
+      updateCalendarTitle(currentMonth, currentYear);
+      generateCalendar(currentMonth, currentYear);
+  });
+
+  nextButton.addEventListener('click', function() {
+      currentMonth++;
+      if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+      }
+      updateCalendarTitle(currentMonth, currentYear);
+      generateCalendar(currentMonth, currentYear);
+  });
+
+  // Инициализация календаря
+  updateCalendarTitle(currentMonth, currentYear);
+  generateCalendar(currentMonth, currentYear);
+});
+
 
 
 
