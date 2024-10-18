@@ -150,7 +150,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  $('.team-cards-list').slick({
+  $('#operator-department').slick({
     slidesToShow: 4, /* Количество видимых слайдов */
     slidesToScroll: 1, /* Количество слайдов для пролистывания */
     autoplay: false, /* Автоматическое воспроизведение */
@@ -158,23 +158,7 @@ $(document).ready(function(){
     // variableWidth: true, 
     prevArrow: '<button type="button" class="slick-prev">←</button>',
     nextArrow: '<button type="button" class="slick-next">→</button>',
-    variableWidth: true, 
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     }
-    //   }
-    // ]
+    variableWidth: true,
   });
 });
 
@@ -281,24 +265,59 @@ const tabsPartnership = document.querySelectorAll('.landing-card-tab-item.partne
 const contentsTeam = document.querySelectorAll('.team-cards-list');
 const contentsPartnership = document.querySelectorAll('.tab-pane');
 
-if(tabsTeam){
+if(tabsTeam) {
   tabsTeam.forEach(tab => {
     tab.addEventListener('click', function () {
       // Убираем активные классы у всех табов и контента
       tabsTeam.forEach(t => t.classList.remove('active'));
       contentsTeam.forEach(c => c.classList.remove('active'));
-  
+
       // Добавляем активный класс к выбранной вкладке
       tab.classList.add('active');
-  
+
       // Находим соответствующий контент и показываем его
       const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
       if (activeTabContent) {
         activeTabContent.classList.add('active');
+
+        // Проверка, инициализирован ли слайдер для текущей вкладки
+        if (!$(activeTabContent).hasClass('slick-initialized')) {
+          // Инициализация слайдера для активной вкладки
+          $(activeTabContent).slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: false,
+            autoplaySpeed: 3000,
+            variableWidth: true,
+            prevArrow: '<button type="button" class="slick-prev">←</button>',
+            nextArrow: '<button type="button" class="slick-next">→</button>',
+            infinite: false, // Отключаем бесконечную прокрутку, если нужно
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 1,
+                }
+              },
+              {
+                breakpoint: 500,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                }
+              }
+            ] 
+          });
+        }
+
+        // Обновляем позицию слайдера
+        $(activeTabContent).slick('setPosition');
       }
     });
   });
 }
+
 
 if(tabsPartnership){
   tabsPartnership.forEach(tab => {
