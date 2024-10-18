@@ -2017,3 +2017,7 @@
     justify-content: space-between;
     width: 100%;
   }
+
+  .tooltip-container-wrapper.single{
+    justify-content: center;
+  }
