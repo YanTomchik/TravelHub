@@ -1990,5 +1990,30 @@
   }
 
   .tooltip-container.line-empty:hover .flight-segment.layover{
-    border-top: 1px solid #306DDE;
+    border-top: 2px solid #306DDE;
+  }
+
+  .tooltip-container.line-empty.red:hover .flight-segment.layover{
+    border-top: 2px solid #BF3939;
+  }
+
+  .tooltip-container.line-empty.red:hover .airport-label{
+    color: #BF3939;
+    font-weight: 600;
+  }
+
+  .tooltip-container.line-empty.red .layover{
+    border-top: 1px solid #BF3939;
+  }
+
+  .tooltip-container.red .airport-label{
+    color: #BF3939;
+    text-align: center; 
+    margin-top: 15px;
+  }
+
+  .tooltip-container-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
