@@ -323,7 +323,14 @@
                     <div class="landing-container business-page">
 
                         <section class="business-main-banner-section section-block" >
+
                             <div class="landing-banner-wrapper" style="background-image: url('./images/business-background-image.svg');">
+                                <nav class="breadcrumb-wrapper absolute">
+                                    <a href="#" class="breadcrumb-item">Главная</a>
+                                    <span class="breadcrumb-separator"><img src="./images/chevron-breadcrumb.svg" alt=""></span>
+                                    <a href="#" class="breadcrumb-item">Бизнесу</a>
+                                </nav>
+                                
                                 <div class="landing-banner-main-content" >
                                     <div class="landing-banner-header-wrapper">
                                         <h1>
@@ -664,7 +671,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-useful-item orange">
+                                    <!-- <div class="card-useful-item orange">
                                         <div class="card-useful-item-left-content">
                                             <h2>Тревел-менеджеру</h2>
                                             <h3>Организовывать командировки быстро и выгодно</h3>
@@ -716,8 +723,71 @@
                                                 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
+                                    <div class="card-useful-item orange">
+                                        <div class="card-useful-item-left-content">
+                                            <h2>Тревел-менеджеру</h2>
+                                            <h3>Организовывать командировки быстро и выгодно</h3>
+                                            <a class="btn btn-primary rm" href="#">Узнать подробнее</a>
+                                        </div>
+                                        <div class="card-useful-image full">
+                                            <img src="./images/useful-card-banner3-1.svg" alt="">
+                                        </div>
+                                    
+                                        <div class="card-useful-item-right-content">
+                                            <div class="useful-features-list">
+                                                <div class="useful-features-item">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-device.svg" alt="">
+                                                    </div>
+                                                    <p>Все нужное в одном окне и в удобном интерфейсе</p>
+                                                </div>
+                                                <div class="useful-features-item">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-clock.svg" alt="">
+                                                    </div>
+                                                    <p>Выбор данных по сотруднику за 2 клика из базы <br> данных для быстрого бронирования</p>
+                                                </div>
+                                                <div class="useful-features-item">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-users.svg" alt="">
+                                                    </div>
+                                                    <p>Доступ нескольких лиц с разными правами <br> к личному кабинету
+                                                    </p>
+                                                </div>
+                                                <div class="useful-features-item">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-hands.svg" alt="">
+                                                    </div>
+                                                    <p>Распределения доступов и на стройка тревел <br> политики</p>
+                                                </div>
+                                                <div class="useful-features-item">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-hands-1.svg" alt="">
+                                                    </div>
+                                                    <p>Возврат почти любой услуги в течение 24х часов <br> после бронирования</p>
+                                                </div>
+                                                <div class="useful-features-item hidden">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-support.svg" alt="">
+                                                    </div>
+                                                    <p>Поддержка 24/7. Общение посредством чата <br> встроенным в платформу</p>
+                                                </div>
+                                                <div class="useful-features-item hidden">
+                                                    <div class="useful-features-logo">
+                                                        <img src="./images/useful-route.svg" alt="">
+                                                    </div>
+                                                    <p>Организация тимбилдингов или сложных <br> маршрутов через персонального менеджера</p>
+                                                </div>
+                                                <div class="useful-features-item more-btn" onclick="toggleCard(this)">
+                                                    <img src="./images/chevron-brown-down.svg" alt="" class="chevron">
+                                                    <p class="more-btn-text">Еще</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="card-useful-item green">
                                         <div class="card-useful-item-left-content">
                                             <h2>HR-менеджеру</h2>
@@ -755,7 +825,6 @@
                                                     </div>
                                                     <p>Организация тимбилдингом или сложных <br> маршрутов через персонального менеджера</p>
                                                 </div>
-
                                                
                                                 
                                             </div>
@@ -1126,7 +1195,7 @@
                             </div>
                         </section>
 
-                        <section class="news-section section-mt-60 section-block visible">
+                        <section class="news-section section-mt-60 section-block">
                             <div class="landing-card type-2">
                                 <div class="section-header left">
                                     <h1>
@@ -1157,7 +1226,27 @@
 
                                 <div class="landing-card-content">
                                     <div class="news-slider">
-                                        <div class="news-cards-list slick-initialized slick-slider"><button type="button" class="slick-prev slick-arrow" style="">←</button><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4477px; transform: translate3d(-1221px, 0px, 0px);"><div class="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
+                                        <div class="news-cards-list">
+                                            <div class="news-card-item">
+                                                <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
+                                                <div class="news-card-item-info">
+                                                    <div class="news-card-item-content">
+                                                        <div class="news-card-item-title">
+                                                            Лучшие курорты Индонезии
+                                                        </div>
+                                                        <div class="news-card-item-description">
+                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
+                                                        </div>
+                                                        <div class="news-card-item-bottom">
+                                                            <div class="date">
+                                                                10 Сентября 2024 
+                                                            </div>
+                                                            <a href="#" class="btn btn-primary rm">Читать</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="news-card-item">
                                                 <div class="news-card-img" style="background-image: url('./images/news-card2.png');"></div>
                                                 <div class="news-card-item-info">
                                                     <div class="news-card-item-content">
@@ -1171,11 +1260,12 @@
                                                             <div class="date">
                                                                 10 Сентября 2024 
                                                             </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
+                                                            <a href="#" class="btn btn-primary rm">Читать</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
+                                            </div>
+                                            <div class="news-card-item">
                                                 <div class="news-card-img" style="background-image: url('./images/news-card3.png');"></div>
                                                 <div class="news-card-item-info">
                                                     <div class="news-card-item-content">
@@ -1189,11 +1279,12 @@
                                                             <div class="date">
                                                                 10 Сентября 2024 
                                                             </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
+                                                            <a href="#" class="btn btn-primary rm">Читать</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
+                                            </div>
+                                            <div class="news-card-item">
                                                 <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
                                                 <div class="news-card-item-info">
                                                     <div class="news-card-item-content">
@@ -1207,155 +1298,12 @@
                                                             <div class="date">
                                                                 10 Сентября 2024 
                                                             </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
+                                                            <a href="#" class="btn btn-primary rm">Читать</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div></div></div><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="0">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card2.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="0">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card3.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="0">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="4" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card2.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card3.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div><div class="slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 407px;"><div><div class="news-card-item" style="width: 100%; display: inline-block;">
-                                                <div class="news-card-img" style="background-image: url('./images/news-card1.png');"></div>
-                                                <div class="news-card-item-info">
-                                                    <div class="news-card-item-content">
-                                                        <div class="news-card-item-title">
-                                                            Лучшие курорты Индонезии
-                                                        </div>
-                                                        <div class="news-card-item-description">
-                                                            Индонезия — это удивительное тропическое направление, где можно наслаждаться не только живописными пляжами, но и уни ...  
-                                                        </div>
-                                                        <div class="news-card-item-bottom">
-                                                            <div class="date">
-                                                                10 Сентября 2024 
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary rm" tabindex="-1">Читать</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></div></div></div></div><button type="button" class="slick-next slick-arrow" style="">→</button></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1556,66 +1504,79 @@
                                     
                                 </div>
                                 <div class="landing-card-right-block">
-                                    <div class="landing-banner-header-register-form">
-                                        <form class="landing-register-form" action="#">
-                                            <input type="text" name="name" required="" placeholder="Ваше имя" autocomplete="off">
-                                            <input type="tel" name="tel" required="" placeholder="+(375) 000-00-00" autocomplete="off">
-                                            <input type="email" name="email" required="" placeholder="Введите Ваш email" autocomplete="off">
-                                            <input type="hidden">
+                                    <form id="w0" class="langind-form" action="/b2b" method="post">
+                                        <div class="form-group field-contactform-name required">
+                                    
+                                            <input type="text" id="contactform-name" class="form-control" name="ContactForm[name]" autocomplete="off"
+                                                required="required" placeholder="Ваше Имя" aria-required="true">
+                                    
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <div class="form-group field-contactform-phone required">
+                                    
+                                            <input type="text" id="contactform-phone" class="form-control phone-input" name="ContactForm[phone]"
+                                                placeholder="+" data-prev="" autocomplete="tel" required="required" aria-required="true"
+                                                data-plugin-inputmask="inputmask_b9e0a12c" im-insert="true">
+                                    
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <div class="form-group field-contactform-email required">
+                                    
+                                            <input type="text" id="contactform-email" class="form-control" name="ContactForm[email]" autocomplete="off"
+                                                required="required" placeholder="Введите Ваш email" aria-required="true">
+                                    
+                                            <div class="help-block"></div>
+                                        </div> <input type="hidden" name="ContactForm[recaptchaToken]" id="recaptchaResponse">
 
-                                            <div class="radiobutton-form-block">
-                                                <p>
-                                                    Сколько в вашей компании командировок в месяц
-                                                </p>
-
-                                                <div class="filters-list">
-                                                    <div class="filter-item">
-                                                        <label class="input-container radio-type">
-                                                            <input type="radio" name="transfer" data-name="transfer" value="all" checked="checked">
-                                                            <div class="checkmark-block">
-                                                                <span class="checkmark"></span>
-                                                            </div>
-                                                            <p class="value">Меньше 10</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="filter-item">
-                                                        <label class="input-container radio-type">
-                                                            <input type="radio" name="transfer" data-name="transfer" value="0">
-                                                            <div class="checkmark-block">
-                                                                <span class="checkmark"></span>
-                                                            </div>
-                                                            <p class="value">От 10 до 50</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="filter-item">
-                                                        <label class="input-container radio-type">
-                                                            <input type="radio" name="transfer" data-name="transfer" value="0">
-                                                            <div class="checkmark-block">
-                                                                <span class="checkmark"></span>
-                                                            </div>
-                                                            <p class="value">Больше 50</p>
-                                                        </label>
-                                                    </div>
-                                                    
+                                        <div class="form-group field-contactform-email required radio-button-wrapper">
+                                            <p>Сколько в вашей компании командировок в месяц</p>
+                                            <div class="checkbox-group">
+                                                <div class="checkbox-item">
+                                                    <label class="input-container radio-type">
+                                                        <input type="radio" name="purchase" value="" checked="checked">
+                                                        <div class="checkmark-block">
+                                                            <span class="checkmark"></span>
+                                                        </div>
+                                                        <p class="value regular-b1">Меньше 10</p>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <label class="input-container radio-type">
+                                                        <input type="radio" name="purchase" value="">
+                                                        <div class="checkmark-block">
+                                                            <span class="checkmark"></span>
+                                                        </div>
+                                                        <p class="value regular-b1">От 10 до 50</p>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <label class="input-container radio-type">
+                                                        <input type="radio" name="purchase" value="">
+                                                        <div class="checkmark-block">
+                                                            <span class="checkmark"></span>
+                                                        </div>
+                                                        <p class="value regular-b1">Больше 50</p>
+                                                    </label>
                                                 </div>
                                             </div>
-                                            
-                                            
+                                        </div>
 
-                                            <button type="submit">Запросить демо</button>
-
-                                            <div class="form-group" style="margin-top: 15px;width: 100%;">
-                                                <label class="checkbox mb-0" style="display: inline-block; margin-top: 0;">
-                                                    <input
-                                                        type="checkbox" id="registerform-agree" class="form-control" name="RegisterForm[agree]"
-                                                        aria-required="true">
-                                                        <span class="mr-2 float-left" ></span>
-                                                        <p style="font-size: 16px; white-space: nowrap;">Согласен с обработкой персональных данных</p>
-                                                    </label>
-                                                <p class="help-block help-block-error"></p>
+                                        <div class="form-field">
+                                            <button type="submit" class="btn btn-primary rm">Запросить демо</button>
+                                        </div>
+                                        <div class="checkbox-group term">
+                                            <div class="checkbox-item">
+                                                <label class="input-container checkbox-type">
+                                                    <input type="checkbox" value="" name="">
+                                                    <div class="checkmark-block">
+                                                      <img src="./images/hotels/icon-check-white.svg" alt="icon-check">
+                                                    </div>
+                                                    <p class="value regular-b1">Согласен с обработкой персональных данных</p>
+                                                  </label>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        
+                                    </form>
                                 </div>
                                 
                             </div>

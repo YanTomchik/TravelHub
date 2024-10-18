@@ -2396,9 +2396,10 @@ ul.pagination.rm li{
   padding: 50px 50px 0px 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   min-height: 510px;
+
 }
 
 .card-useful-item.purple{
@@ -2437,9 +2438,13 @@ ul.pagination.rm li{
   color: #A78876;
 }
 
+.card-useful-item.green .useful-features-item.more-btn p{
+  color: #54AB89;
+}
+
 .card-useful-image{
   position: absolute;
-  margin-top: -20px;
+  margin-top: -80px;
   margin-left: 15%;
 }
 
@@ -2450,6 +2455,7 @@ ul.pagination.rm li{
   flex-direction: column;
   gap: 20px;
   width: 30%;
+  top: 50px;
 }
 
 .card-useful-item-left-content .btn{
@@ -2471,6 +2477,7 @@ ul.pagination.rm li{
 .card-useful-item-right-content{
   position: relative;
   z-index: 1;
+  top: 50px;
 }
 
 .useful-features-list{
@@ -2492,8 +2499,8 @@ ul.pagination.rm li{
 }
 
 .useful-features-logo{
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2503,6 +2510,32 @@ ul.pagination.rm li{
 .useful-features-item.more-btn{
   cursor: pointer;
 }
+
+.hidden {
+  display: none;
+}
+
+.card-useful-item.expanded{
+  height: 780px;
+}
+
+.expanded .hidden {
+  display: flex;
+}
+
+.more-btn p {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+.expanded .chevron {
+  transform: rotate(180deg);
+}
+
 
 .request-demo-section .landing-card{
   width: 100%;
@@ -2732,6 +2765,84 @@ ul.pagination.rm li{
   color: #8989B4;
   text-align: center;
 }
+
+.book-demo-section input{
+  background-color: #F8F8FF;
+  border: none;
+  border-radius: 12px;
+  height: 50px;
+}
+
+.book-demo-section input::placeholder{
+  color: #5B596E;
+}
+
+.book-demo-section .form-control:focus{
+  background-color: #F8F8FF;
+}
+
+.book-demo-section .form-field .btn{
+  width: 100%;
+}
+
+.radio-button-wrapper{
+  margin: 40px 0px;
+}
+
+.book-demo-section .checkbox-group p{
+  font-size: 16px;
+  color: #8989B4;
+  line-height: 110%;
+}
+
+.radio-button-wrapper .checkbox-group{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.book-demo-section .checkbox-group .value.regular-b1{
+  margin-left: 8px;
+}
+
+.book-demo-section .radio-button-wrapper .checkbox-group input{
+  height: auto;
+}
+
+.book-demo-section .checkbox-group.term{
+  margin-top: 20px;
+}
+
+.landing-banner-footer-logos-list{
+  margin: 0 auto;
+  max-width: 1360px;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.breadcrumb-wrapper.absolute{
+  position: absolute;
+  top: 60px;
+  left: 60px;
+}
+
+.breadcrumb-item {
+  text-decoration: none;
+  color: #5B596E; 
+}
+
+.breadcrumb-item:hover {
+  text-decoration: underline;
+}
+
 
 @media (max-width: 770px){
 
@@ -3506,6 +3617,227 @@ ul.pagination.rm li{
 
     .calculate-profit-section .landing-card-right-block.landing-card-section{
       width: 100%;
+    }
+
+    .business-page .feature-type-6 h2{
+      line-height: 30px;
+    }
+
+    .business-page .feature-type-6 .feature-item-banner-wrapper{
+      margin-top: 20px;
+      padding-bottom: 30px;
+    }
+
+    .business-page .feature-type-7 {
+      grid-column: span 12;
+      padding: 20px;
+    }
+
+    .business-page .feature-type-8 {
+      grid-column: span 12;
+      padding: 20px;
+    }
+
+    .business-page .feature-type-7 h3{
+      width: 100%;
+      font-size: 18px;
+      line-height: 23px;
+    }
+
+    .business-page .feature-type-7 h2{
+      font-size: 24px;
+    }
+
+    .business-page .feature-type-7 .feature-item-banner-wrapper{
+      margin-bottom: -20px;
+    }
+
+    .business-page .feature-type-8{
+      gap: 20px;
+    }
+
+    .business-page .feature-type-8 h2{
+      font-size: 24px;
+    }
+
+    .business-page .feature-type-8 h3{
+      font-size: 18px;
+    }
+
+    .card-useful-item{
+      flex-direction: column;
+      padding: 20px;
+      gap: 60px;
+    }
+
+    .useful-features-item p br{
+      display: none;
+    }
+
+    .useful-features-item p{
+      white-space: normal;
+    }
+
+    .card-useful-item-left-content h2{
+      font-size: 24px;
+    }
+
+    .card-useful-item-left-content h3{
+      font-size: 20px;
+    }
+
+    .useful-features-item.more-btn{
+      display: none;
+    }
+
+    .useful-features-item{
+      gap: 0px;
+      align-items: flex-start;
+    }
+
+    .useful-features-item .useful-features-logo{
+      margin-right: 20px;
+    }
+
+    .book-demo-section .landing-card .landing-card-left-block h2{
+      font-size: 24px;
+    }
+
+    .useful-platform-section h1{
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .card-useful-item-left-content{
+      width: 100%;
+      text-align: center;
+      top: 0px;
+    }
+
+    .card-useful-item-left-content .btn{
+      width: 100%;
+      margin-top: 0px;
+    }
+
+    .card-useful-item-right-content{
+      top: 0px;
+    }
+
+    .card-useful-image{
+      position: relative;
+      margin-top: 0px;
+      margin-left: auto;
+      order: 2;
+      margin-bottom: -20px;
+    }
+
+    .useful-platform-section{
+      padding: 30px 0px;
+    }
+
+    .request-demo-section .landing-card{
+      flex-direction: column;
+    }
+
+    .request-demo-section .section-header{
+      width: 100%;
+    }
+
+    .download-app-section .landing-card{
+      flex-direction: column;
+    }
+
+    .download-app-section .landing-card div:first-child{
+      order: 2;
+    }
+
+    .download-center-block{
+      width: 100%;
+    }
+
+    .download-banner-img{
+      margin-bottom: -20px;
+    }
+
+    .download-center-block{
+      flex-direction: column-reverse;
+    }
+
+    .download-center-block-btns{
+      margin-top: 0px;
+    }
+
+    .telegram-subscribe-section .landing-card{
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .telegram-banner-info h2{
+      font-size: 24px;
+    }
+
+    .telegram-banner-info h3{
+      font-size: 18px;
+    }
+
+    .telegram-subscribe-section .landing-card .btn{
+      width: 100%;
+    }
+
+    .faq-section .section-header h1{
+      width: 100%;
+      font-size: 22px;
+    }
+
+    .book-demo-section .landing-card .landing-card-left-block h2{
+      font-size: 22px;
+      line-height: 40px;
+    }
+
+    .book-demo-section .landing-card .landing-card-left-block{
+      width: 100%;
+    }
+
+    .landing-card-content-header{
+      margin-bottom: 0px;
+    }
+
+    .book-demo-section .landing-card .landing-card-right-block{
+      width: 100%;
+    }
+
+    .book-demo-section .landing-register-form{
+      margin-top: 0px;
+    }
+
+    .book-demo-section .landing-register-form p{
+      font-size: 14px;
+    }
+
+    .book-demo-section .radiobutton-form-block{
+      margin: 10px 0px;
+    }
+
+    .book-demo-section .landing-register-form p{
+      font-size: 12px;
+    }
+
+    .business-main-banner-section .landing-banner-header-wrapper{
+      width: 100%;
+    }
+
+    .business-main-banner-section .landing-banner-wrapper{
+      height: 570px;
+    }
+
+    .breadcrumb-wrapper.absolute{
+      left: auto;
+      top: 10px;
+    }
+
+    .business-main-banner-section .landing-banner-wrapper{
+      padding-top: 50px;
     }
 
 }

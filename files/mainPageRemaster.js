@@ -17,9 +17,9 @@ window.addEventListener('scroll', function() {
       slidesToShow: 3, /* Количество видимых слайдов */
       slidesToScroll: 1, /* Количество слайдов для пролистывания */
       autoplay: false, /* Автоматическое воспроизведение */
-      autoplaySpeed: 3000, /* Скорость авто воспроизведения */
       prevArrow: '<button type="button" class="slick-prev">←</button>',
       nextArrow: '<button type="button" class="slick-next">→</button>',
+      // variableWidth: true, 
       responsive: [
         {
           breakpoint: 1024,
@@ -382,6 +382,21 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCalendarTitle(currentMonth, currentYear);
   generateCalendar(currentMonth, currentYear);
 });
+
+
+
+function toggleCard(elem) {
+
+  elem.closest('.card-useful-item').classList.toggle('expanded')
+
+  if (elem.closest('.card-useful-item').classList.contains('expanded')) {
+      elem.closest('.more-btn-text').textContent = 'Скрыть';
+  } else {
+    elem.closest('.more-btn-text').textContent = 'Еще';
+  }
+
+  console.log(elem.closest('.card-useful-item'))
+}
 
 
 
