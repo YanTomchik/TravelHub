@@ -3173,7 +3173,7 @@ ul.pagination.rm li{
 
 .langing-top.rm .select2-container--krajee-bs3 .select2-selection--single .select2-selection__rendered{
   color: #24223E;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .langing-top.rm .route-link {
@@ -3207,6 +3207,7 @@ ul.pagination.rm li{
 .form-group.rm .search-btn{
   height: 56px;
   width: 295px;
+  font-size: 14px;
 }
 
 .form-group.rm label {
@@ -3342,10 +3343,14 @@ ul.pagination.rm li{
 .langing-top.rm .form-group.rm .radio-group label{
   margin-bottom: 0px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /*  */
+
+.form-group.rm p{
+  font-size: 14px;
+}
 
 .form-group.rm.dropdown-avia-type{
   min-width: 300px;
@@ -3364,7 +3369,7 @@ ul.pagination.rm li{
   border: none;
   cursor: pointer;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   color: #24223E;
   border-radius: 8px;
   display: flex;
