@@ -205,7 +205,7 @@ if(elements.rangeSlider){
 
     if(elements.calculatorWrapper.classList.contains('business')){
       // Бонус по программе лояльности
-      bonusPercentage = 0.03; // 0.25% по умолчанию
+      bonusPercentage = 0; // 0.25% по умолчанию
       if (bookingAmount >= 100000) {
         bonusPercentage = 0.07; // 1% для суммы >= 100 000
       } else if (bookingAmount >= 50000) {
@@ -215,13 +215,13 @@ if(elements.rangeSlider){
       }
     }else{
       // Бонус по программе лояльности
-      bonusPercentage = 0.0025; // 0.25% по умолчанию
+      bonusPercentage = 0; // 0.25% по умолчанию
       if (bookingAmount >= 100000) {
         bonusPercentage = 0.01; // 1% для суммы >= 100 000
       } else if (bookingAmount >= 50000) {
         bonusPercentage = 0.0075; // 0.75% для суммы >= 50 000
       } else if (bookingAmount >= 20000) {
-        bonusPercentage = 0.0025; // 0.25% для суммы >= 20 000
+        bonusPercentage = 0.005; // 0.25% для суммы >= 20 000
       }
     }
     
@@ -402,8 +402,6 @@ document.addEventListener('DOMContentLoaded', function() {
   generateCalendar(currentMonth, currentYear);
 });
 
-
-
 function toggleCard(elem) {
 
   elem.closest('.card-useful-item').classList.toggle('expanded')
@@ -416,6 +414,26 @@ function toggleCard(elem) {
 
   console.log(elem.closest('.card-useful-item'))
 }
+
+const dropdownCityDest = document.querySelectorAll('.dropdown-icon-city-dest');
+
+if(dropdownCityDest){
+  dropdownCityDest.forEach(icon => {
+    icon.addEventListener('click', function () {
+      
+        const card = this.closest('.city-card')
+        card.classList.toggle('collapsed');
+        this.classList.toggle('rotated');
+    });
+  });
+}
+
+function toggleDropdown() {
+  var menu = document.querySelector(".dropdown-menu-avia");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+
 
 
 
