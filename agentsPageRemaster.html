@@ -323,6 +323,11 @@
                     <div class="landing-container agents-page">
 
                         <section class="agents-main-banner-section section-mt-60 section-block">
+                            <nav class="breadcrumb-wrapper">
+                                <a href="#" class="breadcrumb-item">Главная</a>
+                                <span class="breadcrumb-separator"><img src="./images/chevron-breadcrumb.svg" alt=""></span>
+                                <a href="#" class="breadcrumb-item">Агентам</a>
+                            </nav>
                             <div class="landing-card type-1">
                                 <div class="landing-card-left-block">
                                     <div class="landing-card-content-header">
@@ -377,7 +382,7 @@
                             </div>
                         </section>
                         
-                        <section class="features-section section-mt-60 section-block">
+                        <section class="features-section section-mt-60 section-block" id="agencyAdvantagesSection">
                             <div class="section-header center">
                                 <h1>
                                     все в одном месте
@@ -628,7 +633,7 @@
                             </div>
                         </section>
 
-                        <section class="loyalty-section section-mt-60 section-block">
+                        <section class="loyalty-section section-mt-60 section-block" id="agencyLoyaltySection">
                             <div class="landing-card type-1" style="background-image: url('./images/agents-loyalty-banner.svg');">
                                 <div class="landing-card-left-block">
                                     <div class="landing-card-content-header">
@@ -723,14 +728,14 @@
                             </div>
                         </section>
 
-                        <section class="calculate-profit-section section-mt-60 section-block">
+                        <section class="calculate-profit-section section-mt-60 section-block" id="agencyCalculatorSection">
                             <div class="landing-card type-1">
                                 <div class="landing-card-left-block landing-card-section">
                                     <div class="landing-card-content-header">
                                         <h2 class="title">Калькулятор выгоды</h2>
                                     </div>
                                     <div class="calculate-profit">
-                                        <h3>СТОИМОСТЬ БРОНИРОВАНИЯ</h3>
+                                        <h3>СУММА БРОНИРОВАНИЙ ЗА КАЛЕНДАРНЫЙ ГОД</h3>
                                         <div class="range-container">
                                             <input type="range" min="1000" max="500000" value="20000" id="bookingAmount" step="1000" class="range-slider">
                                             <!-- <div class="range">
@@ -784,7 +789,7 @@
                                                 <p id="bonusResult">$ 100</p>
                                             </div>
                                             <hr>
-                                            <div class="result-section-info-item">
+                                            <div class="result-section-info-item total">
                                                 <p>Итого:</p>
                                                 <p id="totalResult">$ 2,100</p>
                                             </div>
@@ -852,11 +857,11 @@
                             </div>
                         </section>
 
-                        <section class="calendar-promo-tours-section section-mt-60 section-block">
+                        <!-- <section class="calendar-promo-tours-section section-mt-60 section-block" id="calendarPromotionSection">
                             <div class="landing-card type-2">
                                 <div class="landing-card-left-block">
                                     <div class="landing-card-content-header">
-                                        <h2 class="title">Календарь Рекламных туров</h2>
+                                        <h1 class="title">Календарь Рекламных туров</h1>
                                         <h3 class="subtitle">
                                             Расписание рекламных туров для инспекции отелей и еще немного текста
                                         </h3>
@@ -897,7 +902,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
 
                         <section class="agents-logo-section section-mt-60 section-block">
                             <div class="landing-card type-1">
@@ -936,7 +941,7 @@
                             </div>
                         </section>
 
-                        <section class="our-team-section section-mt-60 section-block">
+                        <section class="our-team-section section-mt-60 section-block" id="ourTeamSection">
                             <div class="landing-card type-2">
                                 <div class="section-header left">
                                     <h1>
@@ -1013,6 +1018,7 @@
                                                 <p>Главный Бухгалтер</p>
                                             </div>
                                         </div>
+                                        
                                         <div class="team-card-item">
                                             <div class="team-card-img" style="background-image: url('./images/НетылькинаДария.png');"></div>
                                             <div class="team-card-item-info">
@@ -1270,28 +1276,28 @@
                                                 <p>Один из самых важных блоков при работе с нами</p>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Procuration_OOO_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Доверенность для ООО<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/user/documents" target="_blank" class="faq-title">Доверенность для ООО<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Procuration_IP_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Доверенность для ИП<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/user/documents" target="_blank" class="faq-title">Доверенность для ИП<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Report1_Terms_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Отчет поверенного об исполнении поручения<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/reports/orders" target="_blank" class="faq-title">Отчет поверенного об исполнении поручения<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/return.docx?v=2" target="_blank" class="faq-title">Заявление на возврат денежных средств<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/orders" target="_blank" class="faq-title">Заявление на возврат денежных средств<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Privacy_TravelHub_2023.pdf" target="_blank" class="faq-title">Политика в отношении персональных данных<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/privacy" target="_blank" class="faq-title">Политика в отношении персональных данных<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Tourist_Terms_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Образец договора с туристом<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/orders" target="_blank" class="faq-title">Образец договора с туристом<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Tourist_Extra_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Образец дополнительного соглашения на доплаты<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/orders" target="_blank" class="faq-title">Образец дополнительного соглашения на доплаты<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
-                                                <a href="/docs/Tourist_Akt_TravelHub_2023.docx?v=2" target="_blank" class="faq-title">Акт приема-передачи документов<img src="./images/chevron-header-blue.svg" alt=""></a>
+                                                <a href="/orders" target="_blank" class="faq-title">Акт приема-передачи документов<img src="./images/chevron-header-blue.svg" alt=""></a>
                                             </div>
                                             <div class="faq-item">
                                                 <div class="faq-title">Наши реквизиты<img src="./images/chevron-header-blue.svg" alt=""></div>
@@ -1320,21 +1326,6 @@
                                             <div class="section-subheader left">
                                                 <h3>Часто задаваемые вопросы</h3>
                                                 <p>Мы постарались собрать сразу все ответы тут</p>
-                                            </div>
-                                            <div class="faq-item">
-                                                <div class="faq-title">❤️ Как работать с нами в 2024 году и новым договором поручения<img src="./images/chevron-header-blue.svg" alt=""></div>
-                                                <div class="faq-content">
-                                                    <p>Порядок работы</p>
-                                                    <ul>
-                                                        <li>Если вы на УСН, то вы обязаны заключить наш договор с туристом, и отправить наши реквизиты на оплату туристу</li>
-                                                        <li>Если вы на ОСН, то можете использовать шаблон нашего договора для его заключения с туристом</li>
-                                                        <li>Можно будет подписывать из нашей системы (личного кабинета) или используя сервис                                        <a href="https://esignhub.com/" target="_blank">eSign TravelHub</a></li>
-                                                        <li>По запросу дадим шаблон, который можно сразу добавить в CRM - UON</li>
-                                                        <li>Оформить заявку в личном кабинете 2024 года (нужно пройти регистрацию всем заново)</li>
-                                                        <li>Мы уведомим по зачислению денег к нам на счет</li>
-                                                        <li>Загружать подписанные договора к нам в заявку нет необходимости, но если он понадобится, то вы будете обязаны его предоставить</li>
-                                                    </ul>
-                                                </div>
                                             </div>
                                             <div class="faq-item">
                                                 <div class="faq-title">Как работает сервис eSign TravelHub<img src="./images/chevron-header-blue.svg" alt=""></div>
@@ -1572,9 +1563,6 @@
                                 </div>
                             </div>
                         </section>
-
-
-                        
                     </div>
 
                 </main>
@@ -1639,61 +1627,51 @@
                                         <div class="col-xl-2 col-md-6">
                                             <h3>Продукт</h3>
                                             <a href="https://travelhub.by/flights">Авиабилеты</a>
-                                            <a href="https://travelhub.by/hotels">Отели</a>
-                                            <a href="https://travelhub.by/transfers">Трансферы</a>
+                                            <a href="/hotels">Отели</a>
+                                            <a href="/transfers">Трансферы</a>
                                             <a href="https://travelhub.by/">Туры</a>
-                                            <a href="https://travelhub.by/excursions">Экскурсии</a>
-                                            <a href="#">Визы</a>
-                                            <a href="#">Страны</a>                                          
-                                            <a href="https://travelhub.by/webinars">Вебинары</a>
-                                            <a href="#">Медиапартнерство</a>
+                                            <a href="/excursions">Экскурсии</a>
+                                            <a href="https://visa.maderatravel.by/">Визы</a>
+                                            <a href="/country">Страны</a>                                          
+                                            <a href="/webinars">Вебинары</a>
+                                            <a href="/news/informatsionnoe-i-reklamnoe-sotrudnichestvo">Медиапартнерство</a>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <h3>Агенту</h3>
-                                            <a href="https://travelhub.by/login">Присоединяйтесь к команде</a>
-                                            <a href="#">Преимущества</a>
-                                            <a href="#">Программа лояльности</a>
-                                            <a href="#">Калькулятор выгоды</a>
-                                            <a href="#">Календарь рекламных туров</a>
-                                            <a href="#">Наша команда</a>
+                                            <a href="/register">Присоединяйтесь к команде</a>
+                                            <a href="#agencyAdvantagesSection">Преимущества</a>
+                                            <a href="#agencyLoyaltySection">Программа лояльности</a>
+                                            <a href="#agencyCalculatorSection">Калькулятор выгоды</a>
+                                            <!-- <a href="#calendarPromotionSection">Календарь рекламных туров</a> -->
+                                            <a href="#ourTeamSection">Наша команда</a>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <h3>Бизнесу</h3>
-                                            <a href="https://travelhub.by/login">Присоединяйтесь к команде</a>
-                                            <a href="#">Преимущества</a>
-                                            <a href="#">Для руководителя</a>
-                                            <a href="#">Для бухгалтера</a>
-                                            <a href="#">Для тревел-менеджера</a>
-                                            <a href="#">Для HR-менеджера</a>
-                                            <a href="#">Программа лояльности</a>
-                                            <a href="#">Калькулятор выгоды</a>
-                                            <a href="#">Наши кейсы</a>
-                                            <a href="#">Часто задаваемые вопросы</a>
+                                            <a href="/register">Присоединяйтесь к команде</a>
+                                            <a href="#businessAdvantagesSection">Преимущества</a>
+                                            <a href="#forBossSection">Для руководителя</a>
+                                            <a href="#forAccountingSection">Для бухгалтера</a>
+                                            <a href="#forTravelManagerSection">Для тревел-менеджера</a>
+                                            <a href="#forHrManagerSection">Для HR-менеджера</a>
+                                            <a href="#businessLoyaltySection">Программа лояльности</a>
+                                            <a href="#businessCalculatorSection">Калькулятор выгоды</a>
+                                            <!-- <a href="#">Наши кейсы</a> -->
+                                            <a href="#businessFaqSection">Часто задаваемые вопросы</a>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <h3>Компания</h3>
-                                            <a href="https://travelhub.by/about">О нас</a>
-                                            <a href="https://travelhub.by/news">Новости</a>
-                                            <a href="https://travelhub.by/news">Карьера <span class="yellow-extra">НАЙМ</span></a>
+                                            <a href="/about">О нас</a>
+                                            <a href="/news">Новости</a>
+                                            <a href="https://rabota.by/employer/3252482">Карьера <span class="yellow-extra">ОТКРЫТЫЕ ВАКАНСИИ</span></a>
                                             <a href="https://piligrimos.com/" target="_blank">Тревел-википедия
                                                 Piligrimos</a>
-                                                <a href="#">Контакты</a>
+                                                <a href="/contacts">Контакты</a>
                                             <div class="footer-apps">
                                                 <a href="https://play.google.com/store/apps/details?id=com.travelhub"><img
                                                         src="./files/googlePlay.svg" alt=""></a>
                                                 <a
                                                     href="https://apps.apple.com/by/app/travelhub-%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B7%D0%B4%D0%B5%D1%81%D1%8C/id6471902299"><img
                                                         src="./files/appleStore.svg" alt=""></a>
-                                            </div>
-                                            <div class="footer-apps">
-                                                <img src="./files/Iata_official_logo.png" alt=""
-                                                    style="width: 60px;">
-                                                <img src="./files/logo_TCH_rus_RGB.png" alt=""
-                                                    style="width: 110px;">
-                                            </div>
-                                            <div class="footer-apps">
-                                                <img src="./files/arc-logo.png" alt=""
-                                                    style="width: 55px;">
                                             </div>
                                         </div>
                                     </div>
