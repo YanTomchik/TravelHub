@@ -4450,4 +4450,90 @@ html {
       margin: 30px 0px;
     }
 
+    .travelhub-trust-section .landing-card.type-1 .landing-card-left-block{
+      width: 100%;
+    }
+
+    .travelhub-trust-section .landing-card.type-1 .landing-card-right-block{
+      width: 100%;
+    }
+
+    .popular-destination-cards-list{
+      flex-direction: column;
+    }
+
+    .destination-card-item{
+      width: 100%;
+    }
+
+    .popular-destination-section .btn{
+      width: 100%;
+    }
+
+    .download-app-section h2{
+      font-size: 24px;
+    }
+
+    .download-app-section h3{
+      font-size: 16px;
+    }
+
+    .download-app-section h3 br:first-child{
+      display: none;
+    }
+
+    .popular-destination-city-cards-list{
+      flex-direction: column;
+      padding: 0px;
+    }
+
+    .city-card{
+      width: 100%;
+    }
+
+    .langing-top.rm h1{
+      font-size: 28px;
+    }
+
+    .langing-top.rm .landing-card.type-1{
+      padding: 20px;
+      /* margin: 0px 13px; */
+    }
+
+    .landing-container ul.nav{
+      /* margin-left: 13px; */
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .langing-top .nav::-webkit-scrollbar{
+      overflow: hidden;
+    }
+
+    .form-row.rm .input-group-item{
+      width: 100%;
+    }
+
+    .form-row.rm .switch-btn-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      right: 0px;
+      left: 0px;
+    }
+
+    .form-group.rm .search-btn{
+      width: 100%;
+    }
+
+    .langing-top.rm{
+      padding: 0px 13px;
+      padding-bottom: 30px;
+    }
+
+    .landing-top-content{
+      padding-top: 30px;
+    }
+
 }
