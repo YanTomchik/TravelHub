@@ -4704,4 +4704,8 @@ ul.pagination.rm li{
       padding: 12px 20px;
     }
 
+    .date-inputs-wrapper.rm .date-inputs-item{
+      width: 100%;
+    }
+
 }
