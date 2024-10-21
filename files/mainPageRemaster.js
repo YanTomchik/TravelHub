@@ -150,7 +150,8 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  $('#operator-department').slick({
+
+  $('#operator-department .team-cards-list').slick({
     slidesToShow: 4, /* Количество видимых слайдов */
     slidesToScroll: 1, /* Количество слайдов для пролистывания */
     autoplay: false, /* Автоматическое воспроизведение */
@@ -262,7 +263,7 @@ document.querySelectorAll('.section-block').forEach(section => {
 
 const tabsTeam = document.querySelectorAll('.landing-card-tab-item.our-team');
 const tabsPartnership = document.querySelectorAll('.landing-card-tab-item.partnership');
-const contentsTeam = document.querySelectorAll('.team-cards-list');
+const contentsTeam = document.querySelectorAll('.team-cards-list-content');
 const contentsPartnership = document.querySelectorAll('.tab-pane');
 
 if(tabsTeam) {
@@ -277,13 +278,14 @@ if(tabsTeam) {
 
       // Находим соответствующий контент и показываем его
       const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
+      const activeTabContentSlider = activeTabContent.querySelector('.team-cards-list')
       if (activeTabContent) {
         activeTabContent.classList.add('active');
 
         // Проверка, инициализирован ли слайдер для текущей вкладки
-        if (!$(activeTabContent).hasClass('slick-initialized')) {
+        if (!$(activeTabContentSlider).hasClass('slick-initialized')) {
           // Инициализация слайдера для активной вкладки
-          $(activeTabContent).slick({
+          $(activeTabContentSlider).slick({
             slidesToShow: 4,
             slidesToScroll: 1,
             autoplay: false,
@@ -312,7 +314,7 @@ if(tabsTeam) {
         }
 
         // Обновляем позицию слайдера
-        $(activeTabContent).slick('setPosition');
+        $(activeTabContentSlider).slick('setPosition');
       }
     });
   });
@@ -588,6 +590,9 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     
   }
+
+  const radioButton = document.querySelector('input[name="cabin-class"]:checked');
+  console.log(radioButton)
 
 
 });

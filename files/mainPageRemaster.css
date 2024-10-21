@@ -1355,7 +1355,7 @@ span.primary{
 }
 
 .fix-price-section .landing-card.type-1 .landing-card-content-header{
-  width: 40%;
+  width: 50%;
   gap: 70px;
 }
 
@@ -1537,7 +1537,7 @@ span.primary{
   flex-direction: column;
   gap: 25px;
   margin-top: 35px;
-  width: 80%;
+  width: 100%;
 }
 
 .card-content-item{
@@ -1862,6 +1862,11 @@ p.note {
   color: #888EBA;
 }
 
+.team-card-item-info p.number{
+  font-size: 17px;
+  color: #24223E;
+}
+
 .section-subheader{
   display: flex;
   align-items: flex-start;
@@ -1963,11 +1968,12 @@ p.note {
   align-items: center;
 }
 
-.team-cards-list{
+.team-cards-list-content{
   display: none;
+  flex-direction: column;
 }
 
-.team-cards-list.active{
+.team-cards-list-content.active{
   display: flex;
   transition: all 0.5s;
 }
@@ -2786,7 +2792,8 @@ ul.pagination.rm li{
 }
 
 .business-main-banner-section .landing-banner-header-wrapper{
-  width: 60%;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .business-main-banner-section .landing-banner-header-wrapper h1{
@@ -3193,20 +3200,24 @@ ul.pagination.rm li{
 .form-row.rm {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
   align-items: flex-end;
   margin-bottom: 1.75rem;
 }
 
 .form-group.rm {
   flex: 1;
-  min-width: 150px;
+  min-width: 130px;
   margin-bottom: 0px;
+}
+
+.form-group.rm.location-form{
+  min-width: 200px;
 }
 
 .form-group.rm .search-btn{
   height: 56px;
-  width: 295px;
+  width: 360px;
   font-size: 14px;
 }
 
@@ -3294,6 +3305,7 @@ ul.pagination.rm li{
   background-color: #F4F7FD;
   min-height: 56px;
   border-radius: 12px;
+  width: 160px;
 }
 
 .form-group.rm .count-block{
@@ -4124,6 +4136,10 @@ ul.pagination.rm li{
     .fix-price-section .landing-card.type-1 .landing-card-content-header {
       width: 100%;
       gap: 30px;
+    }
+
+    .fix-price-section .landing-card.type-1 .landing-card-content-header br{
+      display: none;
     }
 
     .fix-price-section .landing-card.type-1{

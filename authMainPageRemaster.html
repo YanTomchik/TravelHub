@@ -549,14 +549,14 @@
                             </ul>
 
                             <div class="landing-card type-1">
-                                <div class="search-container" id="defaultWayAviaWrapper">
+                                <div class="search-container fade show" id="defaultWayAviaWrapper" style="display: block;">
                                     <div class="route-link" id="addRouteAviaDefault">
                                         <img src="./images/search-route-icon.svg" alt="">
                                         Создать маршрут через несколько городов
                                     </div>
                                     <div class="form-row rm">
                                         <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
-                                            <div class="form-group rm field-flightsearchform-locationfrom required">
+                                            <div class="form-group rm location-form field-flightsearchform-locationfrom required">
                                                 <label for="flightsearchform-locationfrom">Откуда</label>
                                                 <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
                                                     name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
@@ -579,7 +579,7 @@
                                         </div>
 
                                         <div class="input-group-item charter-input-from " id="charter-input-from">
-                                            <div class="form-group rm field-flightsearchform-locationfrom required">
+                                            <div class="form-group rm location-form field-flightsearchform-locationfrom required">
                                                 <label class="control-label"
                                                     for="flightsearchform-locationfrom">Откуда</label>
                                                 <div class="input-charter-container">
@@ -611,7 +611,7 @@
                                         </div>
 
                                         <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
-                                            <div class="form-group rm field-flightsearchform-locationto required">
+                                            <div class="form-group rm location-form location-form field-flightsearchform-locationto required ">
                                                 <label class="control-label" for="flightsearchform-locationto">Куда</label>
                                                 <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
                                                     name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
@@ -636,7 +636,7 @@
                                         </div>
 
                                         <div class="input-group-item charter-input-to" id="charter-input-to">
-                                            <div class="form-group field-flightsearchform-locationto required">
+                                            <div class="form-group rm location-form field-flightsearchform-locationto required">
                                                 <label class="control-label"
                                                     for="flightsearchform-locationto">Куда</label>
                                                 <div class="input-charter-container">
@@ -699,7 +699,7 @@
                                         </div>
 
                                         <div class="input-group-item ">
-                                            <div class="form-group rm ">
+                                            <div class="form-group rm people-form">
                                                 <label class="control-label">Взрослые</label>
 
                                                 <div class="people-count-block">
@@ -712,7 +712,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="input-group-item ">
+                                        <div class="input-group-item people-form">
                                             <div class="form-group rm ">
                                                 <label class="control-label">Дети (2-12)</label>
 
@@ -726,7 +726,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="input-group-item ">
+                                        <div class="input-group-item people-form">
                                             <div class="form-group rm ">
                                                 <label class="control-label">Младенцы (0-2)</label>
 
@@ -741,13 +741,12 @@
                                         </div>
                                     </div>
                                     <div class="form-row rm">
-
                                         <div class="input-group-item ">
                                             <div class="form-group rm field-cabin-class">
                                             
                                                 <div class="radio-group cabin-class" >
                                                     <label class="radio-label">
-                                                        <input type="radio" name="cabin-class" value="economy" checked="">
+                                                        <input type="radio" name="cabin-class" value="economy" checked>
                                                         <span class="custom-radio"></span>
                                                         Эконом
                                                     </label>
@@ -821,7 +820,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="search-container" id="manyWayAviaWrapper" style="display: none;">
+                                <div class="search-container fade" id="manyWayAviaWrapper" style="display: none;">
                                     <div class="route-link" id="addRouteAviaManyWay">
                                         <img src="./images/manyway-route-link.svg" alt="">
                                         Вернуться к простому маршруту
@@ -910,7 +909,7 @@
 
                                         <div class="group-type-1">
                                             <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
-                                                <div class="form-group rm field-flightsearchform-locationfrom required">
+                                                <div class="form-group rm location-form field-flightsearchform-locationfrom required">
                                                     <label for="flightsearchform-locationfrom">Откуда</label>
                                                     <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
                                                         name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
@@ -998,7 +997,7 @@
 
                                         <div class="group-type-2">
                                             <div class="input-group-item ">
-                                                <div class="form-group rm ">
+                                                <div class="form-group rm people-form">
                                                     <label class="control-label">Взрослые</label>
     
                                                     <div class="people-count-block">
@@ -1012,7 +1011,7 @@
                                             </div>
     
                                             <div class="input-group-item ">
-                                                <div class="form-group rm ">
+                                                <div class="form-group rm people-form">
                                                     <label class="control-label">Дети (2-12)</label>
     
                                                     <div class="people-count-block">
@@ -1026,7 +1025,7 @@
                                             </div>
     
                                             <div class="input-group-item ">
-                                                <div class="form-group rm ">
+                                                <div class="form-group rm people-form">
                                                     <label class="control-label">Младенцы (0-2)</label>
     
                                                     <div class="people-count-block">
@@ -1049,7 +1048,7 @@
                                                 
                                                     <div class="radio-group cabin-class">
                                                         <label class="radio-label">
-                                                            <input type="radio" name="cabin-class" value="economy" checked="">
+                                                            <input type="radio" name="cabin-class" value="economy">
                                                             <span class="custom-radio"></span>
                                                             Эконом
                                                         </label>
@@ -1755,6 +1754,7 @@
     <script src="./files/cookieconsent.js"></script>
     <script src="./files/jquery.fancybox(1).min.js"></script>
     <script src="./files/flightHandler.js"></script>
+    <script src="./files/FlightHandler.class.js"></script>
     <script src="./files/filterMenu.js"></script>
     <script src="./files/air-datepicker.min.js"></script>
     <script src="./files/switchBtnScript.js"></script>
