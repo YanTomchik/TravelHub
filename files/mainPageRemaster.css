@@ -4708,4 +4708,8 @@ ul.pagination.rm li{
       width: 100%;
     }
 
+    .business-main-banner-section .landing-banner-header-wrapper{
+      margin-top: 0px;
+    }
+
 }
