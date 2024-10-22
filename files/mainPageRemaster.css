@@ -397,7 +397,7 @@ span.primary{
   
   .feature-type-1 {
     grid-column: span 4;
-    background-color: #F5F9D9;
+    background-color: #FFE9BB;
     padding: 20px 30px;
   }
 
@@ -406,7 +406,7 @@ span.primary{
     font-weight: 500;
     line-height: 48px;
     letter-spacing: -0.0014em;
-    color: #5F9F7C;
+    color: #907B4E;
   }
 
   .feature-type-1 .feature-item-banner-wrapper{
@@ -777,6 +777,7 @@ span.primary{
     line-height: 44px;
     letter-spacing: -0.8164612054824829px;
     color: #426098;
+    margin-bottom: 0px;
   }
 
   .feature-item-list-ul li{
@@ -2118,6 +2119,7 @@ footer.rm{
 
 footer.rm .footer-contact--item span{
   color: #8989B4;
+  font-size: 14px;
 }
 
 footer.rm .footer-contact--item{
@@ -2165,7 +2167,7 @@ footer.rm .footer-info{
 }
 
 .subscribe-text p {
-  font-size: 16px;
+  font-size: 14px;
   color: #898989;
   margin: 0;
 }
@@ -3969,6 +3971,7 @@ ul.pagination.rm li{
     .landing-banner-wrapper{
       padding: 20px;
       max-height: 700px;
+      padding-bottom: 0px;
     }
 
     .landing-banner-header-register-form .landing-register-form input{
