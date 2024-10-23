@@ -48,6 +48,7 @@
     <link href="./files/daterangepicker.min.css" rel="stylesheet">
     <link href="./files/daterangepicker-kv.min.css" rel="stylesheet">
     <script src="./files/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- NEW -->
     <link rel="stylesheet" href="./files/mainPageRemaster.css">
@@ -676,7 +677,7 @@
                                                             <div id="tourists-count-select-modal" class="tourists-count-select-modal" style="visibility: visible;">
                                                                 <div class="people-count-block-header">Количество туристов</div>
                                                                 <div class="people-count-block">
-                                                                    <p class="title">Кол-во взрослых</p>
+                                                                    <p class="title">Взрослые</p>
                                                                     <div class="count-block">
                                                                         <button id="adult-minus-button" class="count-button minus">-</button>
                                                                         <p id="adult-counter" class="people-counter">1</p>
@@ -685,7 +686,11 @@
                                                                 </div>
         
                                                                 <div class="people-count-block mt-5">
-                                                                    <p class="title">Кол-во детей</p>
+                                                                    <div class="people-count-block-info">
+                                                                        <p class="title">Дети</p>
+                                                                        <p class="subtitle">(2-12)</p>
+                                                                    </div>
+                                                                    
                                                                     <div class="count-block">
                                                                         <button id="children-minus-button" class="count-button minus">-</button>
                                                                         <p id="children-counter" class="people-counter">0</p>
@@ -694,7 +699,11 @@
                                                                 </div>
         
                                                                 <div class="people-count-block mt-5">
-                                                                    <p class="title">Кол-во младенцев</p>
+                                                                    
+                                                                    <div class="people-count-block-info">
+                                                                        <p class="title">Младенцы</p>
+                                                                        <p class="subtitle">(0-2)</p>
+                                                                    </div>
                                                                     <div class="count-block">
                                                                         <button id="infant-minus-button" class="count-button minus">-</button>
                                                                         <p id="infant-counter" class="people-counter">0</p>

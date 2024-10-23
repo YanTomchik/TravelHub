@@ -609,43 +609,74 @@
                                         <div class="main-from-row">
                                             <div class="form-row rm">
                                                 <div class="input-group-item date-transfers">
-                                                    <div class="form-group rm field-excursionsearchform-location required">
-                                                        <label class="control-label" for="excursionsearchform-location">Страна / город:</label>
-                                                        <select id="excursionsearchform-location" class="form-control select2-hidden-accessible" name="ExcursionSearchForm[location]" aria-required="true" data-s2-options="s2options_3267a624" data-krajee-select2="select2_62f19ac6" style="width: 100%; height: 1px; visibility: hidden;" data-select2-id="excursionsearchform-location" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="2">Выберите локацию</option>
-                                                        </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-excursionsearchform-location-container"><span class="select2-selection__rendered" id="select2-excursionsearchform-location-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Выберите локацию</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                        
-                                                        <div class="help-block"></div>
-                                                        </div>
+                                                    <div class="form-group rm field-date-to required has-error">
+                                                        <label class="control-label" for="date-to">Дата поездки</label>
+                                                        <div id="date-to-kvdate" class="input-group date"><input type="text" id="date-to"
+                                                                class="form-control form-control-solid form-control-lg krajee-datepicker"
+                                                                name="GetTransferSearchForm[dateTo]" autocomplete="off" aria-required="true"
+                                                                data-datepicker-source="date-to-kvdate" data-datepicker-type="3"
+                                                                data-krajee-kvdatepicker="kvDatepicker_31f3fbf3" aria-invalid="true"><span
+                                                                class="input-group-addon kv-date-remove" title="Очистить поле"><i
+                                                                    class="glyphicon glyphicon-remove kv-dp-icon"></i></span><span class="input-group-addon kv-date-picker"
+                                                                title="Выбрать дату"><i class="glyphicon glyphicon-calendar kv-dp-icon"></i></span></div>
+                                                    
+                                                        <div class="help-block">Поле не может быть пустым</div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="input-group-item time-transfers">
                                                     <div class="form-group rm field-time-to required">
                                                         <label class="control-label" for="time-to">Время</label>
                                                         <div class="bootstrap-timepicker input-group">
-                                                            <div class="bootstrap-timepicker-widget dropdown-menu">
+                                                            <div class="bootstrap-timepicker-widget dropdown-menu open">
+                                                                <!-- <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><a href="#" data-action="incrementHour"><img src="./images/chevron-grey-up-small.svg" alt=""></a></td>
+                                                                            <td class="separator">&nbsp;</td>
+                                                                            <td><a href="#" data-action="incrementMinute"><img src="./images/chevron-grey-up-small.svg" alt=""></a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input type="text" name="hour" class="bootstrap-timepicker-hour form-control" maxlength="2" value="20"></td>
+                                                                            <td class="separator">:</td>
+                                                                            <td><input type="text" name="minute" class="bootstrap-timepicker-minute form-control" maxlength="2">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><a href="#" data-action="decrementHour"><img src="./images/chevron-grey-down-small.svg" alt=""></a></td>
+                                                                            <td class="separator"></td>
+                                                                            <td><a href="#" data-action="decrementMinute"><img src="./images/chevron-grey-down-small.svg" alt=""></a></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table> -->
+                                                                <!-- DELETE BEFORE INTEGRATION -->
                                                                 <table>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><a href="#" data-action="incrementHour"><i class="fas fa-chevron-up"></i></a></td>
-                                                                            <td class="separator">&nbsp;</td>
-                                                                            <td><a href="#" data-action="incrementMinute"><i class="fas fa-chevron-up"></i></a></td>
+                                                                            <td>
+                                                                                <a href="#" data-action="incrementHour"><img src="./images/chevron-grey-up-small.svg" alt=""></a>
+                                                                            </td>
+                                                                            <td class="separator"></td>
+                                                                            <td><a href="#" data-action="incrementMinute"><img src="./images/chevron-grey-up-small.svg" alt=""></a></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><input type="text" name="hour" class="bootstrap-timepicker-hour form-control" maxlength="2">
+                                                                            <td>
+                                                                                9
                                                                             </td>
                                                                             <td class="separator">:</td>
-                                                                            <td><input type="text" name="minute" class="bootstrap-timepicker-minute form-control"
-                                                                                    maxlength="2"></td>
+                                                                            <td>
+                                                                                41
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><a href="#" data-action="decrementHour"><i class="fas fa-chevron-down"></i></a></td>
+                                                                            <td><a href="#" data-action="decrementHour"><img src="./images/chevron-grey-down-small.svg" alt=""></a></td>
                                                                             <td class="separator"></td>
-                                                                            <td><a href="#" data-action="decrementMinute"><i class="fas fa-chevron-down"></i></a></td>
+                                                                            <td><a href="#" data-action="decrementMinute"><img src="./images/chevron-grey-down-small.svg" alt=""></a></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
-                                                            </div><input type="text" id="time-to" class="form-control" name="GetTransferSearchForm[timeTo]"
+                                                            </div>
+                                                            <input type="text" id="time-to" class="form-control" name="GetTransferSearchForm[timeTo]"
                                                                 autocomplete="off" aria-required="true" data-krajee-timepicker="timepicker_e19a8c0f">
                                                             <div class="input-group-append"><span class="input-group-text picker"><img src="./images/clock-blue-small.svg" alt=""></span></div>
                                                         </div>
