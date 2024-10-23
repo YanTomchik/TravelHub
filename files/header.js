@@ -152,6 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+
+    // NEW
+
     // Функция для извлечения параметров из URL
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -167,6 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }else{
         currencyHeaderText.textContent = 'BYN';
     }
+    
+
 
 
 });

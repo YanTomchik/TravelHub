@@ -1142,10 +1142,14 @@ span.primary{
     height: auto;
 }
 
+.header .header-bottom .header-bottom-left a{
+  padding: 20px 0px;
+}
+
 
 @media (min-width: 769px) {
     .header-bottom{
-        padding: 10px 40px;
+        padding: 0px 40px;
     }
 }
 
@@ -1195,7 +1199,7 @@ span.primary{
 @media (min-width: 769px) {
     .header .header-bottom .header-bottom-left a.active::after {
        
-        bottom: -10px;
+        bottom: 0px;
     }
 }
 
@@ -2976,6 +2980,131 @@ ul.pagination.rm li{
 
 .header-language-content span{
   margin-right: 20px;
+}
+
+.header-phone a{
+  color: #24223E;
+  font-size: 14px;
+}
+
+.header-desktop-account-text{
+  color: #C4C4CE;
+
+}
+
+.header-desktop-account-text span{
+  font-weight: 600;
+  color: #7F8297;
+}
+
+.header-basket-description{
+  color: #717380;
+}
+
+/* Изначально все секции скрыты */
+.content-section-menu-header {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 9px #696FFC26;
+  padding: 30px;
+  top: 65px;
+  border-radius: 16px;
+}
+
+/* Показываем контент при наведении на пункт меню */
+.menu-item:hover .content-section-menu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-section-menu-header-main{
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}
+
+/* Стили для списка */
+.header-bottom .header-bottom-left .content-section-menu-header ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 5px;
+  min-width: 100px;
+}
+
+.header-bottom .header-bottom-left .content-section-menu-header li {
+  position: relative;
+  margin-bottom: 10px;
+  color: #19191E;
+  font-size: 14px;
+  margin-bottom: 0px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.header-bottom .header-bottom-left .content-section-menu-header li a{
+  white-space: nowrap;
+}
+
+.header-bottom .header-bottom-left .content-section-menu-header li.active a{
+  color: #306DDE;
+  font-weight: 600;
+}
+
+.header-bottom .header-bottom-left .content-section-menu-header li:hover a{
+  color: #306DDE;
+  font-weight: 400;
+}
+
+.header-bottom .header-bottom-left .content-section-menu-header a{
+  padding: 0px;
+}
+
+.content-section-menu-header .menu-socials{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.content-section-menu-header .content-section-menu-header-bottom{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ABABC830;
+  padding-top: 30px;
+}
+
+.content-section-menu-header-bottom a.header-menu-btn{
+  padding: 8px 16px!important;
+  border-radius: 8px;
+  border: 2px solid #818183;
+  width: fit-content;
+  color: #818183;
+}
+
+.content-section-menu-header-bottom a.header-menu-btn.blue{
+  border: 2px solid #306DDE;
+  color: #306DDE;
+}
+
+.header-menu-btns-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-menu-btns-wrapper img{
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
 }
 
 .btn.btn-primary.rm.nav-link{
