@@ -2098,6 +2098,8 @@ p.note {
 .section-block.visible {
   opacity: 1;
   transform: translateY(0); /* Сбрасываем смещение */
+  z-index: -1;
+  position: relative;
 }
 
 footer.rm .footer-nav h3{
@@ -3537,6 +3539,269 @@ ul.pagination.rm li{
   opacity: 1;
   display: block;
 }
+
+.langing-top.rm #extended-search-button{
+  color: #306DDE;
+  font-weight: 500;
+}
+
+.langing-top.rm .extended-search-block .select-list .list-block{
+  border-radius: 16px;
+  background-color: #F4F7FD;
+}
+
+.langing-top.rm .list-block-header-actions a{
+  border: 1px solid #306DDE;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.langing-top.rm .list-block-header{
+  padding: 16px 20px;
+  height: auto;
+  border-bottom: none;
+}
+
+.langing-top.rm .list-block-header-input{
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.langing-top.rm .list-block-header-input::placeholder{
+  color: #ABABC8;
+}
+
+.search-container.tours .tours-city{
+  width: 300px;
+}
+
+.search-container.tours .tours-country{
+  width: 270px;
+}
+
+.search-container.tours #tours-calendar{
+  height: 56px;
+  border-radius: 12px;
+  background-color: #F4F7FD;
+  border: none;
+  width: 230px;
+}
+
+.search-container.hotels .hotels-location{
+  width: 20%;
+}
+
+.search-container.hotels .date-hotels{
+  width: 14%;
+}
+
+.search-container.hotels .nationality{
+  width: 14%;
+}
+
+.search-container.hotels #tourists-select, .search-container.transfers #tourists-select, .search-container.excursions #tourists-select{
+  background-color: #F4F7FD;
+  border: none;
+  border-radius: 12px;
+  height: 56px;
+  font-size: 14px;
+  color: #ABABC8;
+}
+
+.search-container.hotels .date-hotels .input-group.date input, .search-container.transfers .input-group input, .search-container.excursions .input-group input{
+  height: 56px;
+  background-color: #F4F7FD;
+  border-radius: 12px;
+  border: none;
+}
+/* 
+.search-container.transfers .bootstrap-timepicker .input-group input{
+  border-top-right-radius:0px;
+  border-bottom-right-radius:0px;
+} */
+
+.search-container.transfers .input-group.bootstrap-timepicker input.form-control{
+  border-top-right-radius:0px;
+  border-bottom-right-radius:0px;
+}
+
+.search-container.hotels #tours-calendar{
+  border: 12px;
+}
+
+.search-container.hotels .form-group.rm .search-btn, .search-container.transfers .form-group.rm .search-btn, .search-container.excursions .form-group.rm .search-btn{
+  width: -webkit-fill-available;
+}
+
+.search-container.hotels .tourists-count-select-modal, .search-container.transfers .tourists-count-select-modal, .search-container.excursions .tourists-count-select-modal{
+  top: 60px;
+}
+
+.search-container.hotels .form-group.rm .people-count-block, .search-container.excursions .form-group.rm .people-count-block, .search-container.transfers .form-group.rm .people-count-block{
+  background-color: transparent;
+  padding: 0px;
+  
+}
+
+.search-container.hotels .tourists-count-select-modal .people-count-block .title, .search-container.excursions .tourists-count-select-modal .people-count-block .title, .search-container.transfers .tourists-count-select-modal .people-count-block .title{
+  font-size: 16px;
+  color: #24223E;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.search-container.hotels .form-group.rm .count-block, .search-container.excursions .form-group.rm .count-block, .search-container.transfers .form-group.rm .count-block{
+  justify-content: center;
+  width: auto;
+}
+
+.search-container.hotels .tourists-count-select-modal .people-count-block .count-block .count-button, .search-container.excursions .tourists-count-select-modal .people-count-block .count-block .count-button, .search-container.transfers .tourists-count-select-modal .people-count-block .count-block .count-button{
+  background-color: #306DDE;
+  font-size: 16px;
+}
+
+.search-container.hotels .people-count-block-header, .search-container.transfers .people-count-block-header, .search-container.excursions .people-count-block-header{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.search-container.hotels .occupancy-widget-item:first-child, .search-container.transfers .occupancy-widget-item:first-child, .search-container.transfers .occupancy-widget-item:first-child{
+  padding-top: 0px;
+}
+
+.search-container.hotels .add-occupancy-widget-item,.search-container.hotels .remove-occupancy-widget-item{
+  color: #306DDE;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-container.excursions .add-occupancy-widget-item,.search-container.excursions .remove-occupancy-widget-item{
+  color: #306DDE;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-container.transfers .add-occupancy-widget-item,.search-container.transfers .remove-occupancy-widget-item{
+  color: #306DDE;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-container.hotels .tourists-count-select-modal .people-count-block .count-block .count-button:hover{
+  background-color: #E4E6EE;
+  color: #ABABC8;
+}
+
+.search-container.excursions .tourists-count-select-modal .people-count-block .count-block .count-button:hover{
+  background-color: #E4E6EE;
+  color: #ABABC8;
+}
+
+.search-container.transfers .tourists-count-select-modal .people-count-block .count-block .count-button:hover{
+  background-color: #E4E6EE;
+  color: #ABABC8;
+}
+
+.search-container.transfers .date-transfers{
+  width: 14%;
+}
+
+.search-container.transfers .time-transfers{
+  width: 14%;
+}
+
+.search-container.transfers .location-from-transfers{
+  width: 18%;
+}
+
+.search-container.transfers .location-to-transfers{
+  width: 18%;
+}
+
+.search-container.transfers .count-quests{
+  width: 18%;
+}
+
+.search-container.transfers .input-group-append{
+  background-color: #F4F7FD;
+  border-radius: 12px;
+}
+
+.search-container.transfers .input-group-text.picker{
+  border: none;
+  background-color: #EAF1FF;
+  padding: 18px;
+}
+
+.search-container.excursions .city-excursions{
+  width: 20%;
+}
+
+.search-container.excursions .date-from-excursions{
+  width: 20%;
+}
+
+.search-container.excursions .date-to-excursions{
+  width: 20%;
+}
+
+.search-container.excursions .count-quests{
+  width: 20%;
+}
+
+.search-container.excursions .search-btn-input{
+  width: 12%;
+}
+
+.select2-container--krajee-bs3 .select2-dropdown{
+  border: none;
+  border-radius: 16px;
+}
+
+.select2-search--dropdown{
+  background-color: #fff;
+  padding: 10px;
+}
+
+.select2-results{
+  background-color: #F4F7FD;
+}
+
+.select2-container--krajee-bs3 .select2-results__option--highlighted[aria-selected]{
+  background-color: #306DDE;
+}
+
+.select2-container--krajee-bs3 .select2-results__option.select2-results__option--selected, .select2-container--krajee-bs3 .select2-results__option[aria-selected=true]{
+  color: #24223E;
+  background-color: #F4F7FD;
+}
+
+.select2-results__option{
+  padding: 10px 20px;
+}
+
+.select2-container--krajee-bs3 .select2-search--dropdown .select2-search__field{
+  background: #F4F7FD url(../images/search-blue-small.svg) left 10px top 12px no-repeat;;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow:none;
+  border-radius: 12px;
+  height: 40px;
+  padding-left: 35px;
+}
+
+.select2-container--krajee-bs3 .select2-results__group{
+  background-color: #F4F7FD;
+}
+
+.select2-container--krajee-bs3.select2-container--open .select2-selection, .select2-container--krajee-bs3 .select2-selection:focus{
+  border: none;
+  -webkit-box-shadow:none;
+  box-shadow: none;
+}
+
 
 @media (max-width: 770px){
 

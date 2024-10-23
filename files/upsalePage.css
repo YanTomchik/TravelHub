@@ -936,6 +936,67 @@
     background-color: #F4F6F9;
   }
 
+
+  /* ANIMATION */
+
+  .checked-mail-icon {
+      position: absolute;
+      animation: showCheck 3s ease-in;
+  }
+
+  .mail-booking-image {
+      bottom: 0px;
+      position: relative;
+      animation: moveMail 0.3s forwards;
+  }
+
+  @keyframes moveMail {
+      0% {
+          transform: translateY(0%);
+      }
+
+      5% {
+          transform: translateY(60%);
+      }
+  }
+
+  @keyframes showCheck {
+      0% {
+          opacity: 0;
+      }
+
+      15% {
+          opacity: 0.2;
+      }
+
+      20% {
+          opacity: 0.4;
+      }
+
+      25% {
+          opacity: 0.6;
+      }
+
+      30% {
+          opacity: 0.8;
+      }
+
+      35% {
+          opacity: 1;
+      }
+  }
+
+  .mail-booking-image-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1s ease-in-out;
+
+  }
+
+  /* ANIMATION */
+
 @media (max-width: 767px) {
 
     .upsale-container .semi-h3 {
@@ -948,6 +1009,10 @@
 
     .mail-booking-image-wrapper img{
         width: 100px;
+    }
+
+    .checked-mail-icon{
+        max-width: 24px;
     }
 
     .card-body.type-1 .title-wrapper{

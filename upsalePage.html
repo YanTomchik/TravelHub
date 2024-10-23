@@ -389,7 +389,7 @@
         <main class="height-auto">
           <div class="row upsale-container">
             <div class="col-xl-8 balance-container">
-              <div class="card card-custom balance-header balance mobile-upsale-hide">
+              <div class="card card-custom balance-header balance ">
                 <div class="card-balance-info-wrapper">
                   <div class="title semi-h3">
                     Ваше бронирование получено
@@ -399,9 +399,16 @@
                     Ожидаем подтверждения
                   </div>
                 </div>
+                <!-- ANIMATION -->
                 <div class="mail-booking-image-wrapper">
-                  <img src="./images/upsale/mail-booking-default.svg" alt="">
+                  <img src="./images/upsale/mail-booking-default.svg" alt="" class="mail-booking-image">
+                  <img src="./images/mail-booking-checked.svg" alt="" class="checked-mail-icon">
+                    <dotlottie-player id="myLottie" src="https://lottie.host/85fc29bf-03c8-4e67-8fb5-619a563197d6/UKENeNoY6a.json"
+                      background="transparent" speed="1" style="width: 400%; height: 400%; position: absolute; " autoplay preload>
+                    </dotlottie-player>
                 </div>
+                <!-- ANIMATION -->
+    
               </div>
               <div class="card card-custom balance-header balance mobile-upsale-hide">
                 <div class="card-balance-info-wrapper">
@@ -1697,7 +1704,8 @@
                   </div>
                 </div>
                 <div class="mail-booking-image-wrapper">
-                  <img src="./images/upsale/mail-booking-default.svg" alt="">
+                  <img src="./images/upsale/mail-booking-default.svg" alt="" class="mail-booking-image">
+                  <img src="./images/mail-booking-checked.svg" alt="" class="checked-mail-icon">
                 </div>
               </div>
               <div class="card card-custom balance-header balance mobile-upsale-show">
@@ -1835,6 +1843,7 @@
           </div>
           <!-- NEW -->
         </main>
+        
 
         <footer>
           <div class="container">
@@ -1999,7 +2008,20 @@
   <!-- NEW -->
   <script src="./files/travelPolitics.js"></script>
   <script src="./files/upsalePage.js"></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
   <!-- NEW -->
+
+  <script>
+    // Инициализация Lottie-анимации
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-container'), // Элемент, в который вставляется анимация
+      renderer: 'svg', // Используем SVG-рендер
+      loop: true, // Анимация будет повторяться
+      autoplay: true, // Автоматическое воспроизведение
+      path: 'path-to-your-animation.json' // Путь к файлу анимации (Lottie JSON)
+    });
+  </script>
+  
 
   </div>
   </div>

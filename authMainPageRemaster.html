@@ -554,360 +554,8 @@
                                         <img src="./images/search-route-icon.svg" alt="">
                                         Создать маршрут через несколько городов
                                     </div>
-                                    <div class="form-row rm">
-                                        <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
-                                            <div class="form-group rm location-form field-flightsearchform-locationfrom required">
-                                                <label for="flightsearchform-locationfrom">Откуда</label>
-                                                <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
-                                                    name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
-                                                    data-krajee-select2="select2_c65e8864" style="width: 100%; height: 1px; visibility: hidden;"
-                                                    data-select2-id="flightsearchform-locationfrom" tabindex="-1" aria-hidden="true">
-                                                    <option value="" data-select2-id="2">Откуда (город или аэропорт)
-                                                    </option>
-                                                    <option value="MOW" selected="" data-select2-id="3">Москва</option>
-                                                </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
-                                                    style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
-                                                            role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-                                                            aria-labelledby="select2-flightsearchform-locationfrom-container"><span class="select2-selection__rendered"
-                                                                id="select2-flightsearchform-locationfrom-container" role="textbox" aria-readonly="true"
-                                                                title="Москва">Москва</span><span class="select2-selection__arrow" role="presentation"><b
-                                                                    role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                                        aria-hidden="true"></span></span>
-                                                
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item charter-input-from " id="charter-input-from">
-                                            <div class="form-group rm location-form field-flightsearchform-locationfrom required">
-                                                <label class="control-label"
-                                                    for="flightsearchform-locationfrom">Откуда</label>
-                                                <div class="input-charter-container">
-                                                    <input type="text" autocomplete="off" placeholder="Откуда"
-                                                        class="input-charter-class" id="input-charter-class-from">
-                                                </div>
-                                                <div id="dropdown-charter-from" class="dropdown-charter">
-                                                    <div class="country-charter-wrapper">
-                                                        <div class="dropdown-header-charter"
-                                                            id="dropdown-header-charter">Выберите страну</div>
-                                                        <div class="dropdown-charter-list"
-                                                            id="dropdown-charter-list-country-from"></div>
-                                                    </div>
-                                                    <div class="city-charter-wrapper">
-                                                        <div class="dropdown-header-charter"
-                                                            id="dropdown-header-charter">Выберите город</div>
-                                                        <div class="dropdown-charter-list-city"
-                                                            id="dropdown-charter-list-city-from"></div>
-                                                    </div>
-                                                    <div class="loader-calendar-wrapper from">
-                                                        <div class="loader-calendar charter" id="loader-charter"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="switch-btn-wrapper" id="switch-btn-wrapper">
-                                            <img src="./images/switcher-avia-icon.svg" alt="">
-                                        </div>
-
-                                        <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
-                                            <div class="form-group rm location-form location-form field-flightsearchform-locationto required ">
-                                                <label class="control-label" for="flightsearchform-locationto">Куда</label>
-                                                <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
-                                                    name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
-                                                    data-krajee-select2="select2_da4abfe4" style="width: 100%; height: 1px; visibility: hidden;"
-                                                    data-select2-id="flightsearchform-locationto" tabindex="-1" aria-hidden="true">
-                                                    <option value="" data-select2-id="5">Куда (город или аэропорт)
-                                                    </option>
-                                                    <option value="MLE" selected="" data-select2-id="6">Мале MLE
-                                                    </option>
-                                                </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="4"
-                                                    style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
-                                                            role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-                                                            aria-labelledby="select2-flightsearchform-locationto-container"><span
-                                                                class="select2-selection__rendered" id="select2-flightsearchform-locationto-container"
-                                                                role="textbox" aria-readonly="true" title="Мале MLE">Мале MLE</span><span
-                                                                class="select2-selection__arrow" role="presentation"><b
-                                                                    role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                                        aria-hidden="true"></span></span>
-                                        
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item charter-input-to" id="charter-input-to">
-                                            <div class="form-group rm location-form field-flightsearchform-locationto required">
-                                                <label class="control-label"
-                                                    for="flightsearchform-locationto">Куда</label>
-                                                <div class="input-charter-container">
-                                                    <input type="text" autocomplete="off" placeholder="Куда"
-                                                        class="input-charter-class" id="input-charter-class-to">
-                                                </div>
-                                                <div id="dropdown-charter-to" class="dropdown-charter to">
-                                                    <div class="country-charter-wrapper">
-                                                        <div class="dropdown-header-charter"
-                                                            id="dropdown-header-charter">Выберите страну</div>
-                                                        <div class="dropdown-charter-list"
-                                                            id="dropdown-charter-list-country-to"></div>
-                                                    </div>
-                                                    <div class="city-charter-wrapper">
-                                                        <div class="dropdown-header-charter"
-                                                            id="dropdown-header-charter-city">Выберите город</div>
-                                                        <div class="dropdown-charter-list-city"
-                                                            id="dropdown-charter-list-city-to"></div>
-                                                    </div>
-                                                    <div class="loader-calendar-wrapper to">
-                                                        <div class="loader-calendar charter" id="loader-charter"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item flight-date">
-                                            <div class="form-group rm field-hotel-book-checkin-date">
-                                                <label class="control-label" for="hotel-book-checkin-date">Когда</label>
-                                                <div class="date-inputs-wrapper rm">
-                                                    <input type="text" class="date-inputs-item left datepicker-avia-from" name="FlightSearchForm[date]"
-                                                    placeholder="Туда" value="26.10.2024" autocomplete="off" readonly="">
-                                                    <span class="remove-datepicker-date" id="remove-datepicker-date">
-                                                        <img src="./images/cross-icon.svg" alt="Cross-btn">
-                                                    </span>
-                                                </div>
-                                                <div class="help-block"></div>
-                                                <div class="error-message-user" id="error-message-user">
-                                            
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item flight-date">
-                                            <div class="form-group rm field-hotel-book-checkin-date">
-                                                <label class="control-label" for="hotel-book-checkin-date">Обратно</label>
-
-                                                <div class="date-inputs-wrapper rm">
-                                                    <input type="text" class="date-inputs-item right datepicker-avia-to" name="FlightSearchForm[dateEnd]"
-                                                        placeholder="Обратно" value="" autocomplete="off" readonly="">
-                                                    <span class="remove-datepicker-date" id="remove-datepicker-date">
-                                                        <img src="./images/cross-icon.svg" alt="Cross-btn">
-                                                    </span>
-                                                </div>
-                                                <div class="help-block"></div>
-                                                <div class="error-message-user" id="error-message-user">
-                                            
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm people-form">
-                                                <label class="control-label">Взрослые</label>
-
-                                                <div class="people-count-block">
-                                                    <div class="count-block">
-                                                        <button id="adult-minus-button" class="count-button minus">-</button>
-                                                        <p id="adult-counter" class="people-counter">2</p>
-                                                        <button id="adult-plus-button" class="count-button plus">+</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item people-form">
-                                            <div class="form-group rm ">
-                                                <label class="control-label">Дети (2-12)</label>
-
-                                                <div class="people-count-block">
-                                                    <div class="count-block">
-                                                        <button id="children-minus-button" class="count-button minus">-</button>
-                                                        <p id="children-counter" class="people-counter">0</p>
-                                                        <button id="children-plus-button" class="count-button plus">+</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item people-form">
-                                            <div class="form-group rm ">
-                                                <label class="control-label">Младенцы (0-2)</label>
-
-                                                <div class="people-count-block">
-                                                    <div class="count-block">
-                                                        <button id="infant-minus-button" class="count-button minus">-</button>
-                                                        <p id="infant-counter" class="people-counter">0</p>
-                                                        <button id="infant-plus-button" class="count-button plus">+</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row rm">
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm field-cabin-class">
-                                            
-                                                <div class="radio-group cabin-class" >
-                                                    <label class="radio-label">
-                                                        <input type="radio" name="cabin-class" value="economy" checked>
-                                                        <span class="custom-radio"></span>
-                                                        Эконом
-                                                    </label>
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm field-cabin-class">
-                                            
-                                                <div class="radio-group cabin-class" >
-                                                    <label class="radio-label">
-                                                        <input type="radio" name="cabin-class" value="premium">
-                                                        <span class="custom-radio"></span>
-                                                        Премиум
-                                                    </label>
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm field-cabin-class">
-                                            
-                                                <div class="radio-group cabin-class" >
-                                                    <label class="radio-label">
-                                                        <input type="radio" name="cabin-class" value="business">
-                                                        <span class="custom-radio"></span>
-                                                        Бизнес
-                                                    </label>
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm field-cabin-class">
-                                            
-                                                <div class="radio-group cabin-class" >
-                                                    <label class="radio-label">
-                                                        <input type="radio" name="cabin-class" value="first">
-                                                        <span class="custom-radio"></span>
-                                                        Первый
-                                                    </label>
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item">
-                                            <div class="form-group rm dropdown-avia-type">
-                                                <div class="dropdown-avia">
-                                                    <button class="dropdown-toggle-avia" onclick="toggleDropdown(this)"><span>Только чартеры</span><img src="./images/chevron-down-blue-small.svg" alt=""></button>
-                                                    <div class="dropdown-menu-avia">
-                                                        <label>
-                                                            Все <input type="checkbox" checked>
-                                                        </label>
-                                                        <label>
-                                                            Только чартеры <input type="checkbox">
-                                                        </label>
-                                                        <label>
-                                                            Название компании <input type="checkbox">
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group-item ">
-                                            <div class="form-group rm">
-                                                <button type="submit" class="btn btn-primary rm search-btn search-btn-desktop">Найти</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="search-container fade" id="manyWayAviaWrapper" style="display: none;">
-                                    <div class="route-link" id="addRouteAviaManyWay">
-                                        <img src="./images/manyway-route-link.svg" alt="">
-                                        Вернуться к простому маршруту
-                                    </div>
-                                    
-                                    <div class="form-row rm avia-row">
-
-                                        <div class="group-type-1">
-                                            <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
-                                                <div class="form-group rm field-flightsearchform-locationfrom required">
-                                                    <label for="flightsearchform-locationfrom">Откуда</label>
-                                                    <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
-                                                        name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
-                                                        data-krajee-select2="select2_c65e8864" style="width: 100%; height: 1px; visibility: hidden;"
-                                                        data-select2-id="flightsearchform-locationfrom" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="2">Откуда (город или аэропорт)
-                                                        </option>
-                                                        <option value="MOW" selected="" data-select2-id="3">Москва</option>
-                                                    </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
-                                                        style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
-                                                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-                                                                aria-labelledby="select2-flightsearchform-locationfrom-container"><span class="select2-selection__rendered"
-                                                                    id="select2-flightsearchform-locationfrom-container" role="textbox" aria-readonly="true"
-                                                                    title="Москва">Москва</span><span class="select2-selection__arrow" role="presentation"><b
-                                                                        role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                                            aria-hidden="true"></span></span>
-                                                    
-                                                    <div class="help-block"></div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="switch-btn-wrapper" id="switch-btn-wrapper">
-                                                <img src="./images/switcher-avia-icon.svg" alt="">
-                                            </div>
-    
-                                            <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
-                                                <div class="form-group rm field-flightsearchform-locationto required">
-                                                    <label class="control-label" for="flightsearchform-locationto">Куда</label>
-                                                    <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
-                                                        name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
-                                                        data-krajee-select2="select2_da4abfe4" style="width: 100%; height: 1px; visibility: hidden;"
-                                                        data-select2-id="flightsearchform-locationto" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="5">Куда (город или аэропорт)
-                                                        </option>
-                                                        <option value="MLE" selected="" data-select2-id="6">Мале MLE
-                                                        </option>
-                                                    </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="4"
-                                                        style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
-                                                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-                                                                aria-labelledby="select2-flightsearchform-locationto-container"><span
-                                                                    class="select2-selection__rendered" id="select2-flightsearchform-locationto-container"
-                                                                    role="textbox" aria-readonly="true" title="Мале MLE">Мале MLE</span><span
-                                                                    class="select2-selection__arrow" role="presentation"><b
-                                                                        role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                                            aria-hidden="true"></span></span>
-                                            
-                                                    <div class="help-block"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="group-type-2 date">
-                                            <div class="input-group-item flight-date">
-                                                <div class="form-group rm field-hotel-book-checkin-date">
-                                                    <label class="control-label" for="hotel-book-checkin-date">Туда</label>
-                                                    <div class="date-inputs-wrapper rm">
-                                                        <input type="text" class="date-inputs-item left datepicker-avia-from" name="FlightSearchForm[date]"
-                                                        placeholder="Туда" value="26.10.2024" autocomplete="off" readonly="">
-                                                        <span class="remove-datepicker-date" id="remove-datepicker-date">
-                                                            <img src="./images/cross-icon.svg" alt="Cross-btn">
-                                                        </span>
-                                                    </div>
-                                                    <div class="help-block"></div>
-                                                    <div class="error-message-user" id="error-message-user">
-                                                
-                                                    </div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="delete-avia-row">
-                                                <img src="./images/cross-grey-icon.svg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row rm avia-row">
-
-                                        <div class="group-type-1">
+                                    <div class="main-form-row">
+                                        <div class="form-row rm">
                                             <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
                                                 <div class="form-group rm location-form field-flightsearchform-locationfrom required">
                                                     <label for="flightsearchform-locationfrom">Откуда</label>
@@ -931,12 +579,40 @@
                                                 </div>
                                             </div>
     
+                                            <div class="input-group-item charter-input-from " id="charter-input-from">
+                                                <div class="form-group rm location-form field-flightsearchform-locationfrom required">
+                                                    <label class="control-label"
+                                                        for="flightsearchform-locationfrom">Откуда</label>
+                                                    <div class="input-charter-container">
+                                                        <input type="text" autocomplete="off" placeholder="Откуда"
+                                                            class="input-charter-class" id="input-charter-class-from">
+                                                    </div>
+                                                    <div id="dropdown-charter-from" class="dropdown-charter">
+                                                        <div class="country-charter-wrapper">
+                                                            <div class="dropdown-header-charter"
+                                                                id="dropdown-header-charter">Выберите страну</div>
+                                                            <div class="dropdown-charter-list"
+                                                                id="dropdown-charter-list-country-from"></div>
+                                                        </div>
+                                                        <div class="city-charter-wrapper">
+                                                            <div class="dropdown-header-charter"
+                                                                id="dropdown-header-charter">Выберите город</div>
+                                                            <div class="dropdown-charter-list-city"
+                                                                id="dropdown-charter-list-city-from"></div>
+                                                        </div>
+                                                        <div class="loader-calendar-wrapper from">
+                                                            <div class="loader-calendar charter" id="loader-charter"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
                                             <div class="switch-btn-wrapper" id="switch-btn-wrapper">
                                                 <img src="./images/switcher-avia-icon.svg" alt="">
                                             </div>
     
                                             <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
-                                                <div class="form-group rm field-flightsearchform-locationto required">
+                                                <div class="form-group rm location-form location-form field-flightsearchform-locationto required ">
                                                     <label class="control-label" for="flightsearchform-locationto">Куда</label>
                                                     <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
                                                         name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
@@ -959,12 +635,38 @@
                                                     <div class="help-block"></div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="group-type-2 date">
+    
+                                            <div class="input-group-item charter-input-to" id="charter-input-to">
+                                                <div class="form-group rm location-form field-flightsearchform-locationto required">
+                                                    <label class="control-label"
+                                                        for="flightsearchform-locationto">Куда</label>
+                                                    <div class="input-charter-container">
+                                                        <input type="text" autocomplete="off" placeholder="Куда"
+                                                            class="input-charter-class" id="input-charter-class-to">
+                                                    </div>
+                                                    <div id="dropdown-charter-to" class="dropdown-charter to">
+                                                        <div class="country-charter-wrapper">
+                                                            <div class="dropdown-header-charter"
+                                                                id="dropdown-header-charter">Выберите страну</div>
+                                                            <div class="dropdown-charter-list"
+                                                                id="dropdown-charter-list-country-to"></div>
+                                                        </div>
+                                                        <div class="city-charter-wrapper">
+                                                            <div class="dropdown-header-charter"
+                                                                id="dropdown-header-charter-city">Выберите город</div>
+                                                            <div class="dropdown-charter-list-city"
+                                                                id="dropdown-charter-list-city-to"></div>
+                                                        </div>
+                                                        <div class="loader-calendar-wrapper to">
+                                                            <div class="loader-calendar charter" id="loader-charter"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
                                             <div class="input-group-item flight-date">
                                                 <div class="form-group rm field-hotel-book-checkin-date">
-                                                    <label class="control-label" for="hotel-book-checkin-date">Туда</label>
+                                                    <label class="control-label" for="hotel-book-checkin-date">Когда</label>
                                                     <div class="date-inputs-wrapper rm">
                                                         <input type="text" class="date-inputs-item left datepicker-avia-from" name="FlightSearchForm[date]"
                                                         placeholder="Туда" value="26.10.2024" autocomplete="off" readonly="">
@@ -979,23 +681,24 @@
                                                 </div>
                                             </div>
     
-                                            <div class="delete-avia-row">
-                                                <img src="./images/cross-grey-icon.svg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row rm">
-                                        
-                                        <div class="group-type-1">
-                                            <div class="input-group-item" >
-                                                <div class="add-avia-row-btn">
-                                                    <p>Добавить перелет</p>
-                                                    <img src="./images/add-blue-circle-icon.svg" alt="">
+                                            <div class="input-group-item flight-date">
+                                                <div class="form-group rm field-hotel-book-checkin-date">
+                                                    <label class="control-label" for="hotel-book-checkin-date">Обратно</label>
+    
+                                                    <div class="date-inputs-wrapper rm">
+                                                        <input type="text" class="date-inputs-item right datepicker-avia-to" name="FlightSearchForm[dateEnd]"
+                                                            placeholder="Обратно" value="" autocomplete="off" readonly="">
+                                                        <span class="remove-datepicker-date" id="remove-datepicker-date">
+                                                            <img src="./images/cross-icon.svg" alt="Cross-btn">
+                                                        </span>
+                                                    </div>
+                                                    <div class="help-block"></div>
+                                                    <div class="error-message-user" id="error-message-user">
+                                                
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="group-type-2">
+    
                                             <div class="input-group-item ">
                                                 <div class="form-group rm people-form">
                                                     <label class="control-label">Взрослые</label>
@@ -1010,8 +713,8 @@
                                                 </div>
                                             </div>
     
-                                            <div class="input-group-item ">
-                                                <div class="form-group rm people-form">
+                                            <div class="input-group-item people-form">
+                                                <div class="form-group rm ">
                                                     <label class="control-label">Дети (2-12)</label>
     
                                                     <div class="people-count-block">
@@ -1024,8 +727,8 @@
                                                 </div>
                                             </div>
     
-                                            <div class="input-group-item ">
-                                                <div class="form-group rm people-form">
+                                            <div class="input-group-item people-form">
+                                                <div class="form-group rm ">
                                                     <label class="control-label">Младенцы (0-2)</label>
     
                                                     <div class="people-count-block">
@@ -1038,17 +741,13 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        
-                                    </div>
-                                    <div class="form-row rm">
-                                        <div class="group-type-1">
+                                        <div class="form-row rm">
                                             <div class="input-group-item ">
                                                 <div class="form-group rm field-cabin-class">
                                                 
-                                                    <div class="radio-group cabin-class">
+                                                    <div class="radio-group cabin-class" >
                                                         <label class="radio-label">
-                                                            <input type="radio" name="cabin-class" value="economy">
+                                                            <input type="radio" name="cabin-class" value="economy" checked>
                                                             <span class="custom-radio"></span>
                                                             Эконом
                                                         </label>
@@ -1059,7 +758,7 @@
                                             <div class="input-group-item ">
                                                 <div class="form-group rm field-cabin-class">
                                                 
-                                                    <div class="radio-group cabin-class">
+                                                    <div class="radio-group cabin-class" >
                                                         <label class="radio-label">
                                                             <input type="radio" name="cabin-class" value="premium">
                                                             <span class="custom-radio"></span>
@@ -1072,7 +771,7 @@
                                             <div class="input-group-item ">
                                                 <div class="form-group rm field-cabin-class">
                                                 
-                                                    <div class="radio-group cabin-class">
+                                                    <div class="radio-group cabin-class" >
                                                         <label class="radio-label">
                                                             <input type="radio" name="cabin-class" value="business">
                                                             <span class="custom-radio"></span>
@@ -1085,7 +784,7 @@
                                             <div class="input-group-item ">
                                                 <div class="form-group rm field-cabin-class">
                                                 
-                                                    <div class="radio-group cabin-class">
+                                                    <div class="radio-group cabin-class" >
                                                         <label class="radio-label">
                                                             <input type="radio" name="cabin-class" value="first">
                                                             <span class="custom-radio"></span>
@@ -1095,13 +794,14 @@
                                                 
                                                 </div>
                                             </div>
+    
                                             <div class="input-group-item">
                                                 <div class="form-group rm dropdown-avia-type">
                                                     <div class="dropdown-avia">
-                                                        <button class="dropdown-toggle-avia" onclick="toggleDropdown(this)"><span>Только чартеры</span> <img src="./images/chevron-down-blue-small.svg" alt=""></button>
+                                                        <button class="dropdown-toggle-avia" onclick="toggleDropdown(this)"><span>Только чартеры</span><img src="./images/chevron-down-blue-small.svg" alt=""></button>
                                                         <div class="dropdown-menu-avia">
                                                             <label>
-                                                                Все <input type="checkbox" checked="">
+                                                                Все <input type="checkbox" checked>
                                                             </label>
                                                             <label>
                                                                 Только чартеры <input type="checkbox">
@@ -1113,14 +813,321 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="group-type-2">
-                                            <div class="form-group rm">
-                                                <button type="submit" class="btn btn-primary rm search-btn search-btn-desktop">Найти</button>
+    
+                                            <div class="input-group-item ">
+                                                <div class="form-group rm">
+                                                    <button type="submit" class="btn btn-primary rm search-btn search-btn-desktop">Найти</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                </div>
+                                <div class="search-container fade" id="manyWayAviaWrapper" style="display: none;">
+                                    <div class="route-link" id="addRouteAviaManyWay">
+                                        <img src="./images/manyway-route-link.svg" alt="">
+                                        Вернуться к простому маршруту
+                                    </div>
+
+                                    <div class="main-form-row">
+                                        <div class="form-row rm avia-row">
+
+                                            <div class="group-type-1">
+                                                <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
+                                                    <div class="form-group rm field-flightsearchform-locationfrom required">
+                                                        <label for="flightsearchform-locationfrom">Откуда</label>
+                                                        <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
+                                                            name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
+                                                            data-krajee-select2="select2_c65e8864" style="width: 100%; height: 1px; visibility: hidden;"
+                                                            data-select2-id="flightsearchform-locationfrom" tabindex="-1" aria-hidden="true">
+                                                            <option value="" data-select2-id="2">Откуда (город или аэропорт)
+                                                            </option>
+                                                            <option value="MOW" selected="" data-select2-id="3">Москва</option>
+                                                        </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
+                                                            style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
+                                                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
+                                                                    aria-labelledby="select2-flightsearchform-locationfrom-container"><span class="select2-selection__rendered"
+                                                                        id="select2-flightsearchform-locationfrom-container" role="textbox" aria-readonly="true"
+                                                                        title="Москва">Москва</span><span class="select2-selection__arrow" role="presentation"><b
+                                                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                                                aria-hidden="true"></span></span>
+                                                        
+                                                        <div class="help-block"></div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="switch-btn-wrapper" id="switch-btn-wrapper">
+                                                    <img src="./images/switcher-avia-icon.svg" alt="">
+                                                </div>
+        
+                                                <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
+                                                    <div class="form-group rm field-flightsearchform-locationto required">
+                                                        <label class="control-label" for="flightsearchform-locationto">Куда</label>
+                                                        <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
+                                                            name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
+                                                            data-krajee-select2="select2_da4abfe4" style="width: 100%; height: 1px; visibility: hidden;"
+                                                            data-select2-id="flightsearchform-locationto" tabindex="-1" aria-hidden="true">
+                                                            <option value="" data-select2-id="5">Куда (город или аэропорт)
+                                                            </option>
+                                                            <option value="MLE" selected="" data-select2-id="6">Мале MLE
+                                                            </option>
+                                                        </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="4"
+                                                            style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
+                                                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
+                                                                    aria-labelledby="select2-flightsearchform-locationto-container"><span
+                                                                        class="select2-selection__rendered" id="select2-flightsearchform-locationto-container"
+                                                                        role="textbox" aria-readonly="true" title="Мале MLE">Мале MLE</span><span
+                                                                        class="select2-selection__arrow" role="presentation"><b
+                                                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                                                aria-hidden="true"></span></span>
+                                                
+                                                        <div class="help-block"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="group-type-2 date">
+                                                <div class="input-group-item flight-date">
+                                                    <div class="form-group rm field-hotel-book-checkin-date">
+                                                        <label class="control-label" for="hotel-book-checkin-date">Туда</label>
+                                                        <div class="date-inputs-wrapper rm">
+                                                            <input type="text" class="date-inputs-item left datepicker-avia-from" name="FlightSearchForm[date]"
+                                                            placeholder="Туда" value="26.10.2024" autocomplete="off" readonly="">
+                                                            <span class="remove-datepicker-date" id="remove-datepicker-date">
+                                                                <img src="./images/cross-icon.svg" alt="Cross-btn">
+                                                            </span>
+                                                        </div>
+                                                        <div class="help-block"></div>
+                                                        <div class="error-message-user" id="error-message-user">
+                                                    
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="delete-avia-row">
+                                                    <img src="./images/cross-grey-icon.svg" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row rm avia-row">
+    
+                                            <div class="group-type-1">
+                                                <div class="input-group-item input-default-flights-from" id="input-default-flights-from">
+                                                    <div class="form-group rm location-form field-flightsearchform-locationfrom required">
+                                                        <label for="flightsearchform-locationfrom">Откуда</label>
+                                                        <select id="flightsearchform-locationfrom" class="form-control select2-hidden-accessible"
+                                                            name="FlightSearchForm[locationFrom]" aria-required="true" data-s2-options="s2options_3267a624"
+                                                            data-krajee-select2="select2_c65e8864" style="width: 100%; height: 1px; visibility: hidden;"
+                                                            data-select2-id="flightsearchform-locationfrom" tabindex="-1" aria-hidden="true">
+                                                            <option value="" data-select2-id="2">Откуда (город или аэропорт)
+                                                            </option>
+                                                            <option value="MOW" selected="" data-select2-id="3">Москва</option>
+                                                        </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="1"
+                                                            style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
+                                                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
+                                                                    aria-labelledby="select2-flightsearchform-locationfrom-container"><span class="select2-selection__rendered"
+                                                                        id="select2-flightsearchform-locationfrom-container" role="textbox" aria-readonly="true"
+                                                                        title="Москва">Москва</span><span class="select2-selection__arrow" role="presentation"><b
+                                                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                                                aria-hidden="true"></span></span>
+                                                        
+                                                        <div class="help-block"></div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="switch-btn-wrapper" id="switch-btn-wrapper">
+                                                    <img src="./images/switcher-avia-icon.svg" alt="">
+                                                </div>
+        
+                                                <div class="input-group-item input-default-flights-to" id="input-default-flights-to">
+                                                    <div class="form-group rm field-flightsearchform-locationto required">
+                                                        <label class="control-label" for="flightsearchform-locationto">Куда</label>
+                                                        <select id="flightsearchform-locationto" class="form-control select2-hidden-accessible"
+                                                            name="FlightSearchForm[locationTo]" aria-required="true" data-s2-options="s2options_3267a624"
+                                                            data-krajee-select2="select2_da4abfe4" style="width: 100%; height: 1px; visibility: hidden;"
+                                                            data-select2-id="flightsearchform-locationto" tabindex="-1" aria-hidden="true">
+                                                            <option value="" data-select2-id="5">Куда (город или аэропорт)
+                                                            </option>
+                                                            <option value="MLE" selected="" data-select2-id="6">Мале MLE
+                                                            </option>
+                                                        </select><span class="select2 select2-container select2-container--krajee-bs3" dir="ltr" data-select2-id="4"
+                                                            style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single"
+                                                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
+                                                                    aria-labelledby="select2-flightsearchform-locationto-container"><span
+                                                                        class="select2-selection__rendered" id="select2-flightsearchform-locationto-container"
+                                                                        role="textbox" aria-readonly="true" title="Мале MLE">Мале MLE</span><span
+                                                                        class="select2-selection__arrow" role="presentation"><b
+                                                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                                                aria-hidden="true"></span></span>
+                                                
+                                                        <div class="help-block"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="group-type-2 date">
+                                                <div class="input-group-item flight-date">
+                                                    <div class="form-group rm field-hotel-book-checkin-date">
+                                                        <label class="control-label" for="hotel-book-checkin-date">Туда</label>
+                                                        <div class="date-inputs-wrapper rm">
+                                                            <input type="text" class="date-inputs-item left datepicker-avia-from" name="FlightSearchForm[date]"
+                                                            placeholder="Туда" value="26.10.2024" autocomplete="off" readonly="">
+                                                            <span class="remove-datepicker-date" id="remove-datepicker-date">
+                                                                <img src="./images/cross-icon.svg" alt="Cross-btn">
+                                                            </span>
+                                                        </div>
+                                                        <div class="help-block"></div>
+                                                        <div class="error-message-user" id="error-message-user">
+                                                    
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="delete-avia-row">
+                                                    <img src="./images/cross-grey-icon.svg" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row rm">
+                                            
+                                            <div class="group-type-1">
+                                                <div class="input-group-item" >
+                                                    <div class="add-avia-row-btn">
+                                                        <p>Добавить перелет</p>
+                                                        <img src="./images/add-blue-circle-icon.svg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="group-type-2">
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm people-form">
+                                                        <label class="control-label">Взрослые</label>
+        
+                                                        <div class="people-count-block">
+                                                            <div class="count-block">
+                                                                <button id="adult-minus-button" class="count-button minus">-</button>
+                                                                <p id="adult-counter" class="people-counter">2</p>
+                                                                <button id="adult-plus-button" class="count-button plus">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm people-form">
+                                                        <label class="control-label">Дети (2-12)</label>
+        
+                                                        <div class="people-count-block">
+                                                            <div class="count-block">
+                                                                <button id="children-minus-button" class="count-button minus">-</button>
+                                                                <p id="children-counter" class="people-counter">0</p>
+                                                                <button id="children-plus-button" class="count-button plus">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm people-form">
+                                                        <label class="control-label">Младенцы (0-2)</label>
+        
+                                                        <div class="people-count-block">
+                                                            <div class="count-block">
+                                                                <button id="infant-minus-button" class="count-button minus">-</button>
+                                                                <p id="infant-counter" class="people-counter">0</p>
+                                                                <button id="infant-plus-button" class="count-button plus">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            
+                                        </div>
+                                        <div class="form-row rm">
+                                            <div class="group-type-1">
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm field-cabin-class">
+                                                    
+                                                        <div class="radio-group cabin-class">
+                                                            <label class="radio-label">
+                                                                <input type="radio" name="cabin-class" value="economy">
+                                                                <span class="custom-radio"></span>
+                                                                Эконом
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm field-cabin-class">
+                                                    
+                                                        <div class="radio-group cabin-class">
+                                                            <label class="radio-label">
+                                                                <input type="radio" name="cabin-class" value="premium">
+                                                                <span class="custom-radio"></span>
+                                                                Премиум
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm field-cabin-class">
+                                                    
+                                                        <div class="radio-group cabin-class">
+                                                            <label class="radio-label">
+                                                                <input type="radio" name="cabin-class" value="business">
+                                                                <span class="custom-radio"></span>
+                                                                Бизнес
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-item ">
+                                                    <div class="form-group rm field-cabin-class">
+                                                    
+                                                        <div class="radio-group cabin-class">
+                                                            <label class="radio-label">
+                                                                <input type="radio" name="cabin-class" value="first">
+                                                                <span class="custom-radio"></span>
+                                                                Первый
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-item">
+                                                    <div class="form-group rm dropdown-avia-type">
+                                                        <div class="dropdown-avia">
+                                                            <button class="dropdown-toggle-avia" onclick="toggleDropdown(this)"><span>Только чартеры</span> <img src="./images/chevron-down-blue-small.svg" alt=""></button>
+                                                            <div class="dropdown-menu-avia">
+                                                                <label>
+                                                                    Все <input type="checkbox" checked="">
+                                                                </label>
+                                                                <label>
+                                                                    Только чартеры <input type="checkbox">
+                                                                </label>
+                                                                <label>
+                                                                    Название компании <input type="checkbox">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="group-type-2">
+                                                <div class="form-group rm">
+                                                    <button type="submit" class="btn btn-primary rm search-btn search-btn-desktop">Найти</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
                             </div>
