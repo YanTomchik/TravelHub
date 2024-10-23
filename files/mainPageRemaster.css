@@ -1875,7 +1875,7 @@ p.note {
 
 .team-card-item-info p.number{
   font-size: 17px;
-  color: #24223E;
+  color: #24223E!important;
 }
 
 .section-subheader{
