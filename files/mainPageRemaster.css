@@ -4082,7 +4082,7 @@ ul.pagination.rm li{
     }
 
     .landing-container .feature-item .feature-item-content{
-        gap: 8px;
+        gap: 10px;
     }
 
     .landing-banner-footer h2{
@@ -4194,6 +4194,10 @@ ul.pagination.rm li{
 
     .news-card-item{
         width: 100%!important;
+    }
+
+    .news-card-item-title{
+      white-space: normal;
     }
 
     .news-section .slick-arrow.slick-next{
