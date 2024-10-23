@@ -2,13 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabHeaders = document.querySelectorAll(".language-tab");
     const tabContents = document.querySelectorAll(".language-content");
 
-    const tabHeadersMobile = document.querySelectorAll(".language-tab");
-    const tabContentsMobile = document.querySelectorAll(".language-content");
-
     tabHeaders.forEach((header) => {
-        
         header.addEventListener("click", () => {
-            
             // Убираем класс 'active' у всех заголовков
             tabHeaders.forEach((h) => h.classList.remove("active"));
             // Добавляем класс 'active' только к выбранному заголовку
@@ -26,30 +21,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    const toggleButton = document.querySelector(".header-language > span");
-    const toggleButtonmobile = document.querySelector(".header-right-block-sub-menu .header-language > span");
-    const dropdown = document.querySelector(".header-language-dropdown");
-    const dropdownMobile = document.querySelector(".header-right-block-sub-menu .header-language-dropdown");
+    const toggleButton = $(".header-language-content");
+    const dropdown = $(".header-language-dropdown");
 
     // Функция для открытия/закрытия блока
     function toggleDropdown() {
-        dropdown.classList.toggle("active");
-    }
-
-    function toggleDropdownMobile() {
-        dropdownMobile.classList.toggle("active");
+        dropdown.toggleClass("active");
     }
 
     // Открытие/закрытие по клику на <span>
-    toggleButton.addEventListener("click", toggleDropdown);
-
-    // Открытие/закрытие по клику на <span>
-    toggleButtonmobile.addEventListener("click", toggleDropdownMobile);
+    toggleButton.on('click', function() {
+        toggleDropdown();
+    })
 
     // Закрытие блока при клике вне блока
-    document.addEventListener("click", function (event) {
-        if (!dropdown.contains(event.target) && event.target !== toggleButton) {
-            dropdown.classList.remove("active");
+    $(document).mouseup(function(e) {
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!dropdown.is(e.target) && dropdown.has(e.target).length === 0) {
+            dropdown.removeClass("active");
         }
     });
 
@@ -57,9 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleNavDesktop = document.querySelector(".header-toggle-nav-desktop > span");
     const dropdownNavDesktop = document.querySelector(".header-dropdown-desktop");
 
-    toggleNavDesktop.addEventListener("click", function (event) {
-        dropdownNavDesktop.classList.toggle("active");
-    })
+    if(toggleNavDesktop){
+        toggleNavDesktop.addEventListener("click", function (event) {
+            dropdownNavDesktop.classList.toggle("active");
+        })
+    }
+    
 
     document.addEventListener("click", function (event) {
         if (!dropdownNavDesktop.contains(event.target) && event.target !== toggleNavDesktop) {
@@ -99,15 +91,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownNavMobile = document.querySelector(".header-bottom");
     const body = document.querySelector("body");
 
-    toggleNavMobile.addEventListener("click", function (event) {
-        dropdownNavMobile.classList.add("active");
-        body.classList.add("overflow");
-    });
-
-    closeNavMobile.addEventListener("click", function (event) {
-        dropdownNavMobile.classList.remove("active");
-        body.classList.remove("overflow");
-    })
+    if(toggleNavMobile){
+        toggleNavMobile.addEventListener("click", function (event) {
+            dropdownNavMobile.classList.add("active");
+            body.classList.add("overflow");
+        });
+    }
+    
+    if(closeNavMobile){
+        closeNavMobile.addEventListener("click", function (event) {
+            dropdownNavMobile.classList.remove("active");
+            body.classList.remove("overflow");
+        })
+    }
+    
 
 
     //
@@ -154,6 +151,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    // Функция для извлечения параметров из URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Получаем значение параметра currency
+    const currency = getQueryParam('currency');
+    const currencyHeaderText = document.querySelector('.header-language-content .currency-text')
+    // Используем значение currency на странице
+    if (currency) {
+        currencyHeaderText.textContent = currency;
+    }else{
+        currencyHeaderText.textContent = 'BYN';
+    }
+
 
 });
 
