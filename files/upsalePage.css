@@ -941,13 +941,29 @@
 
   .checked-mail-icon {
       position: absolute;
-      animation: showCheck 3s ease-in;
+      
   }
 
   .mail-booking-image {
       bottom: 0px;
       position: relative;
-      animation: moveMail 0.3s forwards;
+      
+  }
+
+  .mail-booking-image-wrapper.animate .mail-booking-image{
+    animation: moveMail 0.3s forwards;
+  }
+
+  .mail-booking-image-wrapper.animate .checked-mail-icon {
+    animation: showCheck 3s ease-in;
+  }
+
+  .mail-booking-image-wrapper.animate #myLottie{
+    display: block;
+  }
+
+  .mail-booking-image-wrapper #myLottie{
+    display: none;
   }
 
   @keyframes moveMail {
