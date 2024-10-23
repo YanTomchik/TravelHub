@@ -2098,7 +2098,6 @@ p.note {
 .section-block.visible {
   opacity: 1;
   transform: translateY(0); /* Сбрасываем смещение */
-  z-index: -1;
   position: relative;
 }
 
