@@ -409,6 +409,10 @@ span.primary{
     color: #907B4E;
   }
 
+  .agents-page .feature-type-1 h2{
+    color: #4F966F;
+  }
+
   .feature-type-1 .feature-item-banner-wrapper{
     display: flex;
     gap: 20px;
