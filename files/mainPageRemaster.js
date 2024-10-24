@@ -67,7 +67,7 @@ window.addEventListener('scroll', function() {
   $(document).ready(function(){
     // Верхний слайдер - слева направо
     $('.logos-slider-top').slick({
-        slidesToShow: 8,
+        slidesToShow: 7,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
@@ -93,31 +93,31 @@ window.addEventListener('scroll', function() {
     });
 
     // Нижний слайдер - справа налево
-    $('.logos-slider-bottom').slick({
-        slidesToShow: 8,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: false,
-        infinite: true,
-        rtl: true, // Прокрутка справа налево
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 6,
-              slidesToScroll: 1,
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-            }
-          }
-        ] 
-    });
+    // $('.logos-slider-bottom').slick({
+    //     slidesToShow: 8,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 2000,
+    //     arrows: false,
+    //     infinite: true,
+    //     rtl: true, // Прокрутка справа налево
+    //     responsive: [
+    //       {
+    //         breakpoint: 1024,
+    //         settings: {
+    //           slidesToShow: 6,
+    //           slidesToScroll: 1,
+    //         }
+    //       },
+    //       {
+    //         breakpoint: 600,
+    //         settings: {
+    //           slidesToShow: 3,
+    //           slidesToScroll: 1,
+    //         }
+    //       }
+    //     ] 
+    // });
 });
 
 $(document).ready(function(){

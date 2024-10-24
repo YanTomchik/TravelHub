@@ -23,24 +23,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const toggleButton = $(".header-language-content");
     const dropdown = $(".header-language-dropdown");
-
+    
     // Функция для открытия/закрытия блока
     function toggleDropdown() {
         dropdown.toggleClass("active");
     }
-
+    
     // Открытие/закрытие по клику на <span>
-    toggleButton.on('click', function() {
+    toggleButton.on('click', function(e) {
+        e.stopPropagation(); // Останавливаем распространение события клика, чтобы не закрывать при клике на кнопку
         toggleDropdown();
     })
-
+    
     // Закрытие блока при клике вне блока
     $(document).mouseup(function(e) {
-        // if the target of the click isn't the container nor a descendant of the container
-        if (!dropdown.is(e.target) && dropdown.has(e.target).length === 0) {
-            dropdown.removeClass("active");
+        // Если цель клика не toggleButton и не его потомок, и цель не является dropdown или его потомком
+        if (!toggleButton.is(e.target) && toggleButton.has(e.target).length === 0 &&
+            !dropdown.is(e.target) && dropdown.has(e.target).length === 0) {
+            dropdown.removeClass("active"); // Закрываем dropdown
         }
     });
+    
 
 
     const toggleNavDesktop = document.querySelector(".header-toggle-nav-desktop > span");
@@ -86,24 +89,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //
 
-    const toggleNavMobile = document.querySelector(".header-toggle-nav-mobile > span");
+    const toggleNavMobile = document.querySelectorAll(".header-toggle-nav-mobile > span");
     const closeNavMobile = document.querySelector(".header-bottom-mobile-close");
-    const dropdownNavMobile = document.querySelector(".header-bottom");
+    const dropdownNavMobile = document.querySelector(".header-bottom.main");
+    const scrolledHeader = document.querySelector('.header-scrolled')
     const body = document.querySelector("body");
 
     if(toggleNavMobile){
-        toggleNavMobile.addEventListener("click", function (event) {
-            dropdownNavMobile.classList.add("active");
-            body.classList.add("overflow");
-        });
+
+        toggleNavMobile.forEach(elem => {
+            elem.addEventListener("click", function (event) {
+                scrolledHeader.classList.remove('show')
+                dropdownNavMobile.classList.add("active");
+
+                body.classList.add("overflow");
+            });
+        })
+        
     }
     
     if(closeNavMobile){
         closeNavMobile.addEventListener("click", function (event) {
             dropdownNavMobile.classList.remove("active");
+            if(window.scrollY > 300){
+                scrolledHeader.classList.add('show')
+            }
+            
             body.classList.remove("overflow");
         })
     }
+
+    const menuItemHeaderBottom = document.querySelectorAll('.header-bottom-left .menu-item');
+    const contentSections = document.querySelectorAll('.content-section-menu-header');
+    
+    // Функция для проверки, является ли устройство мобильным
+    function isMobile() {
+        return window.innerWidth <= 768; // Мобильная версия, если ширина экрана <= 768px
+    }
+    
+    if(menuItemHeaderBottom && isMobile()) {
+        menuItemHeaderBottom.forEach(elem => {
+            elem.addEventListener("click", function (event) {
+                // Проверяем, есть ли у элемента класс active
+                if (elem.classList.contains('active')) {
+                    // Если есть, удаляем его и скрываем контент
+                    elem.classList.remove('active');
+                    contentSections.forEach(section => {
+                        section.style.display = 'none'; // Скрываем все секции
+                    });
+                } else {
+                    // Если нет, сначала удаляем класс у всех остальных элементов
+                    menuItemHeaderBottom.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    // Скрываем все контентные секции
+                    contentSections.forEach(section => {
+                        section.style.display = 'none'; // Скрываем все секции
+                    });
+                    // Добавляем класс только для кликнутого элемента
+                    elem.classList.add('active');
+                    
+                    // Показываем соответствующую секцию, если есть в кликнутом элементе
+                    const contentSection = elem.querySelector('.content-section-menu-header');
+                    if (contentSection) {
+                        contentSection.style.display = 'flex'; // Показываем нужную секцию
+                    }
+                }
+            });
+        });
+    }
+    
+    // Слушатель для изменения размеров экрана, чтобы скрипт работал при изменении ширины
+    window.addEventListener('resize', () => {
+        if (!isMobile()) {
+            // Очищаем классы active и скрываем все секции при переходе на десктоп
+            menuItemHeaderBottom.forEach(item => {
+                item.classList.remove('active');
+            });
+            contentSections.forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+    });
+    
+    
+    
+    
     
 
 
