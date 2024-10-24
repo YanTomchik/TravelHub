@@ -445,7 +445,7 @@ span.primary{
   }
 
   .agents-page .feature-type-2 h2{
-    width: 55%;
+    width: 100%;
   }
 
   .feature-type-2 .feature-item-banner-wrapper{
@@ -1172,14 +1172,23 @@ span.primary{
     letter-spacing: 0.0025em;
 }
 
+.header-scrolled.header-bottom .header-bottom-left ul li{
+  display: flex;
+  align-items: center;
+}
+
 .header .header-bottom .header-bottom-left a:hover {
     color: #306DDE;
+}
+
+.header-scrolled.header-bottom .header-bottom-left a{
+  padding: 20px 0px;
 }
 
 .header-scrolled{
     justify-content: space-between;
     align-items: center;
-    padding: 12px 40px;
+    padding: 0px 40px;
     border-bottom: 1px solid #ebedf3;
     position: sticky;
     top: 0;
@@ -1188,6 +1197,7 @@ span.primary{
     transition: opacity 0.1s ease, padding 0.1s ease; 
     opacity: 0;
     display: none;
+    min-height: 60px;
 }
 
 .header-scrolled.show{
@@ -1204,8 +1214,11 @@ span.primary{
 
 @media (min-width: 769px) {
     .header .header-bottom .header-bottom-left a.active::after {
-       
         bottom: 0px;
+    }
+
+    .header-scrolled.header-bottom .header-bottom-left a.active::after{
+      display: none;
     }
 }
 
@@ -1257,6 +1270,11 @@ span.primary{
   padding-top: 60px;
 } */
 
+.agents-main-banner-section .landing-card.type-1{
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .agents-main-banner-section .landing-card-left-block{
   width: 60%;
 }
@@ -1279,6 +1297,10 @@ span.primary{
 
 .main-banner-right{
   margin-right: 0px;
+}
+
+.agents-page .main-banner-right{
+  margin-right: -70px;
 }
 
 .control-income-section .landing-card.type-1 .landing-card-content-header{
@@ -3087,12 +3109,27 @@ ul.pagination.rm li{
   padding-top: 30px;
 }
 
+.content-section-menu-header-bottom a:hover{
+  color: #818183!important;
+}
+
+
 .content-section-menu-header-bottom a.header-menu-btn{
   padding: 8px 16px!important;
   border-radius: 8px;
   border: 2px solid #818183;
   width: fit-content;
   color: #818183;
+  
+}
+
+.content-section-menu-header-bottom a.header-menu-btn.blue:hover{
+  background-color: #306dde2f;
+  color: #306DDE!important;
+}
+
+.content-section-menu-header-bottom a.header-menu-btn:hover{
+  background-color: rgba(244, 244, 253, 0.883);
 }
 
 .content-section-menu-header-bottom a.header-menu-btn.blue{
@@ -4036,6 +4073,34 @@ ul.pagination.rm li{
   height: 24px;
   cursor: pointer;
 }
+
+.header-scrolled .header-bottom-left ul {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 0px;
+}
+
+.header-scrolled .header-bottom-left ul li a {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.0025em;
+  color: #19191E;
+}
+
+.header-scrolled .menu-item{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-scrolled .header-left-block{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
 
 @media (max-width: 1024px) and (min-width: 768px){
   .news-card-item{
