@@ -1203,6 +1203,7 @@ span.primary{
 .header-scrolled.show{
     opacity: 1;
     display: flex;
+    flex-direction: row;
 }
 
 @media (min-width: 769px) {
@@ -5605,6 +5606,14 @@ ul.pagination.rm li{
 
     .business-main-banner-section .landing-banner-header-wrapper{
       margin-top: 0px;
+    }
+
+    .header-scrolled .header-bottom-left{
+      display: none;
+    }
+
+    .header-scrolled .header-bottom-right{
+      display: none;
     }
 
     /* DELETE BEFORE INTEGRATION */
