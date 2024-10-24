@@ -185,7 +185,11 @@ span.primary{
   display: flex!important;
   align-items: center;
   justify-content: center;
-  /* max-height: 46px; */
+  
+}
+
+.agents-page .landing-banner-footer-logos-list .logo-item{
+  max-height: 50px;
 }
 
 .landing-card{
