@@ -284,8 +284,8 @@ span.primary{
 }
 
 .landing-card-features-item .checkmark{
-    width: 20px;
-    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border-radius: 5px;
     background-color: #306DDE;
     position: relative;
@@ -2186,7 +2186,6 @@ footer.rm .footer-info{
   color: #24223E;
   margin: 0 0 5px;
   font-weight: 500;
-  font-size: 20px;
 }
 
 .subscribe-text p {
@@ -4038,13 +4037,13 @@ ul.pagination.rm li{
   cursor: pointer;
 }
 
-@media (max-width:1024px){
+@media (max-width: 1024px) and (min-width: 768px){
   .news-card-item{
-    max-width: 260px!important;
+    max-width: 240px!important;
     width: auto!important;
   }
 
-  .header-scrolled .header-bottom .header-bottom-left ul{
+  .header-bottom .header-bottom-left ul{
     gap: 15px;
   }
 
@@ -4052,14 +4051,299 @@ ul.pagination.rm li{
     color: #fff;
     background-color: #306DDE;
   }
+
+  .landing-banner-main-content {
+    width: 90%;
+  }
+
+  .landing-banner-header-wrapper h1{
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .landing-banner-header-wrapper p{
+    font-size: 16px;
+  }
+
+  .landing-card-features-item p{
+    font-size: 16px;
+  }
+
+  .feature-type-2 .feature-item-banner-wrapper{
+    position: relative;
+    bottom: -20px;
+    justify-content: center;
+  }
+
+  .landing-container .feature-item .feature-item-content{
+    gap: 8px;
+  }
+
+  .feature-type-2 h2{
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .feature-type-1 h2{
+    font-size: 32px;
+  }
+
+  .landing-container .feature-item{
+    padding: 20px 30px;
+  }
+
+  .feature-type-3 .feature-item-banner-wrapper{
+    margin-right: -30px;
+  }
+
+  .feature-type-3 h2{
+    font-size: 32px;
+    line-height: 30px;
+    
+  }
+
+  .feature-type-3 h3{
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .landing-container .feature-item.feature-type-4 .feature-item-content{
+    gap: 10px;
+  }
+
+  .feature-type-4 h5{
+    font-size: 14px;
+  }
+
+  .feature-type-4 h2{
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .battery-wrapper .battery-text{
+    left: 40px;
+  }
+
+  .feature-type-5 .feature-item-banner-wrapper{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  .landing-container .feature-item.feature-type-6 .feature-item-content{
+    width: 100%;
+  }
+
+  .feature-type-6 .feature-item-banner-wrapper{
+    position: relative;
+    bottom: -20px;
+    right:0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .feature-item.feature-type-7 .feature-item-banner-wrapper{
+    bottom: -20px;
+    position: relative;
+  }
+
+  .landing-container .feature-item.feature-type-7 .feature-item-content{
+    gap: 25px;
+  }
+
+  .news-section .section-header h2{
+    white-space: nowrap;
+  }
+
+  .register-section h1{
+    font-size: 24px;
+  }
+
+  .subscribe-text h2{
+    font-size: 16px;
+  }
+
+  .subscribe-form input{
+    width: 160px;
+  }
+
+  .footer-subscribe{
+    margin-left: 15px;
+  }
+
+  .business-page .feature-type-5 .feature-item-banner-wrapper{
+    position: relative;
+    bottom: -20px;
+  }
+
+  .business-page .feature-type-7 .feature-item-banner-wrapper{
+    margin-bottom: auto;
+    margin: 0 auto;
+  }
+
+  .business-page .feature-type-7 h3{
+    width: 100%;
+  }
+
+  .business-page .feature-type-8 h3{
+    font-size: 18px;
+  }
+
+  .cards-useful-list{
+    padding: 0px 40px;
+  }
+
+  .card-useful-item-left-content h2{
+    font-size: 24px;
+  }
+
+  .useful-features-item p{
+    font-size: 14px;
+  }
+
+  .card-useful-image{
+    margin-left: 3%;
+  }
+
+  .card-useful-item-right-content{
+    width: 40%;
+  }
+
+  .card-useful-item-left-content h3{
+    font-size: 18px;
+  }
+
+  .loyalty-cards-list{
+    gap: 10px;
+  }
+
+  .range-values{
+    font-size: 10px;
+  }
+
+  .calculate-profit h3 br{
+    display: none;
+  }
+
+  .calculate-profit-result-section{
+    width: 400px;
+  }
+
+  .calculate-profit-section .landing-card.type-1{
+    gap: 20px;
+  }
+
+  .calculate-profit h3{
+    font-size: 16px;
+  }
+
+  .agents-services-item{
+    min-height: 340px;
+  }
+
+  .book-demo-section .landing-card .landing-card-left-block h2{
+    font-size: 32px;
+  }
+
+  .agents-main-banner-section .landing-card-left-block{
+    width: 80%;
+  }
+
+  .agents-page .feature-type-2 h2{
+    width: 100%;
+  }
+
+  .agents-page .feature-type-3 h4{
+    margin-top: 20px;
+  }
+
+  .agents-page .feature-type-3 .feature-item-banner-wrapper{
+    position: relative;
+    right: 0px;
+    bottom: -20px;
+    margin: 0 auto;
+  }
+
+  .agents-page .feature-type-3{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .agents-page .feature-type-3 h2{
+    font-size: 70px;
+  }
+
+  .agents-page .feature-type-4 h2{
+    font-size: 22px;
+  }
+
+  .agents-page .feature-type-4 h5{
+    font-size: 16px;
+  }
+
+  .agents-page .battery-wrapper .battery-text{
+    left: 60px;
+  }
+
+  .agents-page .feature-type-5 .feature-item-banner-wrapper{
+    position: relative;
+    bottom: -20px;
+  }
+
+  .feature-type-6 h2{
+    font-size: 32px;
+  }
+
+  .feature-type-5 h2{
+    font-size: 32px;
+  }
+
+  .control-income-section .landing-card.type-1 .landing-card-content-header{
+    width: 100%;
+  }
+
+  .half-sections-wrapper{
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .highlights-section .right-section-wrapper{
+    width: 100%;
+  }
+
+  .highlights-content-item{
+    width: 100%;
+    height: 510px;
+  }
+
+  .step-number::after{
+    display: none;
+  }
+
+  .loyalty-section .landing-card.type-1{
+    min-height: 550px;
+  }
+
+  .footer-nav .col-xl-2.col-md-6{
+    margin-bottom: 20px;
+  }
+
+  .footer-nav .row{
+    margin-bottom: 20px;
+  }
+
 }
 
 
-@media (max-width: 770px){
+@media (max-width: 768px){
 
   .header-desktop-enter{
     flex-direction: row;
     margin-top: 0px;
+  }
+
+  .battery-text{
+    left: 80px;
   }
 
   .calendar-promo-tours-section .landing-card.type-2 .landing-card-left-block{
