@@ -76,19 +76,49 @@
                             </a>
                         </div>
 
-                        <div class="header-desktop-user">
-                            <div class="header-basket">
-                                <a href="/basket " class="header-basket-link">
-                                    <div class="header-basket-wrapper">
-                                        <div class="header-basket-description">
-                                            Корзина-конструктор </div>
-                                        <div class="header-basket">
-                                            <img src="./images/cart.svg" alt="">
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                </a>
+                        <div class="header-language">
+                                
+                            <div class="header-language-content">
+                                <span></span>
+                                <p class="currency-text">BYN</p>
+                                <img src="./images/chevron-down-blue-small.svg" alt="">
                             </div>
+                            <div class="header-language-dropdown">
+                                <div class="header-language-dropdown-tab">
+                                    <div class="language-tab active" data-tab="currency">Валюта</div>
+                                    <div class="language-tab" data-tab="language">Язык</div>
+                                </div>
+                                <div class="header-language-dropdown-tabContent">
+                                    <div class="language-content" data-tab="currency-content">
+                                        <a class="active" href="https://travelhub.by/flights?currency=BYN">
+                                            <img src="./files/byn.svg" alt=""> Бел руб. </a>
+                                        <a class="" href="https://travelhub.by/flights?currency=USD"><img src="./files/usd.svg" alt=""> Доллар </a>
+                                        <a class="" href="https://travelhub.by/flights?currency=EUR"><img src="./files/eur.svg" alt=""> Евро </a>
+                                        <a class="" href="/?currency=RUB"><img src="./files/rus.svg" alt=""> Рос. рубль</a>
+                                    </div>
+                                    <div class="language-content" data-tab="language-content" style="display:none;">
+                                        <a class="active" href="https://travelhub.by/flights?language=ru"><span>RU</span> Русский
+                                        </a>
+                                        <a class="" href="https://travelhub.by/flights?language=en"><span>EN</span>
+                                            English </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-basket">
+                            <a href="/basket " class="header-basket-link">
+                                <div class="header-basket-wrapper">
+                                    <div class="header-basket-description">
+                                        Корзина-конструктор </div>
+                                    <div class="header-basket">
+                                        <img src="./images/cart.svg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="header-desktop-user">
+                            
                             <div id="kt_header_user_menu_toggle" class="header-desktop-account-info">
                                 <div class="header-desktop-account-info-icon"></div>
                                 <div class="header-desktop-account-info-wrapper">
@@ -104,15 +134,16 @@
                         
                             </div>
                         </div>
-                        
+
+                        <div id="kt_header_mobile_user_menu_toggle" class="header-account-mobile" style="">
+                            G </div>
                         <div class="header-toggle-nav-mobile">
                             <span></span>
                         </div>
-                        <div id="kt_header_mobile_user_menu_toggle" class="header-account-mobile" style="">
-                            G </div>
+                        
                     </div>
                 </div>
-                <header id="kt_header" class="header header-fixed">
+                <header id="kt_header" class="header header-fixed header-has-auth">
                     
                     <div class="bonus-header-wrapper">
                         <img src="./images/bonus-icon.svg" alt="">
@@ -126,18 +157,24 @@
                             </a>
                         </div>
                         <div class="header-right-block">
+                            
                             <div class="header-currency-rates">
-                                <a class="d-flex justify-content-center" href="https://travelhub.by/user/currency-rates">
+                                <a class="d-flex justify-content-center"
+                                    href="https://travelhub.by/user/currency-rates">
                                     <div class="currency-item mr-5">
-                                        <img src="./files/usd.svg" alt="" class="currency-item-icon mr-2">
+                                        <img src="./files/usd.svg" alt=""
+                                            class="currency-item-icon mr-2">
                                         <span class="currency-item-rate">3.29</span>
                                     </div>
                                     <div class="currency-item">
-                                        <img src="./files/eur.svg" alt="" class="currency-item-icon mr-2">
+                                        <img src="./files/eur.svg" alt=""
+                                            class="currency-item-icon mr-2">
                                         <span class="currency-item-rate">3.67</span>
                                     </div>
                                 </a>
                             </div>
+                            
+
                             <div class="header-language">
                                 
                                 <div class="header-language-content">
@@ -167,15 +204,26 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
+                            <a href="/basket" class="header-basket-link">
+                                <div class="header-basket-wrapper desktop">
+                                    <div class="header-basket">
+                                        <img src="./images/cart.svg" alt="">
+                                    </div>
+                                    <span></span>
+                                </div>
+                            </a>
                             <div class="header-toggle-nav-desktop">
                                 <span></span>
                             </div>
                             <div id="kt_header_mobile_user_menu_toggle" class="header-account-mobile" style="">
                                 G </div>
+                                <div class="header-toggle-nav-mobile">
+                                    <span></span>
+                                </div>    
                         </div>
                     </div>
-                    <div class="header-bottom">
+                    <div class="header-bottom main">
                         <div class="header-bottom-content">
                             <div class="header-bottom-mobile">
                                 Меню <div class="header-bottom-mobile-close"></div>
@@ -183,11 +231,13 @@
                             <div class="header-mobile-currency-rates">
                                 <a class="d-flex" href="https://travelhub.by/user/currency-rates">
                                     <div class="currency-item mr-5">
-                                        <img src="./files/usd.svg" alt="" class="currency-item-icon mr-2">
+                                        <img src="./files/usd.svg" alt=""
+                                            class="currency-item-icon mr-2">
                                         <span class="currency-item-rate">3.29</span>
                                     </div>
                                     <div class="currency-item">
-                                        <img src="./files/eur.svg" alt="" class="currency-item-icon mr-2">
+                                        <img src="./files/eur.svg" alt=""
+                                            class="currency-item-icon mr-2">
                                         <span class="currency-item-rate">3.67</span>
                                     </div>
                                 </a>
@@ -195,203 +245,176 @@
                             <div class="header-bottom-left">
                                 <ul>
                                     <li class="menu-item">
-                                        <img src="./images/search-icon-blue.svg" alt="">
-                                        <a class="active" href="https://travelhub.by/" data-target="search-content">
-                                            Поиск </a>
-                                            <div class="content-section-menu-header">
-                                                <div class="content-section-menu-header-main">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <a href="https://travelhub.by/">Туры</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="https://travelhub.by/flights">Авиабилеты</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/hotels">Отели</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/transfers">Трансферы</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/excursions">Экскурсии</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                
-                                            </div>    
-                                    </li>
-                                    <li class="menu-item">
-                                        <img src="./images/product-icon-blue.svg" alt="">
-                                        <a class="" href="https://travelhub.by/agency">
-                                            Продукт</a>
-                                            <div class="content-section-menu-header">
-                                                <div class="content-section-menu-header-main">
-                                                    <ul>
-                                                        <li class="">
-                                                            <a href="/country">Страны</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Специальные предложения</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/news/informatsionnoe-i-reklamnoe-sotrudnichestvo">Медиапартнерство</a>
-                                                        </li>
-                                                    </ul>
-                                                    <ul>
-                                                        <li class="active">
-                                                            <a href="https://travelhub.by/">Туры</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="https://travelhub.by/flights">Авиабилеты</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/hotels">Отели</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/transfers">Трансферы</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/excursions">Экскурсии</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="https://visa.maderatravel.by/">Визы</a>
-                                                        </li>
-                                                    </ul>
-                                                    <ul>
-                                                        <li class="">
-                                                            <a href="/about">О нас</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/news">Новости</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/contacts">Контакты</a>
-                                                        </li>
-                                                        
-                                                        <div class="menu-socials">
-                                                            <a target="_blank" href="https://t.me/travelbusinesstrips"><img src="./files/telegram.svg" alt=""></a>
-                                                        <a target="_blank" href="https://www.facebook.com/TravelHubB2B/"><img src="./files/facebook.svg" alt=""></a>
-                                                        <a target="_blank" href="https://www.instagram.com/travelhub.by/"><img src="./files/inst.svg" alt=""></a>
-                                                        <a target="_blank" href="mailto:book@travelhub.by"><img src="./files/mail.svg" alt=""></a>
-                                                        <a target="_blank" href="https://www.linkedin.com/company/touroperator-travelhub/"><img src="./files/linkedin.svg" alt=""></a>
-                                                            
-                                                            
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                                <div class="content-section-menu-header-bottom">
-                                                    <a class="header-menu-btn blue" href="/register">
-                                                        Демо
-                                                        <img src="./images/chevron-right-blue-small.svg" alt="">
-                                                    </a>
-    
-    
-                                                    <div class="header-menu-btns-wrapper">
-                                                        <a class="header-menu-btn " href="https://apps.apple.com/by/app/travelhub-%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B7%D0%B4%D0%B5%D1%81%D1%8C/id6471902299">
-                                                            <img src="./images/ios-grey.png" alt="">
-                                                            ios
-                                                        </a>
-                                                        <a class="header-menu-btn " href="https://play.google.com/store/apps/details?id=com.travelhub">
-                                                            <img src="./images/android-grey.png" alt="">
-                                                            android
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </div>
-                                                
-                                            </div>        
-                                    </li>
-                                    <li class="menu-item">
-                                        <img src="./images/agents-icon-blue.svg" alt="">
-                                        <a class="" href="https://travelhub.by/agency">
-                                            Агентам </a>
-                                            <div class="content-section-menu-header">
-                                                <div class="content-section-menu-header-main">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <a href="/register">Присоединяйтесь к команде</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/agency#agencyAdvantagesSection">Преимущества</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/agency#agencyLoyaltySection">Программа лояльности</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/agency#agencyCalculatorSection">Калькулятор выгоды</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/agency#ourTeamSection">Наша команда</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Сотрудничество</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                
-                                            </div>     
-                                    </li>
-                                    <li class="menu-item">
-                                        <img src="./images/business-icon-blue.svg" alt="">
-                                        <a class="" href="https://travelhub.by/b2b">
-                                            Бизнесу</a>
-                                            <div class="content-section-menu-header">
-                                                <div class="content-section-menu-header-main">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <a href="/register">Присоединяйтесь к команде</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#businessAdvantagesSection">Преимущества</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#forBossSection">Для руководителя</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#forAccountingSection">Для бухгалтера</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#forTravelManagerSection">Для тревел-менеджера</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#forHrManagerSection">Для HR-менеджера</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#businessLoyaltySection">Программа лояльности</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/b2b#businessCalculatorSection">Калькулятор выгоды</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/news">Новости</a>
-                                                        </li>
-                                                        <!-- <li>
-                                                            <a href="#">Наши кейсы</a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="/b2b#businessFaqSection">Часто задаваемые вопросы</a>
-                                                        </li>
-                                                    </ul>
-                                                </div> 
-                                                <div class="content-section-menu-header-bottom">
-                                                    <a class="header-menu-btn blue" href="/register">
-                                                        Демо
-                                                        <img src="./images/chevron-right-blue-small.svg" alt="">
-                                                    </a>
-                                                    
-                                                </div>   
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/search-icon-blue.svg" alt="">
+                                            <a class="active" href="https://travelhub.by/" data-target="search-content">
+                                                Поиск </a>
+                                        </div>
+                                
+                                        <div class="content-section-menu-header">
+                                            <div class="content-section-menu-header-main">
+                                                <ul>
+                                                    <li class="active">
+                                                        <a href="https://travelhub.by/">Туры</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://travelhub.by/flights">Авиабилеты</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/hotels">Отели</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/transfers">Трансферы</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/excursions">Экскурсии</a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            
+                                
+                                        </div>
                                     </li>
                                     <li class="menu-item">
-                                        <img src="./images/mail-blue-icon.svg" alt="">
-                                        <a class="" href="/contacts">
-                                            Контакты 
-                                        </a>
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/price-blue-icon.svg" alt="">
+                                            <a class="/prices/blocks">
+                                                Цены</a>
+                                        </div>
+                                    </li>
+                                    <li class="menu-item">
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/handbook-blue-icon.svg" alt="">
+                                            <a class="" href="/data">
+                                                Справочник</a>
+                                        </div>
+                                    </li>
+                                    <li class="menu-item">
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/report-blue-icon.svg" alt="">
+                                            <a class="">
+                                                Отчеты</a>
+                                        </div>
+                                        <div class="content-section-menu-header">
+                                            <div class="content-section-menu-header-main">
+                                                <ul>
+                                                    <li>
+                                                        <a href="/reports/orders">По заявкам</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/reports/orders-companies">По заявкам (корп. клиенты)</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/reports/partners">По партнерам</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/reports/managers">По менеджерам</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/reports/responsible-persons">По ответственным</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/reports/payments">Платежный календарь</a>
+                                                    </li>
+                                                                                        <li>
+                                                            <a href="/reports/cashbox">Касса</a>
+                                                        </li>
+                                                                                                                        <li>
+                                                            <a href="/reports/upload-avia-reports">Загрузка авиа отчетов</a>
+                                                        </li>
+                                                </ul>
+                                            </div>
+                                
+                                        </div>
+                                    </li>
+                                    <li class="menu-item">
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/agents-icon-blue.svg" alt="">
+                                            <a class="" href="https://travelhub.by/agency">
+                                                Агентам </a>
+                                        </div>
+                                
+                                        <div class="content-section-menu-header">
+                                            <div class="content-section-menu-header-main">
+                                                <ul>
+                                                    <li class="active">
+                                                        <a href="/register">Присоединяйтесь к команде</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/agency#agencyAdvantagesSection">Преимущества</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/agency#agencyLoyaltySection">Программа лояльности</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/agency#agencyCalculatorSection">Калькулятор выгоды</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/agency#ourTeamSection">Наша команда</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Сотрудничество</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                
+                                        </div>
+                                    </li>
+                                    <li class="menu-item">
+                                        <div class="menu-item-main-info">
+                                            <img src="./images/business-icon-blue.svg" alt="">
+                                            <a class="" href="https://travelhub.by/b2b">
+                                                Бизнесу</a>
+                                        </div>
+                                
+                                        <div class="content-section-menu-header">
+                                            <div class="content-section-menu-header-main">
+                                                <ul>
+                                                    <li class="active">
+                                                        <a href="/register">Присоединяйтесь к команде</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#businessAdvantagesSection">Преимущества</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#forBossSection">Для руководителя</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#forAccountingSection">Для бухгалтера</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#forTravelManagerSection">Для тревел-менеджера</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#forHrManagerSection">Для HR-менеджера</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#businessLoyaltySection">Программа лояльности</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/b2b#businessCalculatorSection">Калькулятор выгоды</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/news">Новости</a>
+                                                    </li>
+                                                    <!-- <li>
+                                                                                            <a href="#">Наши кейсы</a>
+                                                                                        </li> -->
+                                                    <li>
+                                                        <a href="/b2b#businessFaqSection">Часто задаваемые вопросы</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="content-section-menu-header-bottom">
+                                                <a class="header-menu-btn blue" href="/register">
+                                                    Демо
+                                                    <img src="./images/chevron-right-blue-small.svg" alt="">
+                                                </a>
+                                
+                                            </div>
+                                        </div>
+                                
                                     </li>
                                 </ul>
-                                
                             </div>
                             <!---->
                             <div class="header-dropdown-desktop">
@@ -421,11 +444,17 @@
                                     <div class="header-dropdown-desktop-socials">
                                         <div class="h3-header">Мы в соцсетях</div>
                                         <div class="d-flex align-items-center  gap-16">
-                                            <a target="_blank" href="https://t.me/travelbusinesstrips"><img src="./files/telegram.svg" alt=""></a>
-                                            <a target="_blank" href="https://www.facebook.com/TravelHubB2B/"><img src="./files/facebook.svg" alt=""></a>
-                                            <a target="_blank" href="https://www.instagram.com/travelhub.by/"><img src="./files/inst.svg" alt=""></a>
-                                            <a target="_blank" href="mailto:book@travelhub.by"><img src="./files/mail.svg" alt=""></a>
-                                            <a target="_blank" href="https://www.linkedin.com/company/touroperator-travelhub/"><img src="./files/linkedin.svg" alt=""></a>
+                                            <a target="_blank" href="https://t.me/travelbusinesstrips"><img
+                                                    src="./files/telegram.svg" alt=""></a>
+                                            <a target="_blank" href="https://www.facebook.com/TravelHubB2B/"><img
+                                                    src="./files/facebook.svg" alt=""></a>
+                                            <a target="_blank" href="https://www.instagram.com/travelhub.by/"><img
+                                                    src="./files/inst.svg" alt=""></a>
+                                            <a target="_blank" href="mailto:book@travelhub.by"><img
+                                                    src="./files/mail.svg" alt=""></a>
+                                            <a target="_blank"
+                                                href="https://www.linkedin.com/company/touroperator-travelhub/"><img
+                                                    src="./files/linkedin.svg" alt=""></a>
                                         </div>
                                     </div>
                                 </div>
@@ -433,16 +462,13 @@
                                     <div class="h3-header">Новинка</div>
                                     <p>Эксклюзивное предложение в CULLINAN GOLF &amp; RESORT BELEK: Upgrade на İmperial
                                         Service при бронировании группового трансфера</p>
-                                    <a href="https://travelhub.by/news/cullinan-golf-resort-belek-upgrade-imperial-service">Подробнее-&gt;</a>
+                                    <a
+                                        href="https://travelhub.by/news/cullinan-golf-resort-belek-upgrade-imperial-service">Подробнее-&gt;</a>
                                 </div>
                             </div>
                             <!---->
                             <div class="header-bottom-right">
                                 <div class="header-desktop-user">
-                                    <div class="header-account-links-mobile">
-                                        <a href="/agency">Агентствам</a>
-                                        <a href="/b2b">Корпоративным клиентам</a>
-                                    </div>
                                     <div class="header-basket">
                                         <a href="/basket " class="header-basket-link">
                                             <div class="header-basket-wrapper">
@@ -473,15 +499,21 @@
                             </div>
                         </div>
                         <div class="header-socials-mobile">
-                            <a target="_blank" href="https://www.instagram.com/travelhub.by/">Telegram</a>
-                            <a target="_blank" href="https://www.facebook.com/TravelHubB2B/">Facebook</a>
-                            <a target="_blank" href="https://www.instagram.com/travelhub.by/">Instagram</a>
-                            <a target="_blank" href="mailto:book@travelhub.by">Mail</a>
-                            <a target="_blank" href="https://www.linkedin.com/company/touroperator-travelhub/">LinkedIn</a>
+                            <div class="menu-socials">
+                                <a target="_blank" href="https://t.me/travelbusinesstrips"><img src="./files/telegram.svg" alt=""></a>
+                                <a target="_blank" href="https://www.facebook.com/TravelHubB2B/"><img src="./files/facebook.svg" alt=""></a>
+                                <a target="_blank" href="https://www.instagram.com/travelhub.by/"><img src="./files/inst.svg" alt=""></a>
+                                <a target="_blank" href="mailto:book@travelhub.by"><img src="./files/mail.svg" alt=""></a>
+                                <a target="_blank" href="https://www.linkedin.com/company/touroperator-travelhub/"><img src="./files/linkedin.svg" alt=""></a>
+        
+        
+                            </div>
                         </div>
+                        
                     </div>
 
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-325px" data-kt-menu="true">
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-325px"
+                        data-kt-menu="true">
                         <div class="header-account-modal-mobile">
                             Аккаунт <div class="header-account-modal-mobile-close"></div>
                             <div class="header-right-block-sub-menu">
@@ -496,14 +528,19 @@
                                             <div class="language-content" data-tab="currency-mobile-content">
                                                 <a class="active" href="https://travelhub.by/flights?currency=BYN">
                                                     <img src="./files/byn.svg" alt=""> Бел руб. </a>
-                                                <a class="" href="https://travelhub.by/flights?currency=USD"><img src="./files/usd.svg" alt=""> Доллар </a>
-                                                <a class="" href="https://travelhub.by/flights?currency=EUR"><img src="./files/eur.svg" alt=""> Евро </a>
-                                                <a class="" href="/?currency=RUB"><img src="./files/rus.svg" alt=""> Рос. рубль</a>
+                                                <a class="" href="https://travelhub.by/flights?currency=USD"><img
+                                                        src="./files/usd.svg" alt=""> Доллар </a>
+                                                <a class="" href="https://travelhub.by/flights?currency=EUR"><img
+                                                        src="./files/eur.svg" alt=""> Евро </a>
+                                                        <a class="" href="/?currency=RUB"><img src="./files/rus.svg" alt=""> Рос. рубль</a>
                                             </div>
-                                            <div class="language-content" data-tab="language-mobile-content" style="display:none;">
-                                                <a class="active" href="https://travelhub.by/flights?language=ru"><span>RU</span>
+                                            <div class="language-content" data-tab="language-mobile-content"
+                                                style="display:none;">
+                                                <a class="active"
+                                                    href="https://travelhub.by/flights?language=ru"><span>RU</span>
                                                     Русский </a>
-                                                <a class="" href="https://travelhub.by/flights?language=en"><span>EN</span>
+                                                <a class=""
+                                                    href="https://travelhub.by/flights?language=en"><span>EN</span>
                                                     English </a>
                                             </div>
                                         </div>
@@ -519,7 +556,8 @@
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
                                     <div class="account-name" title=""></div>
-                                    <a href="https://travelhub.by/flights#" class="account-mail fw-bold text-muted text-hover-primary fs-7" title=""></a>
+                                    <a href="https://travelhub.by/flights#"
+                                        class="account-mail fw-bold text-muted text-hover-primary fs-7" title=""></a>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -535,11 +573,13 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="javascript:" onclick="Intercom('showSpace', 'help');" class="accont-sub-link menu-link px-5">Поддержка</a>
+                            <a href="javascript:" onclick="Intercom(&#39;showSpace&#39;, &#39;help&#39;);"
+                                class="accont-sub-link menu-link px-5">Поддержка</a>
                         </div>
                         <div class="separator my-2 modile-none"></div>
                         <div class="menu-item px-5">
-                            <a class="account-outlog menu-link px-5" href="https://travelhub.by/site/logout" data-method="post">Выйти</a>
+                            <a class="account-outlog menu-link px-5" href="https://travelhub.by/site/logout"
+                                data-method="post">Выйти</a>
                         </div>
                     </div>
                 </header>

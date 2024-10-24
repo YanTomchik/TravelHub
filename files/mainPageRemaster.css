@@ -3136,6 +3136,10 @@ ul.pagination.rm li {
   font-weight: 600;
 }
 
+.header-bottom .header-bottom-left .content-section-menu-header li.active a:hover{
+  font-weight: 600;
+}
+
 .header-bottom .header-bottom-left .content-section-menu-header li:hover a {
   color: #306DDE;
   font-weight: 400;
