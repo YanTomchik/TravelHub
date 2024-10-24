@@ -4043,10 +4043,24 @@ ul.pagination.rm li{
     max-width: 260px!important;
     width: auto!important;
   }
+
+  .header-scrolled .header-bottom .header-bottom-left ul{
+    gap: 15px;
+  }
+
+  .header-scrolled .header-bottom-right .header-desktop-enter .header-login{
+    color: #fff;
+    background-color: #306DDE;
+  }
 }
 
 
 @media (max-width: 770px){
+
+  .header-desktop-enter{
+    flex-direction: row;
+    margin-top: 0px;
+  }
 
   .calendar-promo-tours-section .landing-card.type-2 .landing-card-left-block{
     flex-direction: column;
