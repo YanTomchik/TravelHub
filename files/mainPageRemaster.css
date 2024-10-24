@@ -1130,6 +1130,7 @@ span.primary{
     padding: 8px 16px;
     border-radius: 12px;
     font-size: 15px;
+    height: 40px;
 }
 
 .header-bottom-right .header-desktop-enter .header-reg{
@@ -1140,6 +1141,7 @@ span.primary{
     border-radius: 12px;
     border: none;
     height: auto;
+    height: 40px;
 }
 
 .header .header-bottom .header-bottom-left a{
